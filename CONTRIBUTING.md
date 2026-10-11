@@ -98,6 +98,7 @@ The [pull request template](.github/PULL_REQUEST_TEMPLATE.md) repeats this check
 
 1. Fork the repository and create a branch from `main` with a short descriptive name.
 2. Make your change, keep it focused, and add or update tests and docs.
+   A pull request should only add or change your own files: if *Files changed* shows the sample quizzes (or anyone else's files) as deleted, start again from a branch of the original `main`.
 3. Run `.venv/bin/pytest -q` (and the browser tests if you touched the page).
 4. Open a pull request. The template asks whether it is code, a quiz or a collection, what it changes and why, and has a checklist to tick.
 5. CI runs automatically. The maintainer reviews, may ask for changes, and merges when it is ready.

@@ -196,9 +196,10 @@
         </div>
         <h3>Then tidy up the sample quizzes</h3>
         <ol class="steps" role="list">
-          <li>In your fork, click the <code>quizzes</code> folder, then click a sample quiz file such as <code>farm-animals.json</code>. (Do this after creating your own quiz: GitHub forgets a folder once it is empty.)</li>
+          <li>In your fork, click the <code>quizzes</code> folder, then click a sample quiz file such as <code>farm-animals.json</code>. (Do this after creating your own quiz.)</li>
           <li>In the top-right corner of the file, open the <span class="ui">&hellip;</span> menu and click <span class="ui">Delete file</span>. Write a short note such as &ldquo;Remove sample quiz&rdquo; and click <span class="ui">Commit changes</span>.</li>
           <li>Do the same for the other sample quiz. To remove the pictures, go back to the <code>quizzes</code> folder, open the <span class="ui">&hellip;</span> menu next to the folder name, and click <span class="ui">Delete directory</span>.</li>
+          <li>Give your quiz page its own name: open <code>quizzes/site.json</code>, click the pencil (<span class="ui">Edit this file</span>), change the <code>"title"</code> and <code>"description"</code> text, and commit. Keep the file: it is what keeps the <code>quizzes</code> folder there.</li>
         </ol>
         <p>Your own quiz stays. The Action starts again by itself when you commit, and your quiz list then shows only your quizzes.</p>
         <p>One thing to know: a fork where you have deleted the samples is not a good starting point for sending a quiz to the shared library, because the request would delete them there too. <a href="#contribute">Contributing back</a> explains what to do.</p>
@@ -417,7 +418,8 @@
         <ul>
           <li><strong>The page says &ldquo;404&rdquo;.</strong> Check that <span class="ui">Source</span> is set to <span class="ui">GitHub Actions</span> (<a href="#make-your-site">Make your own quiz site in 10 minutes</a>, step 3), and that a run has finished with a green tick.</li>
           <li><strong>Nothing happens when I save.</strong> Check the <span class="ui">Actions</span> tab: workflows may still need switching on (<a href="#make-your-site">Make your own quiz site in 10 minutes</a>, step 4).</li>
-          <li><strong>The build fails with &ldquo;quizzes/ folder not found&rdquo;.</strong> You deleted every quiz, and GitHub forgets an empty folder. Add a quiz file as <code>quizzes/your-quiz.json</code> (see <a href="#first-quiz">Write your first quiz</a>).</li>
+          <li><strong>The quiz page says there are no quizzes yet.</strong> Every quiz file was deleted. Add one as <code>quizzes/your-quiz.json</code> (see <a href="#first-quiz">Write your first quiz</a>).</li>
+          <li><strong>The build fails with &ldquo;quizzes/ folder not found&rdquo;.</strong> The whole <code>quizzes</code> folder was deleted (GitHub removes a folder once it is empty). Create <code>quizzes/your-quiz.json</code> again with <span class="ui">Add file</span>.</li>
           <li><strong>My change is not there yet.</strong> Wait a minute after the green tick, then refresh. Browsers sometimes keep an old copy for a little while.</li>
         </ul>
         <a class="to-top" href="#contents">Back to the contents</a>
@@ -474,7 +476,7 @@ quizgen build space-quiz.json</code></pre>
           <li>You have double-checked every right answer.</li>
           <li>Pictures are yours or openly licensed, and you have noted the source.</li>
           <li>It has no personal data about children: no names, photos or contact details.</li>
-          <li>It passes the checks. The pull request shows a green tick when the quizzes validate.</li>
+          <li>It passes the checks. The pull request shows a green tick when the quizzes validate (the first time you contribute, the checks may wait until the maintainer allows them to run).</li>
         </ul>
         <p>The full rules are in <a class="ext" href="https://github.com/rcocetta/school-quiz/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
         <a class="to-top" href="#contents">Back to the contents</a>
