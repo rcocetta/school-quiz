@@ -46,14 +46,19 @@ jobs:
         run: pip install .
 
       - name: Check the quizzes
-        run: quizgen validate quizzes/
+        run: |
+          if [ ! -d quizzes ]; then
+            echo "::error::quizzes/ folder not found — add at least one quiz (see the guide)"
+            exit 1
+          fi
+          quizgen validate quizzes/
 
       - name: Assemble the site
         env:
           PROJECT_PAGES: ${{ vars.PROJECT_PAGES }}
         run: |
           set -euo pipefail
-          if [ "$PROJECT_PAGES" = "false" ]; then
+          if [ "${PROJECT_PAGES,,}" = "false" ]; then
             # Quizzes only: the quiz index is the home page.
             quizgen build quizzes -o _site
           else
