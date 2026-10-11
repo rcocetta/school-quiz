@@ -47,6 +47,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 | D14 | Project will be **open-sourced**: exhaustive README, licence, contributor docs, clean repo hygiene are v1 deliverables | ✅ |
 | D15 | Licence: **GPL-3.0** (already in the GitHub repo) | ✅ |
 | D16 | Mission, stated on the website and README: **built for kids, free forever, anyone can fork and run their own, or contribute back via PR** | ✅ |
+| D26 | **GitHub Pages serves `/docs` on `main`** (configured by the user). `docs/` is **generated output only**: never hand-edit it; it's rebuilt from `website/` + `quizzes/` by `scripts/build_pages.py` (locally) and by the `rebuild-docs.yml` workflow (on push to `main`), which commits the result. `docs/.nojekyll` disables Jekyll; a `docs/.quizgen-generated` marker must exist before the build wipes the folder (protects hand-made content) | ✅ |
 | D17 | GitHub Pages site layout: `/` landing page, `/guide/` how-to guide, `/quizzes/` quiz index. Forks can turn off the project pages with one setting, which puts their quiz index at `/` | ✅ |
 | D18 | Website and guide in **English only** (quizzes themselves stay multi-language) | ✅ |
 | D19 | **Main path for non-programmers: fork → edit JSON in GitHub's web editor → GitHub Action builds and deploys.** No local install needed. The CLI path is for developers | ✅ |
@@ -270,15 +271,21 @@ LICENSE
 CONTRIBUTING.md
 CHANGELOG.md
 PLAN.md                      # this file
-docs/screenshots/            # images used by the README
+docs/                        # GENERATED GitHub Pages output (D26) — do not edit by hand
+  .nojekyll
+  .quizgen-generated         # marker: safe for the build to wipe and regenerate
+  index.html, guide/, quizzes/, assets/
+scripts/
+  build_pages.py             # website/ + quizzes/ → docs/ (honours PROJECT_PAGES)
 website/                     # hand-written project pages (landing + guide), plain HTML/CSS
   index.html                 # landing page → served at /
   guide/index.html           # guide → served at /guide/
-  assets/                    # site CSS, logo, screenshots
+  assets/                    # site CSS, logo
+    screenshots/             # used by the landing page AND the README (README links them via raw paths)
 quizzes/                     # the real quiz library published on Pages (maintainer's + contributed)
   <collection>/              # contributed collections (D21), optional collection.json
 .github/
-  workflows/pages.yml        # build quizzes + website, deploy to Pages
+  workflows/rebuild-docs.yml # on push to main: run build_pages.py, commit docs/ if changed
   workflows/ci.yml           # tests + `quizgen validate quizzes/` on every PR (free, no secrets)
   workflows/claude-review.yml # maintainer-triggered Claude review (§8)
   PULL_REQUEST_TEMPLATE.md
@@ -369,7 +376,7 @@ tests/
   7. Validation: what is checked, example error output and how to fix common errors
   8. CLI reference: every command/flag with examples, exit codes
   9. Output modes: single-file vs site, what gets generated, when to use which
-  10. Publishing on GitHub Pages: step by step (manual and via the Actions workflow), plus other static hosts
+  10. Publishing on GitHub Pages: Settings → Pages → *Deploy from a branch* → `main` / `/docs`; how `docs/` is generated (never edit it), the rebuild workflow, rebuilding locally with `scripts/build_pages.py`; plus other static hosts (upload the contents of `docs/`)
   11. Editor support: `$schema` for autocomplete/validation in VS Code
   12. Adding a new UI language (`ui_strings.json`)
   13. FAQ / limitations (answers visible in page source — practice tool, not exams; no tracking; works offline)
@@ -377,8 +384,8 @@ tests/
   15. Development: setup, running tests, project layout, architecture overview (validate → normalise → render)
   16. Contributing link, licence, credits
 - [ ] `CONTRIBUTING.md`, `CHANGELOG.md` (Keep a Changelog format, v0.1.0)
-- [ ] README screenshots in `docs/screenshots/`, generated from the example quizzes
-- [ ] `ci.yml`: tests + validate `examples/` and `quizzes/` on every PR (Pages deploy moved to Phase 5)
+- [ ] Screenshots in `website/assets/screenshots/` (shared by README and landing page), generated from the example quizzes
+- [ ] `ci.yml`: tests + validate `examples/` and `quizzes/` on every PR (Pages rebuild is Phase 5)
 - [ ] `pyproject.toml` metadata for PyPI: description, readme, licence, classifiers, project URLs
 - [ ] Final check: every README code snippet and command actually runs against the current code (have a subagent follow the README from scratch in a clean venv)
 - **Done when**: a non-programmer teacher can go from README to a deployed quiz without reading the source, and a developer can set up, test and contribute using only the README + CONTRIBUTING.
@@ -388,8 +395,10 @@ tests/
 ### Phase 5 — Project website + community
 - [ ] `website/index.html` landing page (§8)
 - [ ] `website/guide/index.html` guide (§8)
-- [ ] `pages.yml`: build `quizzes/` → `_site/quizzes/`, copy `website/` → `_site/`, deploy. Repo variable `PROJECT_PAGES=false` → skip `website/` and build quizzes at `_site/` root (for forks)
-- [ ] Fork-friendliness: a fresh fork deploys after only enabling Pages + Actions; documented in the guide with screenshots
+- [ ] `scripts/build_pages.py`: refuse to wipe `docs/` unless it's empty or has the `.quizgen-generated` marker; build `quizzes/` → `docs/quizzes/`, copy `website/` → `docs/`, write `.nojekyll` + marker. Env `PROJECT_PAGES=false` → skip `website/` and build quizzes at `docs/` root (for forks)
+- [ ] `rebuild-docs.yml` (D26): on push to `main` (paths `quizzes/**`, `website/**`, `src/**`, `scripts/**`), run tests + `build_pages.py`, commit `docs/` as a bot only if it changed. `permissions: contents: write` on this job only; never runs on PRs, so fork PRs can't reach write access. Reads the `PROJECT_PAGES` repo variable. Avoid loops (bot commits only touch `docs/`, which isn't in `paths`)
+- [ ] `ci.yml` also checks PRs don't edit `docs/` by hand (fail with a friendly message: "docs/ is generated — edit website/ or quizzes/ instead")
+- [ ] Fork-friendliness: a fresh fork goes live after enabling Actions and Settings → Pages → `main` / `/docs`; documented in the guide with screenshots
 - [ ] Community files: `CODE_OF_CONDUCT.md` (Contributor Covenant), PR template with type checkboxes (code / quiz / collection) and the quiz checklist, issue templates
 - [ ] `claude-review.yml` (§8) + section in CONTRIBUTING explaining that reviews are maintainer-triggered
 - [ ] Link checks: landing ↔ guide ↔ quizzes ↔ GitHub repo all work on the deployed site and in a fork with `PROJECT_PAGES=false`
@@ -410,7 +419,7 @@ Audience: teachers, parents, and developers who stumble on the repo. Friendly, w
 
 ### Guide (`/guide/`)
 Step-by-step, written for non-programmers first (D19), with screenshots of GitHub's UI. One page with a sticky table of contents:
-1. **Make your own quiz site in 10 minutes**: create a GitHub account → fork → enable Pages + Actions → see your site live
+1. **Make your own quiz site in 10 minutes**: create a GitHub account → fork → enable Actions → Settings → Pages → *Deploy from a branch*, `main`, `/docs` → see your site live
 2. **Write your first quiz**: edit a JSON file in the GitHub web editor, a minimal annotated example, commit → wait for the Action → refresh
 3. **Quiz file reference**: every field, in plain language, with examples (kept in sync with the README / `schema.json`)
 4. **Saying who made it**: the `author` field, why to prefer a website or a quiz-only email over a personal address, and never including children's names or contact details
@@ -418,7 +427,7 @@ Step-by-step, written for non-programmers first (D19), with screenshots of GitHu
 6. **Adding images**: uploading via the GitHub web UI, using image links, size and licensing tips
 7. **Multiple languages**: `languages`, translation maps, the `any` key
 8. **When something goes wrong**: reading the failed Action log, common validation errors and fixes
-9. **Turning off the project pages** in your fork (`PROJECT_PAGES=false`)
+9. **Turning off the project pages** in your fork (repo variable `PROJECT_PAGES=false`); reminder that `docs/` is generated, so edit `quizzes/` and let the workflow rebuild
 10. **Sharing a quiz without a website**: single-file HTML (for developers or with help, needs the CLI)
 11. **Contributing back**: sending a quiz or collection to the main library via PR; the quiz checklist
 12. **For developers**: link to the README sections on local install and CLI

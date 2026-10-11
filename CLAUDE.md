@@ -11,6 +11,10 @@
 ## Working principles
 Follow the **Working principles** section of `PLAN.md`: kids-first UX, easy for non-programmer creators, simple over clever, secure by default, and the subagent/model policy. Use the project agents in `.claude/agents/` (`quiz-implementer`, `quiz-designer`, `security-reviewer`, `simplicity-reviewer`, `accessibility-reviewer`, `e2e-tester`) and follow the per-phase workflow in `PLAN.md` → "Using subagents". Cheapest model that does the job well: haiku for mechanical work, sonnet for implementation and reviews, opus for orchestration, security review and design decisions.
 
+## GitHub Pages
+- Pages serves **`/docs` on `main`**. `docs/` is generated output (website/ + quizzes/ → docs/ via `scripts/build_pages.py` and the `rebuild-docs.yml` workflow). **Never hand-edit `docs/`**; change `website/`, `quizzes/` or the code and regenerate.
+- Live site: https://rcocetta.github.io/school-quiz/
+
 ## Conventions
 - Python ≥ 3.10; runtime deps only `jsonschema` and `jinja2`. Browser code is vanilla JS/CSS: no frameworks, no external requests.
 - Quiz text is rendered with `textContent`, never `innerHTML`.
