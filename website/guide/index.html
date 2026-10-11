@@ -92,7 +92,7 @@
           </li>
           <li>
             <strong>Build your site.</strong>
-            <p>Still on the <span class="ui">Actions</span> tab, click the Pages workflow in the left sidebar. Above the list of runs click <span class="ui">Run workflow</span>, then click the green <span class="ui">Run workflow</span> button in the box that opens.</p>
+            <p>Still on the <span class="ui">Actions</span> tab, click <span class="ui">Deploy to GitHub Pages</span> in the left sidebar. Above the list of runs click <span class="ui">Run workflow</span>, then click the green <span class="ui">Run workflow</span> button in the box that opens.</p>
           </li>
           <li>
             <strong>Wait, then visit your site.</strong>
@@ -375,8 +375,8 @@
         <ol class="steps">
           <li>Open the <span class="ui">Actions</span> tab. A run with a red cross has failed.</li>
           <li>Click the name of that run.</li>
-          <li>Under <strong>Jobs</strong> (left side), click the job called <strong>build</strong>.</li>
-          <li>The step that failed opens by itself. It is the one that checks your quizzes. Read the red lines.</li>
+          <li>Under <strong>Jobs</strong> (left side), click the job called <strong>Build site</strong>.</li>
+          <li>The step that failed opens by itself. It is usually <strong>Check the quizzes</strong>. Read the red lines.</li>
         </ol>
         <p>Each line says the file, the place inside it, and what to fix:</p>
         <pre><code>ERROR   quizzes/space-quiz.json: questions[1].options: exactly one option must have "correct": true (found 0)</code></pre>
@@ -419,7 +419,7 @@
           <li>Click the <span class="ui">Variables</span> tab, then click <span class="ui">New repository variable</span>.</li>
           <li>In the <strong>Name</strong> box type <code>PROJECT_PAGES</code>. In the <strong>Value</strong> box type <code>false</code>.</li>
           <li>Click <span class="ui">Add variable</span>.</li>
-          <li>Build again: open the <span class="ui">Actions</span> tab, click the Pages workflow, and use <span class="ui">Run workflow</span> as in section 1 (or just save any change to a quiz).</li>
+          <li>Build again: open the <span class="ui">Actions</span> tab, click <span class="ui">Deploy to GitHub Pages</span>, and use <span class="ui">Run workflow</span> as in section 1 (or just save any change to a quiz).</li>
         </ol>
         <p>Your quiz list is now at <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code>. To bring the project pages back, delete the variable or set it to <code>true</code>.</p>
         <a class="to-top" href="#contents">Back to the contents</a>
