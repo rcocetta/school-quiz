@@ -20,7 +20,7 @@ Each quiz file holds a pool of **N** questions; each attempt shows **M** of them
 | 0. Planning | ✅ done |
 | 1. Schema + validator | ✅ done |
 | 2. Quiz page + single-file build | ✅ done |
-| 3. Site build + index page | ⬜ not started |
+| 3. Site build + index page | ✅ done |
 | 4. Examples, docs, deploy | ⬜ not started |
 | 5. Project website + community | ⬜ not started |
 
@@ -56,7 +56,10 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 | D23 | Generated quiz and index pages carry a small **"Made with school-quiz" footer link** to the repo. On by default, so forks credit the project; removable by anyone (no obligation beyond GPL notices) | ✅ |
 | D24 | Creators can **override built-in UI text** with an optional `ui` object on a quiz or in `collection.json` (quiz > collection > built-in). Partial overrides allowed: any key, any subset of languages | ✅ |
 | D25 | **Local images limited to png, jpg/jpeg, gif, webp.** No local SVG in v1: copied to the site, an SVG opened directly runs script on the `github.io` origin. Remote image URLs (any type) still allowed, `https://` recommended (CSP); `http://` gives a warning | ✅ |
-| D26 | Optional **`image_alt`** (Text) on questions and options describes the image for screen readers; error without `image`. Fallback when missing: question image decorative (`alt=""`); option image uses the option text, else the UI string `picture_n` ("Picture {n}") | ✅ |
+| D26 | Optional **`image_alt`** (Text) on questions and options describes the image for screen readers; error without `image`. `"image_alt": ""` (any mode) marks a question image or an option image next to text as decorative; not allowed on picture-only options. Missing `image_alt` → validator warning (question image; picture-only option); browser fallback: question image `alt=""`, option image uses the option text, else the UI string `picture_n` ("Picture {n}") | ✅ |
+| D28 | **Immediate feedback = tap to select, then "Check"** (UI string `check`): a mis-tap can be changed before checking. Number keys 1–9 only select, and only while focus is in the options (WCAG 2.1.4) | ✅ |
+| D29 | Site output **mirrors the input folder**: each page sits where its JSON is, local images copied once to the same relative path (refs URL-encoded in the page). Replaces the planned `images/<slug>/` | ✅ |
+| D27 | Optional top-level **`site.json`** (`title`, `description`, `author`, `language`; plain strings). Index text comes from `ui_strings.json` in the site language (default `en`); `collection.json` gains optional `language` (default: the site's). Loose quizzes inherit the site author; collection quizzes inherit only the collection author | ✅ |
 | D13 | Text maps may use the special key **`"any"`**: the value for every language unless that locale has its own key (`{"any": "12"}`, `{"any": "Rome", "it": "Roma"}`). Plain strings in multi-language mode stay an error (hint: use `any`) | ✅ |
 
 ---
@@ -211,7 +214,8 @@ Errors:
 7. i18n, when `languages` absent: every Text is a plain string; an object → error with hint "add a `languages` field".
 8. `language` and `languages` both present.
 9. Every language code must exist in `ui_strings.json`.
-10. Local image path doesn't exist, escapes the quiz directory (`..`, absolute, symlinks), or isn't an allowed image type (D25). `image_alt` without `image` (D26).
+10. Local image path doesn't exist, escapes the quiz directory (`..`, absolute, symlinks), isn't an allowed image type (D25), is over 5 MB, has content that doesn't match its extension, or contains control characters, `\` or a non-normalised path (`./`, `a/../`). `image_alt` without `image`, or `""` on a picture-only option (D26).
+13. Folder problems (from `discover`, so `validate` and `build` agree): symlinked JSON files, names that aren't valid UTF-8, a quiz named `index.json`, a collection folder named `assets` or ending in `.html` (any case), `site.json` outside the top level, `collection.json` at the top level.
 11. `author`: missing `name`, `url` not `http(s)://`, `email` not a basic `x@y.z` shape (same checks for `collection.json`).
 12. `ui`: unknown key; language key not in `languages`; a string where a map is required (or vice versa); empty string; a placeholder not used by that key's built-in text (e.g. `{name}` in `correct`). A required placeholder that's missing (e.g. `question_x_of_y` without `{total}`) is a **warning**.
 
@@ -220,6 +224,8 @@ Warnings:
 - Duplicate option texts within a question (compared per language after expansion).
 - A Text map has `any` **and** a key for every language (`any` is never used).
 - An `http://` image URL: it will not load, because the page CSP only allows `https:` and `data:` images.
+- A question image, or a picture-only option, without `image_alt` (D26).
+- A collection folder with no quizzes (skipped).
 
 `schema.json` is the structural contract (rules 1–2, plus shape of Text via `oneOf`); rules 3–10 live in Python in `validate.py`.
 
@@ -232,8 +238,9 @@ quizgen build <input> [-o OUTPUT] [--questions M]
 quizgen validate <input>...
 ```
 
-- `<input>` is a **directory** → site mode. Every `*.json` directly inside is a quiz (`schema.json` excluded). Each **immediate subfolder** containing quiz files is a collection (D21) and gets its own index page at `<collection>/index.html`; the top index lists loose quizzes and collections. No deeper nesting in v1. Optional `collection.json` in a subfolder gives it a `title`, `description` and `author` (Author object, D22; validated like quiz files, with its own small schema). Default output `site/`.
-  - Output: `index.html`, `<quiz-slug>.html` per quiz (slug = JSON filename stem), `assets/quiz.css`, `assets/quiz.js`, `images/<quiz-slug>/...` (local images copied, paths rewritten).
+- `<input>` is a **directory** → site mode. Every `*.json` directly inside is a quiz (`schema.json` excluded). Each **immediate subfolder** containing quiz files is a collection (D21) and gets its own index page at `<collection>/index.html`; the top index lists loose quizzes and collections. No deeper nesting in v1. Optional `collection.json` in a subfolder gives it a `title`, `description`, `author` (Author object, D22), `language` and `ui` (validated with its own small schema). Optional top-level `site.json` (D27). Default output `site/`.
+  - Output (D29): `index.html`, `<stem>.html` per loose quiz, `<collection>/index.html` and `<collection>/<stem>.html`, `assets/quiz.css`, `assets/quiz.js`, referenced local images at their source-relative paths, empty `.nojekyll`. Index pages have no JS.
+  - Safety: everything validated and every write planned and checked (clashes, symlinks, file-vs-folder) before anything is written; output must not be, be inside, or contain the input folder; existing files are never deleted.
 - `<input>` is a **file** → single-file mode. Default output `<stem>.html` next to the input.
   - CSS + JS inlined; local images inlined as `data:` URIs (MIME by extension); remote URLs untouched.
 - `--questions M` overrides `questions_per_quiz` for every quiz in this build (re-validated).
@@ -250,7 +257,7 @@ quizgen validate <input>...
 - **Screens**
   1. **Start**: title, description, "Made by <name>" (if author; links to `url`, else `mailto:` email), number of questions, language switcher (if >1 language), "Start" button.
   2. **Question**: progress bar ("3 / 10"), question text + image, options as large buttons (text and/or image).
-     - `immediate`: on click, lock options, mark chosen (green/red) and reveal correct one, show explanation if present, then "Next".
+     - `immediate` (D28): tap selects (changeable), "Check" locks options, marks chosen and correct ones, shows explanation if present (focus moves to the feedback), then "Next".
      - `end`: on click, highlight selection, "Next" enabled; no correctness shown.
   3. **End**: score ("7 / 10"), encouraging message tiered by percentage (from UI strings), review list (question, your answer, correct answer, explanation), "Try again" → new random M, reshuffled.
 - **Footer** on every generated page (D23): small "Made with school-quiz" link to https://github.com/rcocetta/school-quiz.
@@ -259,7 +266,7 @@ quizgen validate <input>...
 - **Design**: mobile/tablet first, big tap targets (≥ 48px), large readable font, high contrast, friendly colours, visible focus states, keyboard usable (Tab/Enter, number keys 1–9 to pick options as a nice-to-have), respects `prefers-reduced-motion`.
 
 ### `ui_strings.json`
-Map `lang → {key: string}` for chrome text: `start`, `next`, `finish`, `try_again`, `question_x_of_y`, `your_score`, `correct`, `wrong`, `your_answer`, `correct_answer`, `picture_n`, `messages.{great,good,keep_trying}`, plus `flag` and `name` per language. Ship `en`, `it`, `es`, `fr`, `de`.
+Map `lang → {key: string}` for chrome text: `start`, `next`, `finish`, `try_again`, `question_x_of_y`, `your_score`, `correct`, `wrong`, `your_answer`, `correct_answer`, `picture_n`, `check`, `questions_count(_one)`, index-page keys `quizzes`, `quizzes_count(_one)`, `collections`, `back_to_all`, `no_quizzes_yet`, `languages`, `messages.{great,good,keep_trying}`, plus `flag` and `name` per language. Ship `en`, `it`, `es`, `fr`, `de`.
 
 ---
 
@@ -340,7 +347,7 @@ tests/
   - `validate` on an empty folder exits 0 (fresh forks with empty `quizzes/` must not fail CI).
   - `pyproject.toml` has no `readme` field yet; add it in Phase 4 with the README.
   - Post-review hardening: files > 5 MB rejected; deep nesting/huge numbers/lone surrogates/duplicate keys reported, never a traceback; CLI output never crashes on non-UTF-8 consoles; author `url`/`email` strictly checked and stored stripped.
-  - **For builders (Phase 2/3), reuse, don't re-implement:** `validate.IMAGE_TYPES` (extension → MIME, D25) and `validate.is_remote_image(ref)`. `discover(dir)` returns `(files, problems)`. `ValidationResult` also has `structural_failure`.
+  - **For builders (Phase 2/3), reuse, don't re-implement:** `validate.IMAGE_TYPES` (extension → MIME, D25) and `validate.is_remote_image(ref)`. `discover(dir)` returns `(files, problems)` (since Phase 3 also `site.json` and folder-rule problems, rule 13). `ValidationResult` also has `structural_failure`.
   - `duplicate field` errors carry the key name but no JSON path (hook limitation).
 
 ### Phase 2 — Quiz page + single-file build
@@ -357,17 +364,25 @@ tests/
   - Output: refuses to overwrite the input; `-o <folder>` (existing or ending in `/`) writes `<folder>/<stem>.html`; random O_EXCL temp file then `os.replace`; write failures are clean errors.
   - Images: ≤ 5 MB each (validator, applies to site mode too), ≤ 20 MB total inlined per single-file page (repeats counted, each file encoded once), file content must match its extension (magic bytes).
   - Page: score tiers great ≥ 80 %, good ≥ 50 %, else keep_trying; wrong answers amber with ✗ (not red), correct green with ✓; author/footer links open in a new tab (`noopener noreferrer`); language stored in `localStorage["quizgen-lang"]`; one `h1` per screen; `<noscript>` message is English only.
-  - Folder input to `build` exits 2 until Phase 3.
+  - Folder input to `build` exited 2 until Phase 3 (now site mode).
   - Known gap: remote `https://` images are requested by the child's browser, so the image host sees their IP. Allowed (D6); Phase 4 README and the Phase 5 contribution checklist must say so and recommend local images.
   - Tested in Chromium only (Playwright, `file://`, network blocked); no Firefox/WebKit, real devices or screen readers yet.
 
 ### Phase 3 — Site build + index
-- [ ] `templates/index.html` (quiz cards: title in first language, question count, language flags, author name; collection cards linking to per-collection index pages, D21)
-- [ ] `build_site()`: per-quiz pages linking shared assets, image copy + path rewrite
-- [ ] `cli.py build <dir>`
-- [ ] Collections: one level of subfolders, optional `collection.json`, per-collection index with author in the header, author and `ui` inheritance for quizzes (D21, D22, D24)
-- [ ] Tests: expected file tree incl. collections, rewritten image paths resolve
+- [x] `templates/index.html` (quiz cards: title in first language, question count, language flags, author name; collection cards linking to per-collection index pages, D21)
+- [x] `build_site()`: per-quiz pages linking shared assets, image copy (D29: same relative path, refs URL-encoded)
+- [x] `cli.py build <dir>`
+- [x] Collections: one level of subfolders, optional `collection.json`, per-collection index with author in the header, author and `ui` inheritance for quizzes (D21, D22, D24)
+- [x] Tests: expected file tree incl. collections, rewritten image paths resolve
 - **Done when**: `quizgen build examples/ -o site/` + `python -m http.server -d site` serves a working index and quizzes.
+- **Implementation notes** (accepted):
+  - Code: `site.py` holds `build_site(quiz_dir, out_dir=None, questions_override=None) -> BuildResult` (`output` = out folder, `count` = quizzes); steps `_check_folders` → `_load_all` → `_plan` → `_preflight` → `_write`. `build.py` keeps shared helpers and `build_single`. `validate.load_site`, `validate.local_image_path`, `validate.is_inside` are public.
+  - Index pages: no JS; CSP `default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'`. Site quiz pages: `script-src 'self'; style-src 'self'; img-src 'self' data: https:`. `'self'` trusts the whole `<user>.github.io` origin; contributors can't place executable files (only the two assets and magic-byte-checked images are written).
+  - Index text in the site language (D27); a collection index in its own `language`. A collection without `collection.json` is titled with its folder name. A collection's `ui` applies to its quiz pages only, not to index pages.
+  - Order: collections, then loose quizzes, each by title ignoring case and accents. Counts use `_one` strings for 1.
+  - Quiz pages in site mode get `index_url`; the back link ("All quizzes") shows on start, question and end screens.
+  - Output must not be, be inside, or contain the input; `quizgen build .` with the default `site/` is therefore refused (use `-o` outside the quiz folder).
+  - Not tested yet: Firefox/WebKit, real devices and screen readers, actual GitHub Pages hosting, `es`/`de` index text.
 
 ### Phase 4 — Examples, docs, deploy
 - [ ] Polished example quizzes (one single-language, one en/it) with a few images
@@ -391,6 +406,7 @@ tests/
 - [ ] `CONTRIBUTING.md`, `CHANGELOG.md` (Keep a Changelog format, v0.1.0)
 - [ ] README screenshots in `docs/screenshots/`, generated from the example quizzes
 - [ ] `ci.yml`: tests + validate `examples/` and `quizzes/` on every PR (Pages deploy moved to Phase 5)
+- [ ] Browser smoke test in CI (Playwright + Chromium): build examples in single-file and site mode, click through a quiz in both feedback modes, fail on any page error. Phase 3 shipped a single-file-only crash that pytest could not see
 - [ ] `pyproject.toml` metadata for PyPI: description, readme, licence, classifiers, project URLs
 - [ ] Final check: every README code snippet and command actually runs against the current code (have a subagent follow the README from scratch in a clean venv)
 - **Done when**: a non-programmer teacher can go from README to a deployed quiz without reading the source, and a developer can set up, test and contribute using only the README + CONTRIBUTING.
@@ -474,3 +490,5 @@ Append one entry per session/subagent run: date, who, what changed, what's next.
 - **2026-10-11** — Review fixes applied and verified (114 tests; hostile-input repros all give clean errors). **Phase 1 done**, committed and pushed. **Next:** Phase 2 (quiz page + single-file build) — can run in Claude Code on the web once the user links the repo.
 - **2026-10-11** — User confirmed D25. Added project agents in `.claude/agents/` (quiz-implementer, quiz-designer, security-reviewer, simplicity-reviewer, e2e-tester) so the subagent policy works in cloud sessions; documented the per-phase workflow. User linking the repo to Claude Code on the web.
 - **2026-10-11** — Phase 2 (cloud session). User approved D26 (`image_alt`). Contract for template/data/CSP set by main session; `quiz-implementer` built `build.py`, `build <file>`, `image_alt`, `picture_n`; `quiz-designer` built the quiz page (in parallel). Security review: no XSS/breakout found; fixed input overwrite, planted-symlink temp file, unbounded image inlining (1.2 GB output repro), tracebacks on bad `-o`, CRLF/CSP hash risk, added image magic-byte check. Simplicity review fixes: dead JS fallbacks removed, `render_page`/`_rewrite_images` extracted for Phase 3. E2E (fresh non-editable install, Chromium): all "Done when" criteria pass; fixed `-o dir/` and jargon in the folder message. 149 tests. **Phase 2 done.** **Next:** Phase 3 (site build + index).
+
+- **2026-10-11** — Phase 3 (cloud session). User decisions: D27 `site.json` (index language/title), D28 select-then-Check in immediate mode, D26 extended (`image_alt: ""` decorative, warnings for undescribed images); main session chose D29 (output mirrors input folder). `quiz-implementer` built `build_site`/`site.py`, `site.json`, collection `language`, `build <dir>`; `quiz-designer` built index pages and the back link, then the Check flow. First `accessibility-reviewer` run (covering the Phase 2 quiz page too): axe clean, fixed feedback/score announcements, number-key shortcut (WCAG 2.1.4), progress description, review right/wrong text, landmarks, font weights. Security review: fixed symlinked JSON being published, control-char image refs turning into remote requests, tracebacks on non-UTF-8 names, partial writes and mkdir outside output (now full pre-flight), reserved names moved into `discover`. Simplicity review: split `site.py`, single image walker, exact test asserts. E2E: site Done-when passes; found a single-file crash on Start (null back link) — fixed by main session and re-verified in Chromium (both examples, full run, no errors). 187 tests. **Phase 3 done.** **Next:** Phase 4 (examples, docs, CI incl. browser smoke test).

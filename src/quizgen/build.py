@@ -1,4 +1,4 @@
-"""Build HTML quizzes from validated quiz files (single-file mode; site mode comes in Phase 3)."""
+"""Build HTML quizzes from validated quiz files: one self-contained file, or a whole site."""
 
 from __future__ import annotations
 
@@ -16,18 +16,26 @@ from typing import Any, Callable
 from jinja2 import Environment, PackageLoader, select_autoescape
 from markupsafe import Markup
 
-from quizgen.validate import ANY, IMAGE_TYPES, Issue, ValidationResult, ui_strings, is_remote_image, load_quiz
+from quizgen.validate import (ANY, IMAGE_TYPES, Issue, ValidationResult, is_remote_image, load_quiz,
+                              local_image_path, ui_strings)
+
+REPO_URL = "https://github.com/rcocetta/school-quiz"
+MAX_TOTAL_IMAGE_BYTES = 20 * 1024 * 1024  # all inlined images together, repeats counted
+# Site mode: assets are linked from the same origin, so 'self' replaces the inline hashes.
+QUIZ_CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
+            "base-uri 'none'; form-action 'none'")
 
 
 @dataclass
 class BuildResult:
-    """`output` is None when nothing was written (see `validation.errors`)."""
+    """`output` is None when nothing was written (see `validation.errors`).
+
+    Site mode (see site.py): `output` is the output folder and `count` the number of quiz pages written.
+    """
 
     validation: ValidationResult
     output: Path | None = None
-
-
-MAX_TOTAL_IMAGE_BYTES = 20 * 1024 * 1024  # all inlined images together, repeats counted
+    count: int = 0
 
 
 class BuildError(Exception):
@@ -64,8 +72,7 @@ def build_single(quiz_path: Path | str, out_path: Path | str | None = None,
     if same:
         return fail(out, "the output would overwrite the quiz file; choose a different -o")
 
-    quiz = copy.deepcopy(result.quiz)
-    ui = merge_ui(quiz["languages"], quiz.pop("ui", {}))
+    quiz, ui = _prepare(result.quiz)
     try:
         _rewrite_images(quiz, _DataUriMaker(quiz_path.parent))
     except BuildError as err:
@@ -78,18 +85,29 @@ def build_single(quiz_path: Path | str, out_path: Path | str | None = None,
     return BuildResult(result, out)
 
 
-def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = "") -> str:
-    """Render the quiz page from a normalised quiz (images already rewritten) and merged UI strings."""
-    if not inline_assets:
-        raise NotImplementedError("linked assets (site mode) arrive in Phase 3")
-    css = _asset("quiz.css")
-    js = _asset("quiz.js")
+def _prepare(quiz: dict, collection_ui: dict | None = None) -> tuple[dict, dict]:
+    """Copy of a normalised quiz without its `ui`, plus the merged UI strings (both build modes)."""
+    quiz = copy.deepcopy(quiz)
+    return quiz, merge_ui(quiz["languages"], quiz.pop("ui", {}), collection_ui)
+
+
+def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = "",
+                index_url: str | None = None) -> str:
+    """Render the quiz page from a normalised quiz (images already rewritten) and merged UI strings.
+
+    Linked mode (site): `asset_base` is the relative path to `assets/`; `index_url` (if given)
+    lets the page link back to the index.
+    """
+    css = _asset("quiz.css") if inline_assets else ""
+    js = _asset("quiz.js") if inline_assets else ""
     first = quiz["languages"][0]
+    if index_url:
+        quiz = {**quiz, "index_url": index_url}
     return _env().get_template("quiz.html").render(
         lang=first,
         page_title=quiz["title"][first],
-        csp=content_security_policy(css, js),
-        inline_assets=True,
+        csp=content_security_policy(css, js) if inline_assets else QUIZ_CSP,
+        inline_assets=inline_assets,
         asset_base=asset_base,
         css=Markup(css),
         js=Markup(js),
@@ -161,11 +179,12 @@ class _DataUriMaker:
     def __call__(self, ref: str) -> str:
         if is_remote_image(ref):
             return ref
+        try:
+            path = local_image_path(self.base, ref).resolve()
+        except (ValueError, OSError, RuntimeError) as err:
+            raise BuildError(str(err)) from err
         ext = os.path.splitext(ref)[1].lower()
         try:
-            path = (self.base / ref).resolve()
-            if ext not in IMAGE_TYPES or not path.is_relative_to(self.base.resolve()):
-                raise BuildError(f'image is not allowed: "{ref}"')  # the validator already blocks this
             if ref not in self.cache:
                 encoded = base64.b64encode(path.read_bytes()).decode("ascii")
                 self.cache[ref] = f"data:{IMAGE_TYPES[ext]};base64,{encoded}"
@@ -202,3 +221,4 @@ def _write_atomic(path: Path, data: bytes) -> None:
     finally:
         if tmp is not None:
             tmp.unlink(missing_ok=True)
+

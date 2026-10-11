@@ -356,7 +356,7 @@ a { color: var(--primary); text-underline-offset: 0.2em; font-weight: 700; }
 }
 .feedback-icon { flex: none; font-size: 1.75rem; line-height: 1.2; }
 .feedback-body { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
-.feedback-title { font-weight: 900; font-size: var(--fs-lead); }
+.feedback-title { font-weight: 800; font-size: var(--fs-lead); }
 .feedback .answer-line { font-weight: 800; }
 
 .inline-answer { display: inline-flex; align-items: center; gap: 0.5rem; vertical-align: middle; }
@@ -430,3 +430,126 @@ a { color: var(--primary); text-underline-offset: 0.2em; font-weight: 700; }
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- index pages (body.index) ---------- */
+/* Everything below is scoped to .index / .back-link so single quiz pages are unchanged. */
+
+.back-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0 1.1rem 0 0.9rem;
+  border: var(--border) solid var(--edge);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: var(--fs-small);
+  font-weight: 800;
+  text-decoration: none;
+}
+.back-link:hover { background: var(--select-bg); }
+.back-arrow { font-size: 1.25rem; line-height: 1; }
+
+.index-head { display: flex; flex-direction: column; gap: 0.75rem; padding: 0.5rem 0 0.5rem; }
+.index-head .lead { font-size: var(--fs-lead); }
+.index-main { display: flex; flex-direction: column; gap: 2rem; padding-bottom: 1rem; }
+.index .section-title { font-size: var(--fs-lead); font-weight: 900; margin-bottom: 1rem; color: var(--ink-soft); }
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0.9rem;       /* room for the stacked-folder shadow */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr));
+  gap: 1.5rem 1.25rem;
+}
+
+.card {
+  position: relative;        /* the link's ::after stretches over this box */
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+  min-height: 7.5rem;
+  padding: 1.25rem 1.25rem 1.1rem;
+  background: var(--surface);
+  border: var(--border) solid var(--edge);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 0 var(--shade);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--shade); }
+.card:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--shade); }
+
+.card--quiz { border-top: 0.9rem solid var(--accent); }
+
+/* Collections look like a stack of folders: tab on top, extra sheets underneath */
+.card--collection {
+  margin-top: 0.9rem;
+  background: var(--select-bg);
+  border-top-left-radius: 0.4rem;
+  box-shadow:
+    0 6px 0 var(--shade),
+    0 11px 0 -3px var(--surface),
+    0 14px 0 -3px var(--edge);
+}
+.card--collection:hover {
+  box-shadow: 0 8px 0 var(--shade), 0 13px 0 -3px var(--surface), 0 16px 0 -3px var(--edge);
+}
+.card--collection:active { box-shadow: 0 2px 0 var(--shade), 0 5px 0 -3px var(--surface), 0 7px 0 -3px var(--edge); }
+.card--collection::before {  /* the folder tab */
+  content: "";
+  position: absolute;
+  top: calc(-0.9rem - var(--border));
+  left: calc(-1 * var(--border));
+  width: 38%;
+  height: 0.9rem;
+  background: var(--select-bg);
+  border: var(--border) solid var(--edge);
+  border-bottom: 0;
+  border-radius: 0.6rem 0.6rem 0 0;
+}
+
+.card-title { font-size: var(--fs-lead); line-height: 1.25; font-weight: 700; }
+.card-link { color: var(--ink); text-decoration: none; }
+.card-link::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+.card-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.card-link:focus-visible { outline: none; }
+.card-link:focus-visible::after {
+  outline: 4px solid var(--focus);
+  outline-offset: 4px;
+}
+.folder { margin-right: 0.15rem; }
+.card-desc { color: var(--ink-soft); font-size: var(--fs-small); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.75rem; margin-top: auto; }
+.chip {
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  background: var(--select-bg);
+  color: var(--ink);
+  font-size: var(--fs-small);
+  font-weight: 700;
+}
+.card--collection .chip { background: var(--surface); }
+.by { color: var(--ink-soft); font-size: var(--fs-small); font-weight: 700; }
+.langs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.lang-chip {
+  padding: 0.1rem 0.7rem;
+  border: 2px solid var(--edge);
+  border-radius: 999px;
+  font-size: var(--fs-small);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.empty {
+  text-align: center;
+  padding: 2.5rem 1.25rem;
+  background: var(--surface);
+  border: var(--border) dashed var(--edge);
+  border-radius: var(--radius);
+}
+.empty-icon { font-size: 3.5rem; line-height: 1.2; }
+.empty-text { font-size: var(--fs-lead); font-weight: 800; margin-top: 0.5rem; }

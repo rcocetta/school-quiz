@@ -10,7 +10,7 @@
 </head>
 <body>
 <noscript><p class="noscript">This quiz needs JavaScript. Please turn it on and reload the page.</p></noscript>
-<main id="app"></main>
+<div id="app"></div>
 <script type="application/json" id="quiz-data">{{ quiz_json }}</script>
 <script type="application/json" id="ui-strings">{{ ui_json }}</script>
 {% if inline_assets %}<script>{{ js }}</script>{% else %}<script src="{{ asset_base }}quiz.js"></script>{% endif %}

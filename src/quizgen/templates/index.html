@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="{{ csp }}">
+<meta name="referrer" content="no-referrer">
+<title>{{ page_title }}</title>
+<link rel="stylesheet" href="{{ asset_base }}quiz.css">
+</head>
+<body class="index">
+<div class="page">
+<header class="index-head">
+{% if back %}<a class="back-link" href="{{ back.href }}"><span class="back-arrow" aria-hidden="true">&larr;</span>{{ back.text }}</a>{% endif %}
+<h1>{{ heading }}</h1>
+{% if description %}<p class="lead">{{ description }}</p>{% endif %}
+{% if author %}<p class="meta">{% if author.href %}<a href="{{ author.href }}" rel="noopener noreferrer"{% if author.external %} target="_blank"{% endif %}>{{ author.text }}</a>{% else %}{{ author.text }}{% endif %}</p>{% endif %}
+</header>
+<main class="index-main">
+{% if collections %}
+<section aria-labelledby="collections-h">
+<h2 id="collections-h" class="section-title">{{ collections_heading }}</h2>
+<ul class="cards">
+{% for c in collections %}
+<li class="card card--collection">
+<h3 class="card-title"><a class="card-link" href="{{ c.href }}"><span class="folder" aria-hidden="true">&#128193;</span> {{ c.title }}</a></h3>
+{% if c.description %}<p class="card-desc">{{ c.description }}</p>{% endif %}
+<p class="card-meta"><span class="chip">{{ c.count_text }}</span>{% if c.author_name %} <span class="by">{{ c.author_name }}</span>{% endif %}</p>
+</li>
+{% endfor %}
+</ul>
+</section>
+{% endif %}
+{% if quizzes %}
+<section aria-labelledby="quizzes-h">
+<h2 id="quizzes-h" class="section-title">{{ quizzes_heading }}</h2>
+<ul class="cards">
+{% for q in quizzes %}
+<li class="card card--quiz">
+<h3 class="card-title" lang="{{ q.lang }}"><a class="card-link" href="{{ q.href }}">{{ q.title }}</a></h3>
+{% if q.description %}<p class="card-desc" lang="{{ q.lang }}">{{ q.description }}</p>{% endif %}
+<p class="card-meta"><span class="chip">{{ q.count_text }}</span>{% if q.author_name %} <span class="by">{{ q.author_name }}</span>{% endif %}</p>
+{% if q.languages %}<ul class="langs" aria-label="{{ languages_label }}">
+{% for l in q.languages %}<li class="lang-chip"><span aria-hidden="true">{{ l.flag }} {{ l.code|upper }}</span><span class="sr-only" lang="{{ l.code }}">{{ l.name }}</span></li>
+{% endfor %}</ul>{% endif %}
+</li>
+{% endfor %}
+</ul>
+</section>
+{% endif %}
+{% if empty_text %}
+<div class="empty"><p class="empty-icon" aria-hidden="true">&#127752;</p><p class="empty-text">{{ empty_text }}</p></div>
+{% endif %}
+</main>
+<footer class="footer"><a href="{{ made_with.href }}" rel="noopener noreferrer" target="_blank">{{ made_with.text }}</a></footer>
+</div>
+</body>
+</html>
