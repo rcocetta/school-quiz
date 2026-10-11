@@ -8,6 +8,9 @@
 - **When you finish work, update `PLAN.md`:** tick tasks, update the Status table, and add a Session log entry (date, what changed, what's next). If you are a subagent, include in your final report the `PLAN.md` changes you made.
 - If implementation forces a change to the schema, CLI or behaviour, update `PLAN.md` (and the README once it exists) in the same change.
 
+## Writing quizzes
+When asked to write or edit a quiz (not the tool), follow `AGENTS.md`.
+
 ## Working principles
 Follow the **Working principles** section of `PLAN.md`: kids-first UX, easy for non-programmer creators, simple over clever, secure by default, and the subagent/model policy. Use the project agents in `.claude/agents/` (`quiz-implementer`, `quiz-designer`, `security-reviewer`, `simplicity-reviewer`, `accessibility-reviewer`, `e2e-tester`) and follow the per-phase workflow in `PLAN.md` → "Using subagents". Cheapest model that does the job well: haiku for mechanical work, sonnet for implementation and reviews, opus for orchestration, security review and design decisions.
 
