@@ -53,7 +53,7 @@ Read the **Working principles** in [PLAN.md](PLAN.md) and [CLAUDE.md](CLAUDE.md)
 
 - **Kids first.** Big tap targets, large clear text, few words per screen, a kind tone (never shaming a wrong answer), gender-neutral interface text in gendered languages, keyboard and screen-reader friendly, WCAG 2.2 AA contrast.
 - **Easy for creators.** Sensible defaults. Error messages say *where* the problem is and *how to fix it*.
-- **Simple over clever.** Python 3.10 or newer. Runtime dependencies are only `jsonschema` and `jinja2`; do not add more without discussing it first. Browser code is plain JavaScript and CSS: no frameworks, no build step, **no external requests** (system fonts only).
+- **Simple over clever.** Python 3.10 or newer. Runtime dependencies are only `jsonschema` and `jinja2`; do not add more without discussing it first. Browser code is plain JavaScript and CSS: no frameworks, no build step, **no requests to other sites** from page code (system fonts only; quiz authors may link `https://` pictures).
 - **Secure by default.**
   - Quiz text goes into the page with `textContent`, never `innerHTML`. No `eval`.
   - JSON embedded in a page is escaped so `</script>` in content cannot break out.
@@ -80,11 +80,11 @@ Settled decisions in `PLAN.md` (marked with a tick) should not be reopened insid
 
 Put the quiz in `quizzes/` (or, for a collection, in `quizzes/<collection>/`, optionally with a `collection.json`; see the [README](README.md#collections-and-folder-layout)). Images go in an `images/` folder next to the quiz.
 
-Checklist, which the pull request template will repeat:
+Checklist (a pull request template that repeats it is coming soon):
 
 - [ ] **Age-appropriate.** Content, wording and pictures suit primary and early-secondary school children.
 - [ ] **Answers double-checked.** Each question has exactly one right answer, and you checked the facts in a reliable source. Add an `explanation` where it helps a child learn.
-- [ ] **Images are yours or openly licensed.** Name the source and licence in the pull request (and add a credits note next to the images if the licence asks for attribution). Prefer local images over remote links, which let the image host see the child's IP address. Add `image_alt` descriptions.
+- [ ] **Images are yours or openly licensed.** Name the source and licence in the pull request (and add a credits note next to the images if the licence asks for attribution). Prefer local images over remote links, which let the image host see the child's IP address. Add `image_alt` descriptions that describe the picture without giving away the answer (see the [README](README.md#describing-images-image_alt)).
 - [ ] **No personal data about children**: no names, photos, school names tied to children, or contact details. For `author`, prefer a website address over a personal email.
 - [ ] **It validates.** `quizgen validate quizzes/` shows no errors, and ideally no warnings.
 - [ ] **Translations are complete** for every language you list, and read naturally to a native speaker.
@@ -98,11 +98,11 @@ Checklist, which the pull request template will repeat:
 4. Open a pull request and say what it changes and why. For a quiz or collection, tick the checklist above.
 5. CI runs automatically. The maintainer reviews, may ask for changes, and merges when it is ready.
 
-The maintainer may also run an automated Claude review on a pull request. It is started manually by the maintainer, never automatically, and its output is advice that a human reads; it does not replace human review. Pull requests from forks never get access to repository secrets.
+The maintainer may also run an automated Claude review on a pull request (coming soon). It is started manually by the maintainer, never automatically, and its output is advice that a human reads; it does not replace human review. Pull requests from forks never get access to repository secrets.
 
 ## Reporting problems
 
-Open an issue on GitHub. For a bug, include the quiz file (or a cut-down version), the command you ran, the message you saw and your Python version. For anything security-related, please do not post details publicly: contact the maintainer through GitHub first.
+Open an issue on GitHub. For a bug, include the quiz file (or a cut-down version), the command you ran, the message you saw and your Python version. For anything security-related, do not open a public issue. Report it privately with the **Report a vulnerability** button on the repository's **Security** tab (GitHub private vulnerability reporting).
 
 ## Licence
 

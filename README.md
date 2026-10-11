@@ -4,13 +4,15 @@
 
 | Start screen | Question, after "Check" | End screen |
 |---|---|---|
-| ![The start screen of the Farm Animals quiz: title, description, number of questions and a big Start button](docs/screenshots/start.png) | ![A question with four large answer buttons; the chosen answer is marked correct and a short explanation is shown](docs/screenshots/question.png) | ![The end screen: score, an encouraging message, a list of the answers and a Play again button](docs/screenshots/end.png) |
+| ![Start screen of the Farm Animals quiz with a Start the quiz button](docs/screenshots/start.png) | ![Question 1 of 8 with the right answer marked green and a short explanation](docs/screenshots/question.png) | ![End screen: score 6 out of 8, an encouraging message and a review of the answers](docs/screenshots/end.png) |
 
 | Language switcher (Italian) | Quiz index of a site |
 |---|---|
-| ![The same quiz in Italian, with the flag-and-code language buttons at the top](docs/screenshots/languages.png) | ![The index page of a quiz site: a card for each quiz with its question count, languages and author](docs/screenshots/index.png) |
+| ![Times Tables in Italian with the EN, IT and FR language switcher](docs/screenshots/languages.png) | ![Quiz index with a card for each quiz](docs/screenshots/index.png) |
 
 Live demo: coming soon.
+
+**Which path are you?** Teacher or parent: read [Quick start](#quick-start) and [Writing a quiz](#writing-a-quiz), then [Publishing](#publishing-on-github-pages). Developer: jump to [Development](#development) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Our promise
 
@@ -31,15 +33,15 @@ Live demo: coming soon.
 8. [Output modes](#output-modes)
 9. [Publishing on GitHub Pages](#publishing-on-github-pages)
 10. [Editor support](#editor-support)
-11. [Adding a new interface language](#adding-a-new-interface-language)
-12. [FAQ and limitations](#faq-and-limitations)
-13. [Privacy](#privacy)
+11. [FAQ and limitations](#faq-and-limitations)
+12. [Privacy](#privacy)
+13. [Adding a new interface language](#adding-a-new-interface-language)
 14. [Development](#development)
 15. [Contributing, licence and credits](#contributing-licence-and-credits)
 
 ## Features
 
-- Quizzes are plain JSON files. One file is one quiz with a pool of N questions; each attempt shows M of them (M is at most N), picked at random.
+- Quizzes are plain text files (JSON). One file is one quiz. It can hold many questions; each attempt shows a smaller number of them, picked at random, so every try is different.
 - Multiple choice with exactly one right answer. Answers can be text, pictures, or both.
 - Two feedback styles: tell the child right away (they tap an answer, then press "Check my answer"), or show everything at the end.
 - Options are shuffled for every attempt (switch off with `"shuffle_options": false`).
@@ -50,18 +52,20 @@ Live demo: coming soon.
 - Say who made a quiz (`author`) and group quizzes into collections.
 - Two outputs: **one self-contained HTML file** (works offline, easy to email) or **a whole website** with an index page.
 - Checks your files and tells you where the problem is and how to fix it.
-- No backend, no tracking, no external requests. Pages carry a strict Content-Security-Policy.
-- Keyboard and screen-reader friendly. Works on cheap tablets.
+- No backend, no tracking, and no requests to other sites (except `https://` pictures you choose to link). Pages carry strict browser safety rules (a Content-Security-Policy).
+- Built for keyboard and screen-reader use, and for phones and tablets; not yet tested with real screen readers or real tablets (see the [FAQ](#faq-and-limitations)).
 
 ## Quick start
 
-You need Python 3.10 or newer and [pipx](https://pipx.pypa.io/). Five steps:
+You need Python 3.10 or newer and [pipx](https://pipx.pypa.io/) (see [Installation](#installation) if you need help with a terminal or pipx). Five steps:
+
+**1. Install quizgen** (in a terminal):
 
 ```bash
 pipx install git+https://github.com/rcocetta/school-quiz
 ```
 
-Save this as `my-quiz.json` (any text editor will do):
+**2. Save this as `my-quiz.json`** (any text editor will do):
 
 <!-- file: my-quiz.json -->
 ```json
@@ -80,12 +84,19 @@ Save this as `my-quiz.json` (any text editor will do):
 }
 ```
 
+**3. Check it:**
+
 ```bash
-quizgen validate my-quiz.json    # checks the file
-quizgen build my-quiz.json       # writes my-quiz.html next to it
+quizgen validate my-quiz.json
 ```
 
-Open `my-quiz.html` in a browser (double-click it). Done. It is a single file you can email or put on a USB stick.
+**4. Build it** (writes `my-quiz.html` next to it):
+
+```bash
+quizgen build my-quiz.json
+```
+
+**5. Open `my-quiz.html`** in a browser (double-click it). Done. It is a single file you can email or put on a USB stick.
 
 Prefer not to install anything? A fork-and-edit path for teachers (edit in the browser on GitHub, no install) is coming with the project website. See [Publishing on GitHub Pages](#publishing-on-github-pages).
 
@@ -93,11 +104,21 @@ Prefer not to install anything? A fork-and-edit path for teachers (edit in the b
 
 quizgen is not on PyPI. Install it straight from GitHub. It needs Python 3.10 or newer; the only dependencies are `jsonschema` and `jinja2`.
 
+**Opening a terminal.** Windows: open the Start menu, type `PowerShell` and press Enter. macOS: press Cmd+Space, type `Terminal` and press Enter. Linux: press Ctrl+Alt+T, or look for "Terminal" in your applications. Type (or paste) each command and press Enter.
+
 **With pipx** (recommended: gives you the `quizgen` command without touching your other Python packages):
 
 ```bash
 pipx install git+https://github.com/rcocetta/school-quiz
 ```
+
+This needs Git on your computer. If you do not have Git, install from a download of the code instead:
+
+```bash
+pipx install https://github.com/rcocetta/school-quiz/archive/refs/heads/main.zip
+```
+
+**If `pipx` is not found:** on Debian or Ubuntu run `sudo apt install pipx`. Elsewhere run `python3 -m pip install --user pipx` and then `python3 -m pipx ensurepath` (on Windows use `py -m pip install --user pipx` and `py -m pipx ensurepath`). Then close the terminal, open a new one and try again.
 
 **With pip, in a virtual environment:**
 
@@ -126,7 +147,7 @@ A quiz is a text file ending in `.json`. The smallest useful quiz is the one in 
 
 JSON is picky about punctuation: text in double quotes, commas between items but not after the last one, curly braces `{ }` around objects and square brackets `[ ]` around lists. If you get it wrong, `quizgen validate` tells you the line and column. Ready-made examples to copy are in [`examples/`](examples/).
 
-A fuller single-language quiz:
+A fuller single-language quiz. It uses a picture: copy `cow.png` from [`examples/images/`](examples/images/) into an `images/` folder next to the file, or delete the two image lines:
 
 <!-- file: farm.json -->
 ```json
@@ -141,14 +162,14 @@ A fuller single-language quiz:
   "author": { "name": "Ms Rossi", "url": "https://example.org" },
   "questions": [
     {
-      "text": "Which animal says 'moo'?",
+      "text": "What do we call a baby cow?",
       "image": "images/cow.png",
-      "image_alt": "A cow standing in a field",
-      "explanation": "Cows moo to talk to their calves.",
+      "image_alt": "A brown and white cow standing in a field",
+      "explanation": "A baby cow is called a calf.",
       "options": [
-        { "text": "Cow", "correct": true },
-        { "text": "Dog" },
-        { "text": "Cat" }
+        { "text": "Calf", "correct": true },
+        { "text": "Foal" },
+        { "text": "Lamb" }
       ]
     },
     {
@@ -189,7 +210,7 @@ This section follows `src/quizgen/schema.json` exactly. Any field not listed is 
 | `questions_per_quiz` | integer, at least 1 | no | the smaller of 10 and the number of questions | M, the number of questions in each attempt. |
 | `feedback` | `"immediate"` or `"end"` | no | `"immediate"` | See [Feedback modes](#feedback-modes). |
 | `shuffle_options` | true or false | no | `true` | Shuffle the answer order on every attempt. |
-| `author` | Author | no | the collection's or site's author, if any | See [Author](#author). |
+| `author` | Author | no | the collection's or site's author, if any | See [Author object](#author-object) and [Saying who made it](#saying-who-made-it). |
 | `ui` | object | no | none | Replace built-in screen text. See [Changing the built-in text](#changing-the-built-in-text-ui). |
 | `questions` | list of Question, at least 1 | yes | none | N is the length of this list. |
 
@@ -198,7 +219,7 @@ This section follows `src/quizgen/schema.json` exactly. Any field not listed is 
 | Field | Type | Required | Default | Notes |
 |---|---|---|---|---|
 | `text` | Text | yes | none | The question. |
-| `image` | image reference | no | none | See [Images](#images). |
+| `image` | image reference | no | none | A relative path or an `https://` link. See [Images](#images). |
 | `image_alt` | Text | no | none | Describes the image for screen readers. An error without `image`. |
 | `explanation` | Text | no | none | Shown after the answer (and in the review). |
 | `options` | list of Option, at least 2 | yes | none | Exactly one must have `"correct": true`. |
@@ -212,7 +233,7 @@ This section follows `src/quizgen/schema.json` exactly. Any field not listed is 
 | `image_alt` | Text | no | none | Describes the image. An error without `image`. |
 | `correct` | true or false | no | `false` | Mark exactly one option per question as `true`. |
 
-#### Author
+#### Author object
 
 | Field | Type | Required | Notes |
 |---|---|---|---|
@@ -222,11 +243,9 @@ This section follows `src/quizgen/schema.json` exactly. Any field not listed is 
 
 Authors are always plain strings, even in multi-language quizzes. Unknown keys are errors.
 
-#### Image reference
+**Image reference**: a relative path (from the folder holding the JSON file) or an `http://` / `https://` link. See [Images](#images).
 
-A relative path (from the folder holding the JSON file) or an `http://` / `https://` link. See [Images](#images).
-
-### Author
+### Saying who made it
 
 ```json
 "author": { "name": "Ms Rossi", "url": "https://example.org/class-4b" }
@@ -242,25 +261,36 @@ Advice:
 
 ### Images
 
-```json
-{ "text": "Cow", "image": "images/cow.png", "image_alt": "A brown and white cow" }
+```jsonc
+{ "text": "Cow", "image": "images/cow.png", "image_alt": "" }                    // text + picture
+{ "image": "images/cow.png", "image_alt": "A brown and white animal with horns" } // picture only
 ```
 
 - **Local images** sit next to your quiz, usually in an `images/` folder, and are written relative to the JSON file. Allowed types: `png`, `jpg`, `jpeg`, `gif`, `webp`. SVG is not allowed (see the [FAQ](#faq-and-limitations)).
 - Each local image can be at most **5 MB**. The file's content must match its extension (a renamed document is rejected). In single-file mode all inlined images together must stay under **20 MB** per page. Small pictures (a few hundred pixels wide) load fastest on school tablets.
-- Paths must stay inside the quiz folder: no `..`, no absolute paths, no `\`, no `./`, no links (symlinks).
+- Paths must stay inside the quiz folder: no `..`, no absolute paths, no `\`, no `./`, no links (symlinks, which are shortcuts to files elsewhere).
 - **Remote images** are `https://` links. They are never copied or checked. Only `https://` loads: an `http://` link produces a warning because the page will not display it.
 - **Privacy:** a remote image is fetched by the child's browser, so the image host can see their IP address. Local images avoid this, so prefer them. Use a remote image only from a host you trust.
 - Make sure you may use the picture. Note the source and licence (see [CONTRIBUTING.md](CONTRIBUTING.md) for quizzes shared in this repository).
 
 #### Describing images (`image_alt`)
 
-`image_alt` is the text a screen reader reads instead of the picture. It is a Text, so in a multi-language quiz it needs a translation per language like any other text.
+`image_alt` is the text a screen reader reads instead of the picture. It is a Text, so in a multi-language quiz it needs a translation per language like any other text. The one exception is marking a picture as decoration: write a plain `"image_alt": ""` even in a multi-language quiz. A map such as `{"any": ""}` or `{"en": ""}` is an error, because an empty text counts as a missing translation.
 
 - Needs an `image` in the same question or option; otherwise it is an error.
 - `"image_alt": ""` means "this picture is decoration". Allowed on a question image, and on an option image that sits next to text. Not allowed on an option that is only a picture, because the child could not tell the options apart.
 - A question image, or a picture-only option, without `image_alt` gives a warning.
 - Fallback in the browser when `image_alt` is missing: a question image is treated as decoration, an option image uses the option text, and a picture-only option is called "Picture 1", "Picture 2", ... (the `picture_n` text).
+
+**How to write good alt text**
+
+- Describe what you see, not the answer. If the picture *is* the question ("Which animal is this?"), never name the thing in the alt text: say "A brown and white animal with horns".
+- Use `""` (empty) when the picture is only decoration, or when the text next to it already says everything.
+- For picture-only options, describe what makes each one different from the others.
+- If the picture contains words or numbers that matter, put them in the alt text or in the question.
+- One short sentence. Do not start with "Picture of" or "Image of".
+- In a multi-language quiz, translate it like any other text.
+- Test: read the quiz aloud to someone, with the pictures hidden. Can they still answer?
 
 ### Feedback modes
 
@@ -273,9 +303,10 @@ On a keyboard, number keys 1 to 9 pick an option while focus is inside the optio
 
 Questions are always drawn at random from the pool. Options are shuffled for every attempt unless you set `"shuffle_options": false` (useful for questions like "All of the above", or ordered answers such as 1, 2, 3).
 
-### Choosing M and N
+### Choosing how many questions to ask
 
-- N is the number of questions in the file; M is `questions_per_quiz`.
+Two numbers matter: **N**, the number of questions in the file, and **M**, the number of questions asked in each attempt (`questions_per_quiz`).
+
 - If you leave `questions_per_quiz` out, M is 10, or N if you have fewer than 10 questions.
 - A quiz with more questions than M gives variety: each attempt is a different random selection. For a pool of 30, an M of 10 is a good start.
 - M larger than N is an error when you set it yourself. M equal to N works but gives a warning: every attempt has the same questions, only in a different order.
@@ -371,6 +402,7 @@ A **collection** is a subfolder with quizzes inside, for example one teacher's o
 quizzes/
 ├── site.json                 # optional: title, description, author, language of the whole site
 ├── farm-animals.json         # a loose quiz (listed on the main index)
+├── times-tables.json         # another loose quiz
 ├── images/
 │   └── cow.png
 └── class-4b/                 # a collection
@@ -392,7 +424,7 @@ Reserved names, checked by `quizgen validate` and `quizgen build`:
 | Field | Type | Required | Default | Notes |
 |---|---|---|---|---|
 | `$schema` | string | no | none | Editor help only. |
-| `title` | string | no | "Quizzes" | Heading of the main index. At least 1 character. |
+| `title` | string | no | the word "Quizzes" in the site language | Heading of the main index. At least 1 character. |
 | `description` | string | no | none | Shown under the heading. |
 | `author` | Author | no | none | Inherited by loose quizzes (quizzes in collections inherit only their collection's author). |
 | `language` | string | no | `en` | Language of the index text (headings, counts, "All quizzes"). |
@@ -433,7 +465,7 @@ All values are plain strings and are never translated. Unknown keys are errors.
 
 ### How a folder becomes a site
 
-The generated site mirrors your folder: the page for `class-4b/tables.json` is `class-4b/tables.html`, and a local image keeps its relative path (so `images/cow.png` ends up at `images/cow.png`). See [Output modes](#output-modes) for the exact tree.
+The generated site mirrors your folder: the page for `class-4b/tables.json` is `class-4b/tables.html`, and a local image keeps its relative path (so `images/cow.png` is copied to `images/cow.png`). See [Output modes](#output-modes) for the exact tree.
 
 Index entries are sorted by title, ignoring case and accents, with collections first. A collection's card shows its quiz count; a quiz card shows its title in the quiz's first language, its description, question count, language flags and author.
 
@@ -504,33 +536,26 @@ In a single-language quiz there is no switcher; `language` only sets the interfa
 
 ### What is checked
 
-Errors (stop the build):
+Errors stop the build:
 
-1. The file is valid JSON (the message gives line and column).
-2. The structure is right: required fields, types, allowed values, no unknown fields.
-3. Every question has exactly one `"correct": true` option.
-4. Every question has at least 2 options, and every option has `text` or `image`.
-5. `questions_per_quiz` (or `--questions`) is not larger than the number of questions.
-6. In multi-language quizzes: every Text covers every language (own key or `any`), no unknown language keys, no plain strings, `any` is not a language code.
-7. In single-language quizzes: every Text is a plain string (a map needs a `languages` field).
-8. `language` and `languages` are not both present.
-9. Every language code has built-in interface text.
-10. Local images exist, stay inside the quiz folder, are png/jpg/jpeg/gif/webp, are 5 MB or less, really are that kind of image, and have a clean path. `image_alt` has an `image`, and is not `""` on a picture-only option.
-11. `author` has a `name`, a `url` starting with `http://` or `https://`, and an `email` that looks like one.
-12. `ui` only has known keys and languages of the quiz, no empty values, strings or maps in the right places, and no unknown `{placeholders}`.
-13. Folder problems: symlinked JSON files, names that are not valid UTF-8, a quiz named `index.json`, a collection folder named `assets` or ending in `.html`, `site.json` below the top level, `collection.json` at the top level. Also checks `site.json` and `collection.json` themselves.
+- **File and structure:** valid JSON (the message gives line and column), required fields present, correct types and allowed values, no unknown fields (typos).
+- **Questions:** exactly one `"correct": true` option per question; at least 2 options, each with `text` or `image`; `questions_per_quiz` (or `--questions`) not larger than the number of questions.
+- **Languages:** in a multi-language quiz every text covers every language (its own key or `any`) and no plain strings are used; in a single-language quiz no translation maps; `language` and `languages` not mixed; every language code has built-in interface text.
+- **Images:** the file exists, stays inside the quiz folder, is png/jpg/jpeg/gif/webp, is 5 MB or less, really is that kind of image; `image_alt` only with an `image`, and not `""` on a picture-only option.
+- **Author and `ui`:** `author` has a name, a web address that starts with `http://` or `https://`, and an email that looks like one; `ui` has only known keys, no empty values and no unknown `{placeholders}`.
+- **Folders:** reserved names (see [Collections](#collections-and-folder-layout)), linked JSON files and odd file names; `site.json` and `collection.json` are checked too.
 
-Warnings (printed, but the build still works):
+Warnings are printed but the build still works:
 
 - `questions_per_quiz` equals the number of questions (same set every time, only the order changes).
-- Two options in a question have the same text.
+- Two options in one question have the same text.
 - A text has `any` and every language, so `any` is never used.
 - An `http://` image: it will not load, because pages only allow `https://` images.
 - A question image, or a picture-only option, has no `image_alt`.
-- A `ui` text leaves out a placeholder the original has.
+- A `ui` text leaves out a `{placeholder}` the original has.
 - A collection folder has no quizzes (it is skipped).
 
-If the structure is wrong (rule 2), the other checks wait until you fix it; you then see the next group of problems.
+If the structure is wrong, the other checks wait until you fix it; you then see the next group of problems.
 
 ### Example output
 
@@ -688,7 +713,7 @@ site/
 
 ### Security of the output
 
-Generated pages make no external requests (no fonts, scripts, analytics). Each page has a strict Content-Security-Policy `<meta>` tag. In single-file mode scripts and styles are allowed only by hash; in site mode only from the site's own `assets/`. Images are allowed from the site itself, `data:` and `https:` links. Quiz text is always inserted as text, never as HTML.
+Generated pages load no fonts, scripts or analytics from other sites, and make no requests except for `https://` pictures you choose to link. Each page has a strict Content-Security-Policy (a browser safety rule, set in a `<meta>` tag) that enforces this. In single-file mode scripts and styles are allowed only by hash; in site mode only from the site's own `assets/`. Images are allowed from the site itself, `data:` and `https:` links. Quiz text is always inserted as text, never as HTML.
 
 ## Publishing on GitHub Pages
 
@@ -696,7 +721,7 @@ The generated site is plain static files, so any static host works. A fork-and-e
 
 ### Manual: build and publish the folder
 
-1. Put your quizzes in a folder, for example `quizzes/`, and run `quizgen build quizzes/ -o docs`.
+1. Put your quizzes in a folder, for example `quizzes/`, and run `quizgen build quizzes/ -o docs`. (Keep your JSON files outside `docs/`.)
 2. Commit the result to a GitHub repository.
 3. In the repository, open **Settings > Pages**. Under **Build and deployment**, choose **Deploy from a branch**, pick your branch and the `/docs` folder, and save.
 4. After a minute your site is at `https://<your-user>.github.io/<repository>/`.
@@ -705,7 +730,7 @@ The generated site is plain static files, so any static host works. A fork-and-e
 
 Other hosts work the same way: upload the folder (or the single `.html` file) to Netlify Drop, your school's web space, or any web server.
 
-To test locally: `python3 -m http.server -d site` and open http://localhost:8000.
+To test locally before publishing: `python3 -m http.server --bind 127.0.0.1 -d docs` and open http://127.0.0.1:8000. (Use the folder you built into; the default is `site`.)
 
 ### Automatic: a GitHub Actions workflow in your own repository
 
@@ -733,11 +758,15 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
       - name: Install quizgen
+        # Recommended: pin to a commit you have checked, for example
+        #   pip install "git+https://github.com/rcocetta/school-quiz@<commit-sha>"
         run: pip install git+https://github.com/rcocetta/school-quiz
       - name: Check the quizzes
         run: quizgen validate quizzes/
@@ -766,7 +795,7 @@ jobs:
 Notes:
 
 - If a quiz has a problem, the "Check the quizzes" step fails and nothing is published; open the failed run in the **Actions** tab to read the messages.
-- The workflow installs the newest quizgen. To pin it, add `@<tag-or-commit>` to the address in the install step.
+- **Pin quizgen to a commit you have checked** (recommended). As written, the workflow installs the newest code from the default branch every time. quizgen writes the JavaScript and the safety rules of the pages your children use, so you should decide when to take changes. Replace the address with `"git+https://github.com/rcocetta/school-quiz@<commit-sha>"`, using the commit hash from the project's commit list on GitHub. (There is no release tag yet.)
 - Deploying with Actions does not use Jekyll, so the `.nojekyll` file in the output is not needed here.
 - Actions are pinned to full commit SHAs, with the version in a comment. Update them from time to time (Dependabot can do this).
 
@@ -793,18 +822,6 @@ If you cloned the repository, you can point at the file instead: the schema ship
 
 The editor checks the structure only. For the full set of checks (one correct answer, translations, images) run `quizgen validate`.
 
-## Adding a new interface language
-
-The built-in text lives in [`src/quizgen/ui_strings.json`](src/quizgen/ui_strings.json): one object per language code.
-
-1. Copy the whole `en` block and give it your language's two-letter code (for example `pt`).
-2. Set `name` (the language's own name, like `Português`) and `flag` (a flag emoji).
-3. Translate **every** key: the quiz-screen keys, the index keys (`quizzes`, `quizzes_count`, `collections`, `back_to_all`, `no_quizzes_yet`, `languages`) and the three `messages`. Keep each `{placeholder}` exactly as written (`{current}`, `{total}`, `{count}`, `{name}`, `{score}`, `{n}`). Keep the `_one` variants (`questions_count_one`, `quizzes_count_one`) for "1 question" and "1 quiz".
-4. Keep the tone kind and **gender-neutral**. For example, avoid forms such as the Italian "Bravissimo" that assume a boy or a girl. Never shame wrong answers.
-5. Run the tests: `.venv/bin/pytest -q`. They check that every language has the same keys and placeholders as English.
-6. Try it: set `"language": "pt"` in an example quiz, build it and click through.
-7. Open a pull request. Have a native speaker look it over if you can.
-
 ## FAQ and limitations
 
 **Can kids cheat by looking at the page source?** Yes. The whole question pool, including the right answers, is in the page. quizgen is a practice tool, not an exam system. Do not use it for marks.
@@ -828,7 +845,7 @@ The built-in text lives in [`src/quizgen/ui_strings.json`](src/quizgen/ui_string
 ## Privacy
 
 - There is no backend. Everything runs in the child's browser.
-- No analytics, no cookies, no tracking, no accounts, no fonts or scripts from other sites.
+- No analytics, no cookies, no tracking, no accounts, no fonts or scripts from other sites. The only requests to other sites are for `https://` pictures that a quiz author chose to link (see below).
 - The only thing stored is the chosen language, in the browser's `localStorage` under `quizgen-lang`. Nothing is sent anywhere. The quiz works if storage is blocked.
 - Scores and answers are never saved or sent; they disappear when the page is closed.
 - **Remote images:** if a quiz uses an `https://` image link, the child's browser asks that image host for the picture, and the host can see the child's IP address. Local images are served with the quiz itself, so use them whenever you can.
@@ -837,38 +854,15 @@ The built-in text lives in [`src/quizgen/ui_strings.json`](src/quizgen/ui_string
 
 ## Development
 
-### Setup
+Setup, running the tests (including the browser tests) and regenerating screenshots are described in [CONTRIBUTING.md](CONTRIBUTING.md). In short:
 
 ```bash
-git clone https://github.com/rcocetta/school-quiz
-cd school-quiz
-python3 -m venv .venv
-.venv/bin/pip install -e '.[dev]'
-```
-
-### Tests
-
-```bash
+git clone https://github.com/rcocetta/school-quiz && cd school-quiz
+python3 -m venv .venv && .venv/bin/pip install -e '.[dev]'
 .venv/bin/pytest -q
 ```
 
-Browser smoke tests (build the examples in single-file and site mode, click through in Chromium, fail on any page error) live in `tests/browser/` and need Playwright:
-
-```bash
-.venv/bin/pip install -e '.[dev,browser]'
-.venv/bin/python -m playwright install chromium
-.venv/bin/pytest tests/browser
-```
-
-If Playwright is not installed those tests are skipped. Set `QUIZGEN_BROWSER_TESTS=1` to make a missing Playwright an error instead (CI does this).
-
-### Screenshots
-
-`scripts/screenshots.py` rebuilds the example quizzes and regenerates the pictures in `docs/screenshots/` (it uses the browser extra above).
-
-### Continuous integration
-
-`.github/workflows/ci.yml` runs the tests on a matrix of Python 3.10 and newer, validates `examples/` and `quizzes/`, and runs the browser tests in a separate job.
+Optional browser smoke tests (`tests/browser/`, Playwright and Chromium, installed with `pip install -e '.[dev,browser]'`) and `scripts/screenshots.py` (regenerates `docs/screenshots/`) are covered there too. CI is `.github/workflows/ci.yml`.
 
 ### Project layout
 
@@ -907,6 +901,18 @@ Site mode (`site.py`) runs these steps in order: check the folder (`_check_folde
 
 In the browser, `quiz.js` reads the embedded JSON, shuffles the pool (Fisher-Yates), takes the first M, and renders each screen with `textContent`.
 
+## Adding a new interface language
+
+The built-in text lives in [`src/quizgen/ui_strings.json`](src/quizgen/ui_strings.json): one object per language code.
+
+1. Copy the whole `en` block and give it your language's two-letter code (for example `pt`).
+2. Set `name` (the language's own name, like `Português`) and `flag` (a flag emoji).
+3. Translate **every** key: the quiz-screen keys, the index keys (`quizzes`, `quizzes_count`, `collections`, `back_to_all`, `no_quizzes_yet`, `languages`) and the three `messages`. Keep each `{placeholder}` exactly as written (`{current}`, `{total}`, `{count}`, `{name}`, `{score}`, `{n}`). Keep the `_one` variants (`questions_count_one`, `quizzes_count_one`) for "1 question" and "1 quiz".
+4. Keep the tone kind and **gender-neutral**. For example, avoid forms such as the Italian "Bravissimo" that assume a boy or a girl. Never shame wrong answers.
+5. Run the tests: `.venv/bin/pytest -q`. They check that every language has the same keys and placeholders as English.
+6. Try it: set `"language": "pt"` in an example quiz, build it and click through.
+7. Open a pull request. Have a native speaker look it over if you can.
+
 ## Contributing, licence and credits
 
 Contributions of code, quizzes and collections are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. See [CHANGELOG.md](CHANGELOG.md) for what changed.
@@ -915,6 +921,6 @@ Contributions of code, quizzes and collections are welcome. Read [CONTRIBUTING.m
 
 **Credits**
 
-- Example pictures are from [Noto Emoji](https://github.com/googlefonts/noto-emoji) (Apache-2.0). Details are in [`examples/images/CREDITS.md`](examples/images/CREDITS.md).
+- Example pictures are from [Noto Emoji](https://github.com/googlefonts/noto-emoji) (Apache-2.0). Details are in [`examples/images/CREDITS.md`](examples/images/CREDITS.md). The example quizzes show the line "Pictures: Noto Emoji by Google (Apache License 2.0)" in their description; if you reuse these pictures in your own quizzes, keep that credit.
 - Built with [jsonschema](https://github.com/python-jsonschema/jsonschema) and [Jinja2](https://jinja.palletsprojects.com/).
 - Created by the school-quiz contributors.
