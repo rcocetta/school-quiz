@@ -14,6 +14,10 @@ On the repository's [Security tab](https://github.com/rcocetta/school-quiz/secur
 
 Not in scope: the content of third-party image hosts that a quiz author links to, and problems in forks or other people's quiz sites.
 
+## Maintainer notes
+
+The Claude review workflow needs an `ANTHROPIC_API_KEY` repository secret. Use a dedicated key with a low spend limit, not a key you use elsewhere.
+
 ## Supported versions
 
 Only the latest version on the `main` branch is supported. Fixes go there.

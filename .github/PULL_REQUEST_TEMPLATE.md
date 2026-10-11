@@ -17,6 +17,7 @@
 - [ ] Images are mine or openly licensed. Source and licence: <!-- name them here -->
 - [ ] No personal data about children (names, photos, contact details).
 - [ ] `quizgen validate quizzes/` passes (locally or in CI).
+- [ ] This PR only adds or changes my own files (it doesn't delete the sample quizzes or other people's files).
 - [ ] I am happy for this to be shared under the project's licence (GPL-3.0-or-later).
 
 ## Code checklist

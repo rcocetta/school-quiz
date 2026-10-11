@@ -82,6 +82,8 @@ Settled decisions in `PLAN.md` (marked with a tick) should not be reopened insid
 
 Put the quiz in `quizzes/`. For a collection, make a folder `quizzes/<collection>/` with your quizzes in it, optionally with a `collection.json` for its title, description and author; see the [README](README.md#collections-and-folder-layout)). Images go in an `images/` folder next to the quiz.
 
+Note: `quizzes/` currently starts with copies of the two examples (with their images and credits). If you change an example in `examples/`, decide whether the library copy should change too.
+
 The [pull request template](.github/PULL_REQUEST_TEMPLATE.md) repeats this checklist. For each quiz or collection:
 
 - [ ] **Age-appropriate.** Content, wording and pictures suit primary and early-secondary school children.
@@ -104,12 +106,13 @@ Pull requests from forks never get access to repository secrets.
 
 ### Maintainer-triggered Claude review
 
-The maintainer can ask for an automated review by [Claude](https://www.anthropic.com/claude) on a pull request. How it works ([`.github/workflows/claude-review.yml`](.github/workflows/claude-review.yml)):
+The maintainer can ask for an automated review by [Claude](https://www.anthropic.com/claude) on a pull request ([`.github/workflows/claude-review.yml`](.github/workflows/claude-review.yml)).
 
 - **Only the repository owner can start it**, by commenting `/claude-review` on the pull request (or by running the workflow manually from the **Actions** tab). Comments from anyone else are ignored.
 - **It never runs automatically**, not when a pull request is opened or updated. Contributors do not need to do anything.
 - **Its output is advice** that a human reads. It does not replace human review and cannot merge or push.
-- It reads the content of the pull request, which anyone can write, so it could be tricked by text planted in a pull request (prompt injection). That is why it only has permission to read the repository and to comment, and no other secrets.
+- **It runs in separate, isolated steps.** A pull request can contain text written to trick an AI (prompt injection), so the step that reads the pull request has no secrets, the step that runs Claude has only the Anthropic key and cannot run commands or reach the network, and the step that posts the comment checks the text for secrets first.
+- *Maintainer note:* use a dedicated Anthropic API key with a low spend limit for this workflow.
 
 ## Reporting problems
 

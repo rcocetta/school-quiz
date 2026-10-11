@@ -6,6 +6,7 @@ body:
       value: |
         You do not need to know Git. Describe your quiz or paste the file and we can help turn it into a pull request.
         Please do not include names, photos or contact details of children.
+        Everything here is public. Leave out your own email or phone number unless you want it shown (the author field is optional), and never include children's names or details.
   - type: input
     id: topic
     attributes:
