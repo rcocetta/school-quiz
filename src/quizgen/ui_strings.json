@@ -1,7 +1,6 @@
 {
   "en": {
     "name": "English",
-    "flag": "🇬🇧",
     "start": "Start the quiz",
     "next": "Next question",
     "finish": "See my results",
@@ -37,7 +36,6 @@
   },
   "it": {
     "name": "Italiano",
-    "flag": "🇮🇹",
     "start": "Inizia il quiz",
     "next": "Prossima domanda",
     "finish": "Vedi i risultati",
@@ -73,7 +71,6 @@
   },
   "es": {
     "name": "Español",
-    "flag": "🇪🇸",
     "start": "Empezar el quiz",
     "next": "Siguiente pregunta",
     "finish": "Ver mis resultados",
@@ -109,7 +106,6 @@
   },
   "fr": {
     "name": "Français",
-    "flag": "🇫🇷",
     "start": "Commencer le quiz",
     "next": "Question suivante",
     "finish": "Voir mes résultats",
@@ -145,7 +141,6 @@
   },
   "de": {
     "name": "Deutsch",
-    "flag": "🇩🇪",
     "start": "Quiz starten",
     "next": "Nächste Frage",
     "finish": "Ergebnis anzeigen",

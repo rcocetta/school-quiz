@@ -676,7 +676,7 @@ def _warn_duplicates(options: list[dict], ctx: _Ctx, path: str) -> None:
 # `ui` overrides (rule 12, D24)
 # --------------------------------------------------------------------------
 
-_NOT_OVERRIDABLE = {"name", "flag"}
+_NOT_OVERRIDABLE = {"name"}
 _PLACEHOLDER_RE = re.compile(r"\{(\w+)\}")
 
 

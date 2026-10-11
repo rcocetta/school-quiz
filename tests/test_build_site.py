@@ -86,7 +86,7 @@ def test_pages_and_csp(tree, tmp_path):
     assert q == ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
                  "base-uri 'none'; form-action 'none'")
     for idx in ("index.html", "school/index.html"):
-        assert csp(out / idx) == ("default-src 'none'; style-src 'self'; img-src 'self'; "
+        assert csp(out / idx) == ("default-src 'none'; style-src 'self'; img-src 'self' data:; "
                                   "base-uri 'none'; form-action 'none'")
         assert "<script" not in read(out / idx)
     assert quiz_data(out / "loose.html")["index_url"] == "index.html"

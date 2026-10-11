@@ -21,7 +21,7 @@ from quizgen.validate import (Issue, ValidationResult, discover, is_remote_image
                               load_site, local_image_path, ui_strings)
 
 DEFAULT_SITE_DIR = "site"
-INDEX_CSP = "default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'"
+INDEX_CSP = "default-src 'none'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'"
 
 
 @dataclass
@@ -236,7 +236,7 @@ def _quiz_card(quiz: dict, stem: str, ui: dict) -> dict:
         "lang": first,
         "description": quiz.get("description", {}).get(first),
         "count_text": _count_text(ui, "questions_count", quiz["questions_per_quiz"]),
-        "languages": [{"code": c, "flag": strings[c]["flag"], "name": strings[c]["name"]}
+        "languages": [{"code": c, "name": strings[c]["name"]}
                       for c in quiz["languages"]],
         "author_name": quiz.get("author", {}).get("name"),
     }
