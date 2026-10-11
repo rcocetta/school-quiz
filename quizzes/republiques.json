@@ -1,0 +1,301 @@
+{
+  "$schema": "../src/quizgen/schema.json",
+  "title": "De la Deuxième à la Quatrième République",
+  "description": "Un quiz d'histoire pour le CM2 : la France de 1848 à 1958.",
+  "language": "fr",
+  "author": {
+    "name": "school-quiz",
+    "url": "https://github.com/rcocetta/school-quiz"
+  },
+  "questions_per_quiz": 8,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": "En quelle année la Deuxième République est-elle proclamée ?",
+      "explanation": "En février 1848, une révolution à Paris chasse le roi Louis-Philippe et la République est proclamée.",
+      "options": [
+        {
+          "text": "1848",
+          "correct": true
+        },
+        {
+          "text": "1789"
+        },
+        {
+          "text": "1870"
+        },
+        {
+          "text": "1958"
+        }
+      ]
+    },
+    {
+      "text": "Quelle grande décision la Deuxième République prend-elle en 1848 ?",
+      "explanation": "Grâce à Victor Schœlcher, l'esclavage est aboli le 27 avril 1848.",
+      "options": [
+        {
+          "text": "Elle abolit l'esclavage dans les colonies",
+          "correct": true
+        },
+        {
+          "text": "Elle construit la tour Eiffel"
+        },
+        {
+          "text": "Elle rend l'école obligatoire"
+        }
+      ]
+    },
+    {
+      "text": "En 1848, qui obtient le droit de voter ?",
+      "explanation": "C'est le suffrage universel masculin. Avant, seuls les hommes riches votaient. Les femmes devront attendre presque cent ans.",
+      "options": [
+        {
+          "text": "Tous les hommes de 21 ans et plus",
+          "correct": true
+        },
+        {
+          "text": "Les hommes et les femmes"
+        },
+        {
+          "text": "Seulement les hommes riches"
+        }
+      ]
+    },
+    {
+      "text": "Qui est élu premier président de la République en décembre 1848 ?",
+      "explanation": "Louis-Napoléon Bonaparte est le neveu de Napoléon Ier. C'est le premier président élu par les Français.",
+      "options": [
+        {
+          "text": "Louis-Napoléon Bonaparte",
+          "correct": true
+        },
+        {
+          "text": "Jules Ferry"
+        },
+        {
+          "text": "Charles de Gaulle"
+        },
+        {
+          "text": "Victor Hugo"
+        }
+      ]
+    },
+    {
+      "text": "Comment la Deuxième République se termine-t-elle ?",
+      "explanation": "Le 2 décembre 1851, Louis-Napoléon Bonaparte prend tout le pouvoir. En 1852, il devient l'empereur Napoléon III : c'est le Second Empire.",
+      "options": [
+        {
+          "text": "Le président fait un coup d'État et devient empereur",
+          "correct": true
+        },
+        {
+          "text": "Un roi revient au pouvoir"
+        },
+        {
+          "text": "La France perd une guerre contre la Prusse"
+        }
+      ]
+    },
+    {
+      "text": "En quelle année la Troisième République est-elle proclamée ?",
+      "explanation": "Le 4 septembre 1870, après la défaite de Napoléon III contre la Prusse à Sedan, la République est proclamée à nouveau.",
+      "options": [
+        {
+          "text": "1870",
+          "correct": true
+        },
+        {
+          "text": "1848"
+        },
+        {
+          "text": "1914"
+        },
+        {
+          "text": "1946"
+        }
+      ]
+    },
+    {
+      "text": "Avec les lois de Jules Ferry (1881-1882), comment devient l'école ?",
+      "explanation": "Tous les enfants de 6 à 13 ans, filles et garçons, doivent aller à l'école, sans payer.",
+      "options": [
+        {
+          "text": "Gratuite, obligatoire et laïque",
+          "correct": true
+        },
+        {
+          "text": "Payante et réservée aux enfants riches"
+        },
+        {
+          "text": "Réservée aux garçons"
+        }
+      ]
+    },
+    {
+      "text": "Quel jour devient la fête nationale en 1880 ?",
+      "explanation": "Le 14 juillet rappelle la prise de la Bastille en 1789 et la fête de la Fédération en 1790.",
+      "options": [
+        {
+          "text": "Le 14 juillet",
+          "correct": true
+        },
+        {
+          "text": "Le 11 novembre"
+        },
+        {
+          "text": "Le 1er mai"
+        },
+        {
+          "text": "Le 8 mai"
+        }
+      ]
+    },
+    {
+      "text": "En 1879, quel chant la Troisième République choisit-elle comme hymne national ?",
+      "explanation": "La Marseillaise a été écrite en 1792 par Rouget de Lisle pendant la Révolution. Elle avait déjà été l'hymne national en 1795, puis avait été abandonnée par Napoléon et les rois.",
+      "options": [
+        {
+          "text": "La Marseillaise",
+          "correct": true
+        },
+        {
+          "text": "Frère Jacques"
+        },
+        {
+          "text": "Au clair de la lune"
+        },
+        {
+          "text": "Le Chant des partisans"
+        }
+      ]
+    },
+    {
+      "text": "Que sépare la loi de 1905 ?",
+      "explanation": "Depuis 1905, l'État ne paie plus les religions et chacun est libre de croire ou de ne pas croire : c'est la laïcité.",
+      "options": [
+        {
+          "text": "Les Églises et l'État",
+          "correct": true
+        },
+        {
+          "text": "Paris et les autres villes"
+        },
+        {
+          "text": "Les écoles de filles et de garçons"
+        }
+      ]
+    },
+    {
+      "text": "Comment appelle-t-on les soldats français de la Première Guerre mondiale ?",
+      "explanation": "On les appelait ainsi car ils avaient souvent la barbe et la moustache dans les tranchées. Les grognards étaient les soldats de Napoléon Ier.",
+      "options": [
+        {
+          "text": "Les poilus",
+          "correct": true
+        },
+        {
+          "text": "Les mousquetaires"
+        },
+        {
+          "text": "Les chevaliers"
+        },
+        {
+          "text": "Les grognards"
+        }
+      ]
+    },
+    {
+      "text": "Quand l'armistice met-il fin aux combats de la Première Guerre mondiale ?",
+      "explanation": "Le 11 novembre est devenu un jour férié pour se souvenir des soldats morts pendant la guerre.",
+      "options": [
+        {
+          "text": "Le 11 novembre 1918",
+          "correct": true
+        },
+        {
+          "text": "Le 14 juillet 1789"
+        },
+        {
+          "text": "Le 8 mai 1945"
+        },
+        {
+          "text": "Le 4 septembre 1870"
+        }
+      ]
+    },
+    {
+      "text": "Pourquoi la Troisième République prend-elle fin en 1940 ?",
+      "explanation": "Après la défaite, une partie de la France est occupée. Le maréchal Pétain reçoit tous les pouvoirs et dirige le régime de Vichy, qui collabore avec l'Allemagne nazie.",
+      "options": [
+        {
+          "text": "La France est battue par l'Allemagne",
+          "correct": true
+        },
+        {
+          "text": "Le président devient roi"
+        },
+        {
+          "text": "Les Français votent pour un empereur"
+        }
+      ]
+    },
+    {
+      "text": "Qui lance un appel à continuer le combat depuis Londres le 18 juin 1940 ?",
+      "explanation": "À la radio de la BBC, il demande aux Français de ne pas abandonner. C'est le début de la France libre.",
+      "options": [
+        {
+          "text": "Le général de Gaulle",
+          "correct": true
+        },
+        {
+          "text": "Le maréchal Pétain"
+        },
+        {
+          "text": "Jules Ferry"
+        },
+        {
+          "text": "Napoléon III"
+        }
+      ]
+    },
+    {
+      "text": "En quelle année les femmes votent-elles pour la première fois en France ?",
+      "explanation": "Le droit de vote est accordé aux femmes en 1944. Elles votent pour la première fois en avril 1945.",
+      "options": [
+        {
+          "text": "1945",
+          "correct": true
+        },
+        {
+          "text": "1848"
+        },
+        {
+          "text": "1905"
+        },
+        {
+          "text": "1981"
+        }
+      ]
+    },
+    {
+      "text": "En quelle année commence la Quatrième République ?",
+      "explanation": "Après la Seconde Guerre mondiale, une nouvelle Constitution est adoptée en 1946. La Quatrième République dure jusqu'en 1958.",
+      "options": [
+        {
+          "text": "1946",
+          "correct": true
+        },
+        {
+          "text": "1870"
+        },
+        {
+          "text": "1918"
+        },
+        {
+          "text": "1958"
+        }
+      ]
+    }
+  ]
+}
