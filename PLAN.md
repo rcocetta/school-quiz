@@ -20,7 +20,7 @@ Each quiz file holds a pool of **N** questions; each attempt shows **M** of them
 | 0. Planning | ✅ done |
 | 1. Schema + validator | ✅ done |
 | 2. Quiz page + single-file build | ✅ done |
-| 3. Site build + index page | ⬜ not started |
+| 3. Site build + index page | 🟨 in progress |
 | 4. Examples, docs, deploy | ⬜ not started |
 | 5. Project website + community | ⬜ not started |
 
@@ -57,6 +57,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 | D24 | Creators can **override built-in UI text** with an optional `ui` object on a quiz or in `collection.json` (quiz > collection > built-in). Partial overrides allowed: any key, any subset of languages | ✅ |
 | D25 | **Local images limited to png, jpg/jpeg, gif, webp.** No local SVG in v1: copied to the site, an SVG opened directly runs script on the `github.io` origin. Remote image URLs (any type) still allowed, `https://` recommended (CSP); `http://` gives a warning | ✅ |
 | D26 | Optional **`image_alt`** (Text) on questions and options describes the image for screen readers; error without `image`. Fallback when missing: question image decorative (`alt=""`); option image uses the option text, else the UI string `picture_n` ("Picture {n}") | ✅ |
+| D27 | Optional top-level **`site.json`** (`title`, `description`, `author`, `language`; plain strings). Index text comes from `ui_strings.json` in the site language (default `en`); `collection.json` gains optional `language` (default: the site's). Loose quizzes inherit the site author; collection quizzes inherit only the collection author | ✅ |
 | D13 | Text maps may use the special key **`"any"`**: the value for every language unless that locale has its own key (`{"any": "12"}`, `{"any": "Rome", "it": "Roma"}`). Plain strings in multi-language mode stay an error (hint: use `any`) | ✅ |
 
 ---

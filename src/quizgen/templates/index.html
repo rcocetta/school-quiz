@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="{{ csp }}">
+<meta name="referrer" content="no-referrer">
+<title>{{ page_title }}</title>
+<link rel="stylesheet" href="{{ asset_base }}quiz.css">
+</head>
+<body>
+<main>
+{% if back %}<a href="{{ back.href }}">{{ back.text }}</a>{% endif %}
+<h1>{{ heading }}</h1>
+{% if description %}<p>{{ description }}</p>{% endif %}
+{% if author %}<p>{% if author.href %}<a href="{{ author.href }}" rel="noopener noreferrer">{{ author.text }}</a>{% else %}{{ author.text }}{% endif %}</p>{% endif %}
+{% if collections %}<h2>{{ collections_heading }}</h2><ul>{% for c in collections %}<li><a href="{{ c.href }}">{{ c.title }}</a> {{ c.count_text }}{% if c.author_name %} {{ c.author_name }}{% endif %}{% if c.description %}<p>{{ c.description }}</p>{% endif %}</li>{% endfor %}</ul>{% endif %}
+{% if quizzes %}<h2>{{ quizzes_heading }}</h2><ul>{% for q in quizzes %}<li lang="{{ q.lang }}"><a href="{{ q.href }}">{{ q.title }}</a> {{ q.count_text }}{% for l in q.languages %} {{ l.flag }} {{ l.code }}{% endfor %}{% if q.author_name %} {{ q.author_name }}{% endif %}</li>{% endfor %}</ul>{% endif %}
+{% if empty_text %}<p>{{ empty_text }}</p>{% endif %}
+</main>
+<footer><a href="{{ made_with.href }}" rel="noopener noreferrer">{{ made_with.text }}</a></footer>
+</body>
+</html>
