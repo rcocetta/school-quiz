@@ -67,7 +67,7 @@ def test_file_tree_and_links(tree, tmp_path):
     assert res.output == out and res.count == 3 and not res.validation.errors
     files = {str(p.relative_to(out)) for p in out.rglob("*") if p.is_file()}
     assert files == {"index.html", "loose.html", "school/index.html", "school/maths.html",
-                     "plain/index.html", "plain/art.html", "assets/quiz.css", "assets/quiz.js", ".nojekyll"}
+                     "plain/index.html", "plain/art.html", "assets/quiz.css", "assets/quiz.js", "assets/flags.woff2", ".nojekyll"}
     top = hrefs(out / "index.html")
     assert "loose.html" in top and "school/index.html" in top and "plain/index.html" in top
     assert "Our School" in read(out / "index.html") and "Loose" in read(out / "index.html")
@@ -84,10 +84,10 @@ def test_pages_and_csp(tree, tmp_path):
     build_site(tree, out)
     q = csp(out / "loose.html")
     assert q == ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
-                 "base-uri 'none'; form-action 'none'")
+                 "font-src 'self'; base-uri 'none'; form-action 'none'")
     for idx in ("index.html", "school/index.html"):
         assert csp(out / idx) == ("default-src 'none'; style-src 'self'; img-src 'self'; "
-                                  "base-uri 'none'; form-action 'none'")
+                                  "font-src 'self'; base-uri 'none'; form-action 'none'")
         assert "<script" not in read(out / idx)
     assert quiz_data(out / "loose.html")["index_url"] == "index.html"
     assert quiz_data(out / "school" / "maths.html")["index_url"] == "index.html"
