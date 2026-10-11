@@ -61,7 +61,7 @@ def _print_issues(result: ValidationResult) -> None:
 def cmd_build(args: argparse.Namespace) -> int:
     path = Path(args.input)
     if path.is_dir():
-        print("building a folder is not available yet (coming in Phase 3).\n"
+        print("building a whole folder is not available yet (coming in a later version).\n"
               "Build one quiz file for now: quizgen build my-quiz.json", file=sys.stderr)
         return 2
     if not path.is_file():

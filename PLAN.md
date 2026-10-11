@@ -19,7 +19,7 @@ Each quiz file holds a pool of **N** questions; each attempt shows **M** of them
 |---|---|
 | 0. Planning | ✅ done |
 | 1. Schema + validator | ✅ done |
-| 2. Quiz page + single-file build | ⬜ not started |
+| 2. Quiz page + single-file build | ✅ done |
 | 3. Site build + index page | ⬜ not started |
 | 4. Examples, docs, deploy | ⬜ not started |
 | 5. Project website + community | ⬜ not started |
@@ -343,12 +343,22 @@ tests/
   - `duplicate field` errors carry the key name but no JSON path (hook limitation).
 
 ### Phase 2 — Quiz page + single-file build
-- [ ] `static/quiz.css`, `static/quiz.js` (screens, randomness, feedback modes, switcher, review)
-- [ ] `templates/quiz.html` with inline-asset mode
-- [ ] `build_single()` incl. image → data URI, safe JSON embedding
-- [ ] `cli.py build <file>`
-- [ ] Tests: output exists, contains embedded data, no local paths remain, `</script>` in content is escaped
+- [x] `static/quiz.css`, `static/quiz.js` (screens, randomness, feedback modes, switcher, review)
+- [x] `templates/quiz.html` with inline-asset mode
+- [x] `build_single()` incl. image → data URI, safe JSON embedding
+- [x] `cli.py build <file>`
+- [x] Tests: output exists, contains embedded data, no local paths remain, `</script>` in content is escaped
 - **Done when**: building `examples/farm-animals.json` gives one HTML that works opened via `file://` with no network, in both feedback modes; switching language mid-quiz keeps state.
+- **Implementation notes** (accepted):
+  - API: `build_single(quiz_path, out_path=None, questions_override=None) -> BuildResult(validation, output)`; `output` is None when nothing was written and build-time problems are appended to `validation.errors`. Reusable for Phase 3: `merge_ui(languages, quiz_ui, collection_ui=None)` (built-in < collection < quiz), `render_page(quiz, ui, *, inline_assets, asset_base="")` (linked mode raises `NotImplementedError` until Phase 3, which also adds the `'self'` CSP), `_rewrite_images(quiz, fn)`, `embed_json`, `_write_atomic`, `validate.ui_strings()`.
+  - Embedded data: `quiz-data` = normalised quiz minus `ui`, local images as `data:` URIs; `ui-strings` = full merged strings per quiz language. JSON escapes `< > &` and U+2028/2029.
+  - CSP (inline mode): `default-src 'none'; script-src 'sha256-…'; style-src 'sha256-…'; img-src data: https:; base-uri 'none'; form-action 'none'`, plus `referrer no-referrer`. No inline styles/handlers anywhere; assets normalised to LF before hashing; `.gitattributes` forces LF.
+  - Output: refuses to overwrite the input; `-o <folder>` (existing or ending in `/`) writes `<folder>/<stem>.html`; random O_EXCL temp file then `os.replace`; write failures are clean errors.
+  - Images: ≤ 5 MB each (validator, applies to site mode too), ≤ 20 MB total inlined per single-file page (repeats counted, each file encoded once), file content must match its extension (magic bytes).
+  - Page: score tiers great ≥ 80 %, good ≥ 50 %, else keep_trying; wrong answers amber with ✗ (not red), correct green with ✓; author/footer links open in a new tab (`noopener noreferrer`); language stored in `localStorage["quizgen-lang"]`; one `h1` per screen; `<noscript>` message is English only.
+  - Folder input to `build` exits 2 until Phase 3.
+  - Known gap: remote `https://` images are requested by the child's browser, so the image host sees their IP. Allowed (D6); Phase 4 README and the Phase 5 contribution checklist must say so and recommend local images.
+  - Tested in Chromium only (Playwright, `file://`, network blocked); no Firefox/WebKit, real devices or screen readers yet.
 
 ### Phase 3 — Site build + index
 - [ ] `templates/index.html` (quiz cards: title in first language, question count, language flags, author name; collection cards linking to per-collection index pages, D21)
@@ -462,3 +472,4 @@ Append one entry per session/subagent run: date, who, what changed, what's next.
 - **2026-10-11** — Phase 1 implemented (sonnet subagent; 68 tests) + UI strings (haiku). Example times-tables is en/it/fr. Opus security review found 12 issues (crash on hostile JSON/long paths, `null` file passing, loose author url/email, non-image files accepted as images, …); fixes in progress. Added D25 (local image types). Researched Claude Code on the web for cloud work: user to link repo via GitHub App (only this repo).
 - **2026-10-11** — Review fixes applied and verified (114 tests; hostile-input repros all give clean errors). **Phase 1 done**, committed and pushed. **Next:** Phase 2 (quiz page + single-file build) — can run in Claude Code on the web once the user links the repo.
 - **2026-10-11** — User confirmed D25. Added project agents in `.claude/agents/` (quiz-implementer, quiz-designer, security-reviewer, simplicity-reviewer, e2e-tester) so the subagent policy works in cloud sessions; documented the per-phase workflow. User linking the repo to Claude Code on the web.
+- **2026-10-11** — Phase 2 (cloud session). User approved D26 (`image_alt`). Contract for template/data/CSP set by main session; `quiz-implementer` built `build.py`, `build <file>`, `image_alt`, `picture_n`; `quiz-designer` built the quiz page (in parallel). Security review: no XSS/breakout found; fixed input overwrite, planted-symlink temp file, unbounded image inlining (1.2 GB output repro), tracebacks on bad `-o`, CRLF/CSP hash risk, added image magic-byte check. Simplicity review fixes: dead JS fallbacks removed, `render_page`/`_rewrite_images` extracted for Phase 3. E2E (fresh non-editable install, Chromium): all "Done when" criteria pass; fixed `-o dir/` and jargon in the folder message. 149 tests. **Phase 2 done.** **Next:** Phase 3 (site build + index).

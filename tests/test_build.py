@@ -160,7 +160,7 @@ def test_warnings_printed_and_build_succeeds(tmp_path, capsys):
 
 def test_directory_input_exits_2(tmp_path, capsys):
     assert main(["build", str(tmp_path)]) == 2
-    assert "Phase 3" in capsys.readouterr().err
+    assert "not available yet" in capsys.readouterr().err
 
 
 def test_missing_input_exits_1(tmp_path, capsys):
@@ -218,6 +218,11 @@ def test_output_directory_gets_stem_html(tmp_path):
     out.mkdir()
     assert build_single(f, out).output == out / "q.html"
     assert (out / "q.html").exists()
+
+
+def test_output_with_trailing_slash_is_a_new_folder(tmp_path):
+    f = write_quiz(tmp_path)
+    assert build_single(f, str(tmp_path / "new") + "/").output == tmp_path / "new" / "q.html"
 
 
 def test_write_failures_are_clean_errors(tmp_path, capsys):

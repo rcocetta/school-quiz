@@ -39,7 +39,8 @@ def build_single(quiz_path: Path | str, out_path: Path | str | None = None,
     """Validate one quiz file and write it as one self-contained HTML file.
 
     On any problem nothing is written and `output` is None (see `validation.errors`).
-    Default output: `<stem>.html` next to the input; an existing folder gets `<stem>.html` inside.
+    Default output: `<stem>.html` next to the input. A folder (existing, or any path ending
+    in "/") gets `<stem>.html` inside.
     """
     quiz_path = Path(quiz_path)
     result = load_quiz(quiz_path, questions_override)
@@ -52,7 +53,7 @@ def build_single(quiz_path: Path | str, out_path: Path | str | None = None,
         return BuildResult(result)
 
     try:
-        if out.is_dir():
+        if out.is_dir() or str(out_path).endswith(("/", os.sep)):
             out = out / (quiz_path.stem + ".html")
     except OSError as err:
         return fail(out, f"cannot write file ({err.strerror or err})")
