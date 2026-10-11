@@ -6,9 +6,9 @@
     "fr": "Tables de multiplication"
   },
   "description": {
-    "en": "Practise multiplying small numbers.",
-    "it": "Esercitati con le moltiplicazioni.",
-    "fr": "Entraîne-toi à multiplier de petits nombres."
+    "en": "Practise multiplying small numbers. Pictures: Noto Emoji by Google (Apache License 2.0).",
+    "it": "Esercitati con le moltiplicazioni. Immagini: Noto Emoji di Google (Licenza Apache 2.0).",
+    "fr": "Entraîne-toi à multiplier de petits nombres. Images : Noto Emoji par Google (licence Apache 2.0)."
   },
   "languages": [
     "en",
@@ -489,41 +489,37 @@
     },
     {
       "text": {
-        "en": "Each hen has 2 legs. How many legs do 7 hens have?",
-        "it": "Ogni gallina ha 2 zampe. Quante zampe hanno 7 galline?",
-        "fr": "Chaque poule a 2 pattes. Combien de pattes ont 7 poules ?"
+        "en": "Each hen has 2 legs. How many legs do 8 hens have?",
+        "it": "Ogni gallina ha 2 zampe. Quante zampe hanno 8 galline?",
+        "fr": "Chaque poule a 2 pattes. Combien de pattes ont 8 poules ?"
       },
       "image": "images/hen.png",
-      "image_alt": {
-        "en": "A hen",
-        "it": "Una gallina",
-        "fr": "Une poule"
-      },
+      "image_alt": "",
       "explanation": {
-        "en": "7 × 2 = 14. Each hen adds 2 legs, so count in twos: 2, 4, 6, 8, 10, 12, 14.",
-        "it": "7 × 2 = 14. Ogni gallina aggiunge 2 zampe, quindi conta di due in due: 2, 4, 6, 8, 10, 12, 14.",
-        "fr": "7 × 2 = 14. Chaque poule ajoute 2 pattes, alors compte de deux en deux : 2, 4, 6, 8, 10, 12, 14."
+        "en": "8 × 2 = 16. Each hen adds 2 legs, so count in twos: 2, 4, 6, 8, 10, 12, 14, 16.",
+        "it": "8 × 2 = 16. Ogni gallina aggiunge 2 zampe, quindi conta di due in due: 2, 4, 6, 8, 10, 12, 14, 16.",
+        "fr": "8 × 2 = 16. Chaque poule ajoute 2 pattes, alors compte de deux en deux : 2, 4, 6, 8, 10, 12, 14, 16."
       },
       "options": [
         {
           "text": {
-            "any": "14"
+            "any": "16"
           },
           "correct": true
         },
         {
           "text": {
-            "any": "9"
+            "any": "10"
           }
         },
         {
           "text": {
-            "any": "16"
+            "any": "14"
           }
         },
         {
           "text": {
-            "any": "12"
+            "any": "18"
           }
         }
       ]
@@ -542,8 +538,7 @@
       "options": [
         {
           "text": {
-            "any": "0",
-            "fr": "zéro"
+            "any": "0"
           },
           "correct": true
         },

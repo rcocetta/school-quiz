@@ -2,7 +2,7 @@
 
 Run from the repository root:
 
-    pip install -e . playwright
+    pip install -e '.[dev,browser]'
     python -m playwright install chromium
     python scripts/screenshots.py
 
@@ -16,6 +16,7 @@ browser starts with empty storage.
 """
 
 import json
+import sys
 import tempfile
 from pathlib import Path
 
@@ -59,6 +60,14 @@ def correct_labels():
     return labels
 
 
+ERRORS = []  # JavaScript errors seen in any page; the script fails if there are any
+
+
+def is_right(option, label):
+    """True if this option button shows exactly `label` (as text or picture)."""
+    return option.get_by_text(label, exact=True).count() > 0 or option.get_by_alt_text(label, exact=True).count() > 0
+
+
 def shot(page, name):
     """Save a screenshot of the top of the page, cut below the content (at most
     MAX_HEIGHT tall)."""
@@ -78,8 +87,8 @@ def new_page(browser):
     )
     context.add_init_script(SEEDED_RANDOM)
     page = context.new_page()
-    page.on("pageerror", lambda e: print("PAGE ERROR:", e))
-    page.on("console", lambda m: m.type == "error" and print("CONSOLE ERROR:", m.text))
+    page.on("pageerror", lambda e: ERRORS.append(f"page error: {e}"))
+    page.on("console", lambda m: m.type == "error" and ERRORS.append(f"console error: {m.text}"))
     return page
 
 
@@ -108,12 +117,11 @@ def take_screenshots(site):
             number += 1
             label = labels[page.get_by_role("heading", level=2).inner_text()]
             has_image = page.locator("main img").count() > 0
-            right = options.filter(has_text=label).or_(
-                options.filter(has=page.get_by_alt_text(label, exact=True))
-            )
-            if number in WRONG_ON:
-                right = options.filter(has_not=right)
-            right.first.click()  # tap an answer ...
+            choices = options.all()
+            right = [o for o in choices if is_right(o, label)]
+            wrong = [o for o in choices if not is_right(o, label)]
+            assert len(right) == 1, f"expected one right answer for {label!r}"
+            (wrong if number in WRONG_ON else right)[0].click()  # tap an answer ...
             page.get_by_role("button", name="Check my answer").click()  # ... and check it
             if has_image and not saved_question and number not in WRONG_ON:
                 page.locator(".js-feedback").wait_for()
@@ -126,6 +134,8 @@ def take_screenshots(site):
                 page.get_by_role("button", name="See my results").click()
                 break
         page.get_by_text("Let's look at your answers").wait_for()
+        score = f"{number - len(WRONG_ON)} out of {number}"
+        assert page.get_by_text(score, exact=True).count() == 1, f"expected score {score}"
         shot(page, "end")
 
         # Times tables: the language switcher, in Italian.
@@ -155,3 +165,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    if ERRORS:
+        print("\n".join(ERRORS))
+        sys.exit("The pages reported errors (see above).")

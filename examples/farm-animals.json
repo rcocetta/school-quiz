@@ -1,7 +1,7 @@
 {
   "$schema": "../src/quizgen/schema.json",
   "title": "Farm Animals",
-  "description": "How well do you know the animals on the farm?",
+  "description": "How well do you know the animals on the farm? Pictures: Noto Emoji by Google (Apache License 2.0).",
   "language": "en",
   "author": {
     "name": "school-quiz",
@@ -14,7 +14,7 @@
     {
       "text": "Which animal gives us milk?",
       "image": "images/cow.png",
-      "image_alt": "A black and white cow",
+      "image_alt": "A white animal with black patches",
       "explanation": "Farmers milk cows every day.",
       "options": [
         {
@@ -32,7 +32,7 @@
     {
       "text": "Which bird is this?",
       "image": "images/hen.png",
-      "image_alt": "A hen",
+      "image_alt": "A white bird's head with a red comb and a yellow beak",
       "explanation": "Hens lay eggs.",
       "options": [
         {
@@ -149,7 +149,7 @@
     {
       "text": "What do we call a baby hen?",
       "image": "images/chick.png",
-      "image_alt": "A little yellow chick",
+      "image_alt": "A small, round, fluffy yellow bird",
       "explanation": "A hen sits on her eggs until the chicks hatch.",
       "options": [
         {
@@ -165,9 +165,9 @@
       ]
     },
     {
-      "text": "Which animal can pull a plough or carry a rider?",
+      "text": "Which animal can pull a cart or carry a rider?",
       "image": "images/horse.png",
-      "image_alt": "A horse galloping",
+      "image_alt": "A brown animal galloping, with a long mane and tail",
       "explanation": "Horses are strong and fast, and they have helped farmers for thousands of years.",
       "options": [
         {
@@ -183,18 +183,18 @@
       ]
     },
     {
-      "text": "Where do hens sleep and lay eggs?",
-      "explanation": "A henhouse (or coop) keeps hens safe at night.",
+      "text": "Where do hens sleep at night?",
+      "explanation": "A coop, or henhouse, keeps hens safe at night.",
       "options": [
         {
-          "text": "Henhouse",
+          "text": "Coop",
           "correct": true
         },
         {
-          "text": "Barn"
+          "text": "Pond"
         },
         {
-          "text": "Pond"
+          "text": "Tree"
         }
       ]
     },

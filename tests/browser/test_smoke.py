@@ -8,10 +8,10 @@ import functools
 import http.server
 import json
 import os
-import struct
+import shutil
 import threading
-import zlib
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import pytest
 
@@ -28,16 +28,6 @@ LOCAL_HOSTS = ("127.0.0.1", "localhost")
 
 
 # ---------------------------------------------------------------- fixtures
-
-def tiny_png() -> bytes:
-    """A valid 1x1 red PNG."""
-    def chunk(kind: bytes, data: bytes) -> bytes:
-        body = kind + data
-        return struct.pack(">I", len(data)) + body + struct.pack(">I", zlib.crc32(body))
-    raw = zlib.compress(b"\x00\xff\x00\x00")
-    return (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0))
-            + chunk(b"IDAT", raw) + chunk(b"IEND", b""))
-
 
 def opt(text=None, correct=False, **extra):
     o = dict(extra)
@@ -89,7 +79,7 @@ def built(tmp_path_factory):
     write_quiz(src, "bilingual", multilang_quiz())
     write_quiz(src / "shapes", "extra", image_quiz("immediate"))
     for folder in (src, src / "shapes"):
-        (folder / "red.png").write_bytes(tiny_png())
+        shutil.copy(EXAMPLES / "images" / "cow.png", folder / "red.png")
 
     single = root / "single"
     single.mkdir()
@@ -98,8 +88,7 @@ def built(tmp_path_factory):
     site = root / "site"
     assert build_site(src, site).output
     examples = root / "examples-site"
-    if EXAMPLES.is_dir() and any(EXAMPLES.glob("*.json")):
-        assert build_site(EXAMPLES, examples).output
+    assert build_site(EXAMPLES, examples).output
     return {"single": single, "site": site, "examples": examples}
 
 
@@ -133,6 +122,17 @@ def browser():
         b.close()
 
 
+def is_local_http(url: str) -> bool:
+    parts = urlsplit(url)
+    return parts.scheme in ("http", "https") and (parts.hostname or "") in LOCAL_HOSTS
+
+
+def test_local_check_is_not_fooled_by_userinfo():
+    assert is_local_http("http://127.0.0.1:8000/a.png")
+    assert not is_local_http("http://127.0.0.1:1@evil.example/x.png")
+    assert not is_local_http("https://evil.example/127.0.0.1")
+
+
 class Watched:
     """A page that records every problem; `check()` fails the test if there was any."""
 
@@ -148,8 +148,7 @@ class Watched:
 
     def _only_local(self, route):
         url = route.request.url
-        host = url.split("/")[2].split(":")[0] if url.startswith("http") else ""
-        if url.startswith(("file://", "data:", "blob:", "about:")) or host in LOCAL_HOSTS:
+        if url.startswith(("file://", "data:", "blob:", "about:")) or is_local_http(url):
             route.continue_()
         else:
             self.problems.append(f"external request blocked: {url}")
@@ -323,15 +322,12 @@ def test_site_language_switch(watched, built, serve):
 # ---------------------------------------------------------------- shipped examples
 
 def example_pages(site: Path) -> list[str]:
-    if not site.is_dir():
-        return []
     return sorted(str(p.relative_to(site)) for p in site.rglob("*.html") if p.name != "index.html")
 
 
 def test_shipped_examples(watched, built, serve):
     pages = example_pages(built["examples"])
-    if not pages:
-        pytest.skip("no examples/ quizzes to test")
+    assert pages, "examples/ must contain quizzes"
     base = serve(built["examples"])
     page = watched.page
     page.goto(base + "/index.html")
