@@ -19,6 +19,7 @@
     "correct_answer": "Correct answer",
     "review": "Let's look at your answers",
     "choose_language": "Choose language",
+    "picture_n": "Picture {n}",
     "messages": {
       "great": "Amazing! You really know your stuff!",
       "good": "Good job! You're getting there!",
@@ -45,6 +46,7 @@
     "correct_answer": "Risposta corretta",
     "review": "Guardiamo le tue risposte",
     "choose_language": "Scegli la lingua",
+    "picture_n": "Immagine {n}",
     "messages": {
       "great": "Fantastico! Te la cavi alla grande!",
       "good": "Bel lavoro! Ci sei quasi!",
@@ -71,6 +73,7 @@
     "correct_answer": "Respuesta correcta",
     "review": "Vamos a ver tus respuestas",
     "choose_language": "Elige el idioma",
+    "picture_n": "Imagen {n}",
     "messages": {
       "great": "¡Increíble! ¡Sabes muchísimo!",
       "good": "¡Buen trabajo! ¡Vas muy bien!",
@@ -97,6 +100,7 @@
     "correct_answer": "Bonne réponse",
     "review": "Regardons tes réponses",
     "choose_language": "Choisir la langue",
+    "picture_n": "Image {n}",
     "messages": {
       "great": "Super ! Tu connais vraiment tout !",
       "good": "Bien joué ! Tu progresses !",
@@ -123,6 +127,7 @@
     "correct_answer": "Richtige Antwort",
     "review": "Schauen wir uns deine Antworten an",
     "choose_language": "Sprache wählen",
+    "picture_n": "Bild {n}",
     "messages": {
       "great": "Toll! Du kannst wirklich viel!",
       "good": "Gut gemacht! Du bist auf dem richtigen Weg!",

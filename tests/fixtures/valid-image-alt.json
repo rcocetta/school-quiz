@@ -1,0 +1,15 @@
+{
+  "title": { "en": "Alt", "it": "Alt" },
+  "languages": ["en", "it"],
+  "questions": [
+    {
+      "text": { "any": "Q?" },
+      "image": "https://example.org/cow.png",
+      "image_alt": { "en": "A cow", "it": "Una mucca" },
+      "options": [
+        { "image": "https://example.org/a.png", "image_alt": { "any": "A" }, "correct": true },
+        { "text": { "any": "B" } }
+      ]
+    }
+  ]
+}

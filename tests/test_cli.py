@@ -42,10 +42,6 @@ def test_validate_directory_with_collections(tmp_path, capsys):
     assert main(["validate", str(tmp_path)]) == 1
 
 
-def test_build_stub_exits_2(capsys):
-    assert main(["build", "x.json"]) == 2
-    assert "not implemented yet" in capsys.readouterr().err
-
 
 def test_python_dash_m():
     proc = subprocess.run([sys.executable, "-m", "quizgen", "validate", str(EXAMPLES)],

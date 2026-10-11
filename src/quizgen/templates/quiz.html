@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="{{ csp }}">
+<meta name="referrer" content="no-referrer">
+<title>{{ page_title }}</title>
+{% if inline_assets %}<style>{{ css }}</style>{% else %}<link rel="stylesheet" href="{{ asset_base }}quiz.css">{% endif %}
+</head>
+<body>
+<noscript><p class="noscript">This quiz needs JavaScript. Please turn it on and reload the page.</p></noscript>
+<main id="app"></main>
+<script type="application/json" id="quiz-data">{{ quiz_json }}</script>
+<script type="application/json" id="ui-strings">{{ ui_json }}</script>
+{% if inline_assets %}<script>{{ js }}</script>{% else %}<script src="{{ asset_base }}quiz.js"></script>{% endif %}
+</body>
+</html>
