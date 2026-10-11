@@ -189,6 +189,16 @@
     return p;
   }
 
+  // Site mode only: a link back to the index page (builder sets index_url, a relative path).
+  function backLink() {
+    var url = quiz.index_url;
+    if (typeof url !== "string" || !url || url.indexOf(":") !== -1 || url.indexOf("//") === 0) { return null; }
+    var a = el("a", "back-link", el("span", "back-arrow", "\u2190"), ui("back_to_all"));
+    a.firstChild.setAttribute("aria-hidden", "true");
+    a.href = url;
+    return a;
+  }
+
   function footer() {
     return el("footer", "footer", externalLink(REPO_URL, ui("made_with")));
   }
@@ -274,8 +284,8 @@
     startBtn.addEventListener("click", startAttempt);
     var desc = quiz.description ? el("p", "lead", tr(quiz.description)) : null;
     var hero = el("section", "hero", heading, desc,
-      el("p", "badge-count", ui("questions_count", { count: n })), authorLine(), startBtn);
-    return el("div", "screen", hero);
+      el("p", "badge-count", ui(n === 1 ? "questions_count_one" : "questions_count", { count: n })), authorLine(), startBtn);
+    return el("div", "screen", backLink(), hero);
   }
 
   function optionButton(item, pos) {
@@ -414,7 +424,7 @@
 
     var list = el("ol", "review-list");
     state.items.forEach(function (item, i) { list.appendChild(reviewItem(item, i)); });
-    return el("div", "screen", result, el("h2", "review-title", ui("review")), list);
+    return el("div", "screen", backLink(), result, el("h2", "review-title", ui("review")), list);
   }
 
   /* ---------- render ---------- */
