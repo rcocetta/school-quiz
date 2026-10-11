@@ -15,7 +15,12 @@
     "it",
     "fr"
   ],
-  "questions_per_quiz": 10,
+  "author": {
+    "name": "school-quiz",
+    "url": "https://github.com/rcocetta/school-quiz"
+  },
+  "questions_per_quiz": 8,
+  "feedback": "end",
   "shuffle_options": true,
   "ui": {
     "correct": {
@@ -36,6 +41,12 @@
       "options": [
         {
           "text": {
+            "any": "6"
+          },
+          "correct": true
+        },
+        {
+          "text": {
             "any": "7"
           }
         },
@@ -48,12 +59,6 @@
           "text": {
             "any": "8"
           }
-        },
-        {
-          "text": {
-            "any": "6"
-          },
-          "correct": true
         }
       ]
     },
@@ -64,6 +69,12 @@
         "fr": "Combien font 2 × 7 ?"
       },
       "options": [
+        {
+          "text": {
+            "any": "14"
+          },
+          "correct": true
+        },
         {
           "text": {
             "any": "16"
@@ -78,12 +89,6 @@
           "text": {
             "any": "7"
           }
-        },
-        {
-          "text": {
-            "any": "14"
-          },
-          "correct": true
         }
       ]
     },
@@ -92,6 +97,11 @@
         "en": "What is 3 × 4?",
         "it": "Quanto fa 3 × 4?",
         "fr": "Combien font 3 × 4 ?"
+      },
+      "explanation": {
+        "en": "3 × 4 means three groups of four: 4 + 4 + 4 = 12.",
+        "it": "3 × 4 vuol dire tre gruppi da quattro: 4 + 4 + 4 = 12.",
+        "fr": "3 × 4, c'est trois groupes de quatre : 4 + 4 + 4 = 12."
       },
       "options": [
         {
@@ -115,12 +125,7 @@
             "any": "13"
           }
         }
-      ],
-      "explanation": {
-        "en": "3 × 4 means three groups of four: 4 + 4 + 4 = 12.",
-        "it": "3 × 4 vuol dire tre gruppi da quattro: 4 + 4 + 4 = 12.",
-        "fr": "3 × 4, c'est trois groupes de quatre : 4 + 4 + 4 = 12."
-      }
+      ]
     },
     {
       "text": {
@@ -131,6 +136,12 @@
       "options": [
         {
           "text": {
+            "any": "18"
+          },
+          "correct": true
+        },
+        {
+          "text": {
             "any": "12"
           }
         },
@@ -138,12 +149,6 @@
           "text": {
             "any": "19"
           }
-        },
-        {
-          "text": {
-            "any": "18"
-          },
-          "correct": true
         },
         {
           "text": {
@@ -161,14 +166,14 @@
       "options": [
         {
           "text": {
-            "any": "15"
-          }
-        },
-        {
-          "text": {
             "any": "20"
           },
           "correct": true
+        },
+        {
+          "text": {
+            "any": "15"
+          }
         },
         {
           "text": {
@@ -191,6 +196,12 @@
       "options": [
         {
           "text": {
+            "any": "32"
+          },
+          "correct": true
+        },
+        {
+          "text": {
             "any": "36"
           }
         },
@@ -203,12 +214,6 @@
           "text": {
             "any": "33"
           }
-        },
-        {
-          "text": {
-            "any": "32"
-          },
-          "correct": true
         }
       ]
     },
@@ -221,14 +226,14 @@
       "options": [
         {
           "text": {
-            "any": "35"
-          }
-        },
-        {
-          "text": {
             "any": "30"
           },
           "correct": true
+        },
+        {
+          "text": {
+            "any": "35"
+          }
         },
         {
           "text": {
@@ -281,6 +286,12 @@
       "options": [
         {
           "text": {
+            "any": "42"
+          },
+          "correct": true
+        },
+        {
+          "text": {
             "any": "35"
           }
         },
@@ -293,12 +304,6 @@
           "text": {
             "any": "43"
           }
-        },
-        {
-          "text": {
-            "any": "42"
-          },
-          "correct": true
         }
       ]
     },
@@ -311,6 +316,12 @@
       "options": [
         {
           "text": {
+            "any": "48"
+          },
+          "correct": true
+        },
+        {
+          "text": {
             "any": "49"
           }
         },
@@ -318,12 +329,6 @@
           "text": {
             "any": "54"
           }
-        },
-        {
-          "text": {
-            "any": "48"
-          },
-          "correct": true
         },
         {
           "text": {
@@ -341,6 +346,12 @@
       "options": [
         {
           "text": {
+            "any": "56"
+          },
+          "correct": true
+        },
+        {
+          "text": {
             "any": "57"
           }
         },
@@ -353,12 +364,6 @@
           "text": {
             "any": "63"
           }
-        },
-        {
-          "text": {
-            "any": "56"
-          },
-          "correct": true
         }
       ]
     },
@@ -401,6 +406,12 @@
       "options": [
         {
           "text": {
+            "any": "72"
+          },
+          "correct": true
+        },
+        {
+          "text": {
             "any": "80"
           }
         },
@@ -413,12 +424,6 @@
           "text": {
             "any": "63"
           }
-        },
-        {
-          "text": {
-            "any": "72"
-          },
-          "correct": true
         }
       ]
     },
@@ -478,6 +483,47 @@
         {
           "text": {
             "any": "28"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Each hen has 2 legs. How many legs do 7 hens have?",
+        "it": "Ogni gallina ha 2 zampe. Quante zampe hanno 7 galline?",
+        "fr": "Chaque poule a 2 pattes. Combien de pattes ont 7 poules ?"
+      },
+      "image": "images/hen.png",
+      "image_alt": {
+        "en": "A hen",
+        "it": "Una gallina",
+        "fr": "Une poule"
+      },
+      "explanation": {
+        "en": "7 × 2 = 14. Each hen adds 2 legs, so count in twos: 2, 4, 6, 8, 10, 12, 14.",
+        "it": "7 × 2 = 14. Ogni gallina aggiunge 2 zampe, quindi conta di due in due: 2, 4, 6, 8, 10, 12, 14.",
+        "fr": "7 × 2 = 14. Chaque poule ajoute 2 pattes, alors compte de deux en deux : 2, 4, 6, 8, 10, 12, 14."
+      },
+      "options": [
+        {
+          "text": {
+            "any": "14"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "9"
+          }
+        },
+        {
+          "text": {
+            "any": "16"
+          }
+        },
+        {
+          "text": {
+            "any": "12"
           }
         }
       ]

@@ -3,10 +3,87 @@
   "title": "Farm Animals",
   "description": "How well do you know the animals on the farm?",
   "language": "en",
+  "author": {
+    "name": "school-quiz",
+    "url": "https://github.com/rcocetta/school-quiz"
+  },
   "questions_per_quiz": 8,
   "feedback": "immediate",
   "shuffle_options": true,
   "questions": [
+    {
+      "text": "Which animal gives us milk?",
+      "image": "images/cow.png",
+      "image_alt": "A black and white cow",
+      "explanation": "Farmers milk cows every day.",
+      "options": [
+        {
+          "text": "Cow",
+          "correct": true
+        },
+        {
+          "text": "Horse"
+        },
+        {
+          "text": "Pig"
+        }
+      ]
+    },
+    {
+      "text": "Which bird is this?",
+      "image": "images/hen.png",
+      "image_alt": "A hen",
+      "explanation": "Hens lay eggs.",
+      "options": [
+        {
+          "text": "Duck"
+        },
+        {
+          "text": "Hen",
+          "correct": true
+        },
+        {
+          "text": "Goose"
+        }
+      ]
+    },
+    {
+      "text": "Which animal gives us wool?",
+      "explanation": "Sheep grow thick wool that is cut off once a year.",
+      "options": [
+        {
+          "image": "images/pig.png",
+          "image_alt": "A pig"
+        },
+        {
+          "image": "images/sheep.png",
+          "image_alt": "A sheep",
+          "correct": true
+        },
+        {
+          "image": "images/hen.png",
+          "image_alt": "A hen"
+        }
+      ]
+    },
+    {
+      "text": "Which animal says 'quack'?",
+      "options": [
+        {
+          "image": "images/cow.png",
+          "image_alt": "A cow"
+        },
+        {
+          "image": "images/hen.png",
+          "image_alt": "A hen"
+        },
+        {
+          "image": "images/duck.png",
+          "image_alt": "A duck",
+          "correct": true
+        }
+      ]
+    },
     {
       "text": "Which animal says 'moo'?",
       "explanation": "Cows moo to talk to their calves.",
@@ -20,22 +97,6 @@
         },
         {
           "text": "Dog"
-        }
-      ]
-    },
-    {
-      "text": "Which animal gives us wool?",
-      "explanation": "Sheep grow thick wool that is sheared once a year.",
-      "options": [
-        {
-          "text": "Pig"
-        },
-        {
-          "text": "Sheep",
-          "correct": true
-        },
-        {
-          "text": "Hen"
         }
       ]
     },
@@ -86,22 +147,28 @@
       ]
     },
     {
-      "text": "What do we call a baby cow?",
+      "text": "What do we call a baby hen?",
+      "image": "images/chick.png",
+      "image_alt": "A little yellow chick",
+      "explanation": "A hen sits on her eggs until the chicks hatch.",
       "options": [
         {
-          "text": "Chick"
+          "text": "Chick",
+          "correct": true
         },
         {
           "text": "Lamb"
         },
         {
-          "text": "Calf",
-          "correct": true
+          "text": "Calf"
         }
       ]
     },
     {
       "text": "Which animal can pull a plough or carry a rider?",
+      "image": "images/horse.png",
+      "image_alt": "A horse galloping",
+      "explanation": "Horses are strong and fast, and they have helped farmers for thousands of years.",
       "options": [
         {
           "text": "Horse",
@@ -112,21 +179,6 @@
         },
         {
           "text": "Duck"
-        }
-      ]
-    },
-    {
-      "text": "Which animal says 'quack'?",
-      "options": [
-        {
-          "text": "Hen"
-        },
-        {
-          "text": "Sheep"
-        },
-        {
-          "text": "Duck",
-          "correct": true
         }
       ]
     },
@@ -143,37 +195,6 @@
         },
         {
           "text": "Pond"
-        }
-      ]
-    },
-    {
-      "text": "Which animal gives us milk?",
-      "explanation": "Farmers milk cows every day.",
-      "options": [
-        {
-          "text": "Hen"
-        },
-        {
-          "text": "Pig"
-        },
-        {
-          "text": "Cow",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "text": "What do we call a baby hen?",
-      "options": [
-        {
-          "text": "Lamb"
-        },
-        {
-          "text": "Chick",
-          "correct": true
-        },
-        {
-          "text": "Calf"
         }
       ]
     },
