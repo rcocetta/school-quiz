@@ -32,7 +32,7 @@ jobs:
       # Browser tests skip themselves here; the "browser" job runs them.
       - run: pytest -q
       - run: quizgen validate examples/
-      # quizzes/ is created in Phase 5; a fresh fork may not have it.
+      # a fork may have deleted quizzes/.
       - name: Validate quizzes/
         run: |
           if [ -d quizzes ]; then quizgen validate quizzes/; else echo "no quizzes/ folder, skipping"; fi

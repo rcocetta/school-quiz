@@ -6,6 +6,8 @@ Thank you for helping! school-quiz is built for kids, free forever, and open to 
 - **Quizzes**: add a quiz to the shared library in `quizzes/`.
 - **Collections**: add a whole set of quizzes, for example one teacher's or one school's, as a folder `quizzes/<collection>/` with its own index page.
 
+Everyone taking part follows our [Code of Conduct](CODE_OF_CONDUCT.md). To report a security problem, see [SECURITY.md](SECURITY.md).
+
 You do not need to be a programmer to contribute a quiz. If you are not comfortable with Git, open an issue and attach your quiz file; we can help turn it into a pull request.
 
 ## Development setup
@@ -41,7 +43,7 @@ Without Playwright these tests are skipped. With `QUIZGEN_BROWSER_TESTS=1` set, 
 
 **Screenshots** in `docs/screenshots/` are generated, not hand-made. Regenerate them with `.venv/bin/python scripts/screenshots.py` if you change how the pages look.
 
-**Checking quizzes:** `.venv/bin/quizgen validate examples/` (and `quizzes/` once that folder exists).
+**Checking quizzes:** `.venv/bin/quizgen validate examples/ quizzes/`.
 
 ## Continuous integration
 
@@ -78,9 +80,11 @@ Settled decisions in `PLAN.md` (marked with a tick) should not be reopened insid
 
 ## Contributing a quiz or collection
 
-Put the quiz in `quizzes/` (or, for a collection, in `quizzes/<collection>/`, optionally with a `collection.json`; see the [README](README.md#collections-and-folder-layout)). Images go in an `images/` folder next to the quiz.
+Put the quiz in `quizzes/`. For a collection, make a folder `quizzes/<collection>/` with your quizzes in it, optionally with a `collection.json` for its title, description and author; see the [README](README.md#collections-and-folder-layout)). Images go in an `images/` folder next to the quiz.
 
-Checklist (a pull request template that repeats it is coming soon):
+Note: `quizzes/` currently starts with copies of the two examples (with their images and credits). If you change an example in `examples/`, decide whether the library copy should change too.
+
+The [pull request template](.github/PULL_REQUEST_TEMPLATE.md) repeats this checklist. For each quiz or collection:
 
 - [ ] **Age-appropriate.** Content, wording and pictures suit primary and early-secondary school children.
 - [ ] **Answers double-checked.** Each question has exactly one right answer, and you checked the facts in a reliable source. Add an `explanation` where it helps a child learn.
@@ -94,11 +98,22 @@ Checklist (a pull request template that repeats it is coming soon):
 
 1. Fork the repository and create a branch from `main` with a short descriptive name.
 2. Make your change, keep it focused, and add or update tests and docs.
+   A pull request should only add or change your own files: if *Files changed* shows the sample quizzes (or anyone else's files) as deleted, start again from a branch of the original `main`.
 3. Run `.venv/bin/pytest -q` (and the browser tests if you touched the page).
-4. Open a pull request and say what it changes and why. For a quiz or collection, tick the checklist above.
+4. Open a pull request. The template asks whether it is code, a quiz or a collection, what it changes and why, and has a checklist to tick.
 5. CI runs automatically. The maintainer reviews, may ask for changes, and merges when it is ready.
 
-The maintainer may also run an automated Claude review on a pull request (coming soon). It is started manually by the maintainer, never automatically, and its output is advice that a human reads; it does not replace human review. Pull requests from forks never get access to repository secrets.
+Pull requests from forks never get access to repository secrets.
+
+### Maintainer-triggered Claude review
+
+The maintainer can ask for an automated review by [Claude](https://www.anthropic.com/claude) on a pull request ([`.github/workflows/claude-review.yml`](.github/workflows/claude-review.yml)).
+
+- **Only the repository owner can start it**, by commenting `/claude-review` on the pull request (or by running the workflow manually from the **Actions** tab). Comments and manual runs or re-runs from anyone else, collaborators included, are ignored.
+- **It never runs automatically**, not when a pull request is opened or updated. Contributors do not need to do anything.
+- **Its output is advice** that a human reads. It does not replace human review and cannot merge or push.
+- **It runs in separate, isolated steps.** A pull request can contain text written to trick an AI (prompt injection), so the step that reads the pull request has no secrets, the step that runs Claude has only the Anthropic key and cannot run commands or reach the network, and the step that posts the comment checks the text for secrets first.
+- *Maintainer note:* use a dedicated Anthropic API key with a low spend limit for this workflow.
 
 ## Reporting problems
 

@@ -480,3 +480,42 @@ def test_structure_hint_in_site_mode(tmp_path, capsys):
     put(tmp_path / "in" / "bad.json", {"title": "T", "questions": [{"text": "Q", "options": []}]})
     assert main(["build", str(tmp_path / "in"), "-o", str(tmp_path / "out")]) == 1
     assert "Fix these first" in capsys.readouterr().out
+
+
+def heading_levels(page: Path) -> list[str]:
+    return re.findall(r"<h([1-6])[ >]", read(page))
+
+
+def test_index_headings_with_collections_and_quizzes(tree, tmp_path):
+    out = tmp_path / "out"
+    build_site(tree, out)
+    assert heading_levels(out / "index.html") == ["1", "2", "3", "3", "2", "3"]
+
+
+def test_index_headings_quizzes_only_have_no_repeated_section_title(tmp_path):
+    src = tmp_path / "in"
+    put(src / "a.json", quiz("A"))
+    put(src / "b.json", quiz("B"))
+    out = tmp_path / "out"
+    build_site(src, out)
+    page = read(out / "index.html")
+    assert heading_levels(out / "index.html") == ["1", "2", "2"]
+    assert "section-title" not in page and "aria-labelledby" not in page
+    assert page.count("Quizzes</h") == 1
+
+
+def test_index_headings_collections_only_and_collection_page(tmp_path):
+    src = tmp_path / "in"
+    put(src / "school" / "maths.json", quiz("Maths"))
+    out = tmp_path / "out"
+    build_site(src, out)
+    assert heading_levels(out / "index.html") == ["1", "2"]
+    assert heading_levels(out / "school" / "index.html") == ["1", "2"]
+
+
+def test_index_headings_empty(tmp_path):
+    src = tmp_path / "in"
+    src.mkdir()
+    out = tmp_path / "out"
+    build_site(src, out)
+    assert heading_levels(out / "index.html") == ["1"]

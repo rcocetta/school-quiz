@@ -1,0 +1,563 @@
+{
+  "$schema": "../src/quizgen/schema.json",
+  "title": {
+    "en": "Times Tables",
+    "it": "Tabelline",
+    "fr": "Tables de multiplication"
+  },
+  "description": {
+    "en": "Practise multiplying small numbers. Pictures: Noto Emoji by Google (Apache License 2.0).",
+    "it": "Esercitati con le moltiplicazioni. Immagini: Noto Emoji di Google (Licenza Apache 2.0).",
+    "fr": "Entraîne-toi à multiplier de petits nombres. Images : Noto Emoji par Google (licence Apache 2.0)."
+  },
+  "languages": [
+    "en",
+    "it",
+    "fr"
+  ],
+  "author": {
+    "name": "school-quiz",
+    "url": "https://github.com/rcocetta/school-quiz"
+  },
+  "questions_per_quiz": 8,
+  "feedback": "end",
+  "shuffle_options": true,
+  "ui": {
+    "correct": {
+      "fr": "Excellent !"
+    },
+    "start": {
+      "en": "Let's multiply!",
+      "it": "Si parte!"
+    }
+  },
+  "questions": [
+    {
+      "text": {
+        "en": "What is 2 × 3?",
+        "it": "Quanto fa 2 × 3?",
+        "fr": "Combien font 2 × 3 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "6"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "7"
+          }
+        },
+        {
+          "text": {
+            "any": "3"
+          }
+        },
+        {
+          "text": {
+            "any": "8"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 2 × 7?",
+        "it": "Quanto fa 2 × 7?",
+        "fr": "Combien font 2 × 7 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "14"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "16"
+          }
+        },
+        {
+          "text": {
+            "any": "15"
+          }
+        },
+        {
+          "text": {
+            "any": "7"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 3 × 4?",
+        "it": "Quanto fa 3 × 4?",
+        "fr": "Combien font 3 × 4 ?"
+      },
+      "explanation": {
+        "en": "3 × 4 means three groups of four: 4 + 4 + 4 = 12.",
+        "it": "3 × 4 vuol dire tre gruppi da quattro: 4 + 4 + 4 = 12.",
+        "fr": "3 × 4, c'est trois groupes de quatre : 4 + 4 + 4 = 12."
+      },
+      "options": [
+        {
+          "text": {
+            "any": "12"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "8"
+          }
+        },
+        {
+          "text": {
+            "any": "15"
+          }
+        },
+        {
+          "text": {
+            "any": "13"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 3 × 6?",
+        "it": "Quanto fa 3 × 6?",
+        "fr": "Combien font 3 × 6 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "18"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "12"
+          }
+        },
+        {
+          "text": {
+            "any": "19"
+          }
+        },
+        {
+          "text": {
+            "any": "21"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 4 × 5?",
+        "it": "Quanto fa 4 × 5?",
+        "fr": "Combien font 4 × 5 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "20"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "15"
+          }
+        },
+        {
+          "text": {
+            "any": "21"
+          }
+        },
+        {
+          "text": {
+            "any": "24"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 4 × 8?",
+        "it": "Quanto fa 4 × 8?",
+        "fr": "Combien font 4 × 8 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "32"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "36"
+          }
+        },
+        {
+          "text": {
+            "any": "24"
+          }
+        },
+        {
+          "text": {
+            "any": "33"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 5 × 6?",
+        "it": "Quanto fa 5 × 6?",
+        "fr": "Combien font 5 × 6 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "30"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "35"
+          }
+        },
+        {
+          "text": {
+            "any": "31"
+          }
+        },
+        {
+          "text": {
+            "any": "24"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 5 × 9?",
+        "it": "Quanto fa 5 × 9?",
+        "fr": "Combien font 5 × 9 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "45"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "46"
+          }
+        },
+        {
+          "text": {
+            "any": "50"
+          }
+        },
+        {
+          "text": {
+            "any": "36"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 6 × 7?",
+        "it": "Quanto fa 6 × 7?",
+        "fr": "Combien font 6 × 7 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "42"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "35"
+          }
+        },
+        {
+          "text": {
+            "any": "48"
+          }
+        },
+        {
+          "text": {
+            "any": "43"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 6 × 8?",
+        "it": "Quanto fa 6 × 8?",
+        "fr": "Combien font 6 × 8 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "48"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "49"
+          }
+        },
+        {
+          "text": {
+            "any": "54"
+          }
+        },
+        {
+          "text": {
+            "any": "40"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 7 × 8?",
+        "it": "Quanto fa 7 × 8?",
+        "fr": "Combien font 7 × 8 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "56"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "57"
+          }
+        },
+        {
+          "text": {
+            "any": "48"
+          }
+        },
+        {
+          "text": {
+            "any": "63"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 7 × 9?",
+        "it": "Quanto fa 7 × 9?",
+        "fr": "Combien font 7 × 9 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "63"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "54"
+          }
+        },
+        {
+          "text": {
+            "any": "70"
+          }
+        },
+        {
+          "text": {
+            "any": "64"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 8 × 9?",
+        "it": "Quanto fa 8 × 9?",
+        "fr": "Combien font 8 × 9 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "72"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "80"
+          }
+        },
+        {
+          "text": {
+            "any": "73"
+          }
+        },
+        {
+          "text": {
+            "any": "63"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 9 × 9?",
+        "it": "Quanto fa 9 × 9?",
+        "fr": "Combien font 9 × 9 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "81"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "72"
+          }
+        },
+        {
+          "text": {
+            "any": "90"
+          }
+        },
+        {
+          "text": {
+            "any": "82"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 3 × 9?",
+        "it": "Quanto fa 3 × 9?",
+        "fr": "Combien font 3 × 9 ?"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "27"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "30"
+          }
+        },
+        {
+          "text": {
+            "any": "18"
+          }
+        },
+        {
+          "text": {
+            "any": "28"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Each hen has 2 legs. How many legs do 8 hens have?",
+        "it": "Ogni gallina ha 2 zampe. Quante zampe hanno 8 galline?",
+        "fr": "Chaque poule a 2 pattes. Combien de pattes ont 8 poules ?"
+      },
+      "image": "images/hen.png",
+      "image_alt": "",
+      "explanation": {
+        "en": "8 × 2 = 16. Each hen adds 2 legs, so count in twos: 2, 4, 6, 8, 10, 12, 14, 16.",
+        "it": "8 × 2 = 16. Ogni gallina aggiunge 2 zampe, quindi conta di due in due: 2, 4, 6, 8, 10, 12, 14, 16.",
+        "fr": "8 × 2 = 16. Chaque poule ajoute 2 pattes, alors compte de deux en deux : 2, 4, 6, 8, 10, 12, 14, 16."
+      },
+      "options": [
+        {
+          "text": {
+            "any": "16"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "10"
+          }
+        },
+        {
+          "text": {
+            "any": "14"
+          }
+        },
+        {
+          "text": {
+            "any": "18"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is 8 × 0?",
+        "it": "Quanto fa 8 × 0?",
+        "fr": "Combien font 8 × 0 ?"
+      },
+      "explanation": {
+        "en": "Anything times zero is zero.",
+        "it": "Qualsiasi numero per zero fa zero.",
+        "fr": "Tout nombre multiplié par zéro donne zéro."
+      },
+      "options": [
+        {
+          "text": {
+            "any": "0"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "8"
+          }
+        },
+        {
+          "text": {
+            "any": "80"
+          }
+        },
+        {
+          "text": {
+            "any": "1"
+          }
+        }
+      ]
+    }
+  ]
+}

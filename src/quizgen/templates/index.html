@@ -17,13 +17,16 @@
 {% if author %}<p class="meta">{% if author.href %}<a href="{{ author.href }}" rel="noopener noreferrer"{% if author.external %} target="_blank"{% endif %}>{{ author.text }}</a>{% else %}{{ author.text }}{% endif %}</p>{% endif %}
 </header>
 <main class="index-main">
+{# Section headings only when both sections exist; otherwise cards are the h2s, so levels never skip or repeat the h1. #}
+{% set both = collections and quizzes %}
+{% set lvl = 3 if both else 2 %}
 {% if collections %}
-<section aria-labelledby="collections-h">
-<h2 id="collections-h" class="section-title">{{ collections_heading }}</h2>
+<section{% if both %} aria-labelledby="collections-h"{% endif %}>
+{% if both %}<h2 id="collections-h" class="section-title">{{ collections_heading }}</h2>{% endif %}
 <ul class="cards">
 {% for c in collections %}
 <li class="card card--collection">
-<h3 class="card-title"><a class="card-link" href="{{ c.href }}"><span class="folder" aria-hidden="true">&#128193;</span> {{ c.title }}</a></h3>
+<h{{ lvl }} class="card-title"><a class="card-link" href="{{ c.href }}"><span class="folder" aria-hidden="true">&#128193;</span> {{ c.title }}</a></h{{ lvl }}>
 {% if c.description %}<p class="card-desc">{{ c.description }}</p>{% endif %}
 <p class="card-meta"><span class="chip">{{ c.count_text }}</span>{% if c.author_name %} <span class="by">{{ c.author_name }}</span>{% endif %}</p>
 </li>
@@ -32,12 +35,12 @@
 </section>
 {% endif %}
 {% if quizzes %}
-<section aria-labelledby="quizzes-h">
-<h2 id="quizzes-h" class="section-title">{{ quizzes_heading }}</h2>
+<section{% if both %} aria-labelledby="quizzes-h"{% endif %}>
+{% if both %}<h2 id="quizzes-h" class="section-title">{{ quizzes_heading }}</h2>{% endif %}
 <ul class="cards">
 {% for q in quizzes %}
 <li class="card card--quiz">
-<h3 class="card-title" lang="{{ q.lang }}"><a class="card-link" href="{{ q.href }}">{{ q.title }}</a></h3>
+<h{{ lvl }} class="card-title" lang="{{ q.lang }}"><a class="card-link" href="{{ q.href }}">{{ q.title }}</a></h{{ lvl }}>
 {% if q.description %}<p class="card-desc" lang="{{ q.lang }}">{{ q.description }}</p>{% endif %}
 <p class="card-meta"><span class="chip">{{ q.count_text }}</span>{% if q.author_name %} <span class="by">{{ q.author_name }}</span>{% endif %}</p>
 {% if q.languages %}<ul class="langs" aria-label="{{ languages_label }}">
