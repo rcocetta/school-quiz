@@ -115,7 +115,7 @@ The maintainer can ask for an automated review by [Claude](https://www.anthropic
 - **It never runs automatically**, not when a pull request is opened or updated. Contributors do not need to do anything.
 - **Its output is advice** that a human reads. It does not replace human review and cannot merge or push.
 - **It runs in separate, isolated steps.** A pull request can contain text written to trick an AI (prompt injection), so the step that reads the pull request has no secrets, the step that runs Claude has only the Anthropic key and cannot run commands or reach the network, and the step that posts the comment checks the text for secrets first.
-- *Maintainer note:* use a dedicated Anthropic API key with a low spend limit for this workflow.
+- *Maintainer note:* the workflow uses the maintainer's Claude subscription through a `CLAUDE_CODE_OAUTH_TOKEN` secret made with `claude setup-token`.
 
 ## Reporting problems
 

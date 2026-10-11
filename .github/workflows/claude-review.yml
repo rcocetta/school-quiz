@@ -4,8 +4,9 @@ name: Claude review
 #
 # Start it by commenting "/claude-review" on a pull request (as the repository
 # owner), or from the Actions tab: Run workflow, with the pull request number.
-# Needs the repository secret ANTHROPIC_API_KEY (use a dedicated key with a low
-# spending limit). The result is one comment on the pull request, written by
+# Needs the repository secret CLAUDE_CODE_OAUTH_TOKEN (made with
+# `claude setup-token`; runs are billed to the owner's Claude subscription).
+# The result is one comment on the pull request, written by
 # github-actions. Treat it as advice, not as an approval.
 #
 # THREAT MODEL (read before changing anything)
@@ -15,7 +16,7 @@ name: Claude review
 # and nothing to break:
 #   * The Anthropic key and a GitHub write token NEVER exist in the same job.
 #       fetch  : GitHub read access, no secrets.   Collects the PR as plain files.
-#       review : ANTHROPIC_API_KEY only, no GitHub token, `permissions: {}`.
+#       review : CLAUDE_CODE_OAUTH_TOKEN only, no GitHub token, `permissions: {}`.
 #       post   : pull-requests: write only, no Anthropic key. Posts the text.
 #   * In the review job Claude has no shell and no network tools: only Read,
 #     Grep and Glob, confined to an empty working folder holding just the
@@ -31,8 +32,9 @@ name: Claude review
 #     cannot change how it is reviewed.
 #   * Max 10 turns and 10 minutes cap the cost of one run.
 # Worst case left: a misleading comment, or a secret obfuscated well enough to
-# slip past the post job's simple filter. A dedicated, low-limit API key keeps
-# that cheap. The Claude Code version is pinned; bump it on purpose.
+# slip past the post job's simple filter. The token has no spend limit of its
+# own (it uses the subscription's usage limits): if one ever leaks, revoke it
+# and make a new one. The Claude Code version is pinned; bump it on purpose.
 #
 # If this repository moves to an organisation, "OWNER" no longer matches the
 # maintainers: change the check below deliberately, never loosen it.
@@ -169,7 +171,7 @@ jobs:
 
       - name: Review with Claude
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           PROMPT: |
             You are reviewing a pull request to a tool that turns quiz JSON files into static web quizzes for children. The working folder holds the pull request as plain files:
               pr.json         title, description, author
