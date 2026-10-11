@@ -462,3 +462,15 @@ def test_image_alt_decorative_and_warnings(tmp_path):
     data["questions"][1]["options"][0]["image_alt"] = ""
     res = load_quiz(put(tmp_path / "bad.json", data))
     assert any("needs a description" in str(e) for e in res.errors)
+
+
+def test_empty_collection_warns_but_failed_quizzes_do_not(tmp_path):
+    src = tmp_path / "in"
+    put(src / "loose.json", quiz("Loose"))
+    put(src / "empty" / "collection.json", {"title": "Empty"})
+    put(src / "broken" / "collection.json", {"title": "Broken"})
+    put(src / "broken" / "bad.json", quiz("Bad", questions_per_quiz=5))
+    result = build_site(src, tmp_path / "out")
+    warned = [w.file for w in result.validation.warnings if "no quizzes" in w.message]
+    assert warned == [str(src / "empty")]
+    assert any("only has 2 questions" in e.message for e in result.validation.errors)

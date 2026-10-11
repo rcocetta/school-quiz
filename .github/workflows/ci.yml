@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tests (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14", "3.15"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e '.[dev]'
+      # Browser tests skip themselves here; the "browser" job runs them.
+      - run: pytest -q
+      - run: quizgen validate examples/
+      # quizzes/ is created in Phase 5; a fresh fork may not have it.
+      - name: Validate quizzes/
+        run: |
+          if [ -d quizzes ]; then quizgen validate quizzes/; else echo "no quizzes/ folder, skipping"; fi
+
+  browser:
+    name: Browser smoke test (Chromium)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - run: pip install -e '.[dev,browser]'
+      - run: python -m playwright install --with-deps chromium
+      - run: pytest -q tests/browser
+        env:
+          QUIZGEN_BROWSER_TESTS: "1"

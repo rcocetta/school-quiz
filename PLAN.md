@@ -6,7 +6,7 @@
 
 ## Goal
 
-Repository: https://github.com/rcocetta/school-quiz (public, GPL-3.0). Per its description it will hold both the generator and the user's own quizzes.
+Repository: https://github.com/rcocetta/school-quiz (public, GPL-3.0-or-later). Per its description it will hold both the generator and the user's own quizzes.
 
 
 A Python CLI (`quizgen`) that turns quiz JSON files into static HTML quizzes for primary / early-secondary school kids. No backend: output must work when served from GitHub Pages (or opened as a local file, in single-file mode).
@@ -21,7 +21,7 @@ Each quiz file holds a pool of **N** questions; each attempt shows **M** of them
 | 1. Schema + validator | ✅ done |
 | 2. Quiz page + single-file build | ✅ done |
 | 3. Site build + index page | ✅ done |
-| 4. Examples, docs, deploy | ⬜ not started |
+| 4. Examples, docs, deploy | ✅ done |
 | 5. Project website + community | ⬜ not started |
 
 Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
@@ -45,7 +45,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 | D11 | v1 extras: shuffle options, per-question explanation, CLI override of M, remote image URLs | ✅ |
 | D12 | End screen: **score + encouraging message + review list + "Try again"** (new random set) | ✅ |
 | D14 | Project will be **open-sourced**: exhaustive README, licence, contributor docs, clean repo hygiene are v1 deliverables | ✅ |
-| D15 | Licence: **GPL-3.0** (already in the GitHub repo) | ✅ |
+| D15 | Licence: **GPL-3.0-or-later** (`LICENSE` is the GPL-3.0 text; "or later" confirmed by the user in Phase 4) | ✅ |
 | D16 | Mission, stated on the website and README: **built for kids, free forever, anyone can fork and run their own, or contribute back via PR** | ✅ |
 | D17 | GitHub Pages site layout: `/` landing page, `/guide/` how-to guide, `/quizzes/` quiz index. Forks can turn off the project pages with one setting, which puts their quiz index at `/` | ✅ |
 | D18 | Website and guide in **English only** (quizzes themselves stay multi-language) | ✅ |
@@ -308,13 +308,19 @@ src/quizgen/
     quiz.js
     quiz.css
 examples/
-  farm-animals.json          # single-language
-  times-tables.json          # multi-language (en/it)
-  images/
+  farm-animals.json          # single-language, immediate feedback
+  times-tables.json          # multi-language (en/it/fr), end feedback
+  images/                    # Noto Emoji PNGs + CREDITS.md + LICENSE-Apache-2.0.txt
+scripts/
+  screenshots.py             # regenerates docs/screenshots/ (Playwright)
 tests/
   fixtures/                  # valid + one invalid file per error rule
   test_validate.py
   test_build.py
+  test_build_site.py
+  test_cli.py
+  browser/test_smoke.py      # Playwright + Chromium; skipped without playwright unless QUIZGEN_BROWSER_TESTS=1
+.github/dependabot.yml       # weekly update PRs for pinned actions
 ```
 
 ### Module contracts (so phases can be worked on independently)
@@ -345,7 +351,7 @@ tests/
   - `collection.json`: `title`/`description` plain strings; `ui` kept with `any` **unexpanded** (a collection doesn't know its quizzes' languages); Phase 3 expands `any` when merging per quiz.
   - Public helpers: `load_quiz(path, questions_override=None, ui_langs=None)`, `load_collection(path)`, `discover(dir)` (reuse in Phase 3).
   - `validate` on an empty folder exits 0 (fresh forks with empty `quizzes/` must not fail CI).
-  - `pyproject.toml` has no `readme` field yet; add it in Phase 4 with the README.
+  - `pyproject.toml` has no `readme` field yet; add it in Phase 4 with the README (done in Phase 4).
   - Post-review hardening: files > 5 MB rejected; deep nesting/huge numbers/lone surrogates/duplicate keys reported, never a traceback; CLI output never crashes on non-UTF-8 consoles; author `url`/`email` strictly checked and stored stripped.
   - **For builders (Phase 2/3), reuse, don't re-implement:** `validate.IMAGE_TYPES` (extension → MIME, D25) and `validate.is_remote_image(ref)`. `discover(dir)` returns `(files, problems)` (since Phase 3 also `site.json` and folder-rule problems, rule 13). `ValidationResult` also has `structural_failure`.
   - `duplicate field` errors carry the key name but no JSON path (hook limitation).
@@ -385,8 +391,8 @@ tests/
   - Not tested yet: Firefox/WebKit, real devices and screen readers, actual GitHub Pages hosting, `es`/`de` index text.
 
 ### Phase 4 — Examples, docs, deploy
-- [ ] Polished example quizzes (one single-language, one en/it) with a few images
-- [ ] Exhaustive `README.md` (D14) — audience is both **teachers/parents** (non-programmers) and **developers**. Sections:
+- [x] Polished example quizzes (one single-language, one en/it) with a few images
+- [x] Exhaustive `README.md` (D14) — audience is both **teachers/parents** (non-programmers) and **developers**. Sections:
   1. Title, one-line pitch, screenshots/GIF of start, question (immediate feedback), end screen, language switcher; link to a live demo on GitHub Pages
   2. Features list
   3. Quick start (install → write minimal quiz → build → open) in ≤ 5 commands
@@ -403,13 +409,24 @@ tests/
   14. Privacy note: no backend, no analytics, no cookies (only `localStorage` for language)
   15. Development: setup, running tests, project layout, architecture overview (validate → normalise → render)
   16. Contributing link, licence, credits
-- [ ] `CONTRIBUTING.md`, `CHANGELOG.md` (Keep a Changelog format, v0.1.0)
-- [ ] README screenshots in `docs/screenshots/`, generated from the example quizzes
-- [ ] `ci.yml`: tests + validate `examples/` and `quizzes/` on every PR (Pages deploy moved to Phase 5)
-- [ ] Browser smoke test in CI (Playwright + Chromium): build examples in single-file and site mode, click through a quiz in both feedback modes, fail on any page error. Phase 3 shipped a single-file-only crash that pytest could not see
-- [ ] `pyproject.toml` metadata for PyPI: description, readme, licence, classifiers, project URLs
-- [ ] Final check: every README code snippet and command actually runs against the current code (have a subagent follow the README from scratch in a clean venv)
-- **Done when**: a non-programmer teacher can go from README to a deployed quiz without reading the source, and a developer can set up, test and contribute using only the README + CONTRIBUTING.
+- [x] `CONTRIBUTING.md`, `CHANGELOG.md` (Keep a Changelog format, v0.1.0)
+- [x] README screenshots in `docs/screenshots/`, generated from the example quizzes
+- [x] `ci.yml`: tests + validate `examples/` and `quizzes/` on every PR (Pages deploy moved to Phase 5)
+- [x] Browser smoke test in CI (Playwright + Chromium): build examples in single-file and site mode, click through a quiz in both feedback modes, fail on any page error. Phase 3 shipped a single-file-only crash that pytest could not see
+- [x] `pyproject.toml` metadata for PyPI: description, readme, licence, classifiers, project URLs
+- [x] Final check: every README code snippet and command actually runs against the current code (have a subagent follow the README from scratch in a clean venv)
+- **Done when**: a non-programmer teacher can go from README to a deployed quiz without reading the source, and a developer can set up, test and contribute using only the README + CONTRIBUTING. (User decision: the no-install fork-and-edit path for teachers needs `pages.yml`, so that part moved to Phase 5; Phase 4 covers the CLI path with manual and copy-paste-workflow publishing.)
+- **Implementation notes** (accepted):
+  - User decisions: install from GitHub (`pipx install git+https://github.com/rcocetta/school-quiz`, or the `archive/refs/heads/main.zip` URL without git), not PyPI; Pages deploy and fork path stay in Phase 5; example images are **Noto Emoji** (Apache-2.0).
+  - Images: SVGs from googlefonts/noto-emoji `2D/svg/` (Apache-2.0 notice there) at commit `e20cbc2b`, rendered to 256 px PNG by us (the `2D/png` folder has no licence file; the repo root LICENSE is now OFL). `examples/images/CREDITS.md` + full licence text. Because builds only copy referenced images, each example's `description` ends with "Pictures: Noto Emoji by Google (Apache License 2.0)" so the credit travels with built pages.
+  - Example `image_alt` describes what is seen and never names the answer when the picture is the clue; README has a "how to write good alt text" list. Decorative images in multi-language quizzes use plain `""` (a map of empty strings is a missing-translation error, rule 6) — consistent with D26.
+  - README: 15 sections covering all 16 PLAN items (some merged); developer setup/tests live in CONTRIBUTING.md; no live demo link yet. Copy-paste Pages workflow for your own repo (build job `contents: read`, deploy job `pages`/`id-token: write`, `persist-credentials: false`, SHA-pinned actions); it installs quizgen from the default branch with a comment recommending a commit pin (no tag exists yet).
+  - CI (`ci.yml`): `pull_request`/push to main/dispatch, `contents: read`, SHA-pinned checkout v7.0.1 + setup-python v7.0.0, Python 3.10–3.15 matrix (3.10 and 3.15 verified locally), validates `examples/` and `quizzes/` if present, separate browser job. Optional extra `browser = ["playwright>=1.56"]`.
+  - Browser smoke test (`tests/browser/test_smoke.py`, 12 tests): single-file via `file://` and site via 127.0.0.1 `http.server`; fails on page/console errors, failed requests, HTTP ≥ 400 and any non-local request; both feedback modes, language switch mid-quiz, back link, collections, and every shipped example.
+  - `scripts/screenshots.py` is deterministic (seeded `Math.random`), asserts the expected score and fails on page errors.
+  - Small code fixes from the final check: "only has 1 question" grammar; the "collection has no quizzes" warning no longer fires when the collection's quizzes merely failed validation.
+  - SECURITY: CONTRIBUTING points to GitHub private vulnerability reporting (the maintainer must enable it in repo settings).
+  - Final check (e2e, fresh venv, non-editable install of this branch): every README/CONTRIBUTING command and JSON snippet runs, all 69 links/anchors resolve, Chromium click-through clean. Not tested: pipx itself, Windows/macOS terminals, the Pages workflow on real GitHub, Firefox/WebKit, real devices, screen readers.
 
 ---
 
@@ -421,6 +438,7 @@ tests/
 - [ ] Community files: `CODE_OF_CONDUCT.md` (Contributor Covenant), PR template with type checkboxes (code / quiz / collection) and the quiz checklist, issue templates
 - [ ] `claude-review.yml` (§8) + section in CONTRIBUTING explaining that reviews are maintainer-triggered
 - [ ] Link checks: landing ↔ guide ↔ quizzes ↔ GitHub repo all work on the deployed site and in a fork with `PROJECT_PAGES=false`
+- [ ] Carried over from Phase 4: README live demo link and fork-and-edit path once Pages is live; `SECURITY.md` (+ maintainer enables private vulnerability reporting); `v0.1.0` tag + pinning the README workflow install: user has no preference yet, decide when releasing; index page shows "Quizzes" as both `h1` and `h2` when `site.json` has no title (a11y review); if ever published to PyPI, README image links must become absolute
 - **Done when**: the live site at `https://rcocetta.github.io/school-quiz/` shows landing, guide and quizzes; a test fork following only the guide gets its own working quiz site.
 
 ---
@@ -431,7 +449,7 @@ tests/
 Audience: teachers, parents, and developers who stumble on the repo. Friendly, warm, kid-themed but not childish. Sections:
 1. Hero: name, one-line pitch ("Free, simple quizzes for kids, made by teachers and parents, hosted anywhere"), buttons **Try a quiz** (→ `/quizzes/`) and **Make your own** (→ `/guide/`)
 2. What it is: short explanation + screenshots of a quiz in action (question, feedback, end screen, language switcher)
-3. Principles (D16): built for kids (no ads, no tracking, no accounts, works on tablets), free forever (GPL-3.0), yours to fork, open to contributions
+3. Principles (D16): built for kids (no ads, no tracking, no accounts, works on tablets), free forever (GPL-3.0-or-later), yours to fork, open to contributions
 4. How it works in 3 steps: fork → write questions in a simple file → your quiz site is online
 5. Get involved: contribute code, quizzes or collections; link to CONTRIBUTING and the GitHub repo
 6. Footer: licence, repo link, "made with love for kids" tone
@@ -492,3 +510,5 @@ Append one entry per session/subagent run: date, who, what changed, what's next.
 - **2026-10-11** — Phase 2 (cloud session). User approved D26 (`image_alt`). Contract for template/data/CSP set by main session; `quiz-implementer` built `build.py`, `build <file>`, `image_alt`, `picture_n`; `quiz-designer` built the quiz page (in parallel). Security review: no XSS/breakout found; fixed input overwrite, planted-symlink temp file, unbounded image inlining (1.2 GB output repro), tracebacks on bad `-o`, CRLF/CSP hash risk, added image magic-byte check. Simplicity review fixes: dead JS fallbacks removed, `render_page`/`_rewrite_images` extracted for Phase 3. E2E (fresh non-editable install, Chromium): all "Done when" criteria pass; fixed `-o dir/` and jargon in the folder message. 149 tests. **Phase 2 done.** **Next:** Phase 3 (site build + index).
 
 - **2026-10-11** — Phase 3 (cloud session). User decisions: D27 `site.json` (index language/title), D28 select-then-Check in immediate mode, D26 extended (`image_alt: ""` decorative, warnings for undescribed images); main session chose D29 (output mirrors input folder). `quiz-implementer` built `build_site`/`site.py`, `site.json`, collection `language`, `build <dir>`; `quiz-designer` built index pages and the back link, then the Check flow. First `accessibility-reviewer` run (covering the Phase 2 quiz page too): axe clean, fixed feedback/score announcements, number-key shortcut (WCAG 2.1.4), progress description, review right/wrong text, landmarks, font weights. Security review: fixed symlinked JSON being published, control-char image refs turning into remote requests, tracebacks on non-UTF-8 names, partial writes and mkdir outside output (now full pre-flight), reserved names moved into `discover`. Simplicity review: split `site.py`, single image walker, exact test asserts. E2E: site Done-when passes; found a single-file crash on Start (null back link) — fixed by main session and re-verified in Chromium (both examples, full run, no errors). 187 tests. **Phase 3 done.** **Next:** Phase 4 (examples, docs, CI incl. browser smoke test).
+- **2026-10-11** — Phase 4 (cloud session). User decisions: Pages deploy and fork path stay in Phase 5, install from GitHub (not PyPI), example images from Noto Emoji. `quiz-implementer` ×3 in parallel: examples + Noto PNGs + `scripts/screenshots.py` + screenshots; `ci.yml` + browser smoke test + pyproject metadata; README/CONTRIBUTING/CHANGELOG. Reviews: security (no critical/high; fixed Pages snippet `persist-credentials`, pin advice, `http.server --bind 127.0.0.1`, licence credit travelling with built pages, smoke-test host parsing, overclaims), simplicity (screenshot script picked wrong answers by luck, README accuracy/length/jargon, dependabot), accessibility (alt texts gave answers away, README alt-text guidance, duplicate headings). E2E from scratch: all commands/snippets run; fixed install check, image download hint, plural grammar, false "no quizzes" warning. 200 tests. **Phase 4 done.** **Next:** Phase 5 (website, guide, `pages.yml`, community files) plus the carried-over items.
+- **2026-10-11** — User follow-ups: licence is GPL-3.0-or-later (D15 updated, README aligned); no preference yet on a `v0.1.0` tag; user will enable private vulnerability reporting and "Require approval for all external contributors" in repo settings.
