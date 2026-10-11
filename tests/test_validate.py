@@ -457,7 +457,7 @@ def test_author_schema_defs_identical():
     assert quiz["$defs"]["author"] == coll["properties"]["author"]
 
 
-def testui_strings_languages_consistent():
+def test_ui_strings_languages_consistent():
     strings = validate_mod.ui_strings()
     placeholder = re.compile(r"\{(\w+)\}")
 
@@ -506,3 +506,14 @@ def test_image_content_must_match_type(tmp_path, name, content):
     (tmp_path / name).write_bytes(content)
     f = quiz_file(tmp_path, questions=[{**QUESTION, "image": name}])
     assert has(msgs(load_quiz(f)), "not a real", name.split(".")[1].upper())
+
+
+def test_discover_names_differing_only_in_case(tmp_path):
+    valid = (FIX / "valid-minimal.json").read_text(encoding="utf-8")
+    for rel in ["Foo.json", "foo.json", "farm.json", "farm/x.json", "School/a.json", "school/b.json", "Pics/a.png", "pics/b.png"]:
+        (tmp_path / rel).parent.mkdir(parents=True, exist_ok=True)
+        (tmp_path / rel).write_text(valid, encoding="utf-8")
+    _, problems = discover(tmp_path)
+    clashes = [p for p in problems if "upper/lower case" in p]
+    assert len(clashes) == 2  # foo.json vs Foo.json, school/ vs School/; farm.json + farm/ and image folders are fine
+    assert any("Foo.json" in p for p in clashes) and any('"School"' in p for p in clashes)

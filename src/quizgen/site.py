@@ -124,6 +124,7 @@ def _load_all(src: Path, override: int | None, result: ValidationResult) -> tupl
     def check(res: ValidationResult) -> dict:
         result.errors += res.errors
         result.warnings += res.warnings
+        result.structural_failure |= res.structural_failure
         return res.quiz or {}
 
     site: dict = {}
