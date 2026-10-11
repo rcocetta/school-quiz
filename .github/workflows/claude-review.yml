@@ -23,7 +23,9 @@ name: Claude review
 #     the pull request is ever executed (not even installed or built).
 #   * The post job refuses to publish text that looks like a key or token, is
 #     empty, or is too long.
-#   * Triggers are only issue_comment (owner only) and workflow_dispatch. NEVER
+#   * Only the repository owner can start it (comment or manual run; checked by
+#     user name, so collaborators with write access cannot). Triggers are only
+#     issue_comment and workflow_dispatch. NEVER
 #     add pull_request or pull_request_target here. issue_comment workflows
 #     always run from the default branch's copy of this file, so a pull request
 #     cannot change how it is reviewed.
@@ -51,14 +53,21 @@ jobs:
   # 1. Collect the pull request as plain files. No secrets, read-only token.
   fetch:
     name: Collect pull request
-    # Comment trigger: a PR (not an issue), the comment starts with
-    # /claude-review and was written by the repository owner. Manual runs are
-    # already limited by GitHub to people with write access.
+    # Only the repository owner can start a review, by either route:
+    # - a manual run (Actions tab) started by the owner (GitHub would also let
+    #   any collaborator with write access start one; the actor check stops that);
+    # - a comment on a PR (not an issue) that starts with /claude-review,
+    #   written by the owner.
+    # triggering_actor also covers "Re-run jobs": on a re-run, actor stays the
+    # original starter, triggering_actor is whoever clicked re-run.
     if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.issue.pull_request &&
-       github.event.comment.author_association == 'OWNER' &&
-       startsWith(github.event.comment.body, '/claude-review'))
+      github.actor == github.repository_owner &&
+      github.triggering_actor == github.repository_owner &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event.issue.pull_request &&
+        github.event.comment.author_association == 'OWNER' &&
+        github.event.comment.user.login == github.repository_owner &&
+        startsWith(github.event.comment.body, '/claude-review')))
     runs-on: ubuntu-latest
     timeout-minutes: 5
     # At job level so that ignored comments (the job is skipped) never join it.
