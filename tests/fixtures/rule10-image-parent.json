@@ -1,0 +1,31 @@
+{
+  "title": "T",
+  "questions_per_quiz": 1,
+  "questions": [
+    {
+      "text": "Q1",
+      "options": [
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "B"
+        }
+      ],
+      "image": "../secret.png"
+    },
+    {
+      "text": "Q2",
+      "options": [
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "B"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "T",
+  "questions_per_quiz": 2,
+  "questions": [
+    {
+      "text": "Q1",
+      "options": [
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "B"
+        }
+      ]
+    },
+    {
+      "text": "Q2",
+      "options": [
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "B"
+        }
+      ]
+    }
+  ]
+}

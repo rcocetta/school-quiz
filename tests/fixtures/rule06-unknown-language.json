@@ -1,0 +1,52 @@
+{
+  "title": {
+    "en": "T",
+    "it": "T",
+    "fr": "T"
+  },
+  "languages": [
+    "en",
+    "it"
+  ],
+  "questions_per_quiz": 1,
+  "questions": [
+    {
+      "text": {
+        "en": "Q1",
+        "it": "D1"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "A"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "B",
+            "it": "Bi"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "any": "Q2"
+      },
+      "options": [
+        {
+          "text": {
+            "any": "A"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "B"
+          }
+        }
+      ]
+    }
+  ]
+}

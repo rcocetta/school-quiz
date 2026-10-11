@@ -18,7 +18,7 @@ Each quiz file holds a pool of **N** questions; each attempt shows **M** of them
 | Phase | State |
 |---|---|
 | 0. Planning | ✅ done |
-| 1. Schema + validator | ⬜ not started |
+| 1. Schema + validator | ✅ done |
 | 2. Quiz page + single-file build | ⬜ not started |
 | 3. Site build + index page | ⬜ not started |
 | 4. Examples, docs, deploy | ⬜ not started |
@@ -54,6 +54,8 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 | D21 | Contributed "sites" are **collections**: a subfolder `quizzes/<collection>/` with its own index page (e.g. one teacher's or school's set) | ✅ |
 | D22 | Optional **`author`** (`name` required, `url`, `email` optional) on quizzes and collections; a quiz inherits its collection's author. Plain strings, never translated. Guide discourages personal emails | ✅ |
 | D23 | Generated quiz and index pages carry a small **"Made with school-quiz" footer link** to the repo. On by default, so forks credit the project; removable by anyone (no obligation beyond GPL notices) | ✅ |
+| D24 | Creators can **override built-in UI text** with an optional `ui` object on a quiz or in `collection.json` (quiz > collection > built-in). Partial overrides allowed: any key, any subset of languages | ✅ |
+| D25 | **Local images limited to png, jpg/jpeg, gif, webp.** No local SVG in v1: copied to the site, an SVG opened directly runs script on the `github.io` origin. Remote image URLs (any type) still allowed, `https://` recommended (CSP); `http://` gives a warning | ✅ |
 | D13 | Text maps may use the special key **`"any"`**: the value for every language unless that locale has its own key (`{"any": "12"}`, `{"any": "Rome", "it": "Roma"}`). Plain strings in multi-language mode stay an error (hint: use `any`) | ✅ |
 
 ---
@@ -63,7 +65,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 These apply to every phase, every session and every subagent.
 
 ### Quality bar
-- **Kids first.** Big tap targets, large clear text, few words per screen, no dead ends, gentle encouraging tone (never shaming on wrong answers), works on cheap tablets and phones, keyboard and screen-reader friendly (WCAG 2.1 AA contrast, real `<button>`s, labels, focus states, `alt` text for images).
+- **Kids first.** Big tap targets, large clear text, few words per screen, no dead ends, gentle encouraging tone (never shaming on wrong answers; UI text gender-neutral in gendered languages, e.g. no "Bravissimo" in Italian), works on cheap tablets and phones, keyboard and screen-reader friendly (WCAG 2.1 AA contrast, real `<button>`s, labels, focus states, `alt` text for images).
 - **Easy for creators.** Teachers and parents shouldn't need to code. Defaults for everything optional, error messages that say *where* and *how to fix*, examples they can copy.
 - **Simple over clever.** Few dependencies, no frameworks, no build step for the browser code. Every feature in the plan must earn its place; no speculative abstractions.
 - **Secure by default** (simple, but kids are the audience):
@@ -160,10 +162,11 @@ Rules for subagents:
 | `description` | Text | no | — | Shown on start screen |
 | `languages` | string[] (≥1, unique) | no | — | Presence switches on multi-language mode. First entry = initial language |
 | `language` | string | no | `"en"` | Single-language mode only (error if combined with `languages`). Sets UI-chrome language |
-| `questions_per_quiz` | int ≥ 1 | no | `10` | M. Overridable by `--questions` |
+| `questions_per_quiz` | int ≥ 1 | no | `min(10, N)` | M. Overridable by `--questions`. M > N is only an error when M is set explicitly |
 | `feedback` | `"immediate"` \| `"end"` | no | `"immediate"` | |
 | `shuffle_options` | bool | no | `true` | |
 | `author` | Author | no | collection's author, if any | Shown on the start screen and index cards (D22) |
+| `ui` | UiOverrides | no | — | Replace built-in screen text (D24) |
 | `questions` | Question[] (≥1) | yes | — | N = length |
 
 **Question**: `text` (Text, required), `image` (ImageRef, optional), `explanation` (Text, optional), `options` (Option[], ≥2, required).
@@ -171,6 +174,14 @@ Rules for subagents:
 **Option**: `text` (Text, optional), `image` (ImageRef, optional), `correct` (bool, optional, default false). At least one of `text`/`image` required.
 
 **Author** (D22): `name` (string, required), `url` (`http(s)://` string, optional), `email` (string, optional). Always plain strings, even in multi-language mode. Unknown keys → error.
+
+**UiOverrides** (D24): object with any subset of the text keys of `ui_strings.json` (everything except `name` and `flag`); `messages` is a nested object with any subset of `great`/`good`/`keep_trying`. Each value is a string in single-language mode, or in multi-language mode a map with **any subset** of the quiz languages plus optional `any` (unlike normal Text, missing languages fall back to the built-in text rather than erroring). Example:
+```json
+"ui": {
+  "correct": { "it": "Esatto!", "en": "Spot on!" },
+  "messages": { "great": { "any": "🌟🌟🌟" } }
+}
+```
 
 **Text** = `string` in single-language mode; `{lang: string}` object in multi-language mode, where the reserved key `"any"` is the value for every language without its own key (D13).
 **ImageRef** = relative path (resolved against the JSON file's directory) or `http(s)://` URL.
@@ -194,8 +205,9 @@ Errors:
 7. i18n, when `languages` absent: every Text is a plain string; an object → error with hint "add a `languages` field".
 8. `language` and `languages` both present.
 9. Every language code must exist in `ui_strings.json`.
-10. Local image path doesn't exist (or escapes the quiz directory via `..` — reject for safety in site mode).
+10. Local image path doesn't exist, escapes the quiz directory (`..`, absolute, symlinks), or isn't an allowed image type (D25).
 11. `author`: missing `name`, `url` not `http(s)://`, `email` not a basic `x@y.z` shape (same checks for `collection.json`).
+12. `ui`: unknown key; language key not in `languages`; a string where a map is required (or vice versa); empty string; a placeholder not used by that key's built-in text (e.g. `{name}` in `correct`). A required placeholder that's missing (e.g. `question_x_of_y` without `{total}`) is a **warning**.
 
 Warnings:
 - M == N (every attempt has the same question set, just reordered).
@@ -294,7 +306,7 @@ tests/
 ### Module contracts (so phases can be worked on independently)
 - `validate.load_quiz(path: Path, questions_override: int | None = None) -> ValidationResult`
   - `ValidationResult(quiz: dict | None, errors: list[Issue], warnings: list[Issue])`; `Issue(file, path, message)`.
-  - On success `quiz` is **normalised**: defaults filled in, and Text always in full map form, one key per language, `any` expanded (single-language quizzes become `{"<language>": "..."}` with `languages: [<language>]`). The builder and JS only ever deal with the normalised form.
+  - On success `quiz` is **normalised**: defaults filled in, `ui` overrides kept as a per-language partial map with `any` expanded (merged with built-ins and the collection's `ui` at build time), and Text always in full map form, one key per language, `any` expanded (single-language quizzes become `{"<language>": "..."}` with `languages: [<language>]`). The builder and JS only ever deal with the normalised form.
 - `build.build_single(quiz_path, out_path, questions_override=None)`
 - `build.build_site(quiz_dir, out_dir, questions_override=None)`
 - JS reads the normalised quiz JSON + UI strings; it never needs to know whether the source was single- or multi-language.
@@ -304,13 +316,25 @@ tests/
 ## 6. Tasks
 
 ### Phase 1 — Schema + validator
-- [ ] `pyproject.toml` (Python ≥ 3.10, deps `jsonschema`, `jinja2`; dev dep `pytest`), package skeleton (git already set up, `.gitignore` from GitHub's Python template)
-- [ ] `schema.json` (draft 2020-12) covering structure incl. Text `oneOf`
-- [ ] `ui_strings.json` with en/it/es/fr/de
-- [ ] `validate.py` implementing rules 1–10 + warnings + normalisation
-- [ ] `cli.py validate` subcommand, readable error output
-- [ ] Tests: one fixture per rule, normalisation tests (incl. `any` expansion and override)
+- [x] `pyproject.toml` (Python ≥ 3.10, deps `jsonschema`, `jinja2`; dev dep `pytest`), package skeleton (git already set up, `.gitignore` from GitHub's Python template)
+- [x] `schema.json` (draft 2020-12) covering structure incl. Text `oneOf`
+- [x] `ui_strings.json` with en/it/es/fr/de
+- [x] `validate.py` implementing rules 1–12 + warnings + normalisation
+- [x] `cli.py validate` subcommand, readable error output
+- [x] `ui` overrides: schema, rule 12, normalisation (D24)
+- [x] Tests: one fixture per rule, normalisation tests (incl. `any` expansion and override)
 - **Done when**: `pytest` passes; `quizgen validate examples/` reports clean; each bad fixture yields its specific error message.
+- **Implementation notes** (decisions made while building, accepted):
+  - Default M = `min(10, N)`; M > N and the M == N warning only apply when M is explicit (file or `--questions`).
+  - Structural (schema) errors suppress the semantic pass, so the semantic checks never see malformed data; users fix structure first, then see rule 3–12 errors.
+  - Normalised quiz: `language`/`$schema` dropped, `languages` always set, `questions_per_quiz`/`feedback`/`shuffle_options` always filled, `ui` always present (`{}` if none), `correct` always bool, `author` only if given, absent optional fields omitted, image refs unchanged (builders rewrite them).
+  - `collection.json`: `title`/`description` plain strings; `ui` kept with `any` **unexpanded** (a collection doesn't know its quizzes' languages); Phase 3 expands `any` when merging per quiz.
+  - Public helpers: `load_quiz(path, questions_override=None, ui_langs=None)`, `load_collection(path)`, `discover(dir)` (reuse in Phase 3).
+  - `validate` on an empty folder exits 0 (fresh forks with empty `quizzes/` must not fail CI).
+  - `pyproject.toml` has no `readme` field yet; add it in Phase 4 with the README.
+  - Post-review hardening: files > 5 MB rejected; deep nesting/huge numbers/lone surrogates/duplicate keys reported, never a traceback; CLI output never crashes on non-UTF-8 consoles; author `url`/`email` strictly checked and stored stripped.
+  - **For builders (Phase 2/3), reuse, don't re-implement:** `validate.IMAGE_TYPES` (extension → MIME, D25) and `validate.is_remote_image(ref)`. `discover(dir)` returns `(files, problems)`. `ValidationResult` also has `structural_failure`.
+  - `duplicate field` errors carry the key name but no JSON path (hook limitation).
 
 ### Phase 2 — Quiz page + single-file build
 - [ ] `static/quiz.css`, `static/quiz.js` (screens, randomness, feedback modes, switcher, review)
@@ -324,7 +348,7 @@ tests/
 - [ ] `templates/index.html` (quiz cards: title in first language, question count, language flags, author name; collection cards linking to per-collection index pages, D21)
 - [ ] `build_site()`: per-quiz pages linking shared assets, image copy + path rewrite
 - [ ] `cli.py build <dir>`
-- [ ] Collections: one level of subfolders, optional `collection.json`, per-collection index with author in the header, author inheritance for quizzes (D21, D22)
+- [ ] Collections: one level of subfolders, optional `collection.json`, per-collection index with author in the header, author and `ui` inheritance for quizzes (D21, D22, D24)
 - [ ] Tests: expected file tree incl. collections, rewritten image paths resolve
 - **Done when**: `quizgen build examples/ -o site/` + `python -m http.server -d site` serves a working index and quizzes.
 
@@ -385,13 +409,14 @@ Step-by-step, written for non-programmers first (D19), with screenshots of GitHu
 2. **Write your first quiz**: edit a JSON file in the GitHub web editor, a minimal annotated example, commit → wait for the Action → refresh
 3. **Quiz file reference**: every field, in plain language, with examples (kept in sync with the README / `schema.json`)
 4. **Saying who made it**: the `author` field, why to prefer a website or a quiz-only email over a personal address, and never including children's names or contact details
-5. **Adding images**: uploading via the GitHub web UI, using image links, size and licensing tips
-6. **Multiple languages**: `languages`, translation maps, the `any` key
-7. **When something goes wrong**: reading the failed Action log, common validation errors and fixes
-8. **Turning off the project pages** in your fork (`PROJECT_PAGES=false`)
-9. **Sharing a quiz without a website**: single-file HTML (for developers or with help, needs the CLI)
-10. **Contributing back**: sending a quiz or collection to the main library via PR; the quiz checklist
-11. **For developers**: link to the README sections on local install and CLI
+5. **Changing the button and message text** (`ui` overrides)
+6. **Adding images**: uploading via the GitHub web UI, using image links, size and licensing tips
+7. **Multiple languages**: `languages`, translation maps, the `any` key
+8. **When something goes wrong**: reading the failed Action log, common validation errors and fixes
+9. **Turning off the project pages** in your fork (`PROJECT_PAGES=false`)
+10. **Sharing a quiz without a website**: single-file HTML (for developers or with help, needs the CLI)
+11. **Contributing back**: sending a quiz or collection to the main library via PR; the quiz checklist
+12. **For developers**: link to the README sections on local install and CLI
 
 The guide must not duplicate the README wholesale: the README is the full reference, and the guide is the friendly walkthrough that links to it for details.
 
@@ -427,3 +452,6 @@ Append one entry per session/subagent run: date, who, what changed, what's next.
 - **2026-10-11** — Planned the project website (landing `/`, guide `/guide/`, quizzes `/quizzes/`), fork-first guide for non-programmers, contribution model (code/quizzes/collections) and maintainer-triggered Claude review. Added D16–D21 and Phase 5. D21 (meaning of "sites") open.
 - **2026-10-11** — D21 confirmed (collections). Added D22: optional `author` (name/url/email) on quizzes and collections, with inheritance and validation rule 11. Open proposal: "Made with school-quiz" footer credit in generated pages (not yet decided).
 - **2026-10-11** — Added D23 (footer credit) and the Working principles section (quality bar, security rules, subagent/model policy). Planning complete; committed and pushed. **Next:** Phase 1.
+- **2026-10-11** — UI strings written (en/it/es/fr/de); Italian reviewed by user and made gender-neutral. Added D24: creator `ui` overrides (quiz > collection > built-in), validation rule 12.
+- **2026-10-11** — Phase 1 implemented (sonnet subagent; 68 tests) + UI strings (haiku). Example times-tables is en/it/fr. Opus security review found 12 issues (crash on hostile JSON/long paths, `null` file passing, loose author url/email, non-image files accepted as images, …); fixes in progress. Added D25 (local image types). Researched Claude Code on the web for cloud work: user to link repo via GitHub App (only this repo).
+- **2026-10-11** — Review fixes applied and verified (114 tests; hostile-input repros all give clean errors). **Phase 1 done**, committed and pushed. **Next:** Phase 2 (quiz page + single-file build) — can run in Claude Code on the web once the user links the repo.

@@ -1,0 +1,197 @@
+{
+  "$schema": "../src/quizgen/schema.json",
+  "title": "Farm Animals",
+  "description": "How well do you know the animals on the farm?",
+  "language": "en",
+  "questions_per_quiz": 8,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": "Which animal says 'moo'?",
+      "explanation": "Cows moo to talk to their calves.",
+      "options": [
+        {
+          "text": "Cow",
+          "correct": true
+        },
+        {
+          "text": "Cat"
+        },
+        {
+          "text": "Dog"
+        }
+      ]
+    },
+    {
+      "text": "Which animal gives us wool?",
+      "explanation": "Sheep grow thick wool that is sheared once a year.",
+      "options": [
+        {
+          "text": "Pig"
+        },
+        {
+          "text": "Sheep",
+          "correct": true
+        },
+        {
+          "text": "Hen"
+        }
+      ]
+    },
+    {
+      "text": "Which animal lays eggs?",
+      "options": [
+        {
+          "text": "Cow"
+        },
+        {
+          "text": "Horse"
+        },
+        {
+          "text": "Hen",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "text": "Which animal says 'oink'?",
+      "options": [
+        {
+          "text": "Pig",
+          "correct": true
+        },
+        {
+          "text": "Duck"
+        },
+        {
+          "text": "Goat"
+        }
+      ]
+    },
+    {
+      "text": "What do we call a baby sheep?",
+      "explanation": "A baby cow is a calf and a baby horse is a foal.",
+      "options": [
+        {
+          "text": "Calf"
+        },
+        {
+          "text": "Foal"
+        },
+        {
+          "text": "Lamb",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "text": "What do we call a baby cow?",
+      "options": [
+        {
+          "text": "Chick"
+        },
+        {
+          "text": "Lamb"
+        },
+        {
+          "text": "Calf",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "text": "Which animal can pull a plough or carry a rider?",
+      "options": [
+        {
+          "text": "Horse",
+          "correct": true
+        },
+        {
+          "text": "Rabbit"
+        },
+        {
+          "text": "Duck"
+        }
+      ]
+    },
+    {
+      "text": "Which animal says 'quack'?",
+      "options": [
+        {
+          "text": "Hen"
+        },
+        {
+          "text": "Sheep"
+        },
+        {
+          "text": "Duck",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "text": "Where do hens sleep and lay eggs?",
+      "explanation": "A henhouse (or coop) keeps hens safe at night.",
+      "options": [
+        {
+          "text": "Henhouse",
+          "correct": true
+        },
+        {
+          "text": "Barn"
+        },
+        {
+          "text": "Pond"
+        }
+      ]
+    },
+    {
+      "text": "Which animal gives us milk?",
+      "explanation": "Farmers milk cows every day.",
+      "options": [
+        {
+          "text": "Hen"
+        },
+        {
+          "text": "Pig"
+        },
+        {
+          "text": "Cow",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "text": "What do we call a baby hen?",
+      "options": [
+        {
+          "text": "Lamb"
+        },
+        {
+          "text": "Chick",
+          "correct": true
+        },
+        {
+          "text": "Calf"
+        }
+      ]
+    },
+    {
+      "text": "Which animal likes to roll in the mud to cool down?",
+      "explanation": "Pigs cannot sweat, so mud helps them stay cool.",
+      "options": [
+        {
+          "text": "Sheep"
+        },
+        {
+          "text": "Pig",
+          "correct": true
+        },
+        {
+          "text": "Horse"
+        }
+      ]
+    }
+  ]
+}

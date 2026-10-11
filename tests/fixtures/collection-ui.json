@@ -1,0 +1,13 @@
+{
+  "title": "C",
+  "ui": {
+    "start": "Go",
+    "next": {
+      "it": "Avanti",
+      "any": "Next"
+    },
+    "messages": {
+      "good": "Nice"
+    }
+  }
+}

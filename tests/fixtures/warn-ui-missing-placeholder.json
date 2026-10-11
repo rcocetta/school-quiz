@@ -1,0 +1,33 @@
+{
+  "title": "T",
+  "questions_per_quiz": 1,
+  "questions": [
+    {
+      "text": "Q1",
+      "options": [
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "B"
+        }
+      ]
+    },
+    {
+      "text": "Q2",
+      "options": [
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "B"
+        }
+      ]
+    }
+  ],
+  "ui": {
+    "question_x_of_y": "Question {current}"
+  }
+}
