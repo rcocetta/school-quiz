@@ -133,6 +133,8 @@ a.ext::after {
   font-size: 0.85em;
 }
 
+[tabindex="-1"]:focus:not(:focus-visible) { outline: none; }
+
 .sr-only {
   position: absolute;
   width: 1px; height: 1px;
@@ -349,7 +351,7 @@ a.ext::after {
 .site-footer { margin-top: 3rem; padding: 2rem 0 3rem; border-top: var(--border) solid var(--edge); background: var(--surface); }
 .site-footer .wrap { display: grid; gap: 1rem; }
 .site-footer ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; padding: 0; list-style: none; }
-.site-footer li a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+.site-footer li a { display: inline-flex; align-items: center; min-height: 3rem; }
 .site-footer p { max-width: var(--measure); color: var(--ink-soft); }
 
 /* ---------- guide ---------- */
@@ -367,11 +369,13 @@ a.ext::after {
   background: var(--surface);
   box-shadow: 0 5px 0 var(--shade);
 }
+.toc-extra { margin-bottom: 0.25rem; }
+.toc-extra a { display: block; min-height: 3rem; padding: 0.7rem 0 0.2rem; font-weight: 700; text-decoration: none; }
 .toc h2 { font-size: var(--fs-h3); margin-bottom: 0.5rem; }
 .toc ol { padding-left: 1.75rem; }
 .toc li { padding-left: 0.25rem; }
 .toc li::marker { font-weight: 800; color: var(--ink-soft); }
-.toc a { display: block; padding: 0.35rem 0; font-weight: 700; text-decoration: none; }
+.toc a { display: block; min-height: 3rem; padding: 0.7rem 0 0.2rem; font-weight: 700; text-decoration: none; }
 .toc a:hover { text-decoration: underline; }
 
 @media (min-width: 36rem) and (max-width: 63.99rem) {
@@ -504,7 +508,7 @@ caption { padding-bottom: 0.5rem; text-align: left; font-size: var(--fs-body); f
 thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 tr { display: block; margin-bottom: 0.75rem; border: 2px solid var(--edge); border-radius: 0.9rem; background: var(--surface); overflow: hidden; }
 td, th[scope="row"] { display: block; padding: 0.45rem 0.9rem; text-align: left; }
-td::before { content: attr(data-label); display: block; color: var(--ink-soft); font-size: 0.875rem; font-weight: 800; }
+td::before { content: attr(data-label); content: attr(data-label) / ""; display: block; color: var(--ink-soft); font-size: 0.875rem; font-weight: 800; }
 td:first-child, th[scope="row"] { background: var(--tint); font-weight: 800; }
 td:first-child::before { display: none; }
 
