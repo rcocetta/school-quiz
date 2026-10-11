@@ -1,0 +1,38 @@
+name: Bug report
+description: Something does not work as expected
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping! Please do not include personal data about children.
+        For security problems, do not use this form: see [SECURITY.md](https://github.com/rcocetta/school-quiz/blob/main/SECURITY.md).
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: quiz-file
+    attributes:
+      label: Your quiz file
+      description: Paste the quiz JSON, or a cut-down version that still shows the problem.
+      render: json
+    validations:
+      required: false
+  - type: textarea
+    id: output
+    attributes:
+      label: Command and message
+      description: The command you ran and the message you saw (copy and paste it).
+      render: shell
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Python and quizgen version
+      description: "For example: Python 3.12, quizgen 0.1.0 (leave empty if you use the GitHub fork-and-edit path)."
+    validations:
+      required: false

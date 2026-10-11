@@ -1,0 +1,43 @@
+name: Quiz idea
+description: Suggest a quiz topic, or send us a quiz you wrote
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You do not need to know Git. Describe your quiz or paste the file and we can help turn it into a pull request.
+        Please do not include names, photos or contact details of children.
+  - type: input
+    id: topic
+    attributes:
+      label: Topic and age group
+      description: For example "Fractions, ages 8-10".
+    validations:
+      required: true
+  - type: dropdown
+    id: languages
+    attributes:
+      label: Languages
+      options:
+        - English
+        - Italian
+        - Spanish
+        - French
+        - German
+        - Several languages
+        - Other
+    validations:
+      required: false
+  - type: textarea
+    id: quiz
+    attributes:
+      label: Questions or quiz file
+      description: Paste your quiz JSON, or just list the questions and right answers if you have not written the file yet.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: If you are sending a finished quiz
+      options:
+        - label: I am happy for it to be shared under the project's licence (GPL-3.0-or-later).
+        - label: Any pictures are mine or openly licensed, and I have named the source.

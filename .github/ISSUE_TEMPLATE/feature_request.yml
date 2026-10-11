@@ -1,0 +1,17 @@
+name: Feature request
+description: Suggest an improvement to quizgen or the quiz page
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: Describe the situation, for example "As a teacher I want to ...".
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?
+      description: Your idea, if you have one. Simple is best; this project favours small, kid-friendly features.
+    validations:
+      required: false

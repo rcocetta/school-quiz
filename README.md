@@ -10,9 +10,9 @@
 |---|---|
 | ![Times Tables in Italian with the EN, IT and FR language switcher](docs/screenshots/languages.png) | ![Quiz index with a card for each quiz](docs/screenshots/index.png) |
 
-Live demo: coming soon.
+**Live demo:** <https://rcocetta.github.io/school-quiz/> (try the [quizzes](https://rcocetta.github.io/school-quiz/quizzes/) or read the [guide](https://rcocetta.github.io/school-quiz/guide/)).
 
-**Which path are you?** Teacher or parent: read [Quick start](#quick-start) and [Writing a quiz](#writing-a-quiz), then [Publishing](#publishing-on-github-pages). Developer: jump to [Development](#development) and [CONTRIBUTING.md](CONTRIBUTING.md).
+**Which path are you?** Teacher or parent who does not want to install anything: follow the [step-by-step guide](https://rcocetta.github.io/school-quiz/guide/) (fork the repository, edit your quiz in the browser on GitHub, and your site publishes itself). Comfortable with a terminal: read [Quick start](#quick-start) and [Writing a quiz](#writing-a-quiz), then [Publishing](#publishing-on-github-pages). Developer: jump to [Development](#development) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Our promise
 
@@ -98,7 +98,7 @@ quizgen build my-quiz.json
 
 **5. Open `my-quiz.html`** in a browser (double-click it). Done. It is a single file you can email or put on a USB stick.
 
-Prefer not to install anything? A fork-and-edit path for teachers (edit in the browser on GitHub, no install) is coming with the project website. See [Publishing on GitHub Pages](#publishing-on-github-pages).
+Prefer not to install anything? Follow the [guide](https://rcocetta.github.io/school-quiz/guide/): fork this repository, edit your quiz in the browser on GitHub, and the site publishes itself. See also [Publishing on GitHub Pages](#publishing-on-github-pages).
 
 ## Installation
 
@@ -719,7 +719,13 @@ Generated pages load no fonts, scripts or analytics from other sites, and make n
 
 ## Publishing on GitHub Pages
 
-The generated site is plain static files, so any static host works. A fork-and-edit path for non-programmers (edit JSON in GitHub's web editor and let a workflow publish it) is coming with the project website; this section covers what works today.
+The generated site is plain static files, so any static host works.
+
+### Easiest: fork this repository (no install)
+
+If you only want your own quiz site, follow the [guide](https://rcocetta.github.io/school-quiz/guide/). In short: fork the repository, edit or add quiz files in `quizzes/` using GitHub's web editor, and in **Settings > Pages** set **Source** to **GitHub Actions**. The repository's own [`.github/workflows/pages.yml`](.github/workflows/pages.yml) then validates and builds `quizzes/` and publishes the result on every push to `main`. By default it also publishes the project website (landing page and guide) next to your quizzes. To publish only your quizzes, at the root of your site, set the repository variable `PROJECT_PAGES` to `false` (**Settings > Secrets and variables > Actions > Variables**).
+
+The rest of this section is for your own repository that is not a fork of this one.
 
 ### Manual: build and publish the folder
 
@@ -736,7 +742,7 @@ To test locally before publishing: `python3 -m http.server --bind 127.0.0.1 -d d
 
 ### Automatic: a GitHub Actions workflow in your own repository
 
-Put your quizzes in a `quizzes/` folder in a GitHub repository, then save the file below as `.github/workflows/pages.yml`. In **Settings > Pages**, set **Source** to **GitHub Actions**. Every push to `main` then validates, builds and deploys your site.
+Put your quizzes in a `quizzes/` folder in your own GitHub repository, then save the file below as `.github/workflows/pages.yml`. In **Settings > Pages**, set **Source** to **GitHub Actions**. Every push to `main` then validates, builds and deploys your site.
 
 ```yaml
 name: Deploy quizzes to GitHub Pages
@@ -864,13 +870,14 @@ python3 -m venv .venv && .venv/bin/pip install -e '.[dev]'
 .venv/bin/pytest -q
 ```
 
-Optional browser smoke tests (`tests/browser/`, Playwright and Chromium, installed with `pip install -e '.[dev,browser]'`) and `scripts/screenshots.py` (regenerates `docs/screenshots/`) are covered there too. CI is `.github/workflows/ci.yml`.
+Optional browser smoke tests (`tests/browser/`, Playwright and Chromium, installed with `pip install -e '.[dev,browser]'`) and `scripts/screenshots.py` (regenerates `docs/screenshots/`) are covered there too. CI is `.github/workflows/ci.yml`; the site is deployed by `.github/workflows/pages.yml`.
 
 ### Project layout
 
 ```text
 pyproject.toml            package metadata, dependencies, entry point
 README.md  CONTRIBUTING.md  CHANGELOG.md  LICENSE
+CODE_OF_CONDUCT.md  SECURITY.md   community files (Contributor Covenant 2.1, how to report problems privately)
 PLAN.md  CLAUDE.md        project plan/decisions and instructions for AI agents
 src/quizgen/
   cli.py                  argparse; dispatches to validate/build
@@ -884,10 +891,13 @@ src/quizgen/
   templates/              quiz.html, index.html (Jinja2)
   static/                 quiz.js, quiz.css (vanilla, no dependencies)
 examples/                 example quizzes and images
+quizzes/                  the shared quiz library (published on the project site)
+website/                  project landing page and guide (static HTML)
 tests/                    pytest suite, fixtures/ with one bad file per rule, browser/ smoke tests
 scripts/                  maintenance scripts (screenshots)
 docs/screenshots/         pictures used in this README
-.github/workflows/        CI
+.github/workflows/        ci.yml (tests), pages.yml (deploy site), claude-review.yml (maintainer-triggered review)
+.github/                  PULL_REQUEST_TEMPLATE.md, ISSUE_TEMPLATE/ (issue forms), dependabot.yml
 .claude/agents/           helper agents used while developing the project
 ```
 
@@ -917,7 +927,7 @@ The built-in text lives in [`src/quizgen/ui_strings.json`](src/quizgen/ui_string
 
 ## Contributing, licence and credits
 
-Contributions of code, quizzes and collections are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. See [CHANGELOG.md](CHANGELOG.md) for what changed.
+Contributions of code, quizzes and collections are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. Everyone taking part agrees to the [Code of Conduct](CODE_OF_CONDUCT.md); to report a security problem privately, see [SECURITY.md](SECURITY.md). See [CHANGELOG.md](CHANGELOG.md) for what changed.
 
 **Licence:** GPL-3.0-or-later. See [LICENSE](LICENSE). In plain words: you may use, copy, change and share this software, including for schools; if you share a modified version, you must share its source under the same licence.
 

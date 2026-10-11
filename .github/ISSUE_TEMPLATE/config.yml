@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security problem (private)
+    url: https://github.com/rcocetta/school-quiz/blob/main/SECURITY.md
+    about: Please do not open a public issue for security problems. Read how to report them privately.
