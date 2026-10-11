@@ -23,7 +23,8 @@ HOME_URL = "https://rcocetta.github.io/school-quiz/"  # "Made with school-quiz" 
 MAX_TOTAL_IMAGE_BYTES = 20 * 1024 * 1024  # all inlined images together, repeats counted
 # Site mode: assets are linked from the same origin, so 'self' replaces the inline hashes.
 QUIZ_CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
-            "base-uri 'none'; form-action 'none'")
+            "font-src 'self'; base-uri 'none'; form-action 'none'")
+FLAG_FONT = "flags.woff2"  # linked from quiz.css; site mode copies it to assets/, single files inline it
 
 
 @dataclass
@@ -98,7 +99,7 @@ def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = 
     Linked mode (site): `asset_base` is the relative path to `assets/`; `index_url` (if given)
     lets the page link back to the index.
     """
-    css = _asset("quiz.css") if inline_assets else ""
+    css = _inline_flag_font(_asset("quiz.css")) if inline_assets else ""
     js = _asset("quiz.js") if inline_assets else ""
     first = quiz["languages"][0]
     if index_url:
@@ -152,7 +153,7 @@ def embed_json(data: Any) -> str:
 def content_security_policy(css: str, js: str) -> str:
     """CSP for a page with exactly this inline CSS and JS; https images only (no http:)."""
     return (f"default-src 'none'; script-src {_hash(js)}; style-src {_hash(css)}; "
-            "img-src data: https:; base-uri 'none'; form-action 'none'")
+            "img-src data: https:; font-src data:; base-uri 'none'; form-action 'none'")
 
 
 def _hash(text: str) -> str:
@@ -201,6 +202,15 @@ class _DataUriMaker:
 def _asset(name: str) -> str:
     text = (resources.files("quizgen") / "static" / name).read_bytes().decode("utf-8")
     return text.replace("\r\n", "\n")  # browsers normalise newlines before hashing for the CSP
+
+
+def _inline_flag_font(css: str) -> str:
+    data = base64.b64encode(flag_font()).decode("ascii")
+    return css.replace(f'url("{FLAG_FONT}")', f'url("data:font/woff2;base64,{data}")')
+
+
+def flag_font() -> bytes:
+    return (resources.files("quizgen") / "static" / FLAG_FONT).read_bytes()
 
 
 def _env() -> Environment:

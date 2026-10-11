@@ -141,7 +141,7 @@
     var group = el("div", "lang-switch");
     quiz.languages.forEach(function (code) {
       var strings = uiStrings[code];
-      var flag = el("span", "", strings.flag);
+      var flag = el("span", "flag", strings.flag);
       flag.setAttribute("aria-hidden", "true");
       var btn = el("button", "lang-btn", flag, el("span", "", code.toUpperCase()));
       btn.type = "button";

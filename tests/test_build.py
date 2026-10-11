@@ -99,7 +99,8 @@ def test_csp_hashes_match_inline_assets(tmp_path):
         return "'sha256-" + base64.b64encode(hashlib.sha256(text.encode()).digest()).decode() + "'"
 
     assert f"script-src {h(js)};" in csp and f"style-src {h(css)};" in csp
-    assert "default-src 'none'" in csp and "img-src data: https:" in csp
+    assert "default-src 'none'" in csp and "img-src data: https:" in csp and "font-src data:" in csp
+    assert 'url("data:font/woff2;base64,' in css and 'url("flags.woff2")' not in css  # flag font inlined
     assert "http:" not in csp.replace("https:", "")
 
 
