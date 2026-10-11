@@ -12,6 +12,14 @@ FIX = Path(__file__).parent / "fixtures"
 EXAMPLES = Path(__file__).parent.parent / "examples"
 
 
+MAGIC = {".png": b"\x89PNG\r\n\x1a\n", ".jpg": b"\xff\xd8\xff\xe0", ".jpeg": b"\xff\xd8\xff\xe0",
+         ".gif": b"GIF89a", ".webp": b"RIFF\x00\x00\x00\x00WEBP"}
+
+
+def img(ext=".png") -> bytes:
+    return MAGIC[ext.lower()] + b"data"
+
+
 def errors_of(name: str, **kw) -> list[str]:
     return [str(e) for e in load_quiz(FIX / name, **kw).errors]
 
@@ -188,7 +196,7 @@ def test_author_kept():
 
 def test_local_and_remote_images_ok(tmp_path):
     (tmp_path / "images").mkdir()
-    (tmp_path / "images" / "a.png").write_bytes(b"x")
+    (tmp_path / "images" / "a.png").write_bytes(img())
     f = tmp_path / "q.json"
     f.write_text(json.dumps({"title": "T", "questions": [{
         "text": "Q", "image": "images/a.png", "options": [
@@ -200,7 +208,7 @@ def test_local_and_remote_images_ok(tmp_path):
 
 def test_symlink_escaping_directory_rejected(tmp_path):
     outside = tmp_path / "outside.png"
-    outside.write_bytes(b"x")
+    outside.write_bytes(img())
     quiz_dir = tmp_path / "quiz"
     quiz_dir.mkdir()
     (quiz_dir / "link.png").symlink_to(outside)
@@ -360,7 +368,7 @@ def test_svg_hint(tmp_path):
 
 @pytest.mark.parametrize("ext", sorted(IMAGE_TYPES) + [".PNG", ".JpG"])
 def test_allowed_image_types(tmp_path, ext):
-    (tmp_path / f"a{ext}").write_bytes(b"x")
+    (tmp_path / f"a{ext}").write_bytes(img(ext))
     f = quiz_file(tmp_path, questions=[{**QUESTION, "image": f"a{ext}"}])
     assert load_quiz(f).errors == []
 
@@ -449,8 +457,8 @@ def test_author_schema_defs_identical():
     assert quiz["$defs"]["author"] == coll["properties"]["author"]
 
 
-def test_ui_strings_languages_consistent():
-    strings = validate_mod._ui_strings()
+def testui_strings_languages_consistent():
+    strings = validate_mod.ui_strings()
     placeholder = re.compile(r"\{(\w+)\}")
 
     def flat(d):
@@ -480,5 +488,21 @@ def test_image_alt_is_normalised_like_other_text():
 
 
 def test_picture_n_ui_string_in_every_language():
-    for lang, strings in validate_mod._ui_strings().items():
+    for lang, strings in validate_mod.ui_strings().items():
         assert "{n}" in strings["picture_n"], lang
+
+
+def test_image_too_large(tmp_path, monkeypatch):
+    monkeypatch.setattr(validate_mod, "MAX_IMAGE_BYTES", 10)
+    (tmp_path / "a.png").write_bytes(img() + b"0123456789")
+    f = quiz_file(tmp_path, questions=[{**QUESTION, "image": "a.png"}])
+    assert has(msgs(load_quiz(f)), "questions[0].image", "too large", "smaller")
+
+
+@pytest.mark.parametrize("name,content", [("a.png", b"GIF89a..."), ("a.jpg", b"not an image"),
+                                          ("a.gif", b"\x89PNG\r\n\x1a\n"), ("a.webp", b"RIFF1234WAVE"),
+                                          ("a.png", b"")])
+def test_image_content_must_match_type(tmp_path, name, content):
+    (tmp_path / name).write_bytes(content)
+    f = quiz_file(tmp_path, questions=[{**QUESTION, "image": name}])
+    assert has(msgs(load_quiz(f)), "not a real", name.split(".")[1].upper())

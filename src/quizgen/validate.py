@@ -27,6 +27,7 @@ DEFAULT_LANGUAGE = "en"
 DEFAULT_QUESTIONS_PER_QUIZ = 10
 
 MAX_FILE_BYTES = 5 * 1024 * 1024
+MAX_IMAGE_BYTES = 5 * 1024 * 1024  # per local image
 # Local image types allowed in quizzes (D25) and their MIME types. Builders reuse this.
 IMAGE_TYPES = {
     ".png": "image/png",
@@ -76,14 +77,14 @@ def _schema(name: str) -> dict:
 
 
 @lru_cache(maxsize=None)
-def _ui_strings() -> dict:
+def ui_strings() -> dict:
     text = (resources.files("quizgen") / "ui_strings.json").read_text(encoding="utf-8")
     return json.loads(text)
 
 
 def ui_languages() -> set[str]:
     """Language codes that have built-in interface strings (rule 9)."""
-    return set(_ui_strings())
+    return set(ui_strings())
 
 
 # --------------------------------------------------------------------------
@@ -334,11 +335,40 @@ def _check_local_image(value: str, ctx: _Ctx, path: str) -> None:
     else:
         try:
             if not _inside(ctx.base, value):
-                ctx.error(path, 'image path must stay inside the quiz folder (no ".." going above it)')
+                ctx.error(path, 'image path must stay inside the quiz folder (no ".." or links going above it)')
             elif not (ctx.base / value).is_file():
                 ctx.error(path, f'image file not found: "{value}" (paths are relative to the quiz file)')
+            else:
+                problem = _image_problem(ctx.base / value, ext)
+                if problem:
+                    ctx.error(path, problem)
         except (OSError, ValueError, RuntimeError):
             ctx.error(path, f'image file not found or invalid path: "{value}"')
+
+
+def _image_problem(file: Path, ext: str) -> str | None:
+    """Size and magic-byte check for a local image; None when fine."""
+    try:
+        if file.stat().st_size > MAX_IMAGE_BYTES:
+            return (f"image is too large (over {MAX_IMAGE_BYTES // (1024 * 1024)} MB); "
+                    "make it smaller, e.g. under 500 KB for quizzes")
+        with file.open("rb") as handle:
+            head = handle.read(12)
+    except OSError:
+        return "image file could not be read"
+    if not _looks_like(head, ext):
+        return f"this file is not a real {ext.lstrip('.').upper()} image (its content does not match its name)"
+    return None
+
+
+def _looks_like(head: bytes, ext: str) -> bool:
+    if ext == ".png":
+        return head.startswith(b"\x89PNG\r\n\x1a\n")
+    if ext in (".jpg", ".jpeg"):
+        return head.startswith(b"\xff\xd8\xff")
+    if ext == ".gif":
+        return head.startswith((b"GIF87a", b"GIF89a"))
+    return head[:4] == b"RIFF" and head[8:12] == b"WEBP"  # .webp
 
 
 def _inside(base: Path, relative: str) -> bool:
@@ -541,7 +571,7 @@ def _check_ui(ui: Any, ctx: _Ctx, path: str, quiz_langs: list[str] | None) -> di
 
     `quiz_langs` is None for collection.json (language set unknown, strings -> "any").
     """
-    builtin = _ui_strings()[DEFAULT_LANGUAGE]
+    builtin = ui_strings()[DEFAULT_LANGUAGE]
     if not isinstance(ui, dict):
         ctx.error(path, 'must be an object like {"start": "Go!"}')
         return {}
@@ -558,7 +588,7 @@ def _check_ui(ui: Any, ctx: _Ctx, path: str, quiz_langs: list[str] | None) -> di
 
 
 def _check_ui_messages(value: Any, ctx: _Ctx, path: str, quiz_langs: list[str] | None) -> dict:
-    messages = _ui_strings()[DEFAULT_LANGUAGE]["messages"]
+    messages = ui_strings()[DEFAULT_LANGUAGE]["messages"]
     if not isinstance(value, dict):
         ctx.error(path, 'must be an object like {"great": "..."}')
         return {}

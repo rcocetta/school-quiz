@@ -15,6 +15,7 @@ EXAMPLES = Path(__file__).parent.parent / "examples"
 # smallest valid 1x1 PNG
 PNG = base64.b64decode(
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==")
+JPG = b"\xff\xd8\xff\xe0jpegbytes"
 NASTY = "</script><script>alert(1)</script><!-- & \u2028 end"
 
 
@@ -56,7 +57,7 @@ def test_build_writes_default_output_with_data(tmp_path):
 def test_local_image_becomes_data_uri(tmp_path):
     (tmp_path / "images").mkdir()
     (tmp_path / "images" / "a.png").write_bytes(PNG)
-    (tmp_path / "b.JPG").write_bytes(b"jpegbytes")
+    (tmp_path / "b.JPG").write_bytes(JPG)
     f = write_quiz(tmp_path, questions=[{
         "text": "Q", "image": "images/a.png",
         "options": [{"image": "b.JPG", "correct": True},
@@ -65,7 +66,7 @@ def test_local_image_becomes_data_uri(tmp_path):
     assert "images/a.png" not in html and "b.JPG" not in html
     q = block(html, "quiz-data")["questions"][0]
     assert q["image"] == "data:image/png;base64," + base64.b64encode(PNG).decode()
-    assert q["options"][0]["image"] == "data:image/jpeg;base64," + base64.b64encode(b"jpegbytes").decode()
+    assert q["options"][0]["image"] == "data:image/jpeg;base64," + base64.b64encode(JPG).decode()
     assert q["options"][1]["image"] == "https://example.org/b.png"
 
 
@@ -108,10 +109,10 @@ def test_times_tables_ui_merge(tmp_path):
     assert list(ui) == ["en", "it", "fr"]
     assert ui["en"]["start"] == "Let's multiply!"
     assert ui["it"]["start"] == "Si parte!"
-    from quizgen.validate import _ui_strings
-    assert ui["fr"]["start"] == _ui_strings()["fr"]["start"]
+    from quizgen.validate import ui_strings
+    assert ui["fr"]["start"] == ui_strings()["fr"]["start"]
     assert ui["fr"]["correct"] == "Excellent !"
-    assert ui["en"]["correct"] == _ui_strings()["en"]["correct"]
+    assert ui["en"]["correct"] == ui_strings()["en"]["correct"]
 
 
 def test_merge_ui_layers_and_messages():
@@ -182,4 +183,128 @@ def test_python_dash_m_build_examples(tmp_path):
                                "-o", str(out)], capture_output=True, text=True)
         assert proc.returncode == 0, proc.stderr
         assert out.stat().st_size > 0
+        assert block(read(out), "quiz-data")["questions"]
         assert f"built {out}" in proc.stdout
+
+
+# ---- review fixes ---------------------------------------------------------
+
+
+def png_quiz(tmp_path, names=("a.png",), **kw):
+    for n in names:
+        (tmp_path / n).write_bytes(PNG)
+    qs = [{"text": "Q", "image": names[0],
+           "options": [{"text": "A", "correct": True, "image": n} for n in names[1:2]] + [{"text": "B"}]
+           if len(names) > 1 else [{"text": "A", "correct": True}, {"text": "B"}]}]
+    return write_quiz(tmp_path, questions=qs, **kw)
+
+
+def test_refuses_to_overwrite_input(tmp_path, capsys):
+    f = write_quiz(tmp_path)
+    before = f.read_text()
+    assert main(["build", str(f), "-o", str(f)]) == 1
+    assert "overwrite the quiz file" in capsys.readouterr().out
+    assert f.read_text() == before
+    h = tmp_path / "x.html"
+    h.write_text(json.dumps({"title": "T", "questions": [
+        {"text": "Q", "options": [{"text": "A", "correct": True}, {"text": "B"}]}]}))
+    assert main(["build", str(h)]) == 1
+    assert json.loads(h.read_text())["title"] == "T"
+
+
+def test_output_directory_gets_stem_html(tmp_path):
+    f = write_quiz(tmp_path)
+    out = tmp_path / "site"
+    out.mkdir()
+    assert build_single(f, out).output == out / "q.html"
+    assert (out / "q.html").exists()
+
+
+def test_write_failures_are_clean_errors(tmp_path, capsys):
+    f = write_quiz(tmp_path)
+    blocker = tmp_path / "file"
+    blocker.write_text("x")
+    assert main(["build", str(f), "-o", str(blocker / "sub" / "o.html")]) == 1
+    assert main(["build", str(f), "-o", str(tmp_path / ("n" * 300 + ".html"))]) == 1
+    out = capsys.readouterr().out
+    assert out.count("cannot write file (") == 2
+
+
+def test_planted_tmp_symlink_not_followed(tmp_path):
+    f = write_quiz(tmp_path)
+    victim = tmp_path / "victim.txt"
+    victim.write_text("keep")
+    (tmp_path / "q.html.tmp").symlink_to(victim)
+    assert build_single(f).output.exists()
+    assert victim.read_text() == "keep"
+    assert [p.name for p in tmp_path.iterdir() if p.name.endswith(".tmp") and p.name != "q.html.tmp"] == []
+
+
+def test_single_image_over_limit_is_validation_error(tmp_path, monkeypatch, capsys):
+    import quizgen.validate as v
+    monkeypatch.setattr(v, "MAX_IMAGE_BYTES", 10)
+    f = png_quiz(tmp_path)
+    assert main(["build", str(f)]) == 1
+    assert "too large" in capsys.readouterr().out and not (tmp_path / "q.html").exists()
+
+
+def test_total_image_budget(tmp_path, monkeypatch, capsys):
+    import quizgen.build as b
+    f = png_quiz(tmp_path, names=("a.png", "a.png"))  # same file twice: counted twice
+    assert build_single(f).output is not None
+    monkeypatch.setattr(b, "MAX_TOTAL_IMAGE_BYTES", len(PNG) + 1)
+    assert main(["build", str(f), "-o", str(tmp_path / "o.html")]) == 1
+    assert "smaller images or https://" in capsys.readouterr().out
+    assert not (tmp_path / "o.html").exists()
+
+
+def test_image_vanishing_after_validation(tmp_path, monkeypatch, capsys):
+    import quizgen.build as b
+    f = png_quiz(tmp_path)
+    real = b.load_quiz
+
+    def load_then_delete(*a, **k):
+        res = real(*a, **k)
+        (tmp_path / "a.png").unlink()
+        return res
+
+    monkeypatch.setattr(b, "load_quiz", load_then_delete)
+    assert main(["build", str(f)]) == 1
+    assert 'cannot read image "a.png"' in capsys.readouterr().out
+    assert not (tmp_path / "q.html").exists()
+
+
+def test_missing_image_writes_nothing(tmp_path, capsys):
+    f = write_quiz(tmp_path, questions=[{"text": "Q", "image": "nope.png",
+                                         "options": [{"text": "A", "correct": True}, {"text": "B"}]}])
+    assert main(["build", str(f)]) == 1
+    assert "image file not found" in capsys.readouterr().out
+    assert list(tmp_path.glob("*.html")) == []
+
+
+def test_crlf_assets_are_normalised_for_csp(tmp_path, monkeypatch):
+    import quizgen.build as b
+    assert b._asset("quiz.css").count("\r") == 0
+    class Fake:
+        def __truediv__(self, name):
+            return self
+
+        def read_bytes(self):
+            return b"a {\r\n}\r\n"
+
+    monkeypatch.setattr(b.resources, "files", lambda pkg: Fake())
+    assert b._asset("quiz.css") == "a {\n}\n"
+
+
+def test_image_alt_fixture_error():
+    from quizgen.validate import load_quiz
+    errs = [str(e) for e in load_quiz(Path(__file__).parent / "fixtures" / "rule10-image-alt-without-image.json").errors]
+    assert any("questions[0].image_alt" in e and "image" in e for e in errs)
+
+
+def test_http_image_builds_with_warning(tmp_path, capsys):
+    f = write_quiz(tmp_path, questions=[{"text": "Q", "image": "http://example.org/a.png",
+                                         "options": [{"text": "A", "correct": True}, {"text": "B"}]}])
+    assert main(["build", str(f)]) == 0
+    assert "will not load" in capsys.readouterr().out
+    assert block(read(tmp_path / "q.html"), "quiz-data")["questions"][0]["image"] == "http://example.org/a.png"
