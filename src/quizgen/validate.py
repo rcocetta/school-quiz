@@ -117,10 +117,12 @@ def discover(directory: Path) -> tuple[list[Path], list[str]]:
     Returns (files, problems). Hidden files/folders and symlinked folders are skipped. Problems
     (reported by `validate` and `build` alike): JSON files that are links, names that are not valid
     text, collection.json at the top level, site.json in a subfolder, a quiz called index.json, and
-    collection folders whose names clash with generated files (`assets`, `*.html`).
+    collection folders whose names clash with generated files (`assets`, `*.html`), and names that
+    differ only in upper/lower case.
     """
     found: list[Path] = []
     problems: list[str] = []
+    collections: list[Path] = []
     try:
         top = _json_files(directory)
         subfolders = sorted(p for p in directory.iterdir()
@@ -140,7 +142,12 @@ def discover(directory: Path) -> tuple[list[Path], list[str]]:
         if in_sub and (folder == "assets" or folder.endswith(".html")):
             problems.append(f'{sub}: rename this folder: "assets" and names ending in ".html" are used by the generated site')
             continue
-        top += [p for p in in_sub]
+        top += in_sub
+        if in_sub:
+            collections.append(sub)
+    # case-insensitive disks (Windows, macOS) would turn these into the same page or folder
+    problems += _case_clashes(collections, lambda p: p.name.casefold())
+    problems += _case_clashes(top, lambda p: (p.parent, p.stem.casefold()))
     for path in top:
         is_top = path.parent == directory
         if not _is_text(path.name):
@@ -156,6 +163,20 @@ def discover(directory: Path) -> tuple[list[Path], list[str]]:
         else:
             found.append(path)
     return found, problems
+
+
+def _case_clashes(paths: list[Path], key_of) -> list[str]:
+    """Problems for paths that share a `key_of(path)` (a name ignoring upper/lower case)."""
+    seen: dict = {}
+    problems = []
+    for path in paths:
+        key = key_of(path)
+        if key in seen:
+            problems.append(f'{path}: "{seen[key].name}" has the same name apart from upper/lower case; '
+                            "rename one of them")
+        else:
+            seen[key] = path
+    return problems
 
 
 def _is_text(name: str) -> bool:

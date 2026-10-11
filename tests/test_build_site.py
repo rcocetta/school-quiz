@@ -428,7 +428,7 @@ def test_case_clash_between_files(tmp_path):
     put(src / "a.json", quiz())
     res = build_site(src, tmp_path / "out")
     if res.output is None:  # case-sensitive disk: both names exist, still a clash for other disks
-        assert "same file" in str(res.validation.errors[0])
+        assert "upper/lower case" in str(res.validation.errors[0])
 
 
 def test_index_pages_have_no_script_and_languages_label(tree, tmp_path):
@@ -474,3 +474,9 @@ def test_empty_collection_warns_but_failed_quizzes_do_not(tmp_path):
     warned = [w.file for w in result.validation.warnings if "no quizzes" in w.message]
     assert warned == [str(src / "empty")]
     assert any("only has 2 questions" in e.message for e in result.validation.errors)
+
+
+def test_structure_hint_in_site_mode(tmp_path, capsys):
+    put(tmp_path / "in" / "bad.json", {"title": "T", "questions": [{"text": "Q", "options": []}]})
+    assert main(["build", str(tmp_path / "in"), "-o", str(tmp_path / "out")]) == 1
+    assert "Fix these first" in capsys.readouterr().out

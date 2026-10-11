@@ -416,6 +416,7 @@ Reserved names, checked by `quizgen validate` and `quizgen build`:
 - A quiz cannot be called `index.json` (that name is used for the index page).
 - A collection folder cannot be called `assets` or end in `.html` (any case).
 - `collection.json` only belongs inside a collection folder; `site.json` only at the top.
+- Two quizzes in the same folder, or two collection folders, whose names differ only in upper/lower case (`Maths.json` and `maths.json`): Windows and macOS treat them as the same file.
 - JSON files that are symlinks, and names that are not valid UTF-8, are refused.
 - Hidden files and folders (starting with `.`) are skipped, as is `schema.json` and any `*.schema.json`.
 
@@ -626,6 +627,7 @@ ERROR   eof.json: not valid JSON at line 1, column 104: Illegal trailing comma b
 | `{name} cannot be used here (this text can use: none)` | A placeholder the original text does not have | Remove it or use the right one. |
 | `a quiz cannot be called index.json` | Reserved name | Rename the file. |
 | `rename this folder: "assets" and names ending in ".html" ...` | Reserved folder name | Rename the folder. |
+| `"Maths.json" has the same name apart from upper/lower case` | Two names that only differ in capitals | Rename one of them. |
 | `warning ... this image will not load: ... use an https:// link` | `http://` image | Use `https://`, or download the picture and use a local file. |
 
 ## Command line reference
