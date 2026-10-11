@@ -9,6 +9,8 @@
   var LANG_KEY = "quizgen-lang";
   var REPO_URL = "https://github.com/rcocetta/school-quiz";
 
+  // The builder guarantees complete data: every Text has all quiz languages and every
+  // language has all UI strings, so there are no fallbacks for missing text below.
   var quiz = JSON.parse(document.getElementById("quiz-data").textContent);
   var uiStrings = JSON.parse(document.getElementById("ui-strings").textContent);
   var app = document.getElementById("app");
@@ -47,30 +49,24 @@
   // Pick the text for the current language out of a {lang: string} map.
   function tr(map) {
     if (!map) { return ""; }
-    if (map[state.lang] !== undefined) { return map[state.lang]; }
-    if (map.any !== undefined) { return map.any; }
-    return map[quiz.languages[0]] || "";
+    return map[state.lang];
   }
 
-  // Built-in UI string for the current language (falls back to the first quiz language).
+  // Built-in UI string for the current language.
   function ui(key, vars) {
-    var own = uiStrings[state.lang] || {};
-    var first = uiStrings[quiz.languages[0]] || {};
-    var text = own[key] !== undefined ? own[key] : first[key];
-    if (text === undefined && key === "picture_n") { text = "Picture {n}"; }
-    return fill(text === undefined ? "" : text, vars || {});
+    return fill(uiStrings[state.lang][key], vars || {});
   }
 
   function message(key) {
-    var own = (uiStrings[state.lang] || {}).messages || {};
-    var first = (uiStrings[quiz.languages[0]] || {}).messages || {};
-    return own[key] !== undefined ? own[key] : first[key] || "";
+    return uiStrings[state.lang].messages[key];
   }
+
+  function hasOwn(obj, name) { return Object.prototype.hasOwnProperty.call(obj, name); }
 
   // Replace {placeholders} in a plain string.
   function fill(template, vars) {
     return template.replace(/\{(\w+)\}/g, function (m, name) {
-      return vars[name] !== undefined ? String(vars[name]) : m;
+      return hasOwn(vars, name) ? String(vars[name]) : m;
     });
   }
 
@@ -79,7 +75,7 @@
     var frag = document.createDocumentFragment();
     template.split(/(\{\w+\})/).forEach(function (part) {
       var m = /^\{(\w+)\}$/.exec(part);
-      var value = m ? vars[m[1]] : undefined;
+      var value = m && hasOwn(vars, m[1]) ? vars[m[1]] : undefined;
       if (value === undefined) {
         if (part) { frag.appendChild(document.createTextNode(part)); }
       } else {
@@ -109,8 +105,10 @@
     for (var i = 0; i < q.options.length; i++) {
       if (q.options[i].correct) { return i; }
     }
-    return -1;
   }
+
+  // 1-based position of an original option index as shown on screen.
+  function positionOf(item, optIndex) { return item.order.indexOf(optIndex) + 1; }
 
   /* ---------- language ---------- */
 
@@ -144,14 +142,14 @@
     group.setAttribute("role", "group");
     group.setAttribute("aria-label", ui("choose_language"));
     quiz.languages.forEach(function (code) {
-      var strings = uiStrings[code] || {};
-      var flag = el("span", "", strings.flag || "");
+      var strings = uiStrings[code];
+      var flag = el("span", "", strings.flag);
       flag.setAttribute("aria-hidden", "true");
       var btn = el("button", "lang-btn", flag, el("span", "", code.toUpperCase()));
       btn.type = "button";
       btn.setAttribute("data-lang", code);
       btn.setAttribute("lang", code);
-      btn.setAttribute("aria-label", strings.name || code.toUpperCase());
+      btn.setAttribute("aria-label", strings.name);
       btn.setAttribute("aria-pressed", code === state.lang ? "true" : "false");
       btn.addEventListener("click", function () { setLang(code); });
       group.appendChild(btn);
@@ -174,7 +172,7 @@
     a.href = href;
     a.rel = "noopener noreferrer";
     // New tab so a child following a link does not lose the quiz in progress.
-    if (/^https?:/.test(href)) { a.target = "_blank"; }
+    if (/^https?:/i.test(href)) { a.target = "_blank"; }
     return a;
   }
 
@@ -213,8 +211,7 @@
   function inlineAnswer(opt, position) {
     var span = el("span", "inline-answer");
     if (opt.image) { span.appendChild(makeImage("review-img", opt.image, optionAlt(opt, position))); }
-    var label = opt.text ? tr(opt.text) : (opt.image ? "" : ui("picture_n", { n: position }));
-    if (label) { span.appendChild(document.createTextNode(label)); }
+    if (opt.text) { span.appendChild(document.createTextNode(tr(opt.text))); }
     return span;
   }
 
@@ -225,7 +222,7 @@
     var count = Math.min(quiz.questions_per_quiz, pool.length);
     state.items = pool.slice(0, count).map(function (q) {
       var order = q.options.map(function (o, i) { return i; });
-      return { q: q, order: quiz.shuffle_options ? shuffled(order) : order };
+      return { q: q, correct: correctIndex(q), order: quiz.shuffle_options ? shuffled(order) : order };
     });
     state.chosen = state.items.map(function () { return -1; });
     state.index = 0;
@@ -242,7 +239,7 @@
       state.revealed = true;
       var ok = item.q.options[optionIndex].correct === true;
       announce(ok ? ui("correct") : ui("wrong") + " " + ui("the_answer_was") + " " +
-        plainAnswer(item.q.options[correctIndex(item.q)], item.order.indexOf(correctIndex(item.q)) + 1));
+        plainAnswer(item.q.options[item.correct], positionOf(item, item.correct)));
       render(".js-next");
     } else {
       state.chosen[state.index] = optionIndex;
@@ -251,7 +248,7 @@
   }
 
   function plainAnswer(opt, position) {
-    return opt.text ? tr(opt.text) : optionAlt(opt, position) || ui("picture_n", { n: position });
+    return opt.text ? tr(opt.text) : optionAlt(opt, position);
   }
 
   function next() {
@@ -333,9 +330,8 @@
     icon.setAttribute("aria-hidden", "true");
     var body = el("div", "feedback-body", el("p", "feedback-title", ok ? ui("correct") : ui("wrong")));
     if (!ok) {
-      var ci = correctIndex(item.q);
       body.appendChild(el("p", "answer-line", ui("the_answer_was") + " ",
-        inlineAnswer(item.q.options[ci], item.order.indexOf(ci) + 1)));
+        inlineAnswer(item.q.options[item.correct], positionOf(item, item.correct))));
     }
     if (item.q.explanation) { body.appendChild(el("p", "", tr(item.q.explanation))); }
     return el("div", ok ? "feedback" : "feedback feedback--oops", icon, body);
@@ -346,9 +342,9 @@
     var total = state.items.length;
     var current = state.index + 1;
 
-    var fill_ = el("div", "progress-fill");
-    fill_.style.width = Math.round((current / total) * 100) + "%";   // CSSOM: allowed by the CSP
-    var bar = el("div", "progress", fill_);
+    var barFill = el("div", "progress-fill");
+    barFill.style.width = Math.round((current / total) * 100) + "%";   // CSSOM: allowed by the CSP
+    var bar = el("div", "progress", barFill);
     bar.setAttribute("aria-hidden", "true");
     var progress = el("p", "progress-text", ui("question_x_of_y", { current: current, total: total }));
 
@@ -360,7 +356,8 @@
     var list = el("div", allPictures ? "options options--pictures" : "options");
     for (var pos = 0; pos < item.order.length; pos++) { list.appendChild(optionButton(item, pos)); }
 
-    var screen = el("div", "screen", progress, bar, heading, image, list);
+    // Hidden h1 so every page has one top heading; the question itself is the h2.
+    var screen = el("div", "screen", el("h1", "sr-only", tr(quiz.title)), progress, bar, heading, image, list);
 
     var answered = state.chosen[state.index] !== -1;
     if (quiz.feedback === "immediate" && state.revealed) { screen.appendChild(feedbackPanel(item)); }
@@ -378,17 +375,17 @@
   function reviewItem(item, i) {
     var chosenIdx = state.chosen[i];
     var q = item.q;
-    var ci = correctIndex(q);
+    var ci = item.correct;
     var ok = chosenIdx === ci;
     var mark = el("span", "mark", ok ? "✓" : "✗");
     mark.setAttribute("aria-hidden", "true");
 
     var body = el("div", "review-body", el("p", "review-q", tr(q.text)));
-    var mine = chosenIdx === -1 ? null : inlineAnswer(q.options[chosenIdx], item.order.indexOf(chosenIdx) + 1);
+    var mine = chosenIdx === -1 ? null : inlineAnswer(q.options[chosenIdx], positionOf(item, chosenIdx));
     body.appendChild(el("p", "review-line", el("strong", "", ui("your_answer") + ": "), mine));
     if (!ok) {
       body.appendChild(el("p", "review-line", el("strong", "", ui("correct_answer") + ": "),
-        inlineAnswer(q.options[ci], item.order.indexOf(ci) + 1)));
+        inlineAnswer(q.options[ci], positionOf(item, ci))));
     }
     if (q.explanation) { body.appendChild(el("p", "review-explain", tr(q.explanation))); }
 
@@ -401,7 +398,7 @@
     var total = state.items.length;
     var score = 0;
     state.items.forEach(function (item, i) {
-      if (state.chosen[i] === correctIndex(item.q)) { score += 1; }
+      if (state.chosen[i] === item.correct) { score += 1; }
     });
     var pct = total ? score / total : 0;
     var tier = pct >= 0.8 ? "great" : pct >= 0.5 ? "good" : "keep_trying";
