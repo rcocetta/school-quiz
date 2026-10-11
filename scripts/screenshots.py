@@ -8,7 +8,7 @@ Run from the repository root:
 
 It builds ``examples/`` into a temporary folder with quizgen, opens the pages in
 Chromium, clicks through them like a child would and writes five PNG files to
-``docs/screenshots/``: start, question, end, languages and index.
+``website/assets/screenshots/``: start, question, end, languages and index.
 
 The result is the same on every run: Math.random is replaced by a seeded
 generator, the window size is fixed, animations are switched off and the
@@ -25,7 +25,7 @@ from playwright.sync_api import sync_playwright
 from quizgen.site import build_site
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "docs" / "screenshots"
+OUT = ROOT / "website" / "assets" / "screenshots"
 WIDTH, HEIGHT = 820, 1000
 MAX_HEIGHT = 1100  # long pages (the review list) are cut off here
 
@@ -75,7 +75,7 @@ def shot(page, name):
     height = page.evaluate("document.querySelector('main').getBoundingClientRect().bottom") + 40
     clip = {"x": 0, "y": 0, "width": WIDTH, "height": min(height, MAX_HEIGHT)}
     page.screenshot(path=str(OUT / f"{name}.png"), full_page=True, clip=clip)
-    print("saved", f"docs/screenshots/{name}.png")
+    print("saved", f"website/assets/screenshots/{name}.png")
 
 
 def new_page(browser):

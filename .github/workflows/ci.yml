@@ -36,6 +36,11 @@ jobs:
       - name: Validate quizzes/
         run: |
           if [ -d quizzes ]; then quizgen validate quizzes/; else echo "no quizzes/ folder, skipping"; fi
+      # docs/ is generated and committed (GitHub Pages: main, /docs). Fails when it is
+      # out of date; fix: run `python scripts/build_docs.py` and commit docs/.
+      - name: Check that docs/ is up to date
+        if: matrix.python == '3.12'
+        run: python scripts/build_docs.py --check
 
   browser:
     name: Browser smoke test (Chromium)
