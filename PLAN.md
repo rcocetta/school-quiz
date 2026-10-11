@@ -79,15 +79,19 @@ These apply to every phase, every session and every subagent.
 ### Using subagents
 Pick the cheapest model that can do the job well; the main session (Opus) orchestrates, keeps `PLAN.md` current, and reviews results.
 
-| Work | Agent / model |
+The project ships its own agents in **`.claude/agents/`**, so they work in local, cloud (Claude Code on the web) and contributor sessions alike. Don't rely on agents or plugins that only exist on one machine.
+
+| Work | Agent (model) |
 |---|---|
-| Mechanical: fixtures, translations of `ui_strings.json`, boilerplate files, renames | `general-purpose` on **haiku** |
-| Implementing a well-specified task from this plan (validator, builders, CLI, workflows) | `general-purpose` on **sonnet** |
-| Browser UI and visual design (quiz page, landing, guide) | `general-purpose` on **sonnet**, loading the `frontend-design` skill; design review by main session |
-| Security review of each phase (escaping, CSP, paths, Actions) | `/security-review` or a `code-reviewer` agent on **opus** |
-| Code review + simplicity check at the end of each phase | `code-reviewer` + `overengineering-critique` (sonnet) |
-| End-to-end check (run the CLI, open pages, follow the README/guide from scratch) | `manual-tester` (sonnet) |
-| Ambiguous design decisions, architecture changes | main session (opus), ask the user |
+| Mechanical: fixtures, translations, boilerplate, renames | built-in `general-purpose` with `model: haiku` |
+| Implementing a well-specified task from this plan (validator, builders, CLI, workflows, docs) | `quiz-implementer` (sonnet) |
+| Browser UI and visual design (quiz page, index, landing, guide) | `quiz-designer` (sonnet); design reviewed by main session |
+| Security review at the end of each phase | `security-reviewer` (opus, read-only) |
+| Correctness + simplicity review at the end of each phase | `simplicity-reviewer` (sonnet, read-only) |
+| End-to-end check: build, serve, click through, follow README/guide from scratch | `e2e-tester` (sonnet) |
+| Ambiguous design decisions, architecture changes, coordinating the phase | main session (opus); ask the user |
+
+**Phase workflow:** implement (`quiz-implementer` / `quiz-designer`, parallel only when files don't overlap) → main session verifies tests → `security-reviewer` + `simplicity-reviewer` in parallel → fixes (same implementer agent, which keeps its context) → `e2e-tester` → main session ticks tasks, updates this file, commits, pushes.
 
 Rules for subagents:
 - Give each one a self-contained brief: the task's checklist items from §6, the relevant sections of this plan, the module contracts, and the "Done when" criteria. Tell it to read `CLAUDE.md` and `PLAN.md` first.
@@ -455,3 +459,4 @@ Append one entry per session/subagent run: date, who, what changed, what's next.
 - **2026-10-11** — UI strings written (en/it/es/fr/de); Italian reviewed by user and made gender-neutral. Added D24: creator `ui` overrides (quiz > collection > built-in), validation rule 12.
 - **2026-10-11** — Phase 1 implemented (sonnet subagent; 68 tests) + UI strings (haiku). Example times-tables is en/it/fr. Opus security review found 12 issues (crash on hostile JSON/long paths, `null` file passing, loose author url/email, non-image files accepted as images, …); fixes in progress. Added D25 (local image types). Researched Claude Code on the web for cloud work: user to link repo via GitHub App (only this repo).
 - **2026-10-11** — Review fixes applied and verified (114 tests; hostile-input repros all give clean errors). **Phase 1 done**, committed and pushed. **Next:** Phase 2 (quiz page + single-file build) — can run in Claude Code on the web once the user links the repo.
+- **2026-10-11** — User confirmed D25. Added project agents in `.claude/agents/` (quiz-implementer, quiz-designer, security-reviewer, simplicity-reviewer, e2e-tester) so the subagent policy works in cloud sessions; documented the per-phase workflow. User linking the repo to Claude Code on the web.
