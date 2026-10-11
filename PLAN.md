@@ -6,7 +6,7 @@
 
 ## Goal
 
-Repository: https://github.com/rcocetta/school-quiz (public, GPL-3.0). Per its description it will hold both the generator and the user's own quizzes.
+Repository: https://github.com/rcocetta/school-quiz (public, GPL-3.0-or-later). Per its description it will hold both the generator and the user's own quizzes.
 
 
 A Python CLI (`quizgen`) that turns quiz JSON files into static HTML quizzes for primary / early-secondary school kids. No backend: output must work when served from GitHub Pages (or opened as a local file, in single-file mode).
@@ -45,7 +45,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 | D11 | v1 extras: shuffle options, per-question explanation, CLI override of M, remote image URLs | ✅ |
 | D12 | End screen: **score + encouraging message + review list + "Try again"** (new random set) | ✅ |
 | D14 | Project will be **open-sourced**: exhaustive README, licence, contributor docs, clean repo hygiene are v1 deliverables | ✅ |
-| D15 | Licence: **GPL-3.0** (already in the GitHub repo) | ✅ |
+| D15 | Licence: **GPL-3.0-or-later** (`LICENSE` is the GPL-3.0 text; "or later" confirmed by the user in Phase 4) | ✅ |
 | D16 | Mission, stated on the website and README: **built for kids, free forever, anyone can fork and run their own, or contribute back via PR** | ✅ |
 | D17 | GitHub Pages site layout: `/` landing page, `/guide/` how-to guide, `/quizzes/` quiz index. Forks can turn off the project pages with one setting, which puts their quiz index at `/` | ✅ |
 | D18 | Website and guide in **English only** (quizzes themselves stay multi-language) | ✅ |
@@ -438,7 +438,7 @@ tests/
 - [ ] Community files: `CODE_OF_CONDUCT.md` (Contributor Covenant), PR template with type checkboxes (code / quiz / collection) and the quiz checklist, issue templates
 - [ ] `claude-review.yml` (§8) + section in CONTRIBUTING explaining that reviews are maintainer-triggered
 - [ ] Link checks: landing ↔ guide ↔ quizzes ↔ GitHub repo all work on the deployed site and in a fork with `PROJECT_PAGES=false`
-- [ ] Carried over from Phase 4: README live demo link and fork-and-edit path once Pages is live; `SECURITY.md` (+ maintainer enables private vulnerability reporting); decide on a `v0.1.0` tag and pin the README workflow's install to it; index page shows "Quizzes" as both `h1` and `h2` when `site.json` has no title (a11y review); if ever published to PyPI, README image links must become absolute
+- [ ] Carried over from Phase 4: README live demo link and fork-and-edit path once Pages is live; `SECURITY.md` (+ maintainer enables private vulnerability reporting); `v0.1.0` tag + pinning the README workflow install: user has no preference yet, decide when releasing; index page shows "Quizzes" as both `h1` and `h2` when `site.json` has no title (a11y review); if ever published to PyPI, README image links must become absolute
 - **Done when**: the live site at `https://rcocetta.github.io/school-quiz/` shows landing, guide and quizzes; a test fork following only the guide gets its own working quiz site.
 
 ---
@@ -449,7 +449,7 @@ tests/
 Audience: teachers, parents, and developers who stumble on the repo. Friendly, warm, kid-themed but not childish. Sections:
 1. Hero: name, one-line pitch ("Free, simple quizzes for kids, made by teachers and parents, hosted anywhere"), buttons **Try a quiz** (→ `/quizzes/`) and **Make your own** (→ `/guide/`)
 2. What it is: short explanation + screenshots of a quiz in action (question, feedback, end screen, language switcher)
-3. Principles (D16): built for kids (no ads, no tracking, no accounts, works on tablets), free forever (GPL-3.0), yours to fork, open to contributions
+3. Principles (D16): built for kids (no ads, no tracking, no accounts, works on tablets), free forever (GPL-3.0-or-later), yours to fork, open to contributions
 4. How it works in 3 steps: fork → write questions in a simple file → your quiz site is online
 5. Get involved: contribute code, quizzes or collections; link to CONTRIBUTING and the GitHub repo
 6. Footer: licence, repo link, "made with love for kids" tone
@@ -511,3 +511,4 @@ Append one entry per session/subagent run: date, who, what changed, what's next.
 
 - **2026-10-11** — Phase 3 (cloud session). User decisions: D27 `site.json` (index language/title), D28 select-then-Check in immediate mode, D26 extended (`image_alt: ""` decorative, warnings for undescribed images); main session chose D29 (output mirrors input folder). `quiz-implementer` built `build_site`/`site.py`, `site.json`, collection `language`, `build <dir>`; `quiz-designer` built index pages and the back link, then the Check flow. First `accessibility-reviewer` run (covering the Phase 2 quiz page too): axe clean, fixed feedback/score announcements, number-key shortcut (WCAG 2.1.4), progress description, review right/wrong text, landmarks, font weights. Security review: fixed symlinked JSON being published, control-char image refs turning into remote requests, tracebacks on non-UTF-8 names, partial writes and mkdir outside output (now full pre-flight), reserved names moved into `discover`. Simplicity review: split `site.py`, single image walker, exact test asserts. E2E: site Done-when passes; found a single-file crash on Start (null back link) — fixed by main session and re-verified in Chromium (both examples, full run, no errors). 187 tests. **Phase 3 done.** **Next:** Phase 4 (examples, docs, CI incl. browser smoke test).
 - **2026-10-11** — Phase 4 (cloud session). User decisions: Pages deploy and fork path stay in Phase 5, install from GitHub (not PyPI), example images from Noto Emoji. `quiz-implementer` ×3 in parallel: examples + Noto PNGs + `scripts/screenshots.py` + screenshots; `ci.yml` + browser smoke test + pyproject metadata; README/CONTRIBUTING/CHANGELOG. Reviews: security (no critical/high; fixed Pages snippet `persist-credentials`, pin advice, `http.server --bind 127.0.0.1`, licence credit travelling with built pages, smoke-test host parsing, overclaims), simplicity (screenshot script picked wrong answers by luck, README accuracy/length/jargon, dependabot), accessibility (alt texts gave answers away, README alt-text guidance, duplicate headings). E2E from scratch: all commands/snippets run; fixed install check, image download hint, plural grammar, false "no quizzes" warning. 200 tests. **Phase 4 done.** **Next:** Phase 5 (website, guide, `pages.yml`, community files) plus the carried-over items.
+- **2026-10-11** — User follow-ups: licence is GPL-3.0-or-later (D15 updated, README aligned); no preference yet on a `v0.1.0` tag; user will enable private vulnerability reporting and "Require approval for all external contributors" in repo settings.

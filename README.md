@@ -17,7 +17,7 @@ Live demo: coming soon.
 ## Our promise
 
 - **Built for kids.** Big buttons, clear text, a kind tone when an answer is wrong, no ads, no accounts, no tracking.
-- **Free forever.** Licensed under the GPL-3.0. Nobody can take it away or put it behind a paywall.
+- **Free forever.** Licensed under the GPL-3.0 (or any later version). Nobody can take it away or put it behind a paywall.
 - **Make it your own.** Anyone can fork this project and run their own quiz site for their class, school or family.
 - **Give back.** Found a bug, wrote a good quiz or translated the interface? Send it to us with a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
