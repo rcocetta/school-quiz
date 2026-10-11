@@ -356,7 +356,7 @@ a { color: var(--primary); text-underline-offset: 0.2em; font-weight: 700; }
 }
 .feedback-icon { flex: none; font-size: 1.75rem; line-height: 1.2; }
 .feedback-body { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
-.feedback-title { font-weight: 900; font-size: var(--fs-lead); }
+.feedback-title { font-weight: 800; font-size: var(--fs-lead); }
 .feedback .answer-line { font-weight: 800; }
 
 .inline-answer { display: inline-flex; align-items: center; gap: 0.5rem; vertical-align: middle; }
@@ -512,7 +512,7 @@ a { color: var(--primary); text-underline-offset: 0.2em; font-weight: 700; }
   border-radius: 0.6rem 0.6rem 0 0;
 }
 
-.card-title { font-size: var(--fs-lead); line-height: 1.25; font-weight: 900; }
+.card-title { font-size: var(--fs-lead); line-height: 1.25; font-weight: 700; }
 .card-link { color: var(--ink); text-decoration: none; }
 .card-link::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
 .card-link:hover { text-decoration: underline; text-underline-offset: 0.2em; }
@@ -530,7 +530,7 @@ a { color: var(--primary); text-underline-offset: 0.2em; font-weight: 700; }
   background: var(--select-bg);
   color: var(--ink);
   font-size: var(--fs-small);
-  font-weight: 800;
+  font-weight: 700;
 }
 .card--collection .chip { background: var(--surface); }
 .by { color: var(--ink-soft); font-size: var(--fs-small); font-weight: 700; }

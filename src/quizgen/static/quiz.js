@@ -139,8 +139,6 @@
   function languageSwitcher() {
     if (quiz.languages.length < 2) { return null; }
     var group = el("div", "lang-switch");
-    group.setAttribute("role", "group");
-    group.setAttribute("aria-label", ui("choose_language"));
     quiz.languages.forEach(function (code) {
       var strings = uiStrings[code];
       var flag = el("span", "", strings.flag);
@@ -154,7 +152,9 @@
       btn.addEventListener("click", function () { setLang(code); });
       group.appendChild(btn);
     });
-    return el("div", "topbar", group);
+    var nav = el("nav", "topbar", group);
+    nav.setAttribute("aria-label", ui("choose_language"));
+    return nav;
   }
 
   /* ---------- shared pieces ---------- */
@@ -205,7 +205,7 @@
 
   // Accessible text for an option's image (see the contract's fallback rules).
   function optionAlt(opt, position) {
-    if (opt.image_alt) { return tr(opt.image_alt); }
+    if (opt.image_alt !== undefined && opt.image_alt !== null) { return tr(opt.image_alt); }   // "" = decorative
     if (opt.text) { return ""; }              // the text next to it already says it
     return ui("picture_n", { n: position });
   }
@@ -241,20 +241,17 @@
     render(".js-heading");
   }
 
+  // A tap or key press only selects (and can be changed); "Check" or "Next" confirms.
   function pick(optionIndex) {
-    var item = state.items[state.index];
-    if (quiz.feedback === "immediate") {
-      if (state.revealed) { return; }
-      state.chosen[state.index] = optionIndex;
-      state.revealed = true;
-      var ok = item.q.options[optionIndex].correct === true;
-      announce(ok ? ui("correct") : ui("wrong") + " " + ui("the_answer_was") + " " +
-        plainAnswer(item.q.options[item.correct], positionOf(item, item.correct)));
-      render(".js-next");
-    } else {
-      state.chosen[state.index] = optionIndex;
-      render(".option[data-i=\"" + optionIndex + "\"]");
-    }
+    if (quiz.feedback === "immediate" && state.revealed) { return; }
+    state.chosen[state.index] = optionIndex;
+    render(".option[data-i=\"" + optionIndex + "\"]");
+  }
+
+  function check() {
+    if (state.chosen[state.index] === -1 || state.revealed) { return; }
+    state.revealed = true;
+    render(".js-feedback");
   }
 
   function plainAnswer(opt, position) {
@@ -285,7 +282,7 @@
     var desc = quiz.description ? el("p", "lead", tr(quiz.description)) : null;
     var hero = el("section", "hero", heading, desc,
       el("p", "badge-count", ui(n === 1 ? "questions_count_one" : "questions_count", { count: n })), authorLine(), startBtn);
-    return el("div", "screen", backLink(), hero);
+    return el("main", "screen", backLink(), hero);
   }
 
   function optionButton(item, pos) {
@@ -326,7 +323,7 @@
       btn.setAttribute("data-state", "selected");
       btn.setAttribute("aria-pressed", "true");
       mark.textContent = "●";
-    } else if (quiz.feedback === "end") {
+    } else {
       btn.setAttribute("aria-pressed", "false");
     }
     if (!locked) { btn.addEventListener("click", function () { pick(optIndex); }); }
@@ -344,7 +341,9 @@
         inlineAnswer(item.q.options[item.correct], positionOf(item, item.correct))));
     }
     if (item.q.explanation) { body.appendChild(el("p", "", tr(item.q.explanation))); }
-    return el("div", ok ? "feedback" : "feedback feedback--oops", icon, body);
+    var panel = el("div", ok ? "feedback js-feedback" : "feedback feedback--oops js-feedback", icon, body);
+    panel.tabIndex = -1;
+    return panel;
   }
 
   function questionScreen() {
@@ -358,8 +357,10 @@
     bar.setAttribute("aria-hidden", "true");
     var progress = el("p", "progress-text", ui("question_x_of_y", { current: current, total: total }));
 
+    progress.id = "progress-text";
     var heading = el("h2", "js-heading", tr(item.q.text));
     heading.tabIndex = -1;
+    heading.setAttribute("aria-describedby", "progress-text");
     var image = item.q.image ? makeImage("question-img", item.q.image, tr(item.q.image_alt)) : null;
 
     var allPictures = item.q.options.every(function (o) { return o.image && !o.text; });
@@ -367,18 +368,23 @@
     for (var pos = 0; pos < item.order.length; pos++) { list.appendChild(optionButton(item, pos)); }
 
     // Hidden h1 so every page has one top heading; the question itself is the h2.
-    var screen = el("div", "screen", el("h1", "sr-only", tr(quiz.title)), progress, bar, heading, image, list);
+    var screen = el("main", "screen", el("h1", "sr-only", tr(quiz.title)), progress, bar, heading, image, list);
 
     var answered = state.chosen[state.index] !== -1;
     if (quiz.feedback === "immediate" && state.revealed) { screen.appendChild(feedbackPanel(item)); }
-    if (quiz.feedback === "end" || state.revealed) {
+    var confirm = null;
+    if (quiz.feedback === "immediate" && !state.revealed) {
+      confirm = el("button", "btn js-check", ui("check"));
+      confirm.addEventListener("click", check);
+    } else {
       var last = state.index + 1 === total;
-      var nextBtn = el("button", "btn js-next", last ? ui("finish") : ui("next"));
-      nextBtn.type = "button";
-      nextBtn.disabled = !answered;
-      nextBtn.addEventListener("click", next);
-      screen.appendChild(nextBtn);
+      confirm = el("button", "btn js-next", last ? ui("finish") : ui("next"));
+      confirm.addEventListener("click", next);
     }
+    confirm.type = "button";
+    confirm.disabled = !answered;
+    screen.appendChild(confirm);
+    screen.appendChild(backLink());
     return screen;
   }
 
@@ -390,7 +396,8 @@
     var mark = el("span", "mark", ok ? "✓" : "✗");
     mark.setAttribute("aria-hidden", "true");
 
-    var body = el("div", "review-body", el("p", "review-q", tr(q.text)));
+    var body = el("div", "review-body",
+      el("p", "review-q", el("span", "sr-only", (ok ? ui("correct") : ui("wrong")) + " "), tr(q.text)));
     var mine = chosenIdx === -1 ? null : inlineAnswer(q.options[chosenIdx], positionOf(item, chosenIdx));
     body.appendChild(el("p", "review-line", el("strong", "", ui("your_answer") + ": "), mine));
     if (!ok) {
@@ -418,13 +425,16 @@
     var again = el("button", "btn", ui("try_again"));
     again.type = "button";
     again.addEventListener("click", startAttempt);
-    var result = el("section", "result", heading,
-      el("p", "score-value", ui("score_x_of_y", { score: score, total: total })),
-      el("p", "score-message", message(tier)), again);
+    var value = el("p", "score-value", ui("score_x_of_y", { score: score, total: total }));
+    var note = el("p", "score-message", message(tier));
+    value.id = "score-value";
+    note.id = "score-message";
+    heading.setAttribute("aria-describedby", "score-value score-message");   // heard on arrival
+    var result = el("section", "result", heading, value, note, again);
 
     var list = el("ol", "review-list");
     state.items.forEach(function (item, i) { list.appendChild(reviewItem(item, i)); });
-    return el("div", "screen", backLink(), result, el("h2", "review-title", ui("review")), list);
+    return el("main", "screen", backLink(), result, el("h2", "review-title", ui("review")), list);
   }
 
   /* ---------- render ---------- */
@@ -444,9 +454,10 @@
 
   /* ---------- keyboard: number keys pick options ---------- */
 
+  // Number keys only select, and only while focus is inside the options (WCAG 2.1.4).
   document.addEventListener("keydown", function (event) {
     if (state.screen !== "question" || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) { return; }
-    if (event.target && event.target.closest && event.target.closest(".lang-switch")) { return; }
+    if (!(event.target && event.target.closest && event.target.closest(".options"))) { return; }
     var n = parseInt(event.key, 10);
     var item = state.items[state.index];
     if (!(n >= 1 && n <= 9) || n > item.order.length) { return; }

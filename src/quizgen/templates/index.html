@@ -40,8 +40,8 @@
 <h3 class="card-title" lang="{{ q.lang }}"><a class="card-link" href="{{ q.href }}">{{ q.title }}</a></h3>
 {% if q.description %}<p class="card-desc" lang="{{ q.lang }}">{{ q.description }}</p>{% endif %}
 <p class="card-meta"><span class="chip">{{ q.count_text }}</span>{% if q.author_name %} <span class="by">{{ q.author_name }}</span>{% endif %}</p>
-{% if q.languages %}<ul class="langs">
-{% for l in q.languages %}<li class="lang-chip"><span aria-hidden="true">{{ l.flag }} {{ l.code|upper }}</span><span class="sr-only">{{ l.name }}</span></li>
+{% if q.languages %}<ul class="langs" aria-label="{{ languages_label }}">
+{% for l in q.languages %}<li class="lang-chip"><span aria-hidden="true">{{ l.flag }} {{ l.code|upper }}</span><span class="sr-only" lang="{{ l.code }}">{{ l.name }}</span></li>
 {% endfor %}</ul>{% endif %}
 </li>
 {% endfor %}
