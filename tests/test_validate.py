@@ -379,7 +379,7 @@ def test_bare_http_image_is_error_and_http_is_warning(tmp_path):
     f = quiz_file(tmp_path, questions=[{**QUESTION, "image": " http://example.org/a.png "}])
     result = load_quiz(f)
     assert result.errors == []
-    assert has([str(w) for w in result.warnings], "http://", "https")
+    assert has([str(w) for w in result.warnings], "will not load", "https://")
     assert result.quiz["questions"][0]["image"] == "http://example.org/a.png"
 
 
@@ -463,3 +463,22 @@ def test_ui_strings_languages_consistent():
         assert set(other) == set(en), lang
         for key in en:
             assert set(placeholder.findall(other[key])) == set(placeholder.findall(en[key])), (lang, key)
+
+
+def test_image_alt_without_image_is_error():
+    errs = errors_of("rule10-image-alt-without-image.json")
+    assert has(errs, "questions[0].image_alt", "image")
+    assert has(errs, "questions[0].options[1].image_alt", "image")
+
+
+def test_image_alt_is_normalised_like_other_text():
+    quiz = load_quiz(FIX / "valid-image-alt.json").quiz
+    q = quiz["questions"][0]
+    assert q["image_alt"] == {"en": "A cow", "it": "Una mucca"}
+    assert q["options"][0]["image_alt"] == {"en": "A", "it": "A"}
+    assert "image_alt" not in q["options"][1]
+
+
+def test_picture_n_ui_string_in_every_language():
+    for lang, strings in validate_mod._ui_strings().items():
+        assert "{n}" in strings["picture_n"], lang

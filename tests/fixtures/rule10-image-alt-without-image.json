@@ -1,0 +1,13 @@
+{
+  "title": "Alt without image",
+  "questions": [
+    {
+      "text": "Q?",
+      "image_alt": "A cow in a field",
+      "options": [
+        { "text": "A", "correct": true },
+        { "text": "B", "image_alt": "Picture of B" }
+      ]
+    }
+  ]
+}

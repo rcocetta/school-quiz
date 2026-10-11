@@ -55,6 +55,7 @@
       "properties": {
         "text": { "$ref": "#/$defs/text" },
         "image": { "$ref": "#/$defs/imageRef" },
+        "image_alt": { "$ref": "#/$defs/text" },
         "explanation": { "$ref": "#/$defs/text" },
         "options": {
           "type": "array",
@@ -69,6 +70,7 @@
       "properties": {
         "text": { "$ref": "#/$defs/text" },
         "image": { "$ref": "#/$defs/imageRef" },
+        "image_alt": { "$ref": "#/$defs/text" },
         "correct": { "type": "boolean" }
       }
     }

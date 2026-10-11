@@ -6,6 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 
+from quizgen.build import build_single
 from quizgen.validate import ValidationResult, discover, load_collection, load_quiz
 
 
@@ -41,21 +42,37 @@ def cmd_validate(args: argparse.Namespace) -> int:
         result = _validate_file(path)
         errors += len(result.errors)
         warnings += len(result.warnings)
-        for issue in result.errors:
-            print(f"ERROR   {issue}")
-        if result.structural_failure:
-            print("        Fix these first: more checks will run once the structure is right.")
-        for issue in result.warnings:
-            print(f"warning {issue}")
+        _print_issues(result)
         if not result.errors and not result.warnings:
             print(f"ok      {path}")
     print(f"\n{len(files)} file(s) checked: {errors} error(s), {warnings} warning(s)")
     return 1 if errors else 0
 
 
+def _print_issues(result: ValidationResult) -> None:
+    for issue in result.errors:
+        print(f"ERROR   {issue}")
+    if result.structural_failure:
+        print("        Fix these first: more checks will run once the structure is right.")
+    for issue in result.warnings:
+        print(f"warning {issue}")
+
+
 def cmd_build(args: argparse.Namespace) -> int:
-    print("build: not implemented yet", file=sys.stderr)
-    return 2
+    path = Path(args.input)
+    if path.is_dir():
+        print("building a folder is not available yet (coming in Phase 3).\n"
+              "Build one quiz file for now: quizgen build my-quiz.json", file=sys.stderr)
+        return 2
+    if not path.is_file():
+        print(f"ERROR   {args.input}: no such file or folder")
+        return 1
+    built = build_single(path, args.output, args.questions)
+    _print_issues(built.validation)
+    if built.output is None:
+        return 1
+    print(f"built {built.output}")
+    return 0
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -66,9 +83,9 @@ def build_parser() -> argparse.ArgumentParser:
     p_validate.add_argument("input", nargs="+", help="quiz .json files or folders")
     p_validate.set_defaults(func=cmd_validate)
 
-    p_build = sub.add_parser("build", help="build HTML (not implemented yet)")
-    p_build.add_argument("input", help="a quiz .json file or a folder of quizzes")
-    p_build.add_argument("-o", "--output", help="output file or folder")
+    p_build = sub.add_parser("build", help="turn a quiz .json file into one self-contained HTML page")
+    p_build.add_argument("input", help="a quiz .json file (folders come in a later version)")
+    p_build.add_argument("-o", "--output", help="output .html file (default: next to the quiz)")
     p_build.add_argument("--questions", type=int, metavar="M", help="questions per attempt")
     p_build.set_defaults(func=cmd_build)
     return parser
