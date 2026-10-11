@@ -22,7 +22,7 @@ Each quiz file holds a pool of **N** questions; each attempt shows **M** of them
 | 2. Quiz page + single-file build | ✅ done |
 | 3. Site build + index page | ✅ done |
 | 4. Examples, docs, deploy | ✅ done |
-| 5. Project website + community | ⬜ not started |
+| 5. Project website + community | 🟨 built; needs first deploy + real-fork check |
 
 Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 
@@ -431,15 +431,24 @@ tests/
 ---
 
 ### Phase 5 — Project website + community
-- [ ] `website/index.html` landing page (§8)
-- [ ] `website/guide/index.html` guide (§8)
-- [ ] `pages.yml`: build `quizzes/` → `_site/quizzes/`, copy `website/` → `_site/`, deploy. Repo variable `PROJECT_PAGES=false` → skip `website/` and build quizzes at `_site/` root (for forks)
-- [ ] Fork-friendliness: a fresh fork deploys after only enabling Pages + Actions; documented in the guide with screenshots
-- [ ] Community files: `CODE_OF_CONDUCT.md` (Contributor Covenant), PR template with type checkboxes (code / quiz / collection) and the quiz checklist, issue templates
-- [ ] `claude-review.yml` (§8) + section in CONTRIBUTING explaining that reviews are maintainer-triggered
-- [ ] Link checks: landing ↔ guide ↔ quizzes ↔ GitHub repo all work on the deployed site and in a fork with `PROJECT_PAGES=false`
-- [ ] Carried over from Phase 4: README live demo link and fork-and-edit path once Pages is live; `SECURITY.md` (+ maintainer enables private vulnerability reporting); `v0.1.0` tag + pinning the README workflow install: user has no preference yet, decide when releasing; index page shows "Quizzes" as both `h1` and `h2` when `site.json` has no title (a11y review); if ever published to PyPI, README image links must become absolute
+- [x] `website/index.html` landing page (§8)
+- [x] `website/guide/index.html` guide (§8) — no GitHub-UI screenshots (can't be captured from a cloud session); steps described precisely and checked against GitHub's docs source
+- [x] `pages.yml`: build `quizzes/` → `_site/quizzes/`, copy `website/` → `_site/`, deploy. Repo variable `PROJECT_PAGES=false` → skip `website/` and build quizzes at `_site/` root (for forks)
+- [ ] Fork-friendliness: a fresh fork deploys after only enabling Pages + Actions — built and simulated locally; **needs a real test fork** (and guide screenshots of GitHub's UI, if wanted)
+- [x] Community files: `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1), PR template with type checkboxes (code / quiz / collection) and the quiz checklist, issue templates
+- [x] `claude-review.yml` (§8) + section in CONTRIBUTING explaining that reviews are maintainer-triggered
+- [ ] Link checks: landing ↔ guide ↔ quizzes ↔ GitHub repo — all pass on a local copy served under `/school-quiz/` in both modes; **re-check on the deployed site and in a fork**
+- [x] Carried over from Phase 4: README live demo link and fork path; `SECURITY.md`; index heading fix (section `h2` only when both collections and quizzes exist; still "Quizzes" twice in that one case when `site.json` has no title)
+- [ ] Carried over: `v0.1.0` tag + pinning the README workflow install (user has no preference yet); if ever published to PyPI, README image links must become absolute
+- [ ] Maintainer settings (user): Settings → Pages → Source "GitHub Actions"; enable private vulnerability reporting (currently off); `ANTHROPIC_API_KEY` secret (dedicated, low spend limit) for Claude review; Actions → require approval for external contributors
 - **Done when**: the live site at `https://rcocetta.github.io/school-quiz/` shows landing, guide and quizzes; a test fork following only the guide gets its own working quiz site.
+- **Implementation notes** (accepted):
+  - User decisions: Code of Conduct contact = private contact via GitHub, no email; `quizzes/` seeded with copies of the two examples (+ images/credits) and `site.json` "School Quizzes".
+  - Site: `_site/` = `website/` + `quizzes/` build + `docs/screenshots/` copied to `assets/screenshots/`. Website is plain HTML/CSS, no JS, CSP `default-src 'none'; style-src 'self'; img-src 'self'`, relative links (works under `/school-quiz/`). `tests/test_website.py` validates the guide's example quizzes (`<pre data-quiz>`) and every relative link/anchor.
+  - `pages.yml`: push to main + dispatch; build job `contents: read`, deploy job `pages`/`id-token: write`; clear errors when `quizzes/` or `website/` is missing; `PROJECT_PAGES` compared case-insensitively; `upload-pages-artifact` drops dotfiles (`.nojekyll`), harmless with Actions deploys.
+  - **Claude review — security-driven deviation from §8:** no `anthropics/claude-code-action`. Security review showed a prompt-injected run could leak `ANTHROPIC_API_KEY`/`GITHUB_TOKEN` (`gh pr view -R <host>` network exfil; the action passes the full env and writes the token to `.git/config`). Now three jobs: `fetch` (read-only token, no secrets: PR metadata, diff, changed text files at one commit), `review` (`permissions: {}`, only the Anthropic key, pinned Claude Code CLI, tools Read/Grep/Glob only with `--restricted` and deny rules, empty HOME), `post` (`pull-requests: write` only; secret-pattern filter, images/HTML stripped, @-mentions neutralised). Owner-only `/claude-review` comment or manual run. Not yet run on GitHub.
+  - Guide: contribution flow warns that a PR must only add your own files (a fork whose samples were deleted would delete them upstream).
+  - Not done / ideas: the quiz index has no link back to the landing page or guide (needs a small `site.json` option); `examples/` and `quizzes/` copies can drift (noted in CONTRIBUTING).
 
 ---
 
@@ -513,3 +522,4 @@ Append one entry per session/subagent run: date, who, what changed, what's next.
 - **2026-10-11** — Phase 4 (cloud session). User decisions: Pages deploy and fork path stay in Phase 5, install from GitHub (not PyPI), example images from Noto Emoji. `quiz-implementer` ×3 in parallel: examples + Noto PNGs + `scripts/screenshots.py` + screenshots; `ci.yml` + browser smoke test + pyproject metadata; README/CONTRIBUTING/CHANGELOG. Reviews: security (no critical/high; fixed Pages snippet `persist-credentials`, pin advice, `http.server --bind 127.0.0.1`, licence credit travelling with built pages, smoke-test host parsing, overclaims), simplicity (screenshot script picked wrong answers by luck, README accuracy/length/jargon, dependabot), accessibility (alt texts gave answers away, README alt-text guidance, duplicate headings). E2E from scratch: all commands/snippets run; fixed install check, image download hint, plural grammar, false "no quizzes" warning. 200 tests. **Phase 4 done.** **Next:** Phase 5 (website, guide, `pages.yml`, community files) plus the carried-over items.
 - **2026-10-11** — User follow-ups: licence is GPL-3.0-or-later (D15 updated, README aligned); no preference yet on a `v0.1.0` tag; user will enable private vulnerability reporting and "Require approval for all external contributors" in repo settings.
 - **2026-10-11** — PR #4 self-review (code-review skill over the whole code): fixed two pre-existing Phase 3 issues — case-only name clashes now reported by `discover` (rule 13), so `validate` and `build` agree; site builds now print the "Fix these first" hint after structural errors. Also renamed a mangled test name. Not fixed (minor, noted): undescribed-folder name check for image-only subfolders, unused live region in quiz.js, duplicated image-path rules in `validate.local_image_path`/`_check_local_image`, Jinja env rebuilt per page, site images held in memory before writing. 202 tests.
+- **2026-10-11** — Phase 5 (cloud session). Found Phase 5 not started when the user asked why the Pages URL 404s (no deploy workflow existed). User decisions: CoC contact via GitHub, seed `quizzes/` with the examples. Built in parallel: website (quiz-designer), `pages.yml` + `claude-review.yml` + `quizzes/` (quiz-implementer), community files + README/CONTRIBUTING/CHANGELOG + index heading fix (quiz-implementer). Reviews: security (HIGH: Claude review secret exfiltration → redesigned into isolated fetch/review/post jobs; second pass fixed a startup crash, `-`-prefixed paths, unrestricted reads, artifact leak, mixed commits), simplicity (contribution flow would delete samples upstream, missing-`quizzes/` error, concurrency), accessibility (section refs, table semantics, alts, skip link, plain language). E2E: deploy simulated under `/school-quiz/` in both modes, guide-only fork walkthrough, all links clean. 209 tests. **Next:** user merges, sets Pages source to GitHub Actions and the other settings, then verify the live site and a real test fork; mark Phase 5 done.
