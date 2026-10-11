@@ -1,0 +1,87 @@
+name: Deploy to GitHub Pages
+
+# Builds quizzes/ (and, unless PROJECT_PAGES=false, the project website in
+# website/) and publishes them with GitHub Pages.
+#
+# One-time setup in your repository: Settings > Pages > Build and deployment >
+# Source: "GitHub Actions". Nothing else is needed (no secrets).
+#
+# Forks: set the repository variable PROJECT_PAGES to "false"
+# (Settings > Secrets and variables > Actions > Variables) to publish only
+# your quizzes, at the root of your site, without the project website.
+#
+# Runs only on pushes to main and on manual start. It never runs on pull
+# requests, so nothing from a pull request can reach the deploy job.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One deploy at a time; never cancel one that is already publishing.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      # Installs quizgen from this repository's own code (not from the internet).
+      - name: Install quizgen
+        run: pip install .
+
+      - name: Check the quizzes
+        run: quizgen validate quizzes/
+
+      - name: Assemble the site
+        env:
+          PROJECT_PAGES: ${{ vars.PROJECT_PAGES }}
+        run: |
+          set -euo pipefail
+          if [ "$PROJECT_PAGES" = "false" ]; then
+            # Quizzes only: the quiz index is the home page.
+            quizgen build quizzes -o _site
+          else
+            # Project site: website at /, quizzes at /quizzes/.
+            if [ ! -d website ]; then
+              echo "::error::website/ folder not found. Restore it, or set the repository variable PROJECT_PAGES to false to publish only your quizzes."
+              exit 1
+            fi
+            quizgen build quizzes -o _site/quizzes
+            cp -R website/. _site/
+            mkdir -p _site/assets/screenshots
+            cp docs/screenshots/*.png _site/assets/screenshots/
+          fi
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

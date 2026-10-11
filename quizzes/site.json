@@ -1,0 +1,5 @@
+{
+  "$schema": "../src/quizgen/site.schema.json",
+  "title": "School Quizzes",
+  "description": "Free, simple quizzes for kids, made by teachers and parents."
+}
