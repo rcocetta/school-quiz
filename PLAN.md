@@ -65,7 +65,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 These apply to every phase, every session and every subagent.
 
 ### Quality bar
-- **Kids first.** Big tap targets, large clear text, few words per screen, no dead ends, gentle encouraging tone (never shaming on wrong answers; UI text gender-neutral in gendered languages, e.g. no "Bravissimo" in Italian), works on cheap tablets and phones, keyboard and screen-reader friendly (WCAG 2.1 AA contrast, real `<button>`s, labels, focus states, `alt` text for images).
+- **Kids first.** Big tap targets, large clear text, few words per screen, no dead ends, gentle encouraging tone (never shaming on wrong answers; UI text gender-neutral in gendered languages, e.g. no "Bravissimo" in Italian), works on cheap tablets and phones, keyboard and screen-reader friendly (WCAG 2.2 AA contrast, real `<button>`s, labels, focus states, `alt` text for images).
 - **Easy for creators.** Teachers and parents shouldn't need to code. Defaults for everything optional, error messages that say *where* and *how to fix*, examples they can copy.
 - **Simple over clever.** Few dependencies, no frameworks, no build step for the browser code. Every feature in the plan must earn its place; no speculative abstractions.
 - **Secure by default** (simple, but kids are the audience):
@@ -88,10 +88,11 @@ The project ships its own agents in **`.claude/agents/`**, so they work in local
 | Browser UI and visual design (quiz page, index, landing, guide) | `quiz-designer` (sonnet); design reviewed by main session |
 | Security review at the end of each phase | `security-reviewer` (opus, read-only) |
 | Correctness + simplicity review at the end of each phase | `simplicity-reviewer` (sonnet, read-only) |
+| Accessibility review (WCAG 2.2 AA + child-specific needs) at the end of every phase touching UI | `accessibility-reviewer` (sonnet, read-only) |
 | End-to-end check: build, serve, click through, follow README/guide from scratch | `e2e-tester` (sonnet) |
 | Ambiguous design decisions, architecture changes, coordinating the phase | main session (opus); ask the user |
 
-**Phase workflow:** implement (`quiz-implementer` / `quiz-designer`, parallel only when files don't overlap) → main session verifies tests → `security-reviewer` + `simplicity-reviewer` in parallel → fixes (same implementer agent, which keeps its context) → `e2e-tester` → main session ticks tasks, updates this file, commits, pushes.
+**Phase workflow:** implement (`quiz-implementer` / `quiz-designer`, parallel only when files don't overlap) → main session verifies tests → `security-reviewer` + `simplicity-reviewer` (+ `accessibility-reviewer` when UI changed) in parallel → fixes (same implementer agent, which keeps its context) → `e2e-tester` → main session ticks tasks, updates this file, commits, pushes.
 
 Rules for subagents:
 - Give each one a self-contained brief: the task's checklist items from §6, the relevant sections of this plan, the module contracts, and the "Done when" criteria. Tell it to read `CLAUDE.md` and `PLAN.md` first.
