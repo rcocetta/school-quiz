@@ -519,3 +519,12 @@ def test_index_headings_empty(tmp_path):
     out = tmp_path / "out"
     build_site(src, out)
     assert heading_levels(out / "index.html") == ["1"]
+
+
+def test_made_with_links_to_pages_home(tree, tmp_path):
+    home = "https://rcocetta.github.io/school-quiz/"
+    out = tmp_path / "out"
+    build_site(tree, out)
+    assert home in hrefs(out / "index.html") and home in hrefs(out / "school" / "index.html")
+    assert f'var HOME_URL = "{home}";' in read(out / "assets" / "quiz.js")
+    assert "github.com" not in read(out / "index.html")

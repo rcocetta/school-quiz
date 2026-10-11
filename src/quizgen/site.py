@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Iterable
 from urllib.parse import quote
 
-from quizgen.build import (REPO_URL, BuildError, BuildResult, _asset, _env, _prepare, _rewrite_images,
+from quizgen.build import (HOME_URL, BuildError, BuildResult, _asset, _env, _prepare, _rewrite_images,
                            _write_atomic, render_page)
 from quizgen.validate import (Issue, ValidationResult, discover, is_remote_image, load_collection, load_quiz,
                               load_site, local_image_path, ui_strings)
@@ -256,7 +256,7 @@ def _render_index(*, lang: str, heading: str, description: str | None, author: d
         heading=heading, description=description, author=link, back=back,
         collections_heading=ui["collections"], collections=collections or [],
         quizzes_heading=ui["quizzes"], quizzes=quizzes or [], languages_label=ui["languages"],
-        empty_text=empty_text, made_with={"text": ui["made_with"], "href": REPO_URL})
+        empty_text=empty_text, made_with={"text": ui["made_with"], "href": HOME_URL})
     return html.encode("utf-8")
 
 
