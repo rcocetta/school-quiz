@@ -158,11 +158,6 @@ def test_warnings_printed_and_build_succeeds(tmp_path, capsys):
     assert "warning" in out and f"built {tmp_path / 'q.html'}" in out
 
 
-def test_directory_input_exits_2(tmp_path, capsys):
-    assert main(["build", str(tmp_path)]) == 2
-    assert "not available yet" in capsys.readouterr().err
-
-
 def test_missing_input_exits_1(tmp_path, capsys):
     assert main(["build", str(tmp_path / "nope.json")]) == 1
 

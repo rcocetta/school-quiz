@@ -52,6 +52,8 @@ class Issue:
     message: str
 
     def __str__(self) -> str:
+        if not self.file:
+            return self.message
         where = f"{self.file}: {self.path}: " if self.path else f"{self.file}: "
         return where + self.message
 
@@ -103,11 +105,17 @@ def load_collection(path: Path | str) -> ValidationResult:
     return _load(Path(path), "collection.schema.json", _check_collection)
 
 
-def discover(directory: Path) -> tuple[list[Path], list[str]]:
-    """Quiz and collection.json files in a folder plus one level of subfolders.
+def load_site(path: Path | str) -> ValidationResult:
+    """Validate a site.json file (title, description, author, language; D27)."""
+    return _load(Path(path), "site.schema.json", _check_site)
 
-    Returns (files, problems). Hidden files/folders and symlinked folders are skipped;
-    a collection.json at the top level is a problem (it belongs in a subfolder).
+
+def discover(directory: Path) -> tuple[list[Path], list[str]]:
+    """Quiz, site.json and collection.json files in a folder plus one level of subfolders.
+
+    Returns (files, problems). Hidden files/folders and symlinked folders are skipped.
+    Problems: collection.json at the top level, site.json in a subfolder, and a quiz
+    called index.json (it would clash with the index page).
     """
     found: list[Path] = []
     problems: list[str] = []
@@ -124,9 +132,19 @@ def discover(directory: Path) -> tuple[list[Path], list[str]]:
             found.append(path)
     for sub in subfolders:
         try:
-            found += _json_files(sub)
+            in_sub = _json_files(sub)
         except OSError as exc:
             problems.append(f"{sub}: cannot read folder ({exc.strerror or exc})")
+            continue
+        for path in in_sub:
+            if path.name == "site.json":
+                problems.append(f"{path}: site.json belongs at the top of the quiz folder, not in a subfolder")
+            else:
+                found.append(path)
+    for path in list(found):
+        if path.name.lower() == "index.json":
+            problems.append(f"{path}: a quiz cannot be called index.json (that name is used for the index page); rename the file")
+            found.remove(path)
     return found, problems
 
 
@@ -390,8 +408,20 @@ def _check_collection(data: dict, ctx: _Ctx) -> dict:
     out = {k: v for k, v in data.items() if k not in ("$schema", "ui")}
     if "author" in data:
         out["author"] = _check_author(data["author"], ctx, "author")
+    if "language" in data:
+        _check_language_code(data["language"], ctx, "language")
     if "ui" in data:
         out["ui"] = _check_ui(data["ui"], ctx, "ui", None)
+    return out
+
+
+def _check_site(data: dict, ctx: _Ctx) -> dict:
+    """site.json: plain-string title/description, author, and the language of the index pages."""
+    out = {k: v for k, v in data.items() if k != "$schema"}
+    if "author" in data:
+        out["author"] = _check_author(data["author"], ctx, "author")
+    if "language" in data:
+        _check_language_code(data["language"], ctx, "language")
     return out
 
 
@@ -411,13 +441,17 @@ def _setup_languages(data: dict, ctx: _Ctx) -> None:
     else:
         ctx.languages = [data.get("language", DEFAULT_LANGUAGE)]
         codes = [("language", ctx.languages[0])]
-    ui_langs = ui_languages()
     for path, code in codes:
-        if code == ANY:
-            ctx.error(path, '"any" is reserved and cannot be a language code')
-        elif code not in ui_langs:
-            ctx.error(path, f'no built-in interface translation for "{code}" '
-                            f'(available: {", ".join(sorted(ui_langs))})')
+        _check_language_code(code, ctx, path)
+
+
+def _check_language_code(code: str, ctx: _Ctx, path: str) -> None:
+    """Rule 9."""
+    if code == ANY:
+        ctx.error(path, '"any" is reserved and cannot be a language code')
+    elif code not in ui_languages():
+        ctx.error(path, f'no built-in interface translation for "{code}" '
+                        f'(available: {", ".join(sorted(ui_languages()))})')
 
 
 def _check_text(value: str | dict, ctx: _Ctx, path: str) -> dict[str, str] | None:

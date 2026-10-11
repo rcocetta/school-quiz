@@ -1,4 +1,4 @@
-"""Command line interface: `quizgen validate` and (later) `quizgen build`."""
+"""Command line interface: `quizgen validate` and `quizgen build`."""
 
 from __future__ import annotations
 
@@ -6,12 +6,14 @@ import argparse
 import sys
 from pathlib import Path
 
-from quizgen.build import build_single
-from quizgen.validate import ValidationResult, discover, load_collection, load_quiz
+from quizgen.build import build_single, build_site
+from quizgen.validate import ValidationResult, discover, load_collection, load_quiz, load_site
 
 
 def _validate_file(path: Path) -> ValidationResult:
-    return load_collection(path) if path.name == "collection.json" else load_quiz(path)
+    if path.name == "collection.json":
+        return load_collection(path)
+    return load_site(path) if path.name == "site.json" else load_quiz(path)
 
 
 def _expand_inputs(inputs: list[str]) -> tuple[list[Path], list[str]]:
@@ -61,9 +63,12 @@ def _print_issues(result: ValidationResult) -> None:
 def cmd_build(args: argparse.Namespace) -> int:
     path = Path(args.input)
     if path.is_dir():
-        print("building a whole folder is not available yet (coming in a later version).\n"
-              "Build one quiz file for now: quizgen build my-quiz.json", file=sys.stderr)
-        return 2
+        built = build_site(path, args.output, args.questions)
+        _print_issues(built.validation)
+        if built.output is None:
+            return 1
+        print(f"built {built.count} {'quiz' if built.count == 1 else 'quizzes'} into {built.output}")
+        return 0
     if not path.is_file():
         print(f"ERROR   {args.input}: no such file or folder")
         return 1
@@ -83,9 +88,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_validate.add_argument("input", nargs="+", help="quiz .json files or folders")
     p_validate.set_defaults(func=cmd_validate)
 
-    p_build = sub.add_parser("build", help="turn a quiz .json file into one self-contained HTML page")
-    p_build.add_argument("input", help="a quiz .json file (folders come in a later version)")
-    p_build.add_argument("-o", "--output", help="output .html file (default: next to the quiz)")
+    p_build = sub.add_parser("build", help="turn a quiz file into one HTML page, or a folder of quizzes into a website")
+    p_build.add_argument("input", help="a quiz .json file (one self-contained page) or a folder (a whole site)")
+    p_build.add_argument("-o", "--output",
+                         help="output .html file (default: next to the quiz) or, for a folder, "
+                              "the site folder (default: site/)")
     p_build.add_argument("--questions", type=int, metavar="M", help="questions per attempt")
     p_build.set_defaults(func=cmd_build)
     return parser
