@@ -20,7 +20,7 @@ Each quiz file holds a pool of **N** questions; each attempt shows **M** of them
 | 0. Planning | ✅ done |
 | 1. Schema + validator | ✅ done |
 | 2. Quiz page + single-file build | ✅ done |
-| 3. Site build + index page | 🟨 in progress |
+| 3. Site build + index page | ✅ done |
 | 4. Examples, docs, deploy | ⬜ not started |
 | 5. Project website + community | ⬜ not started |
 
@@ -369,12 +369,20 @@ tests/
   - Tested in Chromium only (Playwright, `file://`, network blocked); no Firefox/WebKit, real devices or screen readers yet.
 
 ### Phase 3 — Site build + index
-- [ ] `templates/index.html` (quiz cards: title in first language, question count, language flags, author name; collection cards linking to per-collection index pages, D21)
-- [ ] `build_site()`: per-quiz pages linking shared assets, image copy + path rewrite
-- [ ] `cli.py build <dir>`
-- [ ] Collections: one level of subfolders, optional `collection.json`, per-collection index with author in the header, author and `ui` inheritance for quizzes (D21, D22, D24)
-- [ ] Tests: expected file tree incl. collections, rewritten image paths resolve
+- [x] `templates/index.html` (quiz cards: title in first language, question count, language flags, author name; collection cards linking to per-collection index pages, D21)
+- [x] `build_site()`: per-quiz pages linking shared assets, image copy (D29: same relative path, refs URL-encoded)
+- [x] `cli.py build <dir>`
+- [x] Collections: one level of subfolders, optional `collection.json`, per-collection index with author in the header, author and `ui` inheritance for quizzes (D21, D22, D24)
+- [x] Tests: expected file tree incl. collections, rewritten image paths resolve
 - **Done when**: `quizgen build examples/ -o site/` + `python -m http.server -d site` serves a working index and quizzes.
+- **Implementation notes** (accepted):
+  - Code: `site.py` holds `build_site(quiz_dir, out_dir=None, questions_override=None) -> BuildResult` (`output` = out folder, `count` = quizzes); steps `_check_folders` → `_load_all` → `_plan` → `_preflight` → `_write`. `build.py` keeps shared helpers and `build_single`. `validate.load_site`, `validate.local_image_path`, `validate.is_inside` are public.
+  - Index pages: no JS; CSP `default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'`. Site quiz pages: `script-src 'self'; style-src 'self'; img-src 'self' data: https:`. `'self'` trusts the whole `<user>.github.io` origin; contributors can't place executable files (only the two assets and magic-byte-checked images are written).
+  - Index text in the site language (D27); a collection index in its own `language`. A collection without `collection.json` is titled with its folder name. A collection's `ui` applies to its quiz pages only, not to index pages.
+  - Order: collections, then loose quizzes, each by title ignoring case and accents. Counts use `_one` strings for 1.
+  - Quiz pages in site mode get `index_url`; the back link ("All quizzes") shows on start, question and end screens.
+  - Output must not be, be inside, or contain the input; `quizgen build .` with the default `site/` is therefore refused (use `-o` outside the quiz folder).
+  - Not tested yet: Firefox/WebKit, real devices and screen readers, actual GitHub Pages hosting, `es`/`de` index text.
 
 ### Phase 4 — Examples, docs, deploy
 - [ ] Polished example quizzes (one single-language, one en/it) with a few images
@@ -398,6 +406,7 @@ tests/
 - [ ] `CONTRIBUTING.md`, `CHANGELOG.md` (Keep a Changelog format, v0.1.0)
 - [ ] README screenshots in `docs/screenshots/`, generated from the example quizzes
 - [ ] `ci.yml`: tests + validate `examples/` and `quizzes/` on every PR (Pages deploy moved to Phase 5)
+- [ ] Browser smoke test in CI (Playwright + Chromium): build examples in single-file and site mode, click through a quiz in both feedback modes, fail on any page error. Phase 3 shipped a single-file-only crash that pytest could not see
 - [ ] `pyproject.toml` metadata for PyPI: description, readme, licence, classifiers, project URLs
 - [ ] Final check: every README code snippet and command actually runs against the current code (have a subagent follow the README from scratch in a clean venv)
 - **Done when**: a non-programmer teacher can go from README to a deployed quiz without reading the source, and a developer can set up, test and contribute using only the README + CONTRIBUTING.
@@ -481,3 +490,5 @@ Append one entry per session/subagent run: date, who, what changed, what's next.
 - **2026-10-11** — Review fixes applied and verified (114 tests; hostile-input repros all give clean errors). **Phase 1 done**, committed and pushed. **Next:** Phase 2 (quiz page + single-file build) — can run in Claude Code on the web once the user links the repo.
 - **2026-10-11** — User confirmed D25. Added project agents in `.claude/agents/` (quiz-implementer, quiz-designer, security-reviewer, simplicity-reviewer, e2e-tester) so the subagent policy works in cloud sessions; documented the per-phase workflow. User linking the repo to Claude Code on the web.
 - **2026-10-11** — Phase 2 (cloud session). User approved D26 (`image_alt`). Contract for template/data/CSP set by main session; `quiz-implementer` built `build.py`, `build <file>`, `image_alt`, `picture_n`; `quiz-designer` built the quiz page (in parallel). Security review: no XSS/breakout found; fixed input overwrite, planted-symlink temp file, unbounded image inlining (1.2 GB output repro), tracebacks on bad `-o`, CRLF/CSP hash risk, added image magic-byte check. Simplicity review fixes: dead JS fallbacks removed, `render_page`/`_rewrite_images` extracted for Phase 3. E2E (fresh non-editable install, Chromium): all "Done when" criteria pass; fixed `-o dir/` and jargon in the folder message. 149 tests. **Phase 2 done.** **Next:** Phase 3 (site build + index).
+
+- **2026-10-11** — Phase 3 (cloud session). User decisions: D27 `site.json` (index language/title), D28 select-then-Check in immediate mode, D26 extended (`image_alt: ""` decorative, warnings for undescribed images); main session chose D29 (output mirrors input folder). `quiz-implementer` built `build_site`/`site.py`, `site.json`, collection `language`, `build <dir>`; `quiz-designer` built index pages and the back link, then the Check flow. First `accessibility-reviewer` run (covering the Phase 2 quiz page too): axe clean, fixed feedback/score announcements, number-key shortcut (WCAG 2.1.4), progress description, review right/wrong text, landmarks, font weights. Security review: fixed symlinked JSON being published, control-char image refs turning into remote requests, tracebacks on non-UTF-8 names, partial writes and mkdir outside output (now full pre-flight), reserved names moved into `discover`. Simplicity review: split `site.py`, single image walker, exact test asserts. E2E: site Done-when passes; found a single-file crash on Start (null back link) — fixed by main session and re-verified in Chromium (both examples, full run, no errors). 187 tests. **Phase 3 done.** **Next:** Phase 4 (examples, docs, CI incl. browser smoke test).

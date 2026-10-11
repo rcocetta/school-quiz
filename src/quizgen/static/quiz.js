@@ -384,7 +384,8 @@
     confirm.type = "button";
     confirm.disabled = !answered;
     screen.appendChild(confirm);
-    screen.appendChild(backLink());
+    var back = backLink();
+    if (back) { screen.appendChild(back); }  // none in single-file mode
     return screen;
   }
 
