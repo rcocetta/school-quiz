@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Guide: make your own quizzes</title>
+  <meta name="description" content="A friendly step-by-step guide to making your own school-quiz website with a free GitHub account. No coding and no installing.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the guide</a>
+
+  <header class="site-header">
+    <a class="brand" href="../"><img src="../assets/logo.svg" alt="" width="40" height="40"><span>school-quiz</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="../quizzes/">Quizzes</a></li>
+        <li><a href="./" aria-current="page">Guide</a></li>
+        <li><a class="ext" href="https://github.com/rcocetta/school-quiz">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="wrap guide-head">
+    <h1 id="top">Make your own quizzes</h1>
+    <p class="lead">A step-by-step guide for teachers and parents. You need a web browser, a free GitHub account and about ten minutes. You do not need to install anything or know how to program.</p>
+  </div>
+
+  <div class="guide-wrap">
+
+    <nav class="toc" id="contents" aria-labelledby="toc-title">
+      <h2 id="toc-title">In this guide</h2>
+      <ol>
+        <li><a href="#make-your-site">Make your own quiz site</a></li>
+        <li><a href="#first-quiz">Write your first quiz</a></li>
+        <li><a href="#reference">Quiz file reference</a></li>
+        <li><a href="#author">Saying who made it</a></li>
+        <li><a href="#ui-text">Changing the button text</a></li>
+        <li><a href="#images">Adding images</a></li>
+        <li><a href="#languages">Multiple languages</a></li>
+        <li><a href="#trouble">When something goes wrong</a></li>
+        <li><a href="#project-pages">Turning off the project pages</a></li>
+        <li><a href="#single-file">Sharing without a website</a></li>
+        <li><a href="#contribute">Contributing back</a></li>
+        <li><a href="#developers">For developers</a></li>
+      </ol>
+    </nav>
+
+    <main id="main" class="guide-main">
+
+      <section class="chapter" id="words" aria-labelledby="words-title">
+        <h2 id="words-title">Words you will meet</h2>
+        <dl class="words">
+          <dt>GitHub</dt>
+          <dd>A free website where people keep and share projects. This project lives there.</dd>
+          <dt>Fork</dt>
+          <dd>Your own copy of a project. Changing your copy never changes the original.</dd>
+          <dt>Commit</dt>
+          <dd>Saving a change. GitHub asks you for a short note about what you changed.</dd>
+          <dt>Action</dt>
+          <dd>A little robot on GitHub. When you save a change, it checks your quizzes and builds your website.</dd>
+          <dt>JSON</dt>
+          <dd>The kind of text file a quiz is written in. It is just words in quotes, with a few commas and brackets.</dd>
+        </dl>
+      </section>
+
+      <!-- 1 -->
+      <section class="chapter" id="make-your-site" aria-labelledby="make-title">
+        <h2 id="make-title"><span class="num" aria-hidden="true">1</span>Make your own quiz site in 10 minutes</h2>
+        <p>Do these steps once. Afterwards, adding a quiz takes a couple of minutes.</p>
+        <ol class="steps">
+          <li>
+            <strong>Get a GitHub account.</strong>
+            <p>Go to <a class="ext" href="https://github.com/signup">github.com/signup</a> and follow the steps. It is free. Your username becomes part of your website address, so choose one you are happy to share.</p>
+          </li>
+          <li>
+            <strong>Fork the project.</strong>
+            <p>Open <a class="ext" href="https://github.com/rcocetta/school-quiz">github.com/rcocetta/school-quiz</a>. In the top-right corner click <span class="ui">Fork</span>, then click <span class="ui">Create fork</span>. The name you give it becomes the last part of your website address, so keep it short, or leave it as it is.</p>
+            <p>You are now looking at your own copy, at <code>github.com/&lt;your-username&gt;/school-quiz</code>.</p>
+          </li>
+          <li>
+            <strong>Turn on GitHub Pages.</strong>
+            <p>Under your repository name click <span class="ui">Settings</span>. If you cannot see it, open the <span class="ui">&hellip;</span> (More) menu and choose it there. In the left sidebar, under &ldquo;Code, planning, and automation&rdquo;, click <span class="ui">Pages</span>. Under &ldquo;Build and deployment&rdquo;, find &ldquo;Source&rdquo; and choose <span class="ui">GitHub Actions</span>. There is nothing to save: the choice is stored straight away.</p>
+          </li>
+          <li>
+            <strong>Allow the Action to run.</strong>
+            <p>Click the <span class="ui">Actions</span> tab under your repository name. GitHub switches workflows off in new forks until you say they are fine. If you see a message that workflows are not running on this forked repository, read it, then click the green button that says &ldquo;I understand my workflows, go ahead and enable them&rdquo;.</p>
+          </li>
+          <li>
+            <strong>Build your site.</strong>
+            <p>Still on the <span class="ui">Actions</span> tab, click the Pages workflow in the left sidebar. Above the list of runs click <span class="ui">Run workflow</span>, then click the green <span class="ui">Run workflow</span> button in the box that opens.</p>
+          </li>
+          <li>
+            <strong>Wait, then visit your site.</strong>
+            <p>After a minute or two the new run shows a green tick. Your site is now live at:</p>
+            <p><code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code></p>
+            <p>For example, user <code>msrossi</code> with a repository called <code>school-quiz</code> gets <code>https://msrossi.github.io/school-quiz/</code>. Your quizzes are on the <code>quizzes/</code> page of that address.</p>
+          </li>
+        </ol>
+        <div class="note">
+          <strong>Good to know</strong>
+          Your site starts with this project&rsquo;s welcome page and this guide, and your quizzes are under <code>quizzes/</code>. If you would rather have your quizzes on the front page, see <a href="#project-pages">section 9</a>.
+        </div>
+        <div class="note care">
+          <strong>Careful</strong>
+          Your fork starts with this project&rsquo;s sample quizzes (Farm Animals and Times Tables, with their pictures) in the <code>quizzes</code> folder. Delete or replace them before you share your site, as described in the next section.
+        </div>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 2 -->
+      <section class="chapter" id="first-quiz" aria-labelledby="first-title">
+        <h2 id="first-title"><span class="num" aria-hidden="true">2</span>Write your first quiz</h2>
+        <p>A quiz is one text file whose name ends in <code>.json</code>. You create it right in your browser, with GitHub&rsquo;s editor.</p>
+
+        <h3>Create your quiz</h3>
+        <ol class="steps">
+          <li>Open the <code>quizzes</code> folder in your fork. Click <span class="ui">Add file</span>, then <span class="ui">Create new file</span>.</li>
+          <li>In the file name box type a name ending in <code>.json</code>, for example <code>space-quiz.json</code>. Use small letters and dashes, no spaces. This name becomes part of the quiz address.</li>
+          <li>Copy the quiz below and paste it into the big text box.</li>
+          <li>Click <span class="ui">Commit changes&hellip;</span> in the top-right corner. In the box that opens, write a short note such as &ldquo;Add space quiz&rdquo;, choose <span class="ui">Commit directly to the main branch</span>, and click <span class="ui">Commit changes</span>.</li>
+          <li>Open the <span class="ui">Actions</span> tab. A new run appears. When it shows a green tick (about a minute), open <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/quizzes/</code> and refresh the page. Your quiz is there. If you still see the old page, wait a minute and refresh again.</li>
+        </ol>
+
+        <span class="file-name">space-quiz.json</span>
+        <pre data-quiz="space-quiz"><code>{
+  "title": "Space Quiz",
+  "description": "How much do you know about our solar system?",
+  "questions": [
+    {
+      "text": "Which planet do we live on?",
+      "explanation": "We live on Earth, the third planet from the Sun.",
+      "options": [
+        { "text": "Mars" },
+        { "text": "Earth", "correct": true },
+        { "text": "Venus" }
+      ]
+    },
+    {
+      "text": "What is at the centre of our solar system?",
+      "options": [
+        { "text": "The Moon" },
+        { "text": "A comet" },
+        { "text": "The Sun", "correct": true }
+      ]
+    },
+    {
+      "text": "How many planets are there in our solar system?",
+      "explanation": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.",
+      "options": [
+        { "text": "6" },
+        { "text": "8", "correct": true },
+        { "text": "12" }
+      ]
+    }
+  ]
+}</code></pre>
+
+        <h3>What the pieces mean</h3>
+        <dl class="words">
+          <dt><code>title</code></dt>
+          <dd>The name of the quiz. Required.</dd>
+          <dt><code>description</code></dt>
+          <dd>One friendly sentence under the title. Optional.</dd>
+          <dt><code>questions</code></dt>
+          <dd>The list of questions, between <code>[</code> and <code>]</code>. Each question sits in its own <code>{ }</code>.</dd>
+          <dt><code>text</code></dt>
+          <dd>The words of the question, or of one answer.</dd>
+          <dt><code>options</code></dt>
+          <dd>The answers children choose from. Give two or more.</dd>
+          <dt><code>correct</code></dt>
+          <dd>Put <code>"correct": true</code> on the right answer. Every question needs exactly one.</dd>
+          <dt><code>explanation</code></dt>
+          <dd>A short note shown after the child answers. Optional, but children like it.</dd>
+        </dl>
+
+        <div class="note">
+          <strong>Tips for typing</strong>
+          Words go inside double quotes. Put a comma between items, but not after the last one. The easiest way to add a question is to copy an existing one, paste it after a comma, and change the words.
+        </div>
+        <h3>Then tidy up the sample quizzes</h3>
+        <ol class="steps">
+          <li>In your fork, click the <code>quizzes</code> folder, then click a sample quiz file such as <code>farm-animals.json</code>. (Do this after creating your own quiz: GitHub forgets a folder once it is empty.)</li>
+          <li>In the top-right corner of the file, open the <span class="ui">&hellip;</span> menu and click <span class="ui">Delete file</span>. Write a short note such as &ldquo;Remove sample quiz&rdquo; and click <span class="ui">Commit changes</span>.</li>
+          <li>Do the same for the other sample quiz. To remove the pictures, go back to the <code>quizzes</code> folder, open the <span class="ui">&hellip;</span> menu next to the folder name, and click <span class="ui">Delete directory</span>.</li>
+        </ol>
+        <p>Your own quiz stays. The Action starts again by itself when you commit, and your quiz list then shows only your quizzes.</p>
+
+        <p>If you make a typing mistake, nothing breaks: your old site stays online and the Action tells you what to fix. See <a href="#trouble">section 8</a>.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 3 -->
+      <section class="chapter" id="reference" aria-labelledby="reference-title">
+        <h2 id="reference-title"><span class="num" aria-hidden="true">3</span>Quiz file reference</h2>
+        <p>Everything you can put in a quiz file, in plain words. Anything not listed here is an error, which helps catch typing mistakes. The <a class="ext" href="https://github.com/rcocetta/school-quiz#field-reference">README</a> has the full technical table.</p>
+
+        <table>
+          <caption>The quiz</caption>
+          <thead><tr><th scope="col">Field</th><th scope="col">What it does</th><th scope="col">Needed?</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Field"><code>title</code></td><td data-label="What it does">The name of the quiz.</td><td data-label="Needed?">Yes</td></tr>
+            <tr><td data-label="Field"><code>questions</code></td><td data-label="What it does">The list of questions.</td><td data-label="Needed?">Yes</td></tr>
+            <tr><td data-label="Field"><code>description</code></td><td data-label="What it does">A sentence under the title.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>questions_per_quiz</code></td><td data-label="What it does">How many questions each try asks, picked at random from your list. Leave it out and it asks 10, or all of them if you have fewer.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>feedback</code></td><td data-label="What it does"><code>"immediate"</code> (the default): the child taps an answer, presses <em>Check my answer</em> and sees at once. <code>"end"</code>: nothing is marked until the end screen.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>shuffle_options</code></td><td data-label="What it does"><code>true</code> (the default) mixes up the answers every time. Use <code>false</code> for answers in a fixed order, like 1, 2, 3.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>language</code></td><td data-label="What it does">The language of the buttons and messages. The default is <code>"en"</code>. See <a href="#languages">section 7</a>.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>languages</code></td><td data-label="What it does">Turns on several languages in one quiz. See <a href="#languages">section 7</a>.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>author</code></td><td data-label="What it does">Who made the quiz. See <a href="#author">section 4</a>.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>ui</code></td><td data-label="What it does">Your own wording for buttons and messages. See <a href="#ui-text">section 5</a>.</td><td data-label="Needed?">No</td></tr>
+          </tbody>
+        </table>
+
+        <table>
+          <caption>Each question</caption>
+          <thead><tr><th scope="col">Field</th><th scope="col">What it does</th><th scope="col">Needed?</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Field"><code>text</code></td><td data-label="What it does">The question.</td><td data-label="Needed?">Yes</td></tr>
+            <tr><td data-label="Field"><code>options</code></td><td data-label="What it does">The answers: two or more, and exactly one marked <code>"correct": true</code>.</td><td data-label="Needed?">Yes</td></tr>
+            <tr><td data-label="Field"><code>explanation</code></td><td data-label="What it does">A note shown after answering, and in the review at the end.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>image</code></td><td data-label="What it does">A picture for the question. See <a href="#images">section 6</a>.</td><td data-label="Needed?">No</td></tr>
+            <tr><td data-label="Field"><code>image_alt</code></td><td data-label="What it does">Describes the picture for children who cannot see it.</td><td data-label="Needed?">With <code>image</code>, please</td></tr>
+          </tbody>
+        </table>
+
+        <table>
+          <caption>Each answer</caption>
+          <thead><tr><th scope="col">Field</th><th scope="col">What it does</th><th scope="col">Needed?</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Field"><code>text</code></td><td data-label="What it does">The words on the answer button.</td><td data-label="Needed?">Text or image</td></tr>
+            <tr><td data-label="Field"><code>image</code></td><td data-label="What it does">A picture answer, with or without words.</td><td data-label="Needed?">Text or image</td></tr>
+            <tr><td data-label="Field"><code>image_alt</code></td><td data-label="What it does">Describes the picture. Needed when the answer is only a picture.</td><td data-label="Needed?">With <code>image</code>, please</td></tr>
+            <tr><td data-label="Field"><code>correct</code></td><td data-label="What it does"><code>true</code> on the right answer. Leave it out on the others.</td><td data-label="Needed?">On one answer</td></tr>
+          </tbody>
+        </table>
+
+        <div class="note">
+          <strong>Tip: more questions than you ask</strong>
+          Write 30 questions and set <code>"questions_per_quiz": 10</code>. Each try is a different mix, so children can play again without seeing the same quiz.
+        </div>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 4 -->
+      <section class="chapter" id="author" aria-labelledby="author-title">
+        <h2 id="author-title"><span class="num" aria-hidden="true">4</span>Saying who made it</h2>
+        <p>Add an <code>author</code> and the quiz says &ldquo;Made by &hellip;&rdquo; on its start screen and on its card in the quiz list. Put it near the top of your quiz file, next to <code>title</code>:</p>
+        <pre><code>"author": { "name": "Class 4B", "url": "https://example.org/class-4b" },</code></pre>
+        <p><code>name</code> is required. <code>url</code> is a website address starting with <code>https://</code> and turns the name into a link. <code>email</code> works too, but is only used when there is no <code>url</code>.</p>
+        <div class="note care">
+          <strong>Keep it safe</strong>
+          Quiz sites are public, so everything in them can be read by anyone.
+          <ul>
+            <li>Prefer a website address to an email address. Published emails attract spam.</li>
+            <li>If you do give an email, use one made just for the quiz or your class, not your personal address.</li>
+            <li>Never put children&rsquo;s names, photos or contact details in a quiz, in the author, or in a picture.</li>
+          </ul>
+        </div>
+        <p>Several quizzes by the same person? Put them in a folder with a <code>collection.json</code> that holds the author once. See <a class="ext" href="https://github.com/rcocetta/school-quiz#collections-and-folder-layout">Collections and folder layout</a> and <a class="ext" href="https://github.com/rcocetta/school-quiz#saying-who-made-it">Saying who made it</a> in the README.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 5 -->
+      <section class="chapter" id="ui-text" aria-labelledby="ui-title">
+        <h2 id="ui-title"><span class="num" aria-hidden="true">5</span>Changing the button and message text</h2>
+        <p>Every button and message has a friendly default, such as &ldquo;Start the quiz&rdquo; and &ldquo;Next question&rdquo;. To use your own words, add a <code>ui</code> section to your quiz. Change as many or as few as you like:</p>
+        <pre><code>"ui": {
+  "start": "Let's go!",
+  "correct": "Spot on!",
+  "messages": {
+    "great": "Star student!",
+    "keep_trying": "Every try makes you better!"
+  }
+},</code></pre>
+        <p>The three <code>messages</code> are shown on the end screen: <code>great</code> for 80% or more, <code>good</code> for 50% to 79%, and <code>keep_trying</code> for less than that.</p>
+        <div class="note">
+          <strong>Keep it kind</strong>
+          Short, warm words work best, and the same message should suit every child. Please avoid anything that sounds like a telling-off.
+        </div>
+        <p>The README has the <a class="ext" href="https://github.com/rcocetta/school-quiz#changing-the-built-in-text-ui">complete list of texts you can change</a>.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 6 -->
+      <section class="chapter" id="images" aria-labelledby="images-title">
+        <h2 id="images-title"><span class="num" aria-hidden="true">6</span>Adding images</h2>
+        <h3>Upload a picture</h3>
+        <ol class="steps">
+          <li>On your computer, make sure the picture is a <code>.png</code>, <code>.jpg</code>, <code>.gif</code> or <code>.webp</code> file under 5 MB, with a simple name such as <code>rocket.png</code>.</li>
+          <li>In your fork, open the <code>quizzes</code> folder. Click <span class="ui">Add file</span>, then <span class="ui">Upload files</span>.</li>
+          <li>Drag the picture onto the page, or click <span class="ui">choose your files</span>.</li>
+          <li>Write a short note, choose <span class="ui">Commit directly to the main branch</span>, and click <span class="ui">Commit changes</span>.</li>
+        </ol>
+        <p>You can drag a whole folder, such as <code>images</code>, to keep things tidy. Then the picture&rsquo;s name in your quiz starts with the folder: <code>images/rocket.png</code>.</p>
+
+        <h3>Use it in a question</h3>
+        <p>Give the picture&rsquo;s name, and describe it in <code>image_alt</code>. The name is written from the quiz file&rsquo;s own folder, and capital letters matter.</p>
+        <pre><code>{
+  "text": "What is this called?",
+  "image": "rocket.png",
+  "image_alt": "A tall white vehicle with fins and a pointed top",
+  "options": [
+    { "text": "A rocket", "correct": true },
+    { "text": "A boat" },
+    { "text": "A train" }
+  ]
+}</code></pre>
+        <p>An answer can be a picture too: <code>{ "image": "rocket.png", "image_alt": "A tall white vehicle with fins" }</code>. When a picture sits next to words that already say everything, use <code>"image_alt": ""</code>.</p>
+
+        <h3>Write good picture descriptions</h3>
+        <p>The description is read aloud to children who cannot see the picture.</p>
+        <ul>
+          <li>Say what you see, not the answer. If the question is &ldquo;What is this?&rdquo;, do not write the name in the description.</li>
+          <li>For picture answers, describe what makes each one different.</li>
+          <li>One short sentence, without &ldquo;Picture of&rdquo;.</li>
+          <li>A test: read the quiz aloud with the pictures hidden. Can someone still answer?</li>
+        </ul>
+
+        <div class="note care">
+          <strong>Use pictures you may use</strong>
+          Use your own drawings and photos, or pictures with an open licence (such as Creative Commons) and write down where they came from. Never use photos of children. The sample pictures in this project are <a class="ext" href="https://github.com/googlefonts/noto-emoji">Noto Emoji</a> by Google (Apache License 2.0).
+        </div>
+        <p>Linking to a picture on another website (an <code>https://</code> address) also works, but the other site can then see the IP address of each child who plays. Uploading the picture yourself avoids that. SVG pictures are not allowed as uploads for safety reasons; convert them to PNG. More in <a class="ext" href="https://github.com/rcocetta/school-quiz#images">Images</a> and <a class="ext" href="https://github.com/rcocetta/school-quiz#describing-images-image_alt">Describing images</a> in the README.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 7 -->
+      <section class="chapter" id="languages" aria-labelledby="lang-title">
+        <h2 id="lang-title"><span class="num" aria-hidden="true">7</span>Multiple languages</h2>
+        <p>One quiz can be played in several languages. Children switch with flag buttons and keep their place and score. To turn it on, list the languages in <code>languages</code>, then write every piece of text once per language. The first language is the one it starts in.</p>
+        <span class="file-name">languages-quiz.json</span>
+        <pre data-quiz="languages-quiz"><code>{
+  "languages": ["en", "it"],
+  "title": { "en": "Space Quiz", "it": "Quiz sullo spazio" },
+  "questions": [
+    {
+      "text": { "en": "Which planet do we live on?", "it": "Su quale pianeta viviamo?" },
+      "explanation": { "en": "We live on Earth.", "it": "Viviamo sulla Terra." },
+      "options": [
+        { "text": { "en": "Earth", "it": "Terra" }, "correct": true },
+        { "text": { "en": "Mars", "it": "Marte" } },
+        { "text": { "any": "Jupiter", "it": "Giove" } }
+      ]
+    },
+    {
+      "text": { "en": "How many planets are there?", "it": "Quanti sono i pianeti?" },
+      "options": [
+        { "text": { "any": "6" } },
+        { "text": { "any": "8" }, "correct": true },
+        { "text": { "any": "12" } }
+      ]
+    }
+  ]
+}</code></pre>
+        <ul>
+          <li><strong>Every text needs every language.</strong> A missing translation is reported, so no child ever sees a gap.</li>
+          <li><strong><code>"any"</code> saves typing.</strong> It is the text for every language that has no line of its own. Use it for numbers and names (<code>{ "any": "8" }</code>), or as a default with exceptions (<code>{ "any": "Jupiter", "it": "Giove" }</code>).</li>
+          <li><strong>Do not mix.</strong> With <code>languages</code> on, plain text without a language is an error. Without it, texts in language groups are an error.</li>
+          <li>The buttons and messages come in <code>en</code> (English), <code>it</code> (Italian), <code>es</code> (Spanish), <code>fr</code> (French) and <code>de</code> (German).</li>
+        </ul>
+        <p>Details are in <a class="ext" href="https://github.com/rcocetta/school-quiz#multiple-languages">Multiple languages</a> in the README.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 8 -->
+      <section class="chapter" id="trouble" aria-labelledby="trouble-title">
+        <h2 id="trouble-title"><span class="num" aria-hidden="true">8</span>When something goes wrong</h2>
+        <p>Before building your site, the Action checks every quiz. If it finds a problem it stops, and <strong>your previous site stays online</strong> until you fix it. Nothing is broken for your pupils.</p>
+        <h3>Find out what is wrong</h3>
+        <ol class="steps">
+          <li>Open the <span class="ui">Actions</span> tab. A run with a red cross has failed.</li>
+          <li>Click the name of that run.</li>
+          <li>Under <strong>Jobs</strong> (left side), click the job called <strong>build</strong>.</li>
+          <li>The step that failed opens by itself. It is the one that checks your quizzes. Read the red lines.</li>
+        </ol>
+        <p>Each line says the file, the place inside it, and what to fix:</p>
+        <pre><code>ERROR   quizzes/space-quiz.json: questions[1].options: exactly one option must have "correct": true (found 0)</code></pre>
+        <p><code>questions[1]</code> is the second question (counting starts at 0), so the second question has no right answer. Open the file, fix it, and commit again. A new run starts by itself.</p>
+
+        <table>
+          <caption>Common messages</caption>
+          <thead><tr><th scope="col">The message says</th><th scope="col">What to do</th></tr></thead>
+          <tbody>
+            <tr><td data-label="The message says"><code>not valid JSON at line L, column C</code></td><td data-label="What to do">A punctuation slip near that spot: a missing or extra comma, quote or bracket. The last item in a list has no comma.</td></tr>
+            <tr><td data-label="The message says"><code>unknown field "corect" (did you mean "correct"?)</code></td><td data-label="What to do">A field name is misspelt. Use the suggested one.</td></tr>
+            <tr><td data-label="The message says"><code>exactly one option must have "correct": true</code> (found 0 or 2)</td><td data-label="What to do">Mark one right answer per question, no more and no fewer.</td></tr>
+            <tr><td data-label="The message says"><code>needs at least 2 entries</code></td><td data-label="What to do">Add more answers to that question.</td></tr>
+            <tr><td data-label="The message says"><code>questions_per_quiz is 5 but the quiz only has 3 questions</code></td><td data-label="What to do">Add questions, or lower the number, or remove the line.</td></tr>
+            <tr><td data-label="The message says"><code>missing translation "it"</code></td><td data-label="What to do">Add the Italian text, or use <code>{ "any": "..." }</code> if it is the same in every language.</td></tr>
+            <tr><td data-label="The message says"><code>image file not found</code></td><td data-label="What to do">The picture&rsquo;s name or folder is wrong, or you have not uploaded it yet. Check spelling and capital letters.</td></tr>
+            <tr><td data-label="The message says"><code>local images must be one of: png, jpg, jpeg, gif, webp</code></td><td data-label="What to do">Convert the picture to PNG or JPG.</td></tr>
+            <tr><td data-label="The message says"><code>image is too large (over 5 MB)</code></td><td data-label="What to do">Make the picture smaller. A few hundred pixels wide is plenty.</td></tr>
+            <tr><td data-label="The message says"><code>author.url: must be a web address</code></td><td data-label="What to do">Write the full address, starting with <code>https://</code>.</td></tr>
+          </tbody>
+        </table>
+        <p>The README lists more in <a class="ext" href="https://github.com/rcocetta/school-quiz#common-errors-and-fixes">Common errors and fixes</a>.</p>
+
+        <h3>Other hiccups</h3>
+        <ul>
+          <li><strong>The page says &ldquo;404&rdquo;.</strong> Check that <span class="ui">Source</span> is set to <span class="ui">GitHub Actions</span> (section 1, step 3), and that a run has finished with a green tick.</li>
+          <li><strong>Nothing happens when I save.</strong> Check the <span class="ui">Actions</span> tab: workflows may still need switching on (section 1, step 4).</li>
+          <li><strong>My change is not there yet.</strong> Wait a minute after the green tick, then refresh. Browsers sometimes keep an old copy for a little while.</li>
+        </ul>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 9 -->
+      <section class="chapter" id="project-pages" aria-labelledby="pp-title">
+        <h2 id="pp-title"><span class="num" aria-hidden="true">9</span>Turning off the project pages</h2>
+        <p>By default your site shows this project&rsquo;s welcome page and guide, with your quizzes under <code>quizzes/</code>. If you want your own quiz list to be the front page, switch the project pages off:</p>
+        <ol class="steps">
+          <li>In your fork click <span class="ui">Settings</span>.</li>
+          <li>In the left sidebar, in the &ldquo;Security&rdquo; section, click <span class="ui">Secrets and variables</span>, then click <span class="ui">Actions</span>.</li>
+          <li>Click the <span class="ui">Variables</span> tab, then click <span class="ui">New repository variable</span>.</li>
+          <li>In the <strong>Name</strong> box type <code>PROJECT_PAGES</code>. In the <strong>Value</strong> box type <code>false</code>.</li>
+          <li>Click <span class="ui">Add variable</span>.</li>
+          <li>Build again: open the <span class="ui">Actions</span> tab, click the Pages workflow, and use <span class="ui">Run workflow</span> as in section 1 (or just save any change to a quiz).</li>
+        </ol>
+        <p>Your quiz list is now at <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code>. To bring the project pages back, delete the variable or set it to <code>true</code>.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 10 -->
+      <section class="chapter" id="single-file" aria-labelledby="single-title">
+        <h2 id="single-title"><span class="num" aria-hidden="true">10</span>Sharing a quiz without a website</h2>
+        <p>Sometimes you just want one file to email, put on a USB stick, or open without internet. The <code>quizgen</code> program can turn a quiz into <strong>one self-contained web page</strong> that opens with a double-click.</p>
+        <p>This needs a terminal and Python on your computer, so ask a colleague, a family member or a developer for help if that is new to you. Then, in a terminal:</p>
+        <pre><code>pipx install git+https://github.com/rcocetta/school-quiz
+quizgen build space-quiz.json</code></pre>
+        <p>That writes <code>space-quiz.html</code> next to your quiz. Details, other install options and what each command does are in the README: <a class="ext" href="https://github.com/rcocetta/school-quiz#installation">Installation</a> and <a class="ext" href="https://github.com/rcocetta/school-quiz#output-modes">Output modes</a>.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 11 -->
+      <section class="chapter" id="contribute" aria-labelledby="contrib-title">
+        <h2 id="contrib-title"><span class="num" aria-hidden="true">11</span>Contributing back</h2>
+        <p>Made a quiz other children could enjoy? You can add it to the shared library at <a class="ext" href="https://github.com/rcocetta/school-quiz">rcocetta/school-quiz</a> with a <em>pull request</em>, which is a polite way of saying &ldquo;please add my change&rdquo;. A single quiz goes in the <code>quizzes</code> folder. A whole set, such as your class&rsquo;s or your school&rsquo;s, goes in its own folder, <code>quizzes/&lt;collection&gt;/</code>, which gets its own page.</p>
+        <ol class="steps">
+          <li>In your fork, add your quiz file (section 2) at the right place, for example <code>quizzes/class-4b/space-quiz.json</code>. Typing a folder name and <code>/</code> in the file name box creates the folder.</li>
+          <li>When you commit, choose <span class="ui">Create a new branch for this commit and start a pull request</span> and click <span class="ui">Propose changes</span>. GitHub keeps your site as it is.</li>
+          <li>Back on your fork&rsquo;s main page, click <span class="ui">Compare &amp; pull request</span> in the yellow bar. If you do not see it, open the original project, click the <span class="ui">Pull requests</span> tab, then <span class="ui">New pull request</span>, then <span class="ui">compare across forks</span>.</li>
+          <li>Check that the base repository is <code>rcocetta/school-quiz</code>, write a title and a few words about the quiz, and click <span class="ui">Create pull request</span>.</li>
+        </ol>
+        <p>Not comfortable with this? Open an <a class="ext" href="https://github.com/rcocetta/school-quiz/issues">issue</a> and attach the quiz file, and someone will help.</p>
+        <h3>The quiz checklist</h3>
+        <p>Before you send it, please check that:</p>
+        <ul>
+          <li>It suits the age group it is meant for.</li>
+          <li>You have double-checked every right answer.</li>
+          <li>Pictures are yours or openly licensed, and you have noted the source.</li>
+          <li>It has no personal data about children: no names, photos or contact details.</li>
+          <li>It passes the checks. The pull request shows a green tick when the quizzes validate.</li>
+        </ul>
+        <p>The full rules are in <a class="ext" href="https://github.com/rcocetta/school-quiz/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+      <!-- 12 -->
+      <section class="chapter" id="developers" aria-labelledby="dev-title">
+        <h2 id="dev-title"><span class="num" aria-hidden="true">12</span>For developers</h2>
+        <p>Prefer a terminal? Everything the Action does you can do locally: write quizzes in your editor, run <code>quizgen validate</code>, build a site and preview it. The README covers it all.</p>
+        <ul>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz#installation">Installation</a></li>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz#command-line-reference">Command line reference</a></li>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz#publishing-on-github-pages">Publishing on GitHub Pages</a> (including a workflow you can copy)</li>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz#development">Development</a> and <a class="ext" href="https://github.com/rcocetta/school-quiz/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for working on the tool itself</li>
+        </ul>
+        <p>Ready? <a href="../quizzes/">Try a quiz</a> or go <a href="../">back to the start</a>.</p>
+        <a class="to-top" href="#contents">Back to the contents</a>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>school-quiz is free software, licensed under the <a class="ext" href="https://github.com/rcocetta/school-quiz/blob/main/LICENSE">GPL-3.0-or-later</a>. Made with care for curious kids everywhere.</p>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="../">Home</a></li>
+          <li><a href="../quizzes/">Quizzes</a></li>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz">Source on GitHub</a></li>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz/issues">Report a problem or share an idea</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

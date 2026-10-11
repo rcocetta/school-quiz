@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>school-quiz: free quizzes for kids</title>
+  <meta name="description" content="Free, simple quizzes for kids, made by teachers and parents, hosted anywhere. No ads, no tracking, no accounts.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the content</a>
+
+  <header class="site-header">
+    <a class="brand" href="./"><img src="assets/logo.svg" alt="" width="40" height="40"><span>school-quiz</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="quizzes/">Quizzes</a></li>
+        <li><a href="guide/">Make your own</a></li>
+        <li><a class="ext" href="https://github.com/rcocetta/school-quiz">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="hero" aria-labelledby="top">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Open source and free</p>
+          <h1 id="top">school-quiz</h1>
+          <p class="lead">Free, simple quizzes for kids, made by teachers and parents, hosted anywhere.</p>
+          <div class="actions">
+            <a class="btn" href="quizzes/">Try a quiz</a>
+            <a class="btn secondary" href="guide/">Make your own</a>
+          </div>
+          <p class="reassure">No sign-up. No ads. No tracking.</p>
+        </div>
+        <figure class="shot">
+          <img src="assets/screenshots/question.png" width="820" height="842" alt="A quiz question on a phone: Question 1 of 8, four big answer buttons, the right answer marked green with a tick, and a short explanation.">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="what" aria-labelledby="what-title">
+      <div class="wrap">
+        <h2 id="what-title">What is it?</h2>
+        <p class="intro">A quiz is a short text file with questions and answers. school-quiz turns it into a friendly web page with big buttons, a kind word when an answer is wrong, a score at the end, and a fresh mix of questions every time. Grown-ups write the questions. Children tap the answers.</p>
+        <ul class="shots">
+          <li>
+            <figure>
+              <div class="shot"><img src="assets/screenshots/start.png" width="820" height="489" loading="lazy" decoding="async" alt="The start screen of the Farm Animals quiz with a big Start the quiz button."></div>
+              <figcaption><strong>Start.</strong> A title, who made it, and one big button.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <div class="shot"><img src="assets/screenshots/question.png" width="820" height="842" loading="lazy" decoding="async" alt="Question 1 of 8 with the right answer marked green with a tick and a short explanation."></div>
+              <figcaption><strong>Answer.</strong> Tap, check, and learn why. Wrong answers get a gentle &ldquo;Not quite!&rdquo;.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <div class="shot"><img src="assets/screenshots/end.png" width="820" height="1100" loading="lazy" decoding="async" alt="End screen: a score of 6 out of 8, an encouraging message and a list reviewing every answer."></div>
+              <figcaption><strong>Finish.</strong> A score, kind words, and a look back at every answer.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <div class="shot"><img src="assets/screenshots/languages.png" width="820" height="553" loading="lazy" decoding="async" alt="The Times Tables quiz in Italian, with EN, IT and FR language buttons at the top."></div>
+              <figcaption><strong>Many languages.</strong> One quiz can speak several. Switching keeps your place.</figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure>
+              <div class="shot"><img src="assets/screenshots/index.png" width="820" height="420" loading="lazy" decoding="async" alt="A quiz index page with a card for each quiz."></div>
+              <figcaption><strong>Your own site.</strong> Every quiz you add gets a card on your quiz page.</figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section band" id="principles" aria-labelledby="principles-title">
+      <div class="wrap">
+        <h2 id="principles-title">Our promise</h2>
+        <ul class="cards four">
+          <li class="card">
+            <span class="icon" aria-hidden="true">&#127752;</span>
+            <h3>Built for kids</h3>
+            <p>Big buttons, clear text and a kind tone. No ads, no tracking, no accounts. Designed for phones, tablets and computers.</p>
+          </li>
+          <li class="card">
+            <span class="icon" aria-hidden="true">&#128155;</span>
+            <h3>Free forever</h3>
+            <p>Licensed GPL-3.0-or-later. Nobody can take it away or put it behind a paywall.</p>
+          </li>
+          <li class="card">
+            <span class="icon" aria-hidden="true">&#127775;</span>
+            <h3>Yours to fork</h3>
+            <p>Copy the whole project and run your own quiz site for your class, your school or your family.</p>
+          </li>
+          <li class="card">
+            <span class="icon" aria-hidden="true">&#129309;</span>
+            <h3>Open to contributions</h3>
+            <p>Fixed a bug, wrote a great quiz or translated the buttons? Send it back and help every child.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <h2 id="how-title">How it works</h2>
+        <p class="intro">Three steps. You do not need to install anything or know how to program.</p>
+        <ol class="cards three how">
+          <li class="card">
+            <h3>Fork it</h3>
+            <p>Make your own copy of school-quiz on GitHub. It is one click and it is free.</p>
+          </li>
+          <li class="card">
+            <h3>Write your questions</h3>
+            <p>Open a simple text file in your browser. Type a question, add the answers, mark the right one.</p>
+          </li>
+          <li class="card">
+            <h3>Share the link</h3>
+            <p>GitHub builds your quiz site by itself. Send the address to your class or your family.</p>
+          </li>
+        </ol>
+        <div class="actions after-cards">
+          <a class="btn" href="guide/">Follow the step-by-step guide</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band" id="involved" aria-labelledby="involved-title">
+      <div class="wrap">
+        <h2 id="involved-title">Get involved</h2>
+        <p class="intro">school-quiz grows with help from teachers, parents and developers. There are three ways to join in.</p>
+        <ul class="cards three">
+          <li class="card">
+            <span class="icon" aria-hidden="true">&#128736;</span>
+            <h3>Code</h3>
+            <p>Improve the tool, the quiz page, the docs or the tests.</p>
+          </li>
+          <li class="card">
+            <span class="icon" aria-hidden="true">&#10067;</span>
+            <h3>Quizzes</h3>
+            <p>Add a quiz to the shared library, so other children can play it too.</p>
+          </li>
+          <li class="card">
+            <span class="icon" aria-hidden="true">&#128218;</span>
+            <h3>Collections</h3>
+            <p>Share a whole set of quizzes, such as one teacher&rsquo;s or one school&rsquo;s, with its own page.</p>
+          </li>
+        </ul>
+        <div class="actions after-cards">
+          <a class="btn ext" href="https://github.com/rcocetta/school-quiz/blob/main/CONTRIBUTING.md">How to contribute</a>
+          <a class="btn quiet ext" href="https://github.com/rcocetta/school-quiz">See the project on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>school-quiz is free software, licensed under the <a class="ext" href="https://github.com/rcocetta/school-quiz/blob/main/LICENSE">GPL-3.0-or-later</a>. It was made with care for curious kids everywhere, and for the grown-ups who write their questions.</p>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="quizzes/">Quizzes</a></li>
+          <li><a href="guide/">Guide</a></li>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz">Source on GitHub</a></li>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz/issues">Report a problem or share an idea</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
