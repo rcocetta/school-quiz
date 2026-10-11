@@ -16,7 +16,7 @@ Not in scope: the content of third-party image hosts that a quiz author links to
 
 ## Maintainer notes
 
-The Claude review workflow needs an `ANTHROPIC_API_KEY` repository secret. Use a dedicated key with a low spend limit, not a key you use elsewhere.
+The Claude review workflow needs a `CLAUDE_CODE_OAUTH_TOKEN` repository secret, made with `claude setup-token` and used only for this workflow. If it might have leaked, revoke it and make a new one.
 
 ## Supported versions
 
