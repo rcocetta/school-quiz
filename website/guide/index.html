@@ -69,12 +69,12 @@
           <dd>A separate line of changes inside a repository. The main one is called <code>main</code>.</dd>
           <dt>Pull request</dt>
           <dd>A polite request to add your changes to someone else&rsquo;s project.</dd>
-          <dt>Workflow</dt>
-          <dd>The list of jobs the Action robot follows. This project already includes one.</dd>
           <dt>Action</dt>
-          <dd>A little robot on GitHub. When you save a change, it checks your quizzes and builds your website.</dd>
+          <dd>A little robot on GitHub. When you save a change, it checks your quizzes for mistakes and tells you with a green tick or a red cross.</dd>
+          <dt>Build</dt>
+          <dd>Turning your quiz files into web pages. A small program called <code>quizgen</code> does it, on a computer, and puts the result in the <code>docs</code> folder.</dd>
           <dt>Pages</dt>
-          <dd>GitHub Pages: a free service that turns files in a repository into a website anyone can visit.</dd>
+          <dd>GitHub Pages: a free service that shows the files in a repository&rsquo;s <code>docs</code> folder as a website anyone can visit.</dd>
           <dt>JSON</dt>
           <dd>The kind of text file a quiz is written in. It is just words in quotes, with a few commas and brackets.</dd>
         </dl>
@@ -96,26 +96,22 @@
           </li>
           <li>
             <strong>Turn on GitHub Pages.</strong>
-            <p>Under your repository name click <span class="ui">Settings</span>. If you cannot see it, open the <span class="ui">&hellip;</span> (More) menu and choose it there. In the left sidebar, under &ldquo;Code, planning, and automation&rdquo;, click <span class="ui">Pages</span>. Under &ldquo;Build and deployment&rdquo;, find &ldquo;Source&rdquo; and choose <span class="ui">GitHub Actions</span>. There is nothing to save: the choice is stored straight away.</p>
-          </li>
-          <li>
-            <strong>Allow the Action to run.</strong>
-            <p>Click the <span class="ui">Actions</span> tab under your repository name. GitHub switches workflows off in new forks until you say they are fine. If you see a message that workflows are not running on this forked repository, read it, then click the green button that says &ldquo;I understand my workflows, go ahead and enable them&rdquo;.</p>
-          </li>
-          <li>
-            <strong>Build your site.</strong>
-            <p>Still on the <span class="ui">Actions</span> tab, click <span class="ui">Deploy to GitHub Pages</span> in the left sidebar. Above the list of runs click <span class="ui">Run workflow</span>, then click the green <span class="ui">Run workflow</span> button in the box that opens.</p>
+            <p>Under your repository name click <span class="ui">Settings</span>. If you cannot see it, open the <span class="ui">&hellip;</span> (More) menu and choose it there. In the left sidebar, under &ldquo;Code, planning, and automation&rdquo;, click <span class="ui">Pages</span>. Under &ldquo;Build and deployment&rdquo;, under &ldquo;Source&rdquo;, choose <span class="ui">Deploy from a branch</span>. Then, in the branch menu, choose <span class="ui">main</span>, and in the folder menu next to it choose <span class="ui">/docs</span>. Click <span class="ui">Save</span>.</p>
           </li>
           <li>
             <strong>Wait, then visit your site.</strong>
-            <p>After a minute or two the new run shows a green tick. Your site is now live at:</p>
+            <p>Click the <span class="ui">Actions</span> tab under your repository name. GitHub starts a run called &ldquo;pages build and deployment&rdquo; by itself. After a minute or two it shows a green tick. (GitHub says a change can take up to 10 minutes to appear.) Your site is now live at:</p>
             <p><code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code></p>
             <p>For example, user <code>msrossi</code> with a repository called <code>school-quiz</code> gets <code>https://msrossi.github.io/school-quiz/</code>. Your quizzes are on the <code>quizzes/</code> page of that address.</p>
+            <p>It works straight away because your fork already contains this project&rsquo;s finished website in its <code>docs</code> folder. You will see the sample quizzes.</p>
           </li>
         </ol>
         <div class="note">
           <strong>Good to know</strong>
-          Your site starts with this project&rsquo;s welcome page and this guide, and your quizzes are under <code>quizzes/</code>. If you would rather have your quizzes on the front page, see <a href="#project-pages">Turning off the project pages</a>.
+          Your site starts with this project&rsquo;s welcome page and this guide, and your quizzes are under <code>quizzes/</code>. If you would rather have your quizzes on the front page, see <a href="#project-pages">Turning off the project pages</a>.</div>
+        <div class="note">
+          <strong>Editing is easy, publishing needs one more step</strong>
+          You can write and fix quizzes in your browser, and GitHub checks them for you. But the website in <code>docs</code> is only updated when someone runs the build tool on a computer. Section 2 explains it. If that is not for you, ask a colleague, a family member or a developer, or <a class="ext" href="https://github.com/rcocetta/school-quiz/issues">open an issue</a> and ask for help.
         </div>
         <div class="note care">
           <strong>Careful</strong>
@@ -135,8 +131,20 @@
           <li>In the file name box type a name ending in <code>.json</code>, for example <code>space-quiz.json</code>. Use small letters and dashes, no spaces. This name becomes part of the quiz address.</li>
           <li>Copy the quiz below and paste it into the big text box.</li>
           <li>Click <span class="ui">Commit changes&hellip;</span> in the top-right corner. In the box that opens, write a short note such as &ldquo;Add space quiz&rdquo;, choose <span class="ui">Commit directly to the main branch</span>, and click <span class="ui">Commit changes</span>.</li>
-          <li>Open the <span class="ui">Actions</span> tab. A new run appears. When it shows a green tick (about a minute), open <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/quizzes/</code> and refresh the page. Your quiz is there. If you still see the old page, wait a minute and refresh again.</li>
+          <li>Open the <span class="ui">Actions</span> tab. A new run of the checks appears. A green tick means your quiz is valid. A red cross means something needs fixing (see <a href="#trouble">When something goes wrong</a>). Your quiz is <strong>not on your website yet</strong>. That is the next part.</li>
         </ol>
+
+        <h3>Publish it</h3>
+        <p>Your website is built from your quizzes by a small program, <code>quizgen</code>, and the result is saved in the <code>docs</code> folder. GitHub does not do this step for you, so each time you add or change a quiz, someone has to:</p>
+        <ol class="steps" role="list">
+          <li>Install <code>quizgen</code> and download your fork to a computer. The README has step-by-step help: <a class="ext" href="https://github.com/rcocetta/school-quiz#installation">Installation</a>.</li>
+          <li>In a terminal, in your fork&rsquo;s folder, run <code>python scripts/build_docs.py</code>. This rebuilds the <code>docs</code> folder.</li>
+          <li>Commit and push the changed <code>docs</code> folder to <code>main</code>. A minute or two later your site shows the new quiz. If you still see the old page, wait a little and refresh.</li>
+        </ol>
+        <div class="note">
+          <strong>Not a computer person?</strong>
+          That is fine. Write the quiz yourself, then ask a colleague, a family member or a developer to do the three steps above, or <a class="ext" href="https://github.com/rcocetta/school-quiz/issues">open an issue</a> and ask for help. A red &ldquo;docs/ is out of date&rdquo; cross on your fork only means the build has not been run since your last change.
+        </div>
 
         <span class="file-name">space-quiz.json</span>
         <pre data-quiz="space-quiz"><code>{
@@ -384,17 +392,18 @@
       <!-- 8 -->
       <section class="chapter" id="trouble" tabindex="-1">
         <h2 id="trouble-title"><span class="num" aria-hidden="true">8</span>When something goes wrong</h2>
-        <p>Before building your site, the Action checks every quiz. If it finds a problem it stops, and <strong>your previous site stays online</strong> until you fix it. Nothing is broken for your pupils.</p>
+        <p>Each time you save a change, GitHub checks every quiz. If it finds a problem you get a red cross, but <strong>your site stays online as it was</strong>, because the website only changes when someone rebuilds <code>docs</code>. Nothing is broken for your pupils.</p>
         <h3>Find out what is wrong</h3>
         <ol class="steps" role="list">
           <li>Open the <span class="ui">Actions</span> tab. A run with a red cross has failed.</li>
           <li>Click the name of that run.</li>
-          <li>Under <strong>Jobs</strong> (left side), click the job called <strong>Build site</strong>.</li>
-          <li>The step that failed opens by itself. It is usually <strong>Check the quizzes</strong>. Read the red lines.</li>
+          <li>Under <strong>Jobs</strong> (left side), click the job with the red cross. The step that failed opens by itself.</li>
+          <li>If it is the step called <strong>Validate quizzes/</strong>, a quiz has a problem. Read the red lines.</li>
+          <li>If the message says <strong>docs/ is out of date</strong>, your quizzes are fine, but the website has not been rebuilt. Follow &ldquo;Publish it&rdquo; in <a href="#first-quiz">Write your first quiz</a>.</li>
         </ol>
         <p>Each line says the file, the place inside it, and what to fix:</p>
         <pre><code>ERROR   quizzes/space-quiz.json: questions[1].options: exactly one option must have "correct": true (found 0)</code></pre>
-        <p><code>questions[1]</code> is the second question (counting starts at 0), so the second question has no right answer. Open the file, fix it, and commit again. A new run starts by itself.</p>
+        <p><code>questions[1]</code> is the second question (counting starts at 0), so the second question has no right answer. Open the file, fix it, and commit again. A new check starts by itself.</p>
 
         <table role="table">
           <caption>Common error messages and what to do</caption>
@@ -416,11 +425,11 @@
 
         <h3>Other hiccups</h3>
         <ul>
-          <li><strong>The page says &ldquo;404&rdquo;.</strong> Check that <span class="ui">Source</span> is set to <span class="ui">GitHub Actions</span> (<a href="#make-your-site">Make your own quiz site in 10 minutes</a>, step 3), and that a run has finished with a green tick.</li>
-          <li><strong>Nothing happens when I save.</strong> Check the <span class="ui">Actions</span> tab: workflows may still need switching on (<a href="#make-your-site">Make your own quiz site in 10 minutes</a>, step 4).</li>
+          <li><strong>The page says &ldquo;404&rdquo;.</strong> In <span class="ui">Settings</span> &rarr; <span class="ui">Pages</span>, check that <span class="ui">Source</span> is <span class="ui">Deploy from a branch</span>, with branch <span class="ui">main</span> and folder <span class="ui">/docs</span> (<a href="#make-your-site">Make your own quiz site in 10 minutes</a>, step 3). Also check that the <code>docs</code> folder in your repository contains a file called <code>index.html</code>.</li>
+          <li><strong>I saved a quiz but my website did not change.</strong> That is expected: saving only runs the checks. The website changes after someone rebuilds <code>docs</code> (see &ldquo;Publish it&rdquo; in <a href="#first-quiz">Write your first quiz</a>).</li>
           <li><strong>The quiz page says there are no quizzes yet.</strong> Every quiz file was deleted. Add one as <code>quizzes/your-quiz.json</code> (see <a href="#first-quiz">Write your first quiz</a>).</li>
-          <li><strong>The build fails with &ldquo;quizzes/ folder not found&rdquo;.</strong> The whole <code>quizzes</code> folder was deleted (GitHub removes a folder once it is empty). Create <code>quizzes/your-quiz.json</code> again with <span class="ui">Add file</span>.</li>
-          <li><strong>My change is not there yet.</strong> Wait a minute after the green tick, then refresh. Browsers sometimes keep an old copy for a little while.</li>
+          <li><strong>The build says &ldquo;quizzes/ folder not found&rdquo;.</strong> The whole <code>quizzes</code> folder was deleted (GitHub removes a folder once it is empty). Create <code>quizzes/your-quiz.json</code> again with <span class="ui">Add file</span>.</li>
+          <li><strong>My change is not there yet.</strong> After the new <code>docs</code> folder is pushed, wait a few minutes, then refresh. Browsers sometimes keep an old copy for a little while.</li>
         </ul>
         <a class="to-top" href="#contents">Back to the contents</a>
       </section>
@@ -428,16 +437,12 @@
       <!-- 9 -->
       <section class="chapter" id="project-pages" tabindex="-1">
         <h2 id="pp-title"><span class="num" aria-hidden="true">9</span>Turning off the project pages</h2>
-        <p>By default your site shows this project&rsquo;s welcome page and guide, with your quizzes under <code>quizzes/</code>. If you want your own quiz list to be the front page, switch the project pages off:</p>
+        <p>By default your site shows this project&rsquo;s welcome page and guide, with your quizzes under <code>quizzes/</code>. If you want your own quiz list to be the front page, build without the project pages. This is a job for the build tool (see &ldquo;Publish it&rdquo; in <a href="#first-quiz">Write your first quiz</a>):</p>
         <ol class="steps" role="list">
-          <li>In your fork click <span class="ui">Settings</span>.</li>
-          <li>In the left sidebar, in the &ldquo;Security&rdquo; section, click <span class="ui">Secrets and variables</span>, then click <span class="ui">Actions</span>.</li>
-          <li>Click the <span class="ui">Variables</span> tab, then click <span class="ui">New repository variable</span>.</li>
-          <li>In the <strong>Name</strong> box type <code>PROJECT_PAGES</code>. In the <strong>Value</strong> box type <code>false</code>.</li>
-          <li>Click <span class="ui">Add variable</span>.</li>
-          <li>Build again: open the <span class="ui">Actions</span> tab, click <span class="ui">Deploy to GitHub Pages</span>, and use <span class="ui">Run workflow</span> as in <a href="#make-your-site">Make your own quiz site in 10 minutes</a> (or just save any change to a quiz).</li>
+          <li>In a terminal, in your fork&rsquo;s folder, run <code>python scripts/build_docs.py --quizzes-only</code>.</li>
+          <li>Commit and push the changed <code>docs</code> folder to <code>main</code>.</li>
         </ol>
-        <p>Your quiz list is now at <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code>. To bring the project pages back, delete the variable or set it to <code>true</code>.</p>
+        <p>Your quiz list is now at <code>https://&lt;your-username&gt;.github.io/&lt;repository-name&gt;/</code>. To bring the project pages back, run <code>python scripts/build_docs.py</code> without <code>--quizzes-only</code> and commit again. Remember to use the same command every time you rebuild.</p>
         <a class="to-top" href="#contents">Back to the contents</a>
       </section>
 
@@ -466,6 +471,7 @@ quizgen build space-quiz.json</code></pre>
           <li>When you commit, choose <span class="ui">Create a new branch for this commit and start a pull request</span> and click <span class="ui">Propose changes</span>.</li>
           <li>On the page that opens, check that the base repository is <code>rcocetta/school-quiz</code>. If you are asked, you can also find the request by clicking <span class="ui">Compare &amp; pull request</span> in the yellow bar on your fork, or the <span class="ui">Pull requests</span> tab, then <span class="ui">New pull request</span>, then <span class="ui">compare across forks</span> on the original project.</li>
           <li>Before sending, click the <span class="ui">Files changed</span> tab. You should see only your own file, added. If you see sample quizzes deleted, stop and open an issue instead.</li>
+          <li>If you can, rebuild the <code>docs</code> folder with <code>python scripts/build_docs.py</code> and include it in your pull request. If you cannot, just say so in your pull request, and the maintainer will rebuild it for you.</li>
           <li>Write a title and a few words about the quiz, then click <span class="ui">Create pull request</span>.</li>
         </ol>
         <p>Not comfortable with any of this? Opening an issue with your quiz file attached is always fine.</p>
@@ -476,7 +482,7 @@ quizgen build space-quiz.json</code></pre>
           <li>You have double-checked every right answer.</li>
           <li>Pictures are yours or openly licensed, and you have noted the source.</li>
           <li>It has no personal data about children: no names, photos or contact details.</li>
-          <li>It passes the checks. The pull request shows a green tick when the quizzes validate (the first time you contribute, the checks may wait until the maintainer allows them to run).</li>
+          <li>It passes the checks. The pull request shows a green tick when the quizzes validate. A red &ldquo;docs/ is out of date&rdquo; only means the <code>docs</code> folder needs rebuilding, which the maintainer can do. (The first time you contribute, the checks may wait until the maintainer allows them to run.)</li>
         </ul>
         <p>The full rules are in <a class="ext" href="https://github.com/rcocetta/school-quiz/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
         <a class="to-top" href="#contents">Back to the contents</a>
@@ -485,11 +491,11 @@ quizgen build space-quiz.json</code></pre>
       <!-- 12 -->
       <section class="chapter" id="developers" tabindex="-1">
         <h2 id="dev-title"><span class="num" aria-hidden="true">12</span>For developers</h2>
-        <p>Prefer a terminal? Everything the Action does you can do locally: write quizzes in your editor, run <code>quizgen validate</code>, build a site and preview it. The README covers it all.</p>
+        <p>Prefer a terminal? Everything can be done locally: write quizzes in your editor, run <code>quizgen validate</code>, rebuild <code>docs</code> with <code>python scripts/build_docs.py</code> and preview it. The README covers it all.</p>
         <ul>
           <li><a class="ext" href="https://github.com/rcocetta/school-quiz#installation">Installation</a></li>
           <li><a class="ext" href="https://github.com/rcocetta/school-quiz#command-line-reference">Command line reference</a></li>
-          <li><a class="ext" href="https://github.com/rcocetta/school-quiz#publishing-on-github-pages">Publishing on GitHub Pages</a> (including a workflow you can copy)</li>
+          <li><a class="ext" href="https://github.com/rcocetta/school-quiz#publishing-on-github-pages">Publishing on GitHub Pages</a> (serving the <code>docs</code> folder)</li>
           <li><a class="ext" href="https://github.com/rcocetta/school-quiz#development">Development</a> and <a class="ext" href="https://github.com/rcocetta/school-quiz/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for working on the tool itself</li>
         </ul>
         <p>Ready? <a href="../quizzes/">Try a quiz</a> or go <a href="../">back to the start</a>.</p>
