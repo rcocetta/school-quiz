@@ -137,7 +137,7 @@ python3 -m venv .venv
 .venv/bin/pip install -e '.[dev]'
 ```
 
-Check it works: `quizgen validate examples/` (or `python -m quizgen validate examples/`).
+Check it works: `quizgen --help` should list the `build` and `validate` commands. If you installed from source, `quizgen validate examples/` also checks the example quizzes.
 
 To upgrade a pipx install, run `pipx upgrade quizgen`. To install a particular version, add `@<tag-or-commit>` to the end of the GitHub address.
 
@@ -147,7 +147,7 @@ A quiz is a text file ending in `.json`. The smallest useful quiz is the one in 
 
 JSON is picky about punctuation: text in double quotes, commas between items but not after the last one, curly braces `{ }` around objects and square brackets `[ ]` around lists. If you get it wrong, `quizgen validate` tells you the line and column. Ready-made examples to copy are in [`examples/`](examples/).
 
-A fuller single-language quiz. It uses a picture: copy `cow.png` from [`examples/images/`](examples/images/) into an `images/` folder next to the file, or delete the two image lines:
+A fuller single-language quiz. It uses a picture: download [`cow.png`](https://github.com/rcocetta/school-quiz/blob/main/examples/images/cow.png) ("Download raw file" button) into an `images/` folder next to the file, or delete the `"image"` and `"image_alt"` lines:
 
 <!-- file: farm.json -->
 ```json

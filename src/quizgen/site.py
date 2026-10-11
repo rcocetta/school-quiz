@@ -144,7 +144,10 @@ def _load_all(src: Path, override: int | None, result: ValidationResult) -> tupl
     top = _Section("", site, site_lang)
     sections = {name: _Section(name, collection_meta.get(name, {}), collection_meta.get(name, {}).get("language", site_lang))
                 for name in sorted({f for f, _ in quizzes if f})}
-    for name in set(collection_meta) - set(sections):
+    # only warn about folders with no quiz files at all, not ones whose quizzes failed validation
+    has_quiz_files = {path.parent.name for path in files
+                      if path.parent != src and path.name != "collection.json"}
+    for name in set(collection_meta) - has_quiz_files:
         result.warnings.append(Issue(str(src / name), "", "this collection has no quizzes, so it is skipped"))
     for folder, quiz in quizzes:
         section = sections[folder] if folder else top

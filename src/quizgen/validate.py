@@ -572,7 +572,7 @@ def _check_question_count(data: dict, ctx: _Ctx, override: int | None) -> int:
     if wanted < 1:
         ctx.error(path, f"{name} must be at least 1")
     elif wanted > total:
-        ctx.error(path, f"{name} is {wanted} but the quiz only has {total} questions; "
+        ctx.error(path, f"{name} is {wanted} but the quiz only has {total} {'question' if total == 1 else 'questions'}; "
                         "add questions or lower the number")
     elif wanted == total:
         ctx.warn(path, f"every attempt will use all {total} questions (same set, only the order changes)")
