@@ -6,7 +6,8 @@ import argparse
 import sys
 from pathlib import Path
 
-from quizgen.build import build_single, build_site
+from quizgen.build import build_single
+from quizgen.site import build_site
 from quizgen.validate import ValidationResult, discover, load_collection, load_quiz, load_site
 
 

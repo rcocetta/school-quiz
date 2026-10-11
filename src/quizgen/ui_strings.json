@@ -27,6 +27,8 @@
     "collections": "Collections",
     "quizzes_count_one": "1 quiz",
     "questions_count_one": "1 question",
+    "check": "Check my answer",
+    "languages": "Languages",
     "messages": {
       "great": "Amazing! You really know your stuff!",
       "good": "Good job! You're getting there!",
@@ -61,6 +63,8 @@
     "collections": "Raccolte",
     "quizzes_count_one": "1 quiz",
     "questions_count_one": "1 domanda",
+    "check": "Controlla la risposta",
+    "languages": "Lingue",
     "messages": {
       "great": "Fantastico! Te la cavi alla grande!",
       "good": "Bel lavoro! Ci sei quasi!",
@@ -95,6 +99,8 @@
     "collections": "Colecciones",
     "quizzes_count_one": "1 cuestionario",
     "questions_count_one": "1 pregunta",
+    "check": "Comprobar mi respuesta",
+    "languages": "Idiomas",
     "messages": {
       "great": "¡Increíble! ¡Sabes muchísimo!",
       "good": "¡Buen trabajo! ¡Vas muy bien!",
@@ -129,6 +135,8 @@
     "collections": "Collections",
     "quizzes_count_one": "1 quiz",
     "questions_count_one": "1 question",
+    "check": "Vérifier ma réponse",
+    "languages": "Langues",
     "messages": {
       "great": "Super ! Tu connais vraiment tout !",
       "good": "Bien joué ! Tu progresses !",
@@ -163,6 +171,8 @@
     "collections": "Sammlungen",
     "quizzes_count_one": "1 Quiz",
     "questions_count_one": "1 Frage",
+    "check": "Antwort prüfen",
+    "languages": "Sprachen",
     "messages": {
       "great": "Toll! Du kannst wirklich viel!",
       "good": "Gut gemacht! Du bist auf dem richtigen Weg!",

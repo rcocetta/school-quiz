@@ -10,6 +10,7 @@ from __future__ import annotations
 import difflib
 import json
 import os
+import posixpath
 import re
 import unicodedata
 from dataclasses import dataclass, field
@@ -113,9 +114,10 @@ def load_site(path: Path | str) -> ValidationResult:
 def discover(directory: Path) -> tuple[list[Path], list[str]]:
     """Quiz, site.json and collection.json files in a folder plus one level of subfolders.
 
-    Returns (files, problems). Hidden files/folders and symlinked folders are skipped.
-    Problems: collection.json at the top level, site.json in a subfolder, and a quiz
-    called index.json (it would clash with the index page).
+    Returns (files, problems). Hidden files/folders and symlinked folders are skipped. Problems
+    (reported by `validate` and `build` alike): JSON files that are links, names that are not valid
+    text, collection.json at the top level, site.json in a subfolder, a quiz called index.json, and
+    collection folders whose names clash with generated files (`assets`, `*.html`).
     """
     found: list[Path] = []
     problems: list[str] = []
@@ -125,34 +127,51 @@ def discover(directory: Path) -> tuple[list[Path], list[str]]:
                             if p.is_dir() and not p.is_symlink() and not p.name.startswith("."))
     except OSError as exc:
         return [], [f"{directory}: cannot read folder ({exc.strerror or exc})"]
-    for path in top:
-        if path.name == "collection.json":
-            problems.append(f"{path}: collection.json belongs inside a collection subfolder, not here")
-        else:
-            found.append(path)
     for sub in subfolders:
+        if not _is_text(sub.name):
+            problems.append(f"{sub}: rename this folder (its name has invalid characters)")
+            continue
         try:
             in_sub = _json_files(sub)
         except OSError as exc:
             problems.append(f"{sub}: cannot read folder ({exc.strerror or exc})")
             continue
-        for path in in_sub:
-            if path.name == "site.json":
-                problems.append(f"{path}: site.json belongs at the top of the quiz folder, not in a subfolder")
-            else:
-                found.append(path)
-    for path in list(found):
-        if path.name.lower() == "index.json":
+        folder = sub.name.casefold()
+        if in_sub and (folder == "assets" or folder.endswith(".html")):
+            problems.append(f'{sub}: rename this folder: "assets" and names ending in ".html" are used by the generated site')
+            continue
+        top += [p for p in in_sub]
+    for path in top:
+        is_top = path.parent == directory
+        if not _is_text(path.name):
+            problems.append(f"{path}: rename this file (its name has invalid characters)")
+        elif path.is_symlink():
+            problems.append(f"{path}: links (symlinks) are not allowed; copy the file itself into the folder instead")
+        elif path.name == "collection.json" and is_top:
+            problems.append(f"{path}: collection.json belongs inside a collection subfolder, not here")
+        elif path.name == "site.json" and not is_top:
+            problems.append(f"{path}: site.json belongs at the top of the quiz folder, not in a subfolder")
+        elif path.name.lower() == "index.json":
             problems.append(f"{path}: a quiz cannot be called index.json (that name is used for the index page); rename the file")
-            found.remove(path)
+        else:
+            found.append(path)
     return found, problems
+
+
+def _is_text(name: str) -> bool:
+    """False for file names that are not valid UTF-8 (they could not be written to a web page or JSON)."""
+    try:
+        name.encode("utf-8")
+    except UnicodeEncodeError:
+        return False
+    return True
 
 
 def _json_files(folder: Path) -> list[Path]:
     # "*.schema.json" (and schema.json) are JSON Schema files, not quizzes.
     return sorted(
         p for p in folder.glob("*.json")
-        if p.is_file() and not p.name.startswith(".")
+        if (p.is_symlink() or p.is_file()) and not p.name.startswith(".")
         and p.name != "schema.json" and not p.name.endswith(".schema.json")
     )
 
@@ -346,13 +365,17 @@ def _check_local_image(value: str, ctx: _Ctx, path: str) -> None:
         ctx.error(path, 'image must be a file next to the quiz or an "http(s)://" link')
     elif value.startswith(("/", "\\")) or PurePosixPath(value).is_absolute() or windows_drive:
         ctx.error(path, "image path must be relative to the quiz file, not absolute")
+    elif any(unicodedata.category(c) in ("Cc", "Cf") for c in value) or "\\" in value:
+        ctx.error(path, 'image path has characters that are not allowed (control characters or "\\"); use "/" between folders')
+    elif posixpath.normpath(value) != value:
+        ctx.error(path, 'write the image path in its plain form, e.g. "images/pic.png" (no "./", "//" or "x/../" parts)')
     elif ext not in IMAGE_TYPES:
         allowed = ", ".join(e.lstrip(".") for e in IMAGE_TYPES)
         hint = " Use a PNG, or link to the SVG with an https:// URL." if ext == ".svg" else ""
         ctx.error(path, f"local images must be one of: {allowed}.{hint}")
     else:
         try:
-            if not _inside(ctx.base, value):
+            if not is_inside(ctx.base, value):
                 ctx.error(path, 'image path must stay inside the quiz folder (no ".." or links going above it)')
             elif not (ctx.base / value).is_file():
                 ctx.error(path, f'image file not found: "{value}" (paths are relative to the quiz file)')
@@ -389,7 +412,27 @@ def _looks_like(head: bytes, ext: str) -> bool:
     return head[:4] == b"RIFF" and head[8:12] == b"WEBP"  # .webp
 
 
-def _inside(base: Path, relative: str) -> bool:
+def local_image_path(base: Path, ref: str) -> Path:
+    """The file a local image reference points to, or ValueError. Both build modes use this.
+
+    Same rules as validation: allowed type, plain relative path, no odd characters, and the
+    file (links resolved) must stay inside `base`, the quiz's folder.
+    """
+    ext = os.path.splitext(ref)[1].lower()
+    odd = any(unicodedata.category(c) in ("Cc", "Cf") for c in ref) or "\\" in ref
+    if (ext not in IMAGE_TYPES or odd or posixpath.normpath(ref) != ref or posixpath.isabs(ref)
+            or ref == ".." or ref.startswith("../")):
+        raise ValueError(f'image is not allowed: "{ref}"')
+    try:
+        inside = is_inside(base, ref)
+    except (OSError, RuntimeError) as err:
+        raise ValueError(f'cannot read image "{ref}" ({getattr(err, "strerror", None) or err})') from err
+    if not inside:
+        raise ValueError(f'image is not allowed: "{ref}" (it must stay inside the quiz folder)')
+    return base / ref
+
+
+def is_inside(base: Path, relative: str) -> bool:
     try:
         (base / relative).resolve().relative_to(base.resolve())
     except ValueError:
@@ -567,11 +610,27 @@ def _check_option(o: dict, ctx: _Ctx, path: str) -> dict:
 
 
 def _check_image_alt(src: dict, out: dict, ctx: _Ctx, path: str) -> None:
-    """`image_alt` describes the image for screen readers; it needs an image."""
+    """`image_alt` describes the image for screen readers (D26); it needs an image.
+
+    A plain `""` marks a decorative image: it becomes "" in every language. Warns when a
+    picture that matters has no description.
+    """
+    picture_only = "image" in src and "text" not in src
     if "image_alt" not in src:
+        if "options" in src and "image" in src:  # a question
+            ctx.warn(path, 'this image has no "image_alt": add a short description of it, or "" if it is only decoration')
+        elif "options" not in src and picture_only:  # an option
+            ctx.warn(path, 'this picture-only answer has no "image_alt": add a short description of the picture '
+                           "so every child can answer")
         return
     if "image" not in src:
         ctx.error(f"{path}.image_alt", 'an "image" is needed here: "image_alt" describes the image, so add an "image" or remove "image_alt"')
+    elif src["image_alt"] == "":
+        if picture_only:
+            ctx.error(f"{path}.image_alt", "a picture-only answer needs a description (not \"\"), so every child can answer; "
+                                           "describe the picture in a few words")
+        else:
+            out["image_alt"] = {lang: "" for lang in ctx.languages}
     else:
         out["image_alt"] = _check_text(src["image_alt"], ctx, f"{path}.image_alt")
 

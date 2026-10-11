@@ -6,7 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from quizgen.build import build_site, build_single
+from quizgen.build import build_single
+from quizgen.site import build_site
 from quizgen.cli import main
 
 EXAMPLES = Path(__file__).parent.parent / "examples"
@@ -66,7 +67,7 @@ def test_file_tree_and_links(tree, tmp_path):
     assert res.output == out and res.count == 3 and not res.validation.errors
     files = {str(p.relative_to(out)) for p in out.rglob("*") if p.is_file()}
     assert files == {"index.html", "loose.html", "school/index.html", "school/maths.html",
-                     "plain/index.html", "plain/art.html", "assets/quiz.css", "assets/quiz.js"}
+                     "plain/index.html", "plain/art.html", "assets/quiz.css", "assets/quiz.js", ".nojekyll"}
     top = hrefs(out / "index.html")
     assert "loose.html" in top and "school/index.html" in top and "plain/index.html" in top
     assert "Our School" in read(out / "index.html") and "Loose" in read(out / "index.html")
@@ -126,7 +127,7 @@ def test_site_json_used(tmp_path):
     assert res.count == 2 and not (out / "site.html").exists()
     html = read(out / "index.html")
     assert "<title>Casa</title>" in html and 'lang="it"' in html and "Quiz di famiglia" in html
-    assert "Fatto da Papà" in html or "Papà" in html and "https://example.org" in html
+    assert "Creato da Papà" in html and 'href="https://example.org"' in html
     assert quiz_data(out / "loose.html")["author"]["name"] == "Papà"
     assert "author" not in quiz_data(out / "col" / "a.html")  # site author is not inherited by collections
     assert "Tutti i quiz" not in html  # only the collection index has the back link
@@ -176,8 +177,8 @@ def test_singular_counts(tmp_path):
     put(src / "col" / "a.json", quiz(questions_per_quiz=1))
     out = tmp_path / "out"
     build_site(src, out)
-    assert "1 quiz<" in read(out / "index.html") or "1 quiz " in read(out / "index.html")
-    assert "1 question" in read(out / "col" / "index.html")
+    assert ">1 quiz<" in read(out / "index.html")
+    assert ">1 question<" in read(out / "col" / "index.html")
     assert "1 questions" not in read(out / "col" / "index.html")
 
 
@@ -304,3 +305,160 @@ def test_cli_build_examples(tmp_path, capsys):
         for href in hrefs(page):
             if not href.startswith("http"):
                 assert (out / href).is_file(), href
+
+
+def titles(page: Path) -> list[str]:
+    return re.findall(r'class="card-link"[^>]*>(?:<span[^>]*>[^<]*</span>)?\s*([^<]+)</a>', read(page))
+
+
+def test_ordering_and_quoted_hrefs(tmp_path):
+    src = tmp_path / "in"
+    for name, title in (("b.json", "banana"), ("a.json", "Apple"), ("e.json", "\u00c9clair"), ("z.json", "zebra")):
+        put(src / name, quiz(title))
+    put(src / "my quiz.json", quiz("Space quiz"))
+    put(src / "zz" / "a.json", quiz("In zz"))
+    put(src / "aa" / "a.json", quiz("In aa"))
+    out = tmp_path / "out"
+    build_site(src, out)
+    assert (out / "my quiz.html").is_file()
+    assert "my%20quiz.html" in hrefs(out / "index.html")
+    assert titles(out / "index.html") == ["aa", "zz", "Apple", "banana", "\u00c9clair", "Space quiz", "zebra"]
+
+
+def test_all_collections_empty(tmp_path):
+    src = tmp_path / "in"
+    put(src / "c" / "collection.json", {"title": "Empty"})
+    res = build_site(src, tmp_path / "out")
+    assert res.output and res.count == 0 and res.validation.warnings
+    assert "No quizzes here yet." in read(tmp_path / "out" / "index.html")
+
+
+def test_assets_and_html_folder_names_refused(tmp_path, capsys):
+    for name in ("Assets", "x.HTML"):
+        src = tmp_path / name / "in"
+        put(src / name / "a.json", quiz())
+        res = build_site(src, tmp_path / "out")
+        assert res.output is None and "rename this folder" in str(res.validation.errors[0])
+        assert main(["validate", str(src)]) == 1
+
+
+def test_symlinked_json_refused(tmp_path, capsys):
+    src = tmp_path / "in"
+    src.mkdir()
+    secret = put(tmp_path / "secret.json", quiz("Secret"))
+    os.symlink(secret, src / "linked.json")
+    os.symlink(put(tmp_path / "s2.json", {"title": "Stolen"}), src / "site.json")
+    res = build_site(src, tmp_path / "out")
+    assert res.output is None and "symlinks" in str(res.validation.errors[0])
+    assert not (tmp_path / "out").exists()
+    assert main(["validate", str(src)]) == 1
+
+
+def test_image_name_with_special_characters(tmp_path):
+    src = tmp_path / "in"
+    data = quiz()
+    data["questions"][0]["image"] = "my pic#1.png"
+    data["questions"][0]["image_alt"] = ""
+    put(src / "q.json", data)
+    (src / "my pic#1.png").write_bytes(PNG)
+    out = tmp_path / "out"
+    assert build_site(src, out).output
+    assert (out / "my pic#1.png").read_bytes() == PNG
+    assert quiz_data(out / "q.html")["questions"][0]["image"] == "my%20pic%231.png"
+
+
+@pytest.mark.parametrize("ref", ["a\x01.png", "a\\b.png", "./a.png", "x/../a.png"])
+def test_odd_image_refs_refused(tmp_path, ref):
+    src = tmp_path / "in"
+    data = quiz()
+    data["questions"][0]["image"] = ref
+    put(src / "q.json", data)
+    (src / "a.png").write_bytes(PNG)
+    res = build_site(src, tmp_path / "out")
+    assert res.output is None and res.validation.errors
+
+
+def test_dotdot_prefixed_name_is_fine(tmp_path):
+    src = tmp_path / "in"
+    data = quiz()
+    data["questions"][0]["image"] = "..x.png"
+    put(src / "q.json", data)
+    (src / "..x.png").write_bytes(PNG)
+    assert build_site(src, tmp_path / "out").output
+
+
+def test_non_utf8_name_refused(tmp_path):
+    src = tmp_path / "in"
+    src.mkdir()
+    try:
+        with open(os.path.join(os.fsencode(src), b"bad\xff.json"), "w") as f:
+            f.write("{}")
+    except OSError:
+        pytest.skip("filesystem cannot create non-UTF-8 names")
+    res = build_site(src, tmp_path / "out")
+    assert res.output is None and "invalid characters" in str(res.validation.errors[0])
+
+
+def test_output_inside_or_containing_input_refused(tree):
+    assert "inside the quiz folder" in str(build_site(tree, tree / "site").validation.errors[0])
+    assert "contains the quiz folder" in str(build_site(tree, tree.parent).validation.errors[0])
+
+
+def test_output_is_a_file_refused(tree, tmp_path):
+    f = tmp_path / "file"
+    f.write_text("x")
+    assert "must be a folder" in str(build_site(tree, f).validation.errors[0])
+
+
+def test_preflight_clash_writes_nothing(tree, tmp_path):
+    out = tmp_path / "out"
+    out.mkdir()
+    (out / "school").write_text("a file")  # needs to be a folder
+    res = build_site(tree, out)
+    assert res.output is None and "rename or remove" in str(res.validation.errors[0])
+    assert sorted(p.name for p in out.iterdir()) == ["school"]
+    out2 = tmp_path / "out2"
+    (out2 / "loose.html").mkdir(parents=True)  # a folder where a page goes
+    assert build_site(tree, out2).output is None
+
+
+def test_case_clash_between_files(tmp_path):
+    src = tmp_path / "in"
+    put(src / "A.json", quiz())
+    put(src / "a.json", quiz())
+    res = build_site(src, tmp_path / "out")
+    if res.output is None:  # case-sensitive disk: both names exist, still a clash for other disks
+        assert "same file" in str(res.validation.errors[0])
+
+
+def test_index_pages_have_no_script_and_languages_label(tree, tmp_path):
+    out = tmp_path / "out"
+    build_site(tree, out)
+    for idx in ("index.html", "school/index.html", "plain/index.html"):
+        assert "<script" not in read(out / idx)
+
+
+def test_image_alt_decorative_and_warnings(tmp_path):
+    from quizgen.validate import load_quiz
+    (tmp_path / "a.png").write_bytes(PNG)
+    data = quiz(languages=["en", "it"])
+    data["title"] = {"any": "T"}
+    for q in data["questions"]:
+        q["text"] = {"any": "Q"}
+        for o in q["options"]:
+            o["text"] = {"any": "A"}
+    data["questions"][0]["image"] = "a.png"
+    data["questions"][0]["image_alt"] = ""
+    res = load_quiz(put(tmp_path / "ok.json", data))
+    assert not res.errors and res.quiz["questions"][0]["image_alt"] == {"en": "", "it": ""}
+    # warnings: question image without alt, picture-only option without alt
+    del data["questions"][0]["image_alt"]
+    data["questions"][1]["options"][0] = {"image": "a.png", "correct": True}
+    res = load_quiz(put(tmp_path / "warn.json", data))
+    msgs = [str(w) for w in res.warnings]
+    assert any("questions[0]" in m and '""' in m for m in msgs)
+    assert any("questions[1].options[0]" in m and "picture-only" in m for m in msgs)
+    # error: "" on a picture-only option
+    data["questions"][1]["options"][0]["image_alt"] = ""
+    res = load_quiz(put(tmp_path / "bad.json", data))
+    assert any("needs a description" in str(e) for e in res.errors)
