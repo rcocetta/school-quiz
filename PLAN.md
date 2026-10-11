@@ -56,6 +56,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 | D23 | Generated quiz and index pages carry a small **"Made with school-quiz" footer link** to the repo. On by default, so forks credit the project; removable by anyone (no obligation beyond GPL notices) | ✅ |
 | D24 | Creators can **override built-in UI text** with an optional `ui` object on a quiz or in `collection.json` (quiz > collection > built-in). Partial overrides allowed: any key, any subset of languages | ✅ |
 | D25 | **Local images limited to png, jpg/jpeg, gif, webp.** No local SVG in v1: copied to the site, an SVG opened directly runs script on the `github.io` origin. Remote image URLs (any type) still allowed, `https://` recommended (CSP); `http://` gives a warning | ✅ |
+| D26 | Optional **`image_alt`** (Text) on questions and options describes the image for screen readers; error without `image`. Fallback when missing: question image decorative (`alt=""`); option image uses the option text, else the UI string `picture_n` ("Picture {n}") | ✅ |
 | D13 | Text maps may use the special key **`"any"`**: the value for every language unless that locale has its own key (`{"any": "12"}`, `{"any": "Rome", "it": "Roma"}`). Plain strings in multi-language mode stay an error (hint: use `any`) | ✅ |
 
 ---
@@ -173,9 +174,9 @@ Rules for subagents:
 | `ui` | UiOverrides | no | — | Replace built-in screen text (D24) |
 | `questions` | Question[] (≥1) | yes | — | N = length |
 
-**Question**: `text` (Text, required), `image` (ImageRef, optional), `explanation` (Text, optional), `options` (Option[], ≥2, required).
+**Question**: `text` (Text, required), `image` (ImageRef, optional), `image_alt` (Text, optional, D26; needs `image`), `explanation` (Text, optional), `options` (Option[], ≥2, required).
 
-**Option**: `text` (Text, optional), `image` (ImageRef, optional), `correct` (bool, optional, default false). At least one of `text`/`image` required.
+**Option**: `text` (Text, optional), `image` (ImageRef, optional), `image_alt` (Text, optional, D26; needs `image`), `correct` (bool, optional, default false). At least one of `text`/`image` required.
 
 **Author** (D22): `name` (string, required), `url` (`http(s)://` string, optional), `email` (string, optional). Always plain strings, even in multi-language mode. Unknown keys → error.
 
@@ -209,7 +210,7 @@ Errors:
 7. i18n, when `languages` absent: every Text is a plain string; an object → error with hint "add a `languages` field".
 8. `language` and `languages` both present.
 9. Every language code must exist in `ui_strings.json`.
-10. Local image path doesn't exist, escapes the quiz directory (`..`, absolute, symlinks), or isn't an allowed image type (D25).
+10. Local image path doesn't exist, escapes the quiz directory (`..`, absolute, symlinks), or isn't an allowed image type (D25). `image_alt` without `image` (D26).
 11. `author`: missing `name`, `url` not `http(s)://`, `email` not a basic `x@y.z` shape (same checks for `collection.json`).
 12. `ui`: unknown key; language key not in `languages`; a string where a map is required (or vice versa); empty string; a placeholder not used by that key's built-in text (e.g. `{name}` in `correct`). A required placeholder that's missing (e.g. `question_x_of_y` without `{total}`) is a **warning**.
 
@@ -217,6 +218,7 @@ Warnings:
 - M == N (every attempt has the same question set, just reordered).
 - Duplicate option texts within a question (compared per language after expansion).
 - A Text map has `any` **and** a key for every language (`any` is never used).
+- An `http://` image URL: it will not load, because the page CSP only allows `https:` and `data:` images.
 
 `schema.json` is the structural contract (rules 1–2, plus shape of Text via `oneOf`); rules 3–10 live in Python in `validate.py`.
 
@@ -256,7 +258,7 @@ quizgen validate <input>...
 - **Design**: mobile/tablet first, big tap targets (≥ 48px), large readable font, high contrast, friendly colours, visible focus states, keyboard usable (Tab/Enter, number keys 1–9 to pick options as a nice-to-have), respects `prefers-reduced-motion`.
 
 ### `ui_strings.json`
-Map `lang → {key: string}` for chrome text: `start`, `next`, `finish`, `try_again`, `question_x_of_y`, `your_score`, `correct`, `wrong`, `your_answer`, `correct_answer`, `messages.{great,good,keep_trying}`, plus `flag` and `name` per language. Ship `en`, `it`, `es`, `fr`, `de`.
+Map `lang → {key: string}` for chrome text: `start`, `next`, `finish`, `try_again`, `question_x_of_y`, `your_score`, `correct`, `wrong`, `your_answer`, `correct_answer`, `picture_n`, `messages.{great,good,keep_trying}`, plus `flag` and `name` per language. Ship `en`, `it`, `es`, `fr`, `de`.
 
 ---
 
