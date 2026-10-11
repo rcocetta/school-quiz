@@ -19,7 +19,7 @@ from markupsafe import Markup
 from quizgen.validate import (ANY, IMAGE_TYPES, Issue, ValidationResult, is_remote_image, load_quiz,
                               local_image_path, ui_strings)
 
-REPO_URL = "https://github.com/rcocetta/school-quiz"
+HOME_URL = "https://rcocetta.github.io/school-quiz/"  # "Made with school-quiz" footer link (D23)
 MAX_TOTAL_IMAGE_BYTES = 20 * 1024 * 1024  # all inlined images together, repeats counted
 # Site mode: assets are linked from the same origin, so 'self' replaces the inline hashes.
 QUIZ_CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "

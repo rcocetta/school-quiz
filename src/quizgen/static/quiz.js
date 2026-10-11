@@ -7,7 +7,7 @@
 
 (function () {
   var LANG_KEY = "quizgen-lang";
-  var REPO_URL = "https://github.com/rcocetta/school-quiz";
+  var HOME_URL = "https://rcocetta.github.io/school-quiz/";
 
   // The builder guarantees complete data: every Text has all quiz languages and every
   // language has all UI strings, so there are no fallbacks for missing text below.
@@ -200,7 +200,7 @@
   }
 
   function footer() {
-    return el("footer", "footer", externalLink(REPO_URL, ui("made_with")));
+    return el("footer", "footer", externalLink(HOME_URL, ui("made_with")));
   }
 
   // Accessible text for an option's image (see the contract's fallback rules).
