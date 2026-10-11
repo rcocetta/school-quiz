@@ -392,7 +392,7 @@ Rules: values must not be empty; a plain string is an error in a multi-language 
 | `messages.good` | Good job! You're getting there! | | End message, 50% to 79% |
 | `messages.keep_trying` | Keep practising, you will get better every time! | | End message, below 50% |
 
-The keys `quizzes`, `quizzes_count`, `quizzes_count_one`, `collections`, `no_quizzes_yet` and `languages` are used by index pages only. They are accepted in `ui` but have no visible effect, because `ui` applies to quiz pages. `name` (the language's own name) cannot be overridden.
+The keys `quizzes`, `quizzes_count`, `quizzes_count_one`, `collections`, `no_quizzes_yet` and `languages` are used by index pages only. They are accepted in `ui` but have no visible effect, because `ui` applies to quiz pages. `name` and `flag` (the language's own name and flag) cannot be overridden.
 
 ### Collections and folder layout
 
@@ -527,7 +527,7 @@ These control the buttons and messages. Your questions can be about anything, bu
 
 ### The language switcher
 
-When a quiz has more than one language, every screen shows buttons with the flag and the code (🇬🇧 EN, 🇮🇹 IT). The flags are drawn by the page's stylesheet rather than with emoji, because Windows has no flag emoji and would show letters instead. Switching redraws the current screen in place and keeps the question, the chosen answer and the score. The choice is remembered in the browser's `localStorage` under the key `quizgen-lang` (and the quiz works fine if storage is blocked).
+When a quiz has more than one language, every screen shows buttons with the flag and the code (🇬🇧 EN, 🇮🇹 IT). Windows has no flag emoji (it would show "GB"), so pages carry a tiny font with just these flags; browsers that can't use it show their own. Switching redraws the current screen in place and keeps the question, the chosen answer and the score. The choice is remembered in the browser's `localStorage` under the key `quizgen-lang` (and the quiz works fine if storage is blocked).
 
 In a single-language quiz there is no switcher; `language` only sets the interface text (default `en`).
 
@@ -855,7 +855,7 @@ In the browser, `quiz.js` reads the embedded JSON, shuffles the pool (Fisher-Yat
 The built-in text lives in [`src/quizgen/ui_strings.json`](src/quizgen/ui_strings.json): one object per language code.
 
 1. Copy the whole `en` block and give it your language's two-letter code (for example `pt`).
-2. Set `name` (the language's own name, like `Português`), and add a `.flag-pt` rule with the flag next to the others in [`src/quizgen/static/quiz.css`](src/quizgen/static/quiz.css).
+2. Set `name` (the language's own name, like `Português`) and `flag` (a flag emoji). Then rebuild the flag font so Windows shows the new flag: download `2D/fonts/Noto-COLRv1.ttf` from [Noto Emoji](https://github.com/googlefonts/noto-emoji), run `pip install fonttools brotli uharfbuzz` and then `python scripts/flag_font.py path/to/Noto-COLRv1.ttf`, and commit `src/quizgen/static/flags.woff2`.
 3. Translate **every** key: the quiz-screen keys, the index keys (`quizzes`, `quizzes_count`, `collections`, `back_to_all`, `no_quizzes_yet`, `languages`) and the three `messages`. Keep each `{placeholder}` exactly as written (`{current}`, `{total}`, `{count}`, `{name}`, `{score}`, `{n}`). Keep the `_one` variants (`questions_count_one`, `quizzes_count_one`) for "1 question" and "1 quiz".
 4. Keep the tone kind and **gender-neutral**. For example, avoid forms such as the Italian "Bravissimo" that assume a boy or a girl. Never shame wrong answers.
 5. Run the tests: `.venv/bin/pytest -q`. They check that every language has the same keys and placeholders as English.
@@ -871,5 +871,6 @@ Contributions of code, quizzes and collections are welcome. Read [CONTRIBUTING.m
 **Credits**
 
 - Example pictures are from [Noto Emoji](https://github.com/googlefonts/noto-emoji) (Apache-2.0). Details are in [`examples/images/CREDITS.md`](examples/images/CREDITS.md). The example quizzes show the line "Pictures: Noto Emoji by Google (Apache License 2.0)" in their description; if you reuse these pictures in your own quizzes, keep that credit.
+- Language flags use a small subset of the [Noto Color Emoji](https://github.com/googlefonts/noto-emoji) font (SIL Open Font License 1.1, text in [`src/quizgen/static/flags-OFL.txt`](src/quizgen/static/flags-OFL.txt); the notice is also inside the font file).
 - Built with [jsonschema](https://github.com/python-jsonschema/jsonschema) and [Jinja2](https://jinja.palletsprojects.com/).
 - Created by the school-quiz contributors.

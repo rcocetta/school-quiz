@@ -15,13 +15,14 @@ from pathlib import Path
 from typing import Iterable
 from urllib.parse import quote
 
-from quizgen.build import (REPO_URL, BuildError, BuildResult, _asset, _env, _prepare, _rewrite_images,
-                           _write_atomic, render_page)
+from quizgen.build import (FLAG_FONT, REPO_URL, BuildError, BuildResult, _asset, _env, _prepare,
+                           _rewrite_images, _write_atomic, flag_font, render_page)
 from quizgen.validate import (Issue, ValidationResult, discover, is_remote_image, load_collection, load_quiz,
                               load_site, local_image_path, ui_strings)
 
 DEFAULT_SITE_DIR = "site"
-INDEX_CSP = "default-src 'none'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'"
+INDEX_CSP = ("default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; "
+             "form-action 'none'")
 
 
 @dataclass
@@ -187,6 +188,7 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
         empty_text=None if top_cards or collection_cards else top_ui["no_quizzes_yet"], asset_base="assets/")
     for name in ("quiz.css", "quiz.js"):
         plan.pages["assets/" + name] = _asset(name).encode("utf-8")
+    plan.pages["assets/" + FLAG_FONT] = flag_font()
     plan.pages[".nojekyll"] = b""  # GitHub Pages would otherwise hide folders starting with "_"
     return plan
 
@@ -236,7 +238,7 @@ def _quiz_card(quiz: dict, stem: str, ui: dict) -> dict:
         "lang": first,
         "description": quiz.get("description", {}).get(first),
         "count_text": _count_text(ui, "questions_count", quiz["questions_per_quiz"]),
-        "languages": [{"code": c, "name": strings[c]["name"]}
+        "languages": [{"code": c, "flag": strings[c]["flag"], "name": strings[c]["name"]}
                       for c in quiz["languages"]],
         "author_name": quiz.get("author", {}).get("name"),
     }

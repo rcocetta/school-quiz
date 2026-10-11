@@ -31,5 +31,5 @@ Everything below will be released as 0.1.0, the first version.
 
 ### Fixed
 
-- Language flags now show on Windows, where flag emoji appear as letters ("GB"). The flags are drawn by the stylesheet instead.
+- Language flags now show on Windows, where flag emoji appear as letters ("GB"). Pages bring a tiny flag-only font (from Noto Color Emoji, SIL Open Font License).
 - Index pages no longer repeat the page title as a section heading when they have only one kind of card (only quizzes, or only collections); cards are then second-level headings, so screen readers hear each heading once and levels never skip.

@@ -150,26 +150,14 @@ a { color: var(--primary); text-underline-offset: 0.2em; font-weight: 700; }
   letter-spacing: 0.04em;
   cursor: pointer;
 }
-/* Flags are drawn here, not emoji: Windows has no flag emoji and shows "GB" instead.
-   One class per language in ui_strings.json; a new language needs a new flag here. */
-.flag {
-  display: inline-block;
-  width: 1.5em;
-  height: 1em;
-  vertical-align: -0.125em;
-  border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
-  background-size: cover;
-  background-position: center;
+/* Windows has no flag emoji (it shows "GB"), so flags come from a tiny Noto Color Emoji
+   subset (scripts/flag_font.py). Browsers without COLRv1 fonts skip it and use their own. */
+@font-face {
+  font-family: "quizgen-flags";
+  src: url("flags.woff2") format("woff2") tech(color-COLRv1);
+  unicode-range: U+1F1E6-1F1FF;
 }
-.flag-en {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3CclipPath id='c'%3E%3Cpath d='M30 15h30v15zv15H0zH0V0zV0h30z'/%3E%3C/clipPath%3E%3Cpath d='M0 0h60v30H0z' fill='%23012169'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' clip-path='url(%23c)' stroke='%23C8102E' stroke-width='4'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23C8102E' stroke-width='6'/%3E%3C/svg%3E");
-}
-.flag-it { background-image: linear-gradient(90deg, #009246 33.4%, #fff 0 66.6%, #ce2b37 0); }
-.flag-fr { background-image: linear-gradient(90deg, #002395 33.4%, #fff 0 66.6%, #ed2939 0); }
-.flag-de { background-image: linear-gradient(#000 33.4%, #dd0000 0 66.6%, #ffce00 0); }
-.flag-es { background-image: linear-gradient(#aa151b 25%, #f1bf00 0 75%, #aa151b 0); }
-.lang-chip .flag { margin-right: 0.35em; }
+.flag { font-family: "quizgen-flags", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
 
 .lang-btn[aria-pressed="true"] {
   background: var(--primary);
