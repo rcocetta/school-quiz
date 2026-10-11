@@ -152,8 +152,8 @@
       ]
     },
     {
-      "text": "Quel chant devient l'hymne national en 1879 ?",
-      "explanation": "La Marseillaise a été écrite en 1792 par Rouget de Lisle pendant la Révolution française.",
+      "text": "En 1879, quel chant la Troisième République choisit-elle comme hymne national ?",
+      "explanation": "La Marseillaise a été écrite en 1792 par Rouget de Lisle pendant la Révolution. Elle avait déjà été l'hymne national en 1795, puis avait été abandonnée par Napoléon et les rois.",
       "options": [
         {
           "text": "La Marseillaise",
@@ -226,10 +226,10 @@
     },
     {
       "text": "Pourquoi la Troisième République prend-elle fin en 1940 ?",
-      "explanation": "Après la défaite, le maréchal Pétain reçoit tous les pouvoirs et dirige le régime de Vichy, qui collabore avec l'Allemagne nazie.",
+      "explanation": "Après la défaite, une partie de la France est occupée. Le maréchal Pétain reçoit tous les pouvoirs et dirige le régime de Vichy, qui collabore avec l'Allemagne nazie.",
       "options": [
         {
-          "text": "La France est battue et occupée par l'Allemagne",
+          "text": "La France est battue par l'Allemagne",
           "correct": true
         },
         {
