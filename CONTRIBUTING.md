@@ -41,13 +41,15 @@ Run this before every pull request. Add tests for new behaviour: `tests/fixtures
 
 Without Playwright these tests are skipped. With `QUIZGEN_BROWSER_TESTS=1` set, a missing Playwright is an error instead (CI does this). Please run them when you change `quiz.js`, `quiz.css`, the templates or the build code.
 
-**Screenshots** in `docs/screenshots/` are generated, not hand-made. Regenerate them with `.venv/bin/python scripts/screenshots.py` if you change how the pages look.
+**Screenshots** in `website/assets/screenshots/` are generated, not hand-made. Regenerate them with `.venv/bin/python scripts/screenshots.py` if you change how the pages look.
+
+**The published site** is the committed `docs/` folder (GitHub Pages: `main`, `/docs`). It is generated, never edited by hand. If you change `quizzes/` or `website/`, run `.venv/bin/python scripts/build_docs.py` and commit `docs/` with your change. If you cannot run it, say so in the pull request: the maintainer rebuilds `docs/` after merging (CI shows red on your pull request until then, which is expected). `python scripts/build_docs.py --check` tells you whether `docs/` is up to date; `--quizzes-only` is for forks that don't want the project website.
 
 **Checking quizzes:** `.venv/bin/quizgen validate examples/ quizzes/`.
 
 ## Continuous integration
 
-`.github/workflows/ci.yml` runs on every pull request: the tests on several Python versions (3.10 and newer), `quizgen validate` on `examples/` and `quizzes/`, and the browser tests. It uses no secrets and costs nothing, so it is safe for pull requests from forks. A pull request should be green before it is reviewed.
+`.github/workflows/ci.yml` runs on every pull request: the tests on several Python versions (3.10 and newer), `quizgen validate` on `examples/` and `quizzes/`, `python scripts/build_docs.py --check` (fails if `docs/` is out of date), and the browser tests. It uses no secrets and costs nothing, so it is safe for pull requests from forks. A pull request should be green before it is reviewed.
 
 ## Code conventions
 
@@ -99,7 +101,7 @@ The [pull request template](.github/PULL_REQUEST_TEMPLATE.md) repeats this check
 1. Fork the repository and create a branch from `main` with a short descriptive name.
 2. Make your change, keep it focused, and add or update tests and docs.
    A pull request should only add or change your own files: if *Files changed* shows the sample quizzes (or anyone else's files) as deleted, start again from a branch of the original `main`.
-3. Run `.venv/bin/pytest -q` (and the browser tests if you touched the page).
+3. Run `.venv/bin/pytest -q` (and the browser tests if you touched the page). If you changed `quizzes/` or `website/`, run `.venv/bin/python scripts/build_docs.py` and commit `docs/`.
 4. Open a pull request. The template asks whether it is code, a quiz or a collection, what it changes and why, and has a checklist to tick.
 5. CI runs automatically. The maintainer reviews, may ask for changes, and merges when it is ready.
 

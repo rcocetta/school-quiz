@@ -57,17 +57,12 @@ def test_guide_json_examples_validate(tmp_path):
         assert not result.errors and not result.warnings, (name, result.errors, result.warnings)
 
 
-def _exists_after_assembly(page_path, target):
-    """The deployed site is website/ + quizzes/ (built) + assets/screenshots/ (docs/screenshots)."""
+def _exists_after_build(page_path, target):
+    """docs/ is website/ plus the built quizzes at /quizzes/ (see scripts/build_docs.py)."""
     rel = (page_path.parent / target).resolve().relative_to(WEBSITE)
-    if (WEBSITE / rel).exists() and (WEBSITE / rel).is_file():
+    if (WEBSITE / rel).is_file() or (WEBSITE / rel / "index.html").is_file():
         return True
-    if (WEBSITE / rel / "index.html").exists():
-        return True
-    parts = rel.parts
-    if parts and parts[0] == "quizzes":
-        return True
-    return len(parts) == 3 and parts[:2] == ("assets", "screenshots") and (ROOT / "docs" / "screenshots" / parts[2]).is_file()
+    return bool(rel.parts) and rel.parts[0] == "quizzes"
 
 
 @pytest.mark.parametrize("path", PAGES, ids=lambda p: str(p.relative_to(WEBSITE)))
@@ -76,6 +71,6 @@ def test_links_and_anchors_resolve(path):
     for link in page.links:
         target, _, fragment = link.partition("#")
         if target:
-            assert _exists_after_assembly(path, target), f"{path.name}: broken link {link}"
+            assert _exists_after_build(path, target), f"{path.name}: broken link {link}"
         else:
             assert fragment in page.ids, f"{path.name}: missing anchor #{fragment}"

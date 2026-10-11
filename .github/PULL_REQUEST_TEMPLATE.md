@@ -8,6 +8,10 @@
 
 <!-- Say what this changes and why. -->
 
+## Published site
+
+- [ ] I ran `python scripts/build_docs.py` and committed `docs/`, or I said I couldn't (only needed if `quizzes/` or `website/` changed).
+
 ## Quiz or collection checklist
 
 <!-- Skip this section for code-only changes. -->

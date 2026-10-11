@@ -22,12 +22,12 @@ Everything below will be released as 0.1.0, the first version.
 - Quiz page: kid-friendly start, question and end screens; tap to select then "Check my answer" in immediate mode; score, encouraging message, answer review and "Play again" with a new random set; keyboard and screen-reader support; respects reduced-motion.
 - Safe by default: no external requests, strict Content-Security-Policy on every page, quiz text inserted with `textContent`, safe JSON embedding, nothing written when validation fails, output kept out of the input folder, no overwriting the input.
 - Example quizzes (single-language and multi-language) with pictures from Noto Emoji (Apache-2.0).
-- Documentation: README with a full field reference, validation guide, CLI reference, publishing guide (including a copy-paste GitHub Actions workflow) and FAQ; CONTRIBUTING; this changelog.
+- Documentation: README with a full field reference, validation guide, CLI reference, publishing guide and FAQ; CONTRIBUTING; this changelog.
 - Project website at <https://rcocetta.github.io/school-quiz/>: landing page, step-by-step guide for teachers (fork, edit in the browser, publish), and the shared quiz library in `quizzes/`.
-- `.github/workflows/pages.yml` builds `quizzes/` and the website and deploys them to GitHub Pages; forks can set the repository variable `PROJECT_PAGES=false` to publish only their quizzes at the root of their site.
+- `scripts/build_docs.py` builds the project website and `quizzes/` into `docs/`, which GitHub Pages serves with **Deploy from a branch** (`main`, `/docs`). `docs/` is committed and rebuilt by hand; no workflow writes to the repository. `--quizzes-only` publishes only the quizzes at the root (for forks), `--check` fails when `docs/` is out of date. CI runs the check.
 - `.github/workflows/claude-review.yml`: Claude review of a pull request, started only by the repository owner (comment `/claude-review`), split into isolated steps (reading the pull request has no secrets, running Claude has only the API key and no shell or network access, posting the comment checks the text first).
 - Community files: Code of Conduct (Contributor Covenant 2.1), security policy (private vulnerability reporting), pull request template with quiz and collection checklist, issue forms for bugs, feature requests and quiz ideas.
-- Contributor tooling: browser smoke tests with Playwright (optional `browser` extra), a script that regenerates the README screenshots, and a CI workflow that runs the tests and validates the examples and quizzes.
+- Contributor tooling: browser smoke tests with Playwright (optional `browser` extra), a script that regenerates the README screenshots (in `website/assets/screenshots/`), and a CI workflow that runs the tests and validates the examples and quizzes.
 
 ### Fixed
 

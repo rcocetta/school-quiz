@@ -4,15 +4,15 @@
 
 | Start screen | Question, after "Check" | End screen |
 |---|---|---|
-| ![Start screen of the Farm Animals quiz with a Start the quiz button](docs/screenshots/start.png) | ![Question 1 of 8 with the right answer marked green and a short explanation](docs/screenshots/question.png) | ![End screen: score 6 out of 8, an encouraging message and a review of the answers](docs/screenshots/end.png) |
+| ![Start screen of the Farm Animals quiz with a Start the quiz button](website/assets/screenshots/start.png) | ![Question 1 of 8 with the right answer marked green and a short explanation](website/assets/screenshots/question.png) | ![End screen: score 6 out of 8, an encouraging message and a review of the answers](website/assets/screenshots/end.png) |
 
 | Language switcher (Italian) | Quiz index of a site |
 |---|---|
-| ![Times Tables in Italian with the EN, IT and FR language switcher](docs/screenshots/languages.png) | ![Quiz index with a card for each quiz](docs/screenshots/index.png) |
+| ![Times Tables in Italian with the EN, IT and FR language switcher](website/assets/screenshots/languages.png) | ![Quiz index with a card for each quiz](website/assets/screenshots/index.png) |
 
 **Live demo:** <https://rcocetta.github.io/school-quiz/> (try the [quizzes](https://rcocetta.github.io/school-quiz/quizzes/) or read the [guide](https://rcocetta.github.io/school-quiz/guide/)).
 
-**Which path are you?** Teacher or parent who does not want to install anything: follow the [step-by-step guide](https://rcocetta.github.io/school-quiz/guide/) (fork the repository, edit your quiz in the browser on GitHub, and your site publishes itself). Comfortable with a terminal: read [Quick start](#quick-start) and [Writing a quiz](#writing-a-quiz), then [Publishing](#publishing-on-github-pages). Developer: jump to [Development](#development) and [CONTRIBUTING.md](CONTRIBUTING.md).
+**Which path are you?** Teacher or parent who does not want to install anything: follow the [step-by-step guide](https://rcocetta.github.io/school-quiz/guide/) (fork the repository, edit your quiz in the browser on GitHub, then publish it with GitHub Pages). Comfortable with a terminal: read [Quick start](#quick-start) and [Writing a quiz](#writing-a-quiz), then [Publishing](#publishing-on-github-pages). Developer: jump to [Development](#development) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Our promise
 
@@ -98,7 +98,7 @@ quizgen build my-quiz.json
 
 **5. Open `my-quiz.html`** in a browser (double-click it). Done. It is a single file you can email or put on a USB stick.
 
-Prefer not to install anything? Follow the [guide](https://rcocetta.github.io/school-quiz/guide/): fork this repository, edit your quiz in the browser on GitHub, and the site publishes itself. See also [Publishing on GitHub Pages](#publishing-on-github-pages).
+Prefer not to install anything? Follow the [guide](https://rcocetta.github.io/school-quiz/guide/): fork this repository, edit your quiz in the browser on GitHub, then publish it with GitHub Pages. See also [Publishing on GitHub Pages](#publishing-on-github-pages).
 
 ## Installation
 
@@ -723,7 +723,9 @@ The generated site is plain static files, so any static host works.
 
 ### Easiest: fork this repository (no install)
 
-If you only want your own quiz site, follow the [guide](https://rcocetta.github.io/school-quiz/guide/). In short: fork the repository, switch on workflows in the fork's **Actions** tab, in **Settings > Pages** set **Source** to **GitHub Actions**, then edit or add quiz files in `quizzes/` using GitHub's web editor. If you later send a quiz back to this project, send it from a fork that still has the sample quizzes, so your pull request doesn't delete them. The repository's own [`.github/workflows/pages.yml`](.github/workflows/pages.yml) then validates and builds `quizzes/` and publishes the result on every push to `main`. By default it also publishes the project website (landing page and guide) next to your quizzes. To publish only your quizzes, at the root of your site, set the repository variable `PROJECT_PAGES` to `false` (**Settings > Secrets and variables > Actions > Variables**).
+If you only want your own quiz site, follow the [guide](https://rcocetta.github.io/school-quiz/guide/). In short: fork the repository, edit or add quiz files in `quizzes/` using GitHub's web editor, then in **Settings > Pages > Build and deployment** set **Source** to **Deploy from a branch**, **Branch** to `main` and the folder to `/docs`, and **Save**. If you later send a quiz back to this project, send it from a fork that still has the sample quizzes, so your pull request doesn't delete them.
+
+The site is served from the committed `docs/` folder, which is generated: after changing `quizzes/` (or `website/`) run `python scripts/build_docs.py` and commit `docs/`. By default it publishes the project website (landing page and guide) with your quizzes at `/quizzes/`. To publish only your quizzes, at the root of your site, run `python scripts/build_docs.py --quizzes-only`. `python scripts/build_docs.py --check` fails when `docs/` is out of date; CI runs it on every pull request. Nothing ever writes to the repository for you, so there are no workflows to switch on.
 
 The rest of this section is for your own repository that is not a fork of this one.
 
@@ -740,74 +742,9 @@ Other hosts work the same way: upload the folder (or the single `.html` file) to
 
 To test locally before publishing: `python3 -m http.server --bind 127.0.0.1 -d docs` and open http://127.0.0.1:8000. (Use the folder you built into; the default is `site`.)
 
-### Automatic: a GitHub Actions workflow in your own repository
+### Keeping docs/ up to date
 
-Put your quizzes in a `quizzes/` folder in your own GitHub repository, then save the file below as `.github/workflows/pages.yml`. In **Settings > Pages**, set **Source** to **GitHub Actions**. Every push to `main` then validates, builds and deploys your site.
-
-```yaml
-name: Deploy quizzes to GitHub Pages
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-# Least privilege: the build job can only read the repository.
-permissions:
-  contents: read
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - name: Set up Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
-        with:
-          python-version: "3.12"
-      - name: Install quizgen
-        # Recommended: pin to a commit you have checked, for example
-        #   pip install "git+https://github.com/rcocetta/school-quiz@<commit-sha>"
-        run: pip install git+https://github.com/rcocetta/school-quiz
-      - name: Check the quizzes
-        run: quizgen validate quizzes/
-      - name: Build the site
-        run: quizgen build quizzes/ -o _site
-      - name: Upload the site
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
-        with:
-          path: _site
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
-```
-
-Notes:
-
-- If a quiz has a problem, the "Check the quizzes" step fails and nothing is published; open the failed run in the **Actions** tab to read the messages.
-- **Pin quizgen to a commit you have checked** (recommended). As written, the workflow installs the newest code from the default branch every time. quizgen writes the JavaScript and the safety rules of the pages your children use, so you should decide when to take changes. Replace the address with `"git+https://github.com/rcocetta/school-quiz@<commit-sha>"`, using the commit hash from the project's commit list on GitHub. (There is no release tag yet.)
-- Deploying with Actions does not use Jekyll, so the `.nojekyll` file in the output is not needed here.
-- Actions are pinned to full commit SHAs, with the version in a comment. Update them from time to time (Dependabot can do this).
-
-Your site address is shown at the end of the run. Quizzes are at `https://<your-user>.github.io/<repository>/`.
+Build into `docs/` whenever your quizzes change and commit the result: `quizgen build quizzes/ -o docs`. Use **Deploy from a branch** (`main`, `/docs`) as above. To make sure you never forget, add a step to your own CI that runs `quizgen build quizzes/ -o /tmp/site` and compares it with `docs/` (`diff -r /tmp/site docs`).
 
 ## Editor support
 
@@ -870,7 +807,7 @@ python3 -m venv .venv && .venv/bin/pip install -e '.[dev]'
 .venv/bin/pytest -q
 ```
 
-Optional browser smoke tests (`tests/browser/`, Playwright and Chromium, installed with `pip install -e '.[dev,browser]'`) and `scripts/screenshots.py` (regenerates `docs/screenshots/`) are covered there too. CI is `.github/workflows/ci.yml`; the site is deployed by `.github/workflows/pages.yml`.
+Optional browser smoke tests (`tests/browser/`, Playwright and Chromium, installed with `pip install -e '.[dev,browser]'`) and `scripts/screenshots.py` (regenerates `website/assets/screenshots/`) are covered there too. CI is `.github/workflows/ci.yml`; the site in `docs/` is built by hand with `scripts/build_docs.py` and CI checks it is up to date.
 
 ### Project layout
 
@@ -892,11 +829,11 @@ src/quizgen/
   static/                 quiz.js, quiz.css (vanilla, no dependencies)
 examples/                 example quizzes and images
 quizzes/                  the shared quiz library (published on the project site)
-website/                  project landing page and guide (static HTML)
+website/                  project landing page and guide (static HTML), assets/screenshots/ = pictures used in this README
 tests/                    pytest suite, fixtures/ with one bad file per rule, browser/ smoke tests
-scripts/                  maintenance scripts (screenshots)
-docs/screenshots/         pictures used in this README
-.github/workflows/        ci.yml (tests), pages.yml (deploy site), claude-review.yml (maintainer-triggered review)
+scripts/                  maintenance scripts (build_docs.py builds docs/, screenshots.py)
+docs/                     the published site, generated by scripts/build_docs.py and committed (Pages: main, /docs)
+.github/workflows/        ci.yml (tests, docs/ up to date), claude-review.yml (maintainer-triggered review)
 .github/                  PULL_REQUEST_TEMPLATE.md, ISSUE_TEMPLATE/ (issue forms), dependabot.yml
 .claude/agents/           helper agents used while developing the project
 ```
