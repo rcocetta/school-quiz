@@ -145,7 +145,7 @@ To upgrade a pipx install, run `pipx upgrade quizgen`. To install a particular v
 
 A quiz is a text file ending in `.json`. The smallest useful quiz is the one in the [quick start](#quick-start): a `title`, and `questions`, each with a `text` and its `options`, with `"correct": true` on the right one.
 
-JSON is picky about punctuation: text in double quotes, commas between items but not after the last one, curly braces `{ }` around objects and square brackets `[ ]` around lists. If you get it wrong, `quizgen validate` tells you the line and column. Ready-made examples to copy are in [`examples/`](examples/).
+JSON is picky about punctuation: text in double quotes, commas between items but not after the last one, curly braces `{ }` around objects and square brackets `[ ]` around lists. If you get it wrong, `quizgen validate` tells you the line and column. Ready-made examples to copy are in [`examples/`](examples/). Using an AI assistant to write a quiz? Point it at [`AGENTS.md`](AGENTS.md).
 
 A fuller single-language quiz. It uses a picture: download [`cow.png`](https://github.com/rcocetta/school-quiz/blob/main/examples/images/cow.png) ("Download raw file" button) into an `images/` folder next to the file, or delete the `"image"` and `"image_alt"` lines:
 
