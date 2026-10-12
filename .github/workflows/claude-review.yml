@@ -18,6 +18,9 @@ name: Claude review
 #       fetch  : GitHub read access, no secrets.   Collects the PR as plain files.
 #       review : CLAUDE_CODE_OAUTH_TOKEN only, no GitHub token, `permissions: {}`.
 #       post   : pull-requests: write only, no Anthropic key. Posts the text.
+#       ack, failed: pull-requests: write only, no secrets, read nothing from
+#                the PR. Put 👀 on the /claude-review comment at the start,
+#                😕 if the run fails.
 #   * In the review job Claude has no shell and no network tools: only Read,
 #     Grep and Glob, confined to an empty working folder holding just the
 #     fetched files (--restricted), plus deny rules for system folders and home. Nothing from
@@ -52,6 +55,30 @@ on:
 permissions: {}
 
 jobs:
+  # 0. Put 👀 on the /claude-review comment so the owner sees it started.
+  # Same owner gate as fetch (keep the two in step), comment route only.
+  ack:
+    name: Acknowledge
+    if: >-
+      github.event_name == 'issue_comment' &&
+      github.actor == github.repository_owner &&
+      github.triggering_actor == github.repository_owner &&
+      github.event.issue.pull_request &&
+      github.event.comment.author_association == 'OWNER' &&
+      github.event.comment.user.login == github.repository_owner &&
+      startsWith(github.event.comment.body, '/claude-review')
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      pull-requests: write
+    steps:
+      - name: React with eyes
+        env:
+          COMMENT_ID: ${{ github.event.comment.id }}
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh api -X POST "repos/$GH_REPO/issues/comments/$COMMENT_ID/reactions" -f content=eyes > /dev/null
+
   # 1. Collect the pull request as plain files. No secrets, read-only token.
   fetch:
     name: Collect pull request
@@ -278,3 +305,21 @@ jobs:
               | sed -E "s/@([A-Za-z0-9])/@${zw}\1/g"
           } > comment.md
           gh pr comment "$PR" --body-file comment.md
+
+  # 4. If anything above failed, put 😕 on the /claude-review comment.
+  # failure() is only true when a job ran and failed, never for ignored comments.
+  failed:
+    name: Report failure
+    needs: [fetch, review, post]
+    if: failure() && github.event_name == 'issue_comment'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      pull-requests: write
+    steps:
+      - name: React with confused
+        env:
+          COMMENT_ID: ${{ github.event.comment.id }}
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh api -X POST "repos/$GH_REPO/issues/comments/$COMMENT_ID/reactions" -f content=confused > /dev/null
