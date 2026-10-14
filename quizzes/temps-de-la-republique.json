@@ -61,7 +61,7 @@
     },
     {
       "text": "Pourquoi le peuple se révolte-t-il contre le roi Charles X en 1830 ?",
-      "explanation": "Dans une monarchie absolue, le roi a tous les pouvoirs. Charles X veut la rétablir, et le peuple se révolte.",
+      "explanation": "Dans une monarchie absolue, le roi a tous les pouvoirs. Charles X veut la rétablir, en supprimant par exemple la liberté de la presse, et le peuple se révolte.",
       "options": [
         {
           "text": "Parce qu'il veut rétablir la monarchie absolue",
@@ -109,7 +109,7 @@
     },
     {
       "text": "En 1851, pourquoi Louis Napoléon Bonaparte, le président, provoque-t-il un coup d'État ?",
-      "explanation": "Il arrive à la fin de son mandat et ne peut pas se représenter. Il prend alors le pouvoir par la force, se fait sacrer empereur et crée le Second Empire.",
+      "explanation": "Il arrive à la fin de son mandat et ne peut pas se représenter. Il prend alors le pouvoir par la force, puis se proclame empereur et crée le Second Empire.",
       "options": [
         {
           "text": "Il ne peut pas se représenter et veut garder le pouvoir",
@@ -125,7 +125,7 @@
     },
     {
       "text": "Quel régime revient en France en 1870 ?",
-      "explanation": "Après une défaite, l'empereur Napoléon III abdique et s'exile en Angleterre. C'est le retour de la République.",
+      "explanation": "Après la défaite contre la Prusse, l'empereur Napoléon III perd le pouvoir et s'exile en Angleterre. La République est proclamée en 1870.",
       "options": [
         {
           "text": "La République",
@@ -172,8 +172,8 @@
       ]
     },
     {
-      "text": "Grâce aux lois de Jules Ferry (1881-1882), entre quels âges les enfants doivent-ils aller à l'école ?",
-      "explanation": "Les écoles publiques deviennent gratuites et obligatoires pour tous les enfants, filles et garçons, de 6 à 13 ans.",
+      "text": "Grâce aux lois de Jules Ferry (1881-1882), entre quels âges l'instruction est-elle obligatoire ?",
+      "explanation": "L'école publique devient gratuite (1881) et l'instruction obligatoire (1882) pour les filles et les garçons de 6 à 13 ans.",
       "options": [
         {
           "text": "De 6 à 13 ans",
@@ -253,7 +253,7 @@
     },
     {
       "text": "Quelle est la devise de la République française ?",
-      "explanation": "« Liberté, Égalité, Fraternité » : ce sont les trois valeurs que la République s'engage à défendre pour tous les citoyens. On les lit sur les mairies.",
+      "explanation": "« Liberté, Égalité, Fraternité » : ce sont les trois valeurs que la République s'engage à défendre pour tous les citoyens.",
       "options": [
         {
           "text": "Liberté, Égalité, Fraternité",
@@ -269,7 +269,7 @@
     },
     {
       "text": "Pourquoi le coq est-il un symbole de la France ?",
-      "explanation": "Le coq est l'un des plus anciens symboles de la France : il date du Moyen Âge, à cause d'un jeu de mots latin.",
+      "explanation": "Le coq est un très ancien symbole de la France, lié à ce jeu de mots latin.",
       "options": [
         {
           "text": "Parce qu'en latin, « gallus » veut dire à la fois « coq » et « gaulois »",
