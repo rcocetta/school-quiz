@@ -1,0 +1,335 @@
+{
+  "$schema": "../src/quizgen/schema.json",
+  "title": "Le temps de la République",
+  "description": "Un quiz d'histoire pour le CM2 : des régimes politiques après Napoléon aux symboles de la République.",
+  "language": "fr",
+  "author": {
+    "name": "school-quiz",
+    "url": "https://github.com/rcocetta/school-quiz"
+  },
+  "questions_per_quiz": 8,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": "Quel titre prend Napoléon Bonaparte quand il se fait sacrer ?",
+      "explanation": "Après son coup d'État, le général Bonaparte se fait sacrer empereur et crée le Premier Empire.",
+      "options": [
+        {
+          "text": "Empereur",
+          "correct": true
+        },
+        {
+          "text": "Roi"
+        },
+        {
+          "text": "Président"
+        }
+      ]
+    },
+    {
+      "text": "Laquelle de ces batailles Napoléon Bonaparte perd-il ?",
+      "explanation": "Napoléon gagne la bataille d'Austerlitz, mais il perd la bataille de Waterloo. Il est ensuite exilé sur l'île de Sainte-Hélène.",
+      "options": [
+        {
+          "text": "Waterloo",
+          "correct": true
+        },
+        {
+          "text": "Austerlitz"
+        },
+        {
+          "text": "Marignan"
+        }
+      ]
+    },
+    {
+      "text": "Quel roi reprend le pouvoir en France après Napoléon Ier ?",
+      "explanation": "Louis XVIII reprend le pouvoir et refonde une monarchie constitutionnelle.",
+      "options": [
+        {
+          "text": "Louis XVIII",
+          "correct": true
+        },
+        {
+          "text": "Louis XIV"
+        },
+        {
+          "text": "Louis XVI"
+        }
+      ]
+    },
+    {
+      "text": "Pourquoi le peuple se révolte-t-il contre le roi Charles X en 1830 ?",
+      "explanation": "Dans une monarchie absolue, le roi a tous les pouvoirs. Charles X veut la rétablir, et le peuple se révolte.",
+      "options": [
+        {
+          "text": "Parce qu'il veut rétablir la monarchie absolue",
+          "correct": true
+        },
+        {
+          "text": "Parce qu'il veut supprimer l'école"
+        },
+        {
+          "text": "Parce qu'il veut mettre fin à la monarchie"
+        }
+      ]
+    },
+    {
+      "text": "Comment appelle-t-on la révolution des 27, 28 et 29 juillet 1830 ?",
+      "explanation": "Pendant trois jours, le peuple de Paris se bat contre le roi. On les appelle les Trois Glorieuses.",
+      "options": [
+        {
+          "text": "Les Trois Glorieuses",
+          "correct": true
+        },
+        {
+          "text": "Les Trois Mousquetaires"
+        },
+        {
+          "text": "Les Trois Couleurs"
+        }
+      ]
+    },
+    {
+      "text": "Qui renverse le roi Louis-Philippe Ier en 1848 ?",
+      "explanation": "Le peuple ne veut plus aucune monarchie. Après cette révolution, Louis Napoléon Bonaparte devient président de la Seconde République.",
+      "options": [
+        {
+          "text": "Le peuple, par une révolution",
+          "correct": true
+        },
+        {
+          "text": "Napoléon Ier"
+        },
+        {
+          "text": "Charles X"
+        }
+      ]
+    },
+    {
+      "text": "En 1851, pourquoi Louis Napoléon Bonaparte, le président, provoque-t-il un coup d'État ?",
+      "explanation": "Il arrive à la fin de son mandat et ne peut pas se représenter. Il prend alors le pouvoir par la force, se fait sacrer empereur et crée le Second Empire.",
+      "options": [
+        {
+          "text": "Il ne peut pas se représenter et veut garder le pouvoir",
+          "correct": true
+        },
+        {
+          "text": "Il veut redonner le trône à Louis-Philippe"
+        },
+        {
+          "text": "Il veut abolir la peine de mort"
+        }
+      ]
+    },
+    {
+      "text": "Quel régime revient en France en 1870 ?",
+      "explanation": "Après une défaite, l'empereur Napoléon III abdique et s'exile en Angleterre. C'est le retour de la République.",
+      "options": [
+        {
+          "text": "La République",
+          "correct": true
+        },
+        {
+          "text": "La monarchie absolue"
+        },
+        {
+          "text": "Le Premier Empire"
+        }
+      ]
+    },
+    {
+      "text": "Qui est à l'origine de l'abolition de l'esclavage en 1848 ?",
+      "explanation": "Victor Schœlcher obtient l'abolition de l'esclavage en 1848. Les esclaves retrouvent la liberté.",
+      "options": [
+        {
+          "text": "Victor Schœlcher",
+          "correct": true
+        },
+        {
+          "text": "Jules Ferry"
+        },
+        {
+          "text": "Robert Badinter"
+        }
+      ]
+    },
+    {
+      "text": "Quelle grande décision Robert Badinter fait-il voter en 1981 ?",
+      "explanation": "La peine de mort est abolie en France en 1981, grâce à Robert Badinter.",
+      "options": [
+        {
+          "text": "L'abolition de la peine de mort",
+          "correct": true
+        },
+        {
+          "text": "L'école gratuite et obligatoire"
+        },
+        {
+          "text": "Le droit de vote des femmes"
+        }
+      ]
+    },
+    {
+      "text": "Grâce aux lois de Jules Ferry (1881-1882), entre quels âges les enfants doivent-ils aller à l'école ?",
+      "explanation": "Les écoles publiques deviennent gratuites et obligatoires pour tous les enfants, filles et garçons, de 6 à 13 ans.",
+      "options": [
+        {
+          "text": "De 6 à 13 ans",
+          "correct": true
+        },
+        {
+          "text": "De 3 à 10 ans"
+        },
+        {
+          "text": "De 10 à 18 ans"
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une école laïque ?",
+      "explanation": "Depuis la séparation de l'Église et de l'État en 1905, les écoles publiques sont laïques.",
+      "options": [
+        {
+          "text": "Une école qui n'impose pas de religion et n'en parle pas",
+          "correct": true
+        },
+        {
+          "text": "Une école où tous les élèves suivent la même religion"
+        },
+        {
+          "text": "Une école où l'on n'apprend pas à lire"
+        }
+      ]
+    },
+    {
+      "text": "En quelle année les femmes obtiennent-elles le droit de vote en France ?",
+      "explanation": "Les hommes votent depuis 1848. Les femmes obtiennent ce droit en 1944.",
+      "options": [
+        {
+          "text": "1944",
+          "correct": true
+        },
+        {
+          "text": "1848"
+        },
+        {
+          "text": "1905"
+        }
+      ]
+    },
+    {
+      "text": "Qui a créé la Marseillaise ?",
+      "explanation": "Rouget de Lisle a créé ce chant, qui a eu beaucoup de succès auprès des révolutionnaires de Marseille. C'est notre hymne national.",
+      "options": [
+        {
+          "text": "Rouget de Lisle",
+          "correct": true
+        },
+        {
+          "text": "Victor Hugo"
+        },
+        {
+          "text": "Jules Ferry"
+        }
+      ]
+    },
+    {
+      "text": "Que représente Marianne ?",
+      "explanation": "Marianne représente la République française : une femme, et non un roi. Elle porte un bonnet phrygien, le bonnet rouge des révolutionnaires, qui représente la liberté.",
+      "options": [
+        {
+          "text": "La République française",
+          "correct": true
+        },
+        {
+          "text": "Le roi Louis XVIII"
+        },
+        {
+          "text": "L'empereur Napoléon"
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la devise de la République française ?",
+      "explanation": "« Liberté, Égalité, Fraternité » : ce sont les trois valeurs que la République s'engage à défendre pour tous les citoyens. On les lit sur les mairies.",
+      "options": [
+        {
+          "text": "Liberté, Égalité, Fraternité",
+          "correct": true
+        },
+        {
+          "text": "Paix, Travail, Respect"
+        },
+        {
+          "text": "Union, Force, Courage"
+        }
+      ]
+    },
+    {
+      "text": "Pourquoi le coq est-il un symbole de la France ?",
+      "explanation": "Le coq est l'un des plus anciens symboles de la France : il date du Moyen Âge, à cause d'un jeu de mots latin.",
+      "options": [
+        {
+          "text": "Parce qu'en latin, « gallus » veut dire à la fois « coq » et « gaulois »",
+          "correct": true
+        },
+        {
+          "text": "Parce que Napoléon avait un coq"
+        },
+        {
+          "text": "Parce que le coq a chanté pendant la Révolution"
+        }
+      ]
+    },
+    {
+      "text": "Que rappelle le drapeau bleu, blanc et rouge ?",
+      "explanation": "Le drapeau tricolore date de la Révolution française. Il rappelle l'union entre les Français, au-delà de leurs différences.",
+      "options": [
+        {
+          "text": "L'union entre les Français, au-delà de leurs différences",
+          "correct": true
+        },
+        {
+          "text": "La victoire de Napoléon à Austerlitz"
+        },
+        {
+          "text": "La fin de l'école obligatoire"
+        }
+      ]
+    },
+    {
+      "text": "Dans le texte du médecin Louis-René Villermé, des enfants de 6 à 8 ans travaillent dans des ateliers. Combien d'heures par jour sont-ils debout ?",
+      "explanation": "Villermé décrit une journée très dure, qu'il appelle « une torture » : les enfants sont épuisés et dorment à peine quelques heures.",
+      "options": [
+        {
+          "text": "De 16 à 18 heures",
+          "correct": true
+        },
+        {
+          "text": "De 4 à 6 heures"
+        },
+        {
+          "text": "De 8 à 10 heures"
+        }
+      ]
+    },
+    {
+      "text": "Dans sa lettre de 1872, que dit Victor Hugo à propos des femmes ?",
+      "explanation": "Victor Hugo écrit : « Il y a des citoyens, il n'y a pas de citoyennes. Il faut que cela cesse. »",
+      "options": [
+        {
+          "text": "Elles n'ont pas les mêmes droits que les hommes, et il faut que cela change",
+          "correct": true
+        },
+        {
+          "text": "Elles ont déjà tous les droits"
+        },
+        {
+          "text": "Elles doivent rester à la maison"
+        }
+      ]
+    }
+  ]
+}
