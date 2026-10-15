@@ -84,7 +84,7 @@ Settled decisions in `DESIGN.md` (marked with a tick) should not be reopened ins
 
 Put the quiz in `quizzes/`. For a collection, make a folder `quizzes/<collection>/` with your quizzes in it, optionally with a `collection.json` for its title, description and author; see the [README](README.md#collections-and-folder-layout)). Images go in an `images/` folder next to the quiz.
 
-Note: `quizzes/` currently starts with copies of the two examples (with their images and credits). If you change an example in `examples/`, decide whether the library copy should change too.
+Note: `quizzes/` already holds copies of the two examples in `examples/` (with their images and credits) and other quizzes. If you change an example in `examples/`, decide whether the library copy should change too. Set `"unlisted": true` in your collection's `collection.json` if it should not appear on the main index; unlisted is not private, see the [README](README.md#unlisted-collections).
 
 The [pull request template](.github/PULL_REQUEST_TEMPLATE.md) repeats this checklist. For each quiz or collection:
 
