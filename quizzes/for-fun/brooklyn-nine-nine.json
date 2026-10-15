@@ -1,0 +1,961 @@
+{
+  "$schema": "../../src/quizgen/schema.json",
+  "title": "Brooklyn Nine-Nine",
+  "description": "50 questions about the TV comedy Brooklyn Nine-Nine, from season 1 to season 8. Each game asks you 10.",
+  "language": "en",
+  "questions_per_quiz": 10,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": "Who created Brooklyn Nine-Nine?",
+      "explanation": "Dan Goor and Michael Schur created the show.",
+      "options": [
+        {
+          "text": "Dan Goor and Michael Schur",
+          "correct": true
+        },
+        {
+          "text": "Seth MacFarlane and Mike Judge"
+        },
+        {
+          "text": "Tina Fey and Robert Carlock"
+        },
+        {
+          "text": "Matt Groening and Mike Reiss"
+        }
+      ]
+    },
+    {
+      "text": "On which TV network did Brooklyn Nine-Nine start?",
+      "explanation": "Fox showed the first five seasons.",
+      "options": [
+        {
+          "text": "Fox",
+          "correct": true
+        },
+        {
+          "text": "NBC"
+        },
+        {
+          "text": "ABC"
+        },
+        {
+          "text": "CBS"
+        }
+      ]
+    },
+    {
+      "text": "Which network took the show for season 6?",
+      "explanation": "NBC also showed the final season, in 2021.",
+      "options": [
+        {
+          "text": "NBC",
+          "correct": true
+        },
+        {
+          "text": "Fox"
+        },
+        {
+          "text": "Netflix"
+        },
+        {
+          "text": "Disney Channel"
+        }
+      ]
+    },
+    {
+      "text": "How many seasons does Brooklyn Nine-Nine have?",
+      "explanation": "The final season was season 8.",
+      "options": [
+        {
+          "text": "Eight",
+          "correct": true
+        },
+        {
+          "text": "Five"
+        },
+        {
+          "text": "Six"
+        },
+        {
+          "text": "Ten"
+        }
+      ]
+    },
+    {
+      "text": "Which police precinct do the detectives work in?",
+      "explanation": "It is a fictional precinct in Brooklyn, New York.",
+      "options": [
+        {
+          "text": "The 99th",
+          "correct": true
+        },
+        {
+          "text": "The 9th"
+        },
+        {
+          "text": "The 19th"
+        },
+        {
+          "text": "The 11th"
+        }
+      ]
+    },
+    {
+      "text": "In 2014, the show won a Golden Globe. For what?",
+      "explanation": "It won in its first year on the air.",
+      "options": [
+        {
+          "text": "Best comedy series on TV",
+          "correct": true
+        },
+        {
+          "text": "Best movie"
+        },
+        {
+          "text": "Best song"
+        },
+        {
+          "text": "Best cartoon"
+        }
+      ]
+    },
+    {
+      "text": "About how many episodes does the whole series have?",
+      "explanation": "The show ran for eight seasons.",
+      "options": [
+        {
+          "text": "153",
+          "correct": true
+        },
+        {
+          "text": "99"
+        },
+        {
+          "text": "100"
+        },
+        {
+          "text": "200"
+        }
+      ]
+    },
+    {
+      "text": "The show started in 2013. In which year did it end?",
+      "explanation": "The last episode, 'The Last Day', was shown in September 2021.",
+      "options": [
+        {
+          "text": "2021",
+          "correct": true
+        },
+        {
+          "text": "2019"
+        },
+        {
+          "text": "2020"
+        },
+        {
+          "text": "2022"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Jake Peralta?",
+      "explanation": "Andy Samberg won a Golden Globe for playing Jake.",
+      "options": [
+        {
+          "text": "Andy Samberg",
+          "correct": true
+        },
+        {
+          "text": "Terry Crews"
+        },
+        {
+          "text": "Joe Lo Truglio"
+        },
+        {
+          "text": "Andre Braugher"
+        }
+      ]
+    },
+    {
+      "text": "Which actress plays Rosa Diaz?",
+      "explanation": "Stephanie Beatriz is in the main cast.",
+      "options": [
+        {
+          "text": "Stephanie Beatriz",
+          "correct": true
+        },
+        {
+          "text": "Melissa Fumero"
+        },
+        {
+          "text": "Chelsea Peretti"
+        },
+        {
+          "text": "Kyra Sedgwick"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Terry Jeffords?",
+      "explanation": "Terry Crews is in the main cast.",
+      "options": [
+        {
+          "text": "Terry Crews",
+          "correct": true
+        },
+        {
+          "text": "Andre Braugher"
+        },
+        {
+          "text": "Craig Robinson"
+        },
+        {
+          "text": "Joe Lo Truglio"
+        }
+      ]
+    },
+    {
+      "text": "Which actress plays Amy Santiago?",
+      "explanation": "Melissa Fumero is in the main cast.",
+      "options": [
+        {
+          "text": "Melissa Fumero",
+          "correct": true
+        },
+        {
+          "text": "Stephanie Beatriz"
+        },
+        {
+          "text": "Chelsea Peretti"
+        },
+        {
+          "text": "Kyra Sedgwick"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Charles Boyle?",
+      "explanation": "Joe Lo Truglio is in the main cast.",
+      "options": [
+        {
+          "text": "Joe Lo Truglio",
+          "correct": true
+        },
+        {
+          "text": "Andy Samberg"
+        },
+        {
+          "text": "Dirk Blocker"
+        },
+        {
+          "text": "Dean Winters"
+        }
+      ]
+    },
+    {
+      "text": "Which actress plays Gina Linetti?",
+      "explanation": "Chelsea Peretti is a main cast member in the first seasons.",
+      "options": [
+        {
+          "text": "Chelsea Peretti",
+          "correct": true
+        },
+        {
+          "text": "Stephanie Beatriz"
+        },
+        {
+          "text": "Melissa Fumero"
+        },
+        {
+          "text": "Kyra Sedgwick"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Captain Raymond Holt?",
+      "explanation": "Holt arrives as the new captain at the start of the series.",
+      "options": [
+        {
+          "text": "Andre Braugher",
+          "correct": true
+        },
+        {
+          "text": "Terry Crews"
+        },
+        {
+          "text": "Craig Robinson"
+        },
+        {
+          "text": "Andy Samberg"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Hitchcock?",
+      "explanation": "Hitchcock's partner is Scully.",
+      "options": [
+        {
+          "text": "Dirk Blocker",
+          "correct": true
+        },
+        {
+          "text": "Joel McKinnon Miller"
+        },
+        {
+          "text": "Marc Evan Jackson"
+        },
+        {
+          "text": "Craig Robinson"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Scully?",
+      "explanation": "Hitchcock and Scully became part of the main cast.",
+      "options": [
+        {
+          "text": "Joel McKinnon Miller",
+          "correct": true
+        },
+        {
+          "text": "Dirk Blocker"
+        },
+        {
+          "text": "Dean Winters"
+        },
+        {
+          "text": "Jason Mantzoukas"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays the criminal Doug Judy?",
+      "explanation": "Craig Robinson appears as Doug Judy in at least one episode of each season.",
+      "options": [
+        {
+          "text": "Craig Robinson",
+          "correct": true
+        },
+        {
+          "text": "Terry Crews"
+        },
+        {
+          "text": "Dean Winters"
+        },
+        {
+          "text": "Bradley Whitford"
+        }
+      ]
+    },
+    {
+      "text": "Which actress plays Madeline Wuntch, Holt's rival?",
+      "explanation": "Wuntch is Holt's former captain and later his rival.",
+      "options": [
+        {
+          "text": "Kyra Sedgwick",
+          "correct": true
+        },
+        {
+          "text": "Stephanie Beatriz"
+        },
+        {
+          "text": "Chelsea Peretti"
+        },
+        {
+          "text": "Melissa Fumero"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays the villain called The Vulture?",
+      "explanation": "The Vulture's real name is Keith Pembroke.",
+      "options": [
+        {
+          "text": "Dean Winters",
+          "correct": true
+        },
+        {
+          "text": "Jason Mantzoukas"
+        },
+        {
+          "text": "Craig Robinson"
+        },
+        {
+          "text": "Bradley Whitford"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays the detective Adrian Pimento?",
+      "explanation": "Adrian is introduced in season 3.",
+      "options": [
+        {
+          "text": "Jason Mantzoukas",
+          "correct": true
+        },
+        {
+          "text": "Dean Winters"
+        },
+        {
+          "text": "Craig Robinson"
+        },
+        {
+          "text": "Marc Evan Jackson"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Jake's father, Roger Peralta?",
+      "explanation": "Jake's family appears in several episodes.",
+      "options": [
+        {
+          "text": "Bradley Whitford",
+          "correct": true
+        },
+        {
+          "text": "Craig Robinson"
+        },
+        {
+          "text": "Dean Winters"
+        },
+        {
+          "text": "Sterling K. Brown"
+        }
+      ]
+    },
+    {
+      "text": "What is Captain Holt's first name?",
+      "explanation": "Raymond Holt is the captain of the 99th precinct.",
+      "options": [
+        {
+          "text": "Raymond",
+          "correct": true
+        },
+        {
+          "text": "Richard"
+        },
+        {
+          "text": "Robert"
+        },
+        {
+          "text": "Ronald"
+        }
+      ]
+    },
+    {
+      "text": "In a famous joke, what is Terry's computer password?",
+      "explanation": "The detectives guess it correctly: 'Terry loves yogurt'.",
+      "options": [
+        {
+          "text": "yogurt",
+          "correct": true
+        },
+        {
+          "text": "banana"
+        },
+        {
+          "text": "muscles"
+        },
+        {
+          "text": "donuts"
+        }
+      ]
+    },
+    {
+      "text": "How many daughters does Terry Jeffords have?",
+      "explanation": "Terry is a very protective dad.",
+      "options": [
+        {
+          "text": "Three",
+          "correct": true
+        },
+        {
+          "text": "Two"
+        },
+        {
+          "text": "Four"
+        },
+        {
+          "text": "One"
+        }
+      ]
+    },
+    {
+      "text": "What is the name of Captain Holt's dog?",
+      "explanation": "Cheddar is a corgi.",
+      "options": [
+        {
+          "text": "Cheddar",
+          "correct": true
+        },
+        {
+          "text": "Gouda"
+        },
+        {
+          "text": "Brie"
+        },
+        {
+          "text": "Swiss"
+        }
+      ]
+    },
+    {
+      "text": "What is the first name of Captain Holt's husband?",
+      "explanation": "Kevin Cozner is played by Marc Evan Jackson.",
+      "options": [
+        {
+          "text": "Kevin",
+          "correct": true
+        },
+        {
+          "text": "Karl"
+        },
+        {
+          "text": "Kyle"
+        },
+        {
+          "text": "Kenneth"
+        }
+      ]
+    },
+    {
+      "text": "What is Doug Judy's nickname?",
+      "explanation": "Doug Judy often becomes friendly with Jake.",
+      "options": [
+        {
+          "text": "The Pontiac Bandit",
+          "correct": true
+        },
+        {
+          "text": "The Chevy Chaser"
+        },
+        {
+          "text": "The Ford Fox"
+        },
+        {
+          "text": "The Honda Hero"
+        }
+      ]
+    },
+    {
+      "text": "Before the squad meets him, the detective Adrian Pimento had been undercover for how long?",
+      "explanation": "That is a very long time to be undercover.",
+      "options": [
+        {
+          "text": "12 years",
+          "correct": true
+        },
+        {
+          "text": "5 years"
+        },
+        {
+          "text": "20 years"
+        },
+        {
+          "text": "2 years"
+        }
+      ]
+    },
+    {
+      "text": "What does Jake say when he feels uneasy or awkward?",
+      "explanation": "Andy Samberg made this line up while filming; it was not in the script.",
+      "options": [
+        {
+          "text": "Cool, cool, cool, cool, cool, no doubt, no doubt, no doubt",
+          "correct": true
+        },
+        {
+          "text": "Whoa, whoa, whoa, whoa, whoa, hold on"
+        },
+        {
+          "text": "Okay, okay, okay, I'm fine, I'm fine"
+        },
+        {
+          "text": "Great, great, great, let's go"
+        }
+      ]
+    },
+    {
+      "text": "What word does Jake use when he is impressed?",
+      "explanation": "He first says it in season 1, in 'Charges and Specs'.",
+      "options": [
+        {
+          "text": "Noice!",
+          "correct": true
+        },
+        {
+          "text": "Nahs!"
+        },
+        {
+          "text": "Nyce!"
+        },
+        {
+          "text": "Noyse!"
+        }
+      ]
+    },
+    {
+      "text": "Which action movie does Jake often quote?",
+      "explanation": "Jake loves quoting Die Hard.",
+      "options": [
+        {
+          "text": "Die Hard",
+          "correct": true
+        },
+        {
+          "text": "Home Alone"
+        },
+        {
+          "text": "Titanic"
+        },
+        {
+          "text": "Frozen"
+        }
+      ]
+    },
+    {
+      "text": "What does Captain Holt like to drink?",
+      "explanation": "Holt also likes plain toast and oatmeal.",
+      "options": [
+        {
+          "text": "Room temperature water",
+          "correct": true
+        },
+        {
+          "text": "Cola"
+        },
+        {
+          "text": "Coffee"
+        },
+        {
+          "text": "Orange juice"
+        }
+      ]
+    },
+    {
+      "text": "In the first Halloween Heist, what does Jake try to steal from Captain Holt?",
+      "explanation": "It started as a bet between Jake and Holt in season 1.",
+      "options": [
+        {
+          "text": "His Medal of Valor",
+          "correct": true
+        },
+        {
+          "text": "His captain's hat"
+        },
+        {
+          "text": "His police badge"
+        },
+        {
+          "text": "His lucky pen"
+        }
+      ]
+    },
+    {
+      "text": "The Halloween Heist has to be finished before what time?",
+      "explanation": "Whoever holds the prize at midnight wins.",
+      "options": [
+        {
+          "text": "Midnight",
+          "correct": true
+        },
+        {
+          "text": "Noon"
+        },
+        {
+          "text": "6 p.m."
+        },
+        {
+          "text": "Sunrise"
+        }
+      ]
+    },
+    {
+      "text": "In season 6, the heist is held on which holiday?",
+      "explanation": "A gas explosion had delayed it.",
+      "options": [
+        {
+          "text": "Cinco de Mayo",
+          "correct": true
+        },
+        {
+          "text": "Christmas"
+        },
+        {
+          "text": "New Year"
+        },
+        {
+          "text": "Thanksgiving"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Jimmy Jab Games II', who hosts the games dressed as P.T. Barnum?",
+      "explanation": "The first Jimmy Jab Games were in season 2.",
+      "options": [
+        {
+          "text": "Boyle",
+          "correct": true
+        },
+        {
+          "text": "Jake"
+        },
+        {
+          "text": "Terry"
+        },
+        {
+          "text": "Holt"
+        }
+      ]
+    },
+    {
+      "text": "In 'HalloVeen', Jake proposes to Amy with the words written on what?",
+      "explanation": "The inscription reads: 'Amy Santiago, will you marry me?'",
+      "options": [
+        {
+          "text": "The winner's cummerbund",
+          "correct": true
+        },
+        {
+          "text": "A pumpkin"
+        },
+        {
+          "text": "A birthday cake"
+        },
+        {
+          "text": "A T-shirt"
+        }
+      ]
+    },
+    {
+      "text": "How does Charles react when he hears that Jake and Amy are engaged?",
+      "explanation": "Boyle is one of their best friends.",
+      "options": [
+        {
+          "text": "He passes out",
+          "correct": true
+        },
+        {
+          "text": "He starts crying"
+        },
+        {
+          "text": "He cheers"
+        },
+        {
+          "text": "He dances"
+        }
+      ]
+    },
+    {
+      "text": "Who marries Jake and Amy in the precinct parking lot?",
+      "explanation": "Their plans fell apart after a bomb threat, so they got married there.",
+      "options": [
+        {
+          "text": "Captain Holt",
+          "correct": true
+        },
+        {
+          "text": "Terry"
+        },
+        {
+          "text": "Boyle"
+        },
+        {
+          "text": "Gina"
+        }
+      ]
+    },
+    {
+      "text": "In the famous episode 'The Box', what is the suspect's job?",
+      "explanation": "Sterling K. Brown plays the suspect, Philip Davidson.",
+      "options": [
+        {
+          "text": "He is a wealthy dentist",
+          "correct": true
+        },
+        {
+          "text": "He is a chef"
+        },
+        {
+          "text": "He is a pilot"
+        },
+        {
+          "text": "He is a teacher"
+        }
+      ]
+    },
+    {
+      "text": "In which US state do Jake and Holt hide in witness protection?",
+      "explanation": "Holt is thriving there.",
+      "options": [
+        {
+          "text": "Florida",
+          "correct": true
+        },
+        {
+          "text": "Texas"
+        },
+        {
+          "text": "Ohio"
+        },
+        {
+          "text": "Alaska"
+        }
+      ]
+    },
+    {
+      "text": "In season 7, what happens to Captain Holt's job?",
+      "explanation": "He has to get used to his new job.",
+      "options": [
+        {
+          "text": "He is demoted to a patrol officer",
+          "correct": true
+        },
+        {
+          "text": "He becomes the mayor"
+        },
+        {
+          "text": "He becomes a detective"
+        },
+        {
+          "text": "He retires"
+        }
+      ]
+    },
+    {
+      "text": "In season 8's first episode, 'The Good Ones', what does Rosa do?",
+      "explanation": "Season 8 is the last season.",
+      "options": [
+        {
+          "text": "She resigns from the precinct",
+          "correct": true
+        },
+        {
+          "text": "She gets married"
+        },
+        {
+          "text": "She becomes captain"
+        },
+        {
+          "text": "She adopts a dog"
+        }
+      ]
+    },
+    {
+      "text": "In the series finale, 'The Last Day', what does Jake decide to do?",
+      "explanation": "Amy is about to start a new job working with Holt on police reform.",
+      "options": [
+        {
+          "text": "Leave the NYPD to be a full-time dad",
+          "correct": true
+        },
+        {
+          "text": "Become a pilot"
+        },
+        {
+          "text": "Move to Florida"
+        },
+        {
+          "text": "Open a restaurant"
+        }
+      ]
+    },
+    {
+      "text": "In 'PB & J', Doug Judy's last ride with Jake, where is he driven?",
+      "explanation": "It is described as the Pontiac Bandit's last ride on the show.",
+      "options": [
+        {
+          "text": "To prison",
+          "correct": true
+        },
+        {
+          "text": "To the airport"
+        },
+        {
+          "text": "To the Moon"
+        },
+        {
+          "text": "To a party"
+        }
+      ]
+    },
+    {
+      "text": "In which season does Doug Judy first appear?",
+      "explanation": "He first shows up in the episode 'Pontiac Bandit'.",
+      "options": [
+        {
+          "text": "Season 1",
+          "correct": true
+        },
+        {
+          "text": "Season 2"
+        },
+        {
+          "text": "Season 3"
+        },
+        {
+          "text": "Season 5"
+        }
+      ]
+    },
+    {
+      "text": "In the episode 'Hitchcock and Scully', Jake and Charles investigate an old case from which decade?",
+      "explanation": "It is one of Hitchcock and Scully's cases.",
+      "options": [
+        {
+          "text": "The 1980s",
+          "correct": true
+        },
+        {
+          "text": "The 1960s"
+        },
+        {
+          "text": "The 1990s"
+        },
+        {
+          "text": "The 2000s"
+        }
+      ]
+    },
+    {
+      "text": "In season 7's 'Admiral Peralta', the story is about which member of Jake's family?",
+      "explanation": "Jake and his father deal with some unfinished family business.",
+      "options": [
+        {
+          "text": "His father",
+          "correct": true
+        },
+        {
+          "text": "His mother"
+        },
+        {
+          "text": "His sister"
+        },
+        {
+          "text": "His dog"
+        }
+      ]
+    },
+    {
+      "text": "In the season 4 episode 'Cop Con', what kind of event do Jake and Amy go to?",
+      "explanation": "It is one of the fan favourite episodes.",
+      "options": [
+        {
+          "text": "A convention",
+          "correct": true
+        },
+        {
+          "text": "A cooking contest"
+        },
+        {
+          "text": "A wedding"
+        },
+        {
+          "text": "A school fair"
+        }
+      ]
+    }
+  ]
+}
