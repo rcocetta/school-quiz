@@ -44,6 +44,7 @@ Each quiz file holds a pool of **N** questions; each attempt shows **M** of them
 | D28 | **Immediate feedback = tap to select, then "Check"**: a mis-tap can be changed before checking. Number keys 1–9 only select, and only while focus is in the options (WCAG 2.1.4) | ✅ |
 | D29 | Site output **mirrors the input folder**: each page sits where its JSON is, local images copied once to the same relative path | ✅ |
 | D30 | **GitHub Pages serves `/docs` on `main`.** The built site is committed in `docs/` and **rebuilt by hand** with `python scripts/build_docs.py` (`--quizzes-only` for forks that skip the project website); no workflow writes to the repo; **CI fails when `docs/` is out of date** | ✅ |
+| D31 | Optional **`unlisted: true`** in `collection.json`: the collection (index page + quizzes) is built at `<collection>/` but not linked from the top index, and its own page has no "All quizzes" back link. Not private (public repo, no `noindex`) | ✅ |
 
 ## Working principles
 

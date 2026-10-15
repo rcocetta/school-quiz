@@ -1,0 +1,961 @@
+{
+  "$schema": "../../src/quizgen/schema.json",
+  "title": "Doctor Who",
+  "description": "50 questions about Doctor Who since 2005, from the Ninth Doctor onwards. Each game asks you 10.",
+  "language": "en",
+  "questions_per_quiz": 10,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": "Which actor played the Ninth Doctor when Doctor Who came back in 2005?",
+      "explanation": "Christopher Eccleston played the Ninth Doctor in the first series of the new Doctor Who, in 2005.",
+      "options": [
+        {
+          "text": "Christopher Eccleston",
+          "correct": true
+        },
+        {
+          "text": "David Tennant"
+        },
+        {
+          "text": "Matt Smith"
+        },
+        {
+          "text": "John Hurt"
+        }
+      ]
+    },
+    {
+      "text": "Who played the Tenth Doctor?",
+      "explanation": "David Tennant was the Tenth Doctor from 2005 to 2010. He came back in 2023 as the Fourteenth Doctor.",
+      "options": [
+        {
+          "text": "David Tennant",
+          "correct": true
+        },
+        {
+          "text": "Christopher Eccleston"
+        },
+        {
+          "text": "Peter Capaldi"
+        },
+        {
+          "text": "Jodie Whittaker"
+        }
+      ]
+    },
+    {
+      "text": "Who played the Eleventh Doctor?",
+      "explanation": "Matt Smith played the Eleventh Doctor from 2010 to 2013.",
+      "options": [
+        {
+          "text": "Matt Smith",
+          "correct": true
+        },
+        {
+          "text": "David Tennant"
+        },
+        {
+          "text": "Peter Capaldi"
+        },
+        {
+          "text": "Karen Gillan"
+        }
+      ]
+    },
+    {
+      "text": "Who played the Twelfth Doctor?",
+      "explanation": "Peter Capaldi played the Twelfth Doctor from 2014 to 2017.",
+      "options": [
+        {
+          "text": "Peter Capaldi",
+          "correct": true
+        },
+        {
+          "text": "Matt Smith"
+        },
+        {
+          "text": "Jodie Whittaker"
+        },
+        {
+          "text": "Ncuti Gatwa"
+        }
+      ]
+    },
+    {
+      "text": "In 2017 it was announced that a woman would play the Doctor as the star of the show for the first time. Who was it?",
+      "explanation": "Jodie Whittaker became the Thirteenth Doctor, the first woman to play the Doctor as the main star.",
+      "options": [
+        {
+          "text": "Jodie Whittaker",
+          "correct": true
+        },
+        {
+          "text": "Catherine Tate"
+        },
+        {
+          "text": "Billie Piper"
+        },
+        {
+          "text": "Karen Gillan"
+        }
+      ]
+    },
+    {
+      "text": "Who played the Fifteenth Doctor?",
+      "explanation": "Ncuti Gatwa first appeared as the Fifteenth Doctor at the end of 'The Giggle' in 2023.",
+      "options": [
+        {
+          "text": "Ncuti Gatwa",
+          "correct": true
+        },
+        {
+          "text": "David Tennant"
+        },
+        {
+          "text": "Matt Smith"
+        },
+        {
+          "text": "Pearl Mackie"
+        }
+      ]
+    },
+    {
+      "text": "What does TARDIS stand for?",
+      "explanation": "The TARDIS is the Doctor's time machine and spaceship. It is bigger on the inside.",
+      "options": [
+        {
+          "text": "Time And Relative Dimension In Space",
+          "correct": true
+        },
+        {
+          "text": "Travel And Rapid Dimension In Space"
+        },
+        {
+          "text": "Time And Rocket Dimension In Space"
+        },
+        {
+          "text": "Transport And Relative Door In Space"
+        }
+      ]
+    },
+    {
+      "text": "Why does the TARDIS look like an old blue police box?",
+      "explanation": "The chameleon circuit should let the TARDIS disguise itself, but it is broken, so it stays a police box.",
+      "options": [
+        {
+          "text": "Its chameleon circuit is broken, so it is stuck in that shape",
+          "correct": true
+        },
+        {
+          "text": "The Doctor loves the police"
+        },
+        {
+          "text": "It was built by the police"
+        },
+        {
+          "text": "Rose painted it"
+        }
+      ]
+    },
+    {
+      "text": "How many hearts does the Doctor have?",
+      "explanation": "Time Lords like the Doctor have two hearts.",
+      "options": [
+        {
+          "text": "Two",
+          "correct": true
+        },
+        {
+          "text": "One"
+        },
+        {
+          "text": "Three"
+        },
+        {
+          "text": "Four"
+        }
+      ]
+    },
+    {
+      "text": "What do the Daleks shout when they attack?",
+      "explanation": "'Exterminate!' is the Daleks' famous battle cry.",
+      "options": [
+        {
+          "text": "Exterminate!",
+          "correct": true
+        },
+        {
+          "text": "Hello, sweetie!"
+        },
+        {
+          "text": "Allons-y!"
+        },
+        {
+          "text": "Geronimo!"
+        }
+      ]
+    },
+    {
+      "text": "What was the name of the very first episode of the new Doctor Who, shown on BBC One in 2005?",
+      "explanation": "'Rose' was first shown on 26 March 2005.",
+      "options": [
+        {
+          "text": "Rose",
+          "correct": true
+        },
+        {
+          "text": "The End of the World"
+        },
+        {
+          "text": "The Empty Child"
+        },
+        {
+          "text": "Dalek"
+        }
+      ]
+    },
+    {
+      "text": "Who played Rose Tyler, who travels with the Ninth Doctor?",
+      "explanation": "Billie Piper played Rose Tyler. Rose travelled with the Ninth Doctor and then the Tenth.",
+      "options": [
+        {
+          "text": "Billie Piper",
+          "correct": true
+        },
+        {
+          "text": "Freema Agyeman"
+        },
+        {
+          "text": "Catherine Tate"
+        },
+        {
+          "text": "Karen Gillan"
+        }
+      ]
+    },
+    {
+      "text": "In 'Rose', plastic monsters called Autons attack London. What famous London landmark was their boss using as a transmitter?",
+      "explanation": "The Nestene Consciousness controls the Autons and was using the London Eye as a transmitter.",
+      "options": [
+        {
+          "text": "The London Eye",
+          "correct": true
+        },
+        {
+          "text": "Big Ben"
+        },
+        {
+          "text": "Tower Bridge"
+        },
+        {
+          "text": "The Shard"
+        }
+      ]
+    },
+    {
+      "text": "In the episode 'Dalek' (2005), where is the lone Dalek being kept?",
+      "explanation": "A billionaire called Henry Van Statten kept it in his museum of alien objects.",
+      "options": [
+        {
+          "text": "In a secret underground museum in Utah",
+          "correct": true
+        },
+        {
+          "text": "At the bottom of the River Thames"
+        },
+        {
+          "text": "Inside the TARDIS"
+        },
+        {
+          "text": "In a bank in Cardiff"
+        }
+      ]
+    },
+    {
+      "text": "The Doctor believed the Daleks had all been destroyed in a huge war. What was it called?",
+      "explanation": "Seeing a Dalek in 'Dalek' shocks the Doctor, because he thought the Last Great Time War had destroyed them.",
+      "options": [
+        {
+          "text": "The Last Great Time War",
+          "correct": true
+        },
+        {
+          "text": "The Great Dalek Invasion"
+        },
+        {
+          "text": "The Long Cyber War"
+        },
+        {
+          "text": "The War of the Roses"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Empty Child', a child in a gas mask keeps asking which question?",
+      "explanation": "The story is set in London in 1941, during the Blitz.",
+      "options": [
+        {
+          "text": "Are you my mummy?",
+          "correct": true
+        },
+        {
+          "text": "Are you my teacher?"
+        },
+        {
+          "text": "Where is the TARDIS?"
+        },
+        {
+          "text": "Who are you?"
+        }
+      ]
+    },
+    {
+      "text": "Captain Jack Harkness, played by John Barrowman, first appears in 'The Empty Child'. Which spin-off series did he later star in?",
+      "explanation": "Torchwood was a spin-off series, and Captain Jack was its main character.",
+      "options": [
+        {
+          "text": "Torchwood",
+          "correct": true
+        },
+        {
+          "text": "The Sarah Jane Adventures"
+        },
+        {
+          "text": "Class"
+        },
+        {
+          "text": "Jack's Journey"
+        }
+      ]
+    },
+    {
+      "text": "In 'Bad Wolf', the Doctor, Rose and Jack are secretly taken onto Satellite Five. What does it broadcast?",
+      "explanation": "The Daleks are secretly behind the game shows.",
+      "options": [
+        {
+          "text": "Game shows",
+          "correct": true
+        },
+        {
+          "text": "Cartoons"
+        },
+        {
+          "text": "Weather forecasts"
+        },
+        {
+          "text": "Football matches"
+        }
+      ]
+    },
+    {
+      "text": "At the end of series 1, Rose opens the TARDIS console and takes in the power of what?",
+      "explanation": "She uses that power to destroy the Daleks, and spreads the words 'Bad Wolf' across time and space.",
+      "options": [
+        {
+          "text": "The time vortex",
+          "correct": true
+        },
+        {
+          "text": "A Dalek weapon"
+        },
+        {
+          "text": "A black hole"
+        },
+        {
+          "text": "The Sun"
+        }
+      ]
+    },
+    {
+      "text": "Just before the Ninth Doctor regenerates, what does he tell Rose she was?",
+      "explanation": "'You were fantastic. Absolutely fantastic.' Then he turns into the Tenth Doctor.",
+      "options": [
+        {
+          "text": "Fantastic",
+          "correct": true
+        },
+        {
+          "text": "Brilliant"
+        },
+        {
+          "text": "Clever"
+        },
+        {
+          "text": "Brave"
+        }
+      ]
+    },
+    {
+      "text": "What does the Tenth Doctor's catchphrase 'Allons-y!' mean?",
+      "explanation": "It is French for 'Let's go!'. You can hear it in 'Army of Ghosts'.",
+      "options": [
+        {
+          "text": "Let's go!",
+          "correct": true
+        },
+        {
+          "text": "Look out!"
+        },
+        {
+          "text": "Good luck!"
+        },
+        {
+          "text": "Run away!"
+        }
+      ]
+    },
+    {
+      "text": "In 'School Reunion', the Doctor meets Sarah Jane Smith again, who has an old robot dog. What is it called?",
+      "explanation": "K-9 destroys himself to save the day, but the Doctor gives Sarah Jane a brand-new K-9 at the end.",
+      "options": [
+        {
+          "text": "K-9",
+          "correct": true
+        },
+        {
+          "text": "Rex"
+        },
+        {
+          "text": "Spot"
+        },
+        {
+          "text": "Metal Mutt"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Girl in the Fireplace', the Doctor meets a girl called Reinette. Which famous French lady does she grow up to be?",
+      "explanation": "The Doctor sees her life through 'time windows', starting when she is seven years old.",
+      "options": [
+        {
+          "text": "Madame de Pompadour",
+          "correct": true
+        },
+        {
+          "text": "Queen Victoria"
+        },
+        {
+          "text": "Joan of Arc"
+        },
+        {
+          "text": "Cleopatra"
+        }
+      ]
+    },
+    {
+      "text": "In 'Doomsday' (2006), a small group of Daleks escapes. What are they called?",
+      "explanation": "The Cult of Skaro escape at the end of 'Doomsday'.",
+      "options": [
+        {
+          "text": "The Cult of Skaro",
+          "correct": true
+        },
+        {
+          "text": "The Dalek Council"
+        },
+        {
+          "text": "The Silent Squad"
+        },
+        {
+          "text": "The Black Eagles"
+        }
+      ]
+    },
+    {
+      "text": "In 'Doomsday', Cybermen invade London. Where did they come from?",
+      "explanation": "They came from a parallel universe. It is also where Rose ends up, stuck, at the end of the story.",
+      "options": [
+        {
+          "text": "A parallel universe",
+          "correct": true
+        },
+        {
+          "text": "The Moon"
+        },
+        {
+          "text": "The bottom of the sea"
+        },
+        {
+          "text": "Ancient Egypt"
+        }
+      ]
+    },
+    {
+      "text": "At the end of 'Planet of the Ood' (2008), what do the freed Ood do?",
+      "explanation": "Once the Ood are free, they sing together using their telepathy.",
+      "options": [
+        {
+          "text": "They sing together",
+          "correct": true
+        },
+        {
+          "text": "They fly away in a spaceship"
+        },
+        {
+          "text": "They build a statue of the Doctor"
+        },
+        {
+          "text": "They chase the Daleks"
+        }
+      ]
+    },
+    {
+      "text": "In 'Smith and Jones' (2007), the Royal Hope Hospital is taken somewhere very strange. Where?",
+      "explanation": "Martha Jones, played by Freema Agyeman, joins the Doctor after this adventure.",
+      "options": [
+        {
+          "text": "The Moon",
+          "correct": true
+        },
+        {
+          "text": "Mars"
+        },
+        {
+          "text": "Skaro"
+        },
+        {
+          "text": "The bottom of the sea"
+        }
+      ]
+    },
+    {
+      "text": "When she meets the Doctor, what is Martha Jones studying to become?",
+      "explanation": "Martha is a medical student.",
+      "options": [
+        {
+          "text": "A doctor",
+          "correct": true
+        },
+        {
+          "text": "A pilot"
+        },
+        {
+          "text": "A teacher"
+        },
+        {
+          "text": "A police officer"
+        }
+      ]
+    },
+    {
+      "text": "Who wrote 'Blink' (2007), the scary episode with the Weeping Angels?",
+      "explanation": "The Weeping Angels only move when nobody is looking, which is why the story's warning is 'Don't blink!'",
+      "options": [
+        {
+          "text": "Steven Moffat",
+          "correct": true
+        },
+        {
+          "text": "Russell T Davies"
+        },
+        {
+          "text": "Neil Gaiman"
+        },
+        {
+          "text": "Richard Curtis"
+        }
+      ]
+    },
+    {
+      "text": "Which actor played the Master, the main villain of series 3 in 2007?",
+      "explanation": "John Simm played the Master from 2007 to 2010.",
+      "options": [
+        {
+          "text": "John Simm",
+          "correct": true
+        },
+        {
+          "text": "Michelle Gomez"
+        },
+        {
+          "text": "Sacha Dhawan"
+        },
+        {
+          "text": "David Tennant"
+        }
+      ]
+    },
+    {
+      "text": "How does Donna Noble first appear in the TARDIS?",
+      "explanation": "Donna, played by Catherine Tate, appears at the end of 'Doomsday'. Then she is 'The Runaway Bride' in the Christmas special.",
+      "options": [
+        {
+          "text": "In a wedding dress",
+          "correct": true
+        },
+        {
+          "text": "Dressed as a Dalek"
+        },
+        {
+          "text": "In a space suit"
+        },
+        {
+          "text": "Covered in mud"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Fires of Pompeii' (2008), Peter Capaldi plays a character before he became the Twelfth Doctor. Which one?",
+      "explanation": "Karen Gillan was in the same episode as a soothsayer, before she played Amy Pond.",
+      "options": [
+        {
+          "text": "Caecilius",
+          "correct": true
+        },
+        {
+          "text": "Rassilon"
+        },
+        {
+          "text": "The Master"
+        },
+        {
+          "text": "Davros"
+        }
+      ]
+    },
+    {
+      "text": "What famous word does River Song use to mean 'I can't tell you what happens next'?",
+      "explanation": "River Song, played by Alex Kingston, first appeared in 'Silence in the Library' in 2008.",
+      "options": [
+        {
+          "text": "Spoilers!",
+          "correct": true
+        },
+        {
+          "text": "Geronimo!"
+        },
+        {
+          "text": "Fantastic!"
+        },
+        {
+          "text": "Allons-y!"
+        }
+      ]
+    },
+    {
+      "text": "What are the Tenth Doctor's last words before he regenerates in 'The End of Time'?",
+      "explanation": "He regenerates into the Eleventh Doctor, played by Matt Smith.",
+      "options": [
+        {
+          "text": "I don't want to go",
+          "correct": true
+        },
+        {
+          "text": "Allons-y!"
+        },
+        {
+          "text": "Goodbye, Rose"
+        },
+        {
+          "text": "I'm sorry"
+        }
+      ]
+    },
+    {
+      "text": "In 2010, which Doctor said 'Bow ties are cool' in his very first episode?",
+      "explanation": "Matt Smith's Doctor says it in his first episode, 'The Eleventh Hour' (2010).",
+      "options": [
+        {
+          "text": "The Eleventh Doctor",
+          "correct": true
+        },
+        {
+          "text": "The Ninth Doctor"
+        },
+        {
+          "text": "The Tenth Doctor"
+        },
+        {
+          "text": "The Twelfth Doctor"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Eleventh Hour', the new Doctor meets young Amelia Pond in which English village?",
+      "explanation": "Years later, Amelia has grown up into Amy Pond, played by Karen Gillan.",
+      "options": [
+        {
+          "text": "Leadworth",
+          "correct": true
+        },
+        {
+          "text": "Ambridge"
+        },
+        {
+          "text": "Hogsmeade"
+        },
+        {
+          "text": "Sheffield"
+        }
+      ]
+    },
+    {
+      "text": "In 'Vincent and the Doctor', the Doctor and Amy meet which famous painter?",
+      "explanation": "The story was written by Richard Curtis.",
+      "options": [
+        {
+          "text": "Vincent van Gogh",
+          "correct": true
+        },
+        {
+          "text": "Pablo Picasso"
+        },
+        {
+          "text": "Leonardo da Vinci"
+        },
+        {
+          "text": "Claude Monet"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Doctor's Wife' (2011), who turns out to be the Doctor's 'wife'?",
+      "explanation": "The TARDIS appears as a woman called Idris, played by Suranne Jones. The story was written by Neil Gaiman.",
+      "options": [
+        {
+          "text": "The TARDIS, in a human body",
+          "correct": true
+        },
+        {
+          "text": "Rose Tyler"
+        },
+        {
+          "text": "Donna Noble"
+        },
+        {
+          "text": "Martha Jones"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Angels Take Manhattan', which monsters trap Amy and Rory in New York in the 1930s?",
+      "explanation": "It is the last story for Amy and Rory.",
+      "options": [
+        {
+          "text": "The Weeping Angels",
+          "correct": true
+        },
+        {
+          "text": "The Daleks"
+        },
+        {
+          "text": "The Cybermen"
+        },
+        {
+          "text": "The Ood"
+        }
+      ]
+    },
+    {
+      "text": "Who played the War Doctor in the 50th anniversary special 'The Day of the Doctor' (2013)?",
+      "explanation": "It was shown at the same time in many countries in November 2013, with David Tennant and Matt Smith too.",
+      "options": [
+        {
+          "text": "John Hurt",
+          "correct": true
+        },
+        {
+          "text": "Peter Capaldi"
+        },
+        {
+          "text": "David Bradley"
+        },
+        {
+          "text": "Christopher Eccleston"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Day of the Doctor', the War Doctor uses a weapon from the Time War. What is it called?",
+      "explanation": "In the story, the Moment takes the form of a woman played by Billie Piper.",
+      "options": [
+        {
+          "text": "The Moment",
+          "correct": true
+        },
+        {
+          "text": "The Hour"
+        },
+        {
+          "text": "The Pandorica"
+        },
+        {
+          "text": "The Big Bang"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Time of the Doctor' (2013), on which planet does the Eleventh Doctor spend hundreds of years defending against aliens?",
+      "explanation": "Clara persuades the Time Lords to give him new regenerations, and he becomes the Twelfth Doctor.",
+      "options": [
+        {
+          "text": "Trenzalore",
+          "correct": true
+        },
+        {
+          "text": "Skaro"
+        },
+        {
+          "text": "Mars"
+        },
+        {
+          "text": "The Moon"
+        }
+      ]
+    },
+    {
+      "text": "What nickname does the Doctor give Clara Oswald, played by Jenna Coleman?",
+      "explanation": "Clara travelled with the Eleventh Doctor and then the Twelfth.",
+      "options": [
+        {
+          "text": "The Impossible Girl",
+          "correct": true
+        },
+        {
+          "text": "The Lost Girl"
+        },
+        {
+          "text": "The Clever Girl"
+        },
+        {
+          "text": "The Time Girl"
+        }
+      ]
+    },
+    {
+      "text": "What does the female version of the Master call herself?",
+      "explanation": "Missy was played by Michelle Gomez, the first woman to play the Master.",
+      "options": [
+        {
+          "text": "Missy",
+          "correct": true
+        },
+        {
+          "text": "Moxie"
+        },
+        {
+          "text": "Madam Zeta"
+        },
+        {
+          "text": "Mrs Clara"
+        }
+      ]
+    },
+    {
+      "text": "In 'World Enough and Time', what happens to Bill Potts, played by Pearl Mackie?",
+      "explanation": "Bill is the Twelfth Doctor's companion. She comes back in 'Twice Upon a Time'.",
+      "options": [
+        {
+          "text": "She is turned into a Cyberman",
+          "correct": true
+        },
+        {
+          "text": "She becomes a Dalek"
+        },
+        {
+          "text": "She turns into a Weeping Angel"
+        },
+        {
+          "text": "She flies away in a rocket"
+        }
+      ]
+    },
+    {
+      "text": "In 'Spyfall' (2020), a friendly spy boss called 'O' turns out to be the Master. Which spy agency does he seem to work for?",
+      "explanation": "Sacha Dhawan, who plays him, is the youngest actor to play the Master.",
+      "options": [
+        {
+          "text": "MI6",
+          "correct": true
+        },
+        {
+          "text": "The FBI"
+        },
+        {
+          "text": "UNIT"
+        },
+        {
+          "text": "Torchwood"
+        }
+      ]
+    },
+    {
+      "text": "Graham, Ryan and Yaz travel with the Thirteenth Doctor. Which English city do they come from?",
+      "explanation": "The Thirteenth Doctor's first story, 'The Woman Who Fell to Earth', takes place in Sheffield.",
+      "options": [
+        {
+          "text": "Sheffield",
+          "correct": true
+        },
+        {
+          "text": "Manchester"
+        },
+        {
+          "text": "London"
+        },
+        {
+          "text": "Liverpool"
+        }
+      ]
+    },
+    {
+      "text": "What do the Thirteenth Doctor and her friends call their team?",
+      "explanation": "They take the name after Graham, Ryan and Yaz choose to keep travelling with the Doctor.",
+      "options": [
+        {
+          "text": "Team TARDIS",
+          "correct": true
+        },
+        {
+          "text": "The Time Squad"
+        },
+        {
+          "text": "The Police Box Gang"
+        },
+        {
+          "text": "Team Gallifrey"
+        }
+      ]
+    },
+    {
+      "text": "In 'Fugitive of the Judoon' (2020), a woman called Ruth Clayton is revealed to be what?",
+      "explanation": "She is the Fugitive Doctor, played by Jo Martin, the first Black actor to play the Doctor in the main show.",
+      "options": [
+        {
+          "text": "A previously unseen version of the Doctor",
+          "correct": true
+        },
+        {
+          "text": "A Judoon in disguise"
+        },
+        {
+          "text": "The Master's sister"
+        },
+        {
+          "text": "Rose Tyler's mum"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Giggle' (2023), the Toymaker is played by which actor?",
+      "explanation": "'The Giggle' ends the three 60th anniversary specials with David Tennant and Catherine Tate. Tennant then regenerates into Ncuti Gatwa.",
+      "options": [
+        {
+          "text": "Neil Patrick Harris",
+          "correct": true
+        },
+        {
+          "text": "Hugh Laurie"
+        },
+        {
+          "text": "Tom Hiddleston"
+        },
+        {
+          "text": "David Mitchell"
+        }
+      ]
+    }
+  ]
+}

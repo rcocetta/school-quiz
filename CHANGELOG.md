@@ -17,6 +17,7 @@ Everything below will be released as 0.1.0, the first version.
 - `ui` overrides to replace built-in button and message text on a quiz or a collection, with placeholder checks.
 - Images: local png, jpg/jpeg, gif and webp (5 MB each, content checked against the extension, path traversal blocked) and remote `https://` links; `image_alt` text for screen readers, with warnings for undescribed images.
 - `quizgen build <file>`: one self-contained HTML page (CSS, JavaScript and images inlined) that works offline.
+- `unlisted` in `collection.json`: the collection is built but left off the main index (D31).
 - `quizgen build <folder>`: a static website with an index page, one page per quiz, collections (one level of subfolders, each with its own index page), shared assets, copied images and a `.nojekyll` file. The output mirrors the input folder. Optional `site.json` for the site title, description, author and language.
 - `--questions M` to override the number of questions per attempt for a build.
 - Quiz page: kid-friendly start, question and end screens; tap to select then "Check my answer" in immediate mode; score, encouraging message, answer review and "Play again" with a new random set; keyboard and screen-reader support; respects reduced-motion.

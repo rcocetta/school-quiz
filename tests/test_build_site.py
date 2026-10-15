@@ -528,3 +528,40 @@ def test_made_with_links_to_pages_home(tree, tmp_path):
     assert home in hrefs(out / "index.html") and home in hrefs(out / "school" / "index.html")
     assert f'var HOME_URL = "{home}";' in read(out / "assets" / "quiz.js")
     assert "github.com" not in read(out / "index.html")
+
+
+def test_unlisted_collection_is_built_but_not_linked_from_the_index(tmp_path):
+    src = tmp_path / "in"
+    put(src / "listed" / "a.json", quiz("A"))
+    put(src / "private" / "collection.json", {"title": "Family Fun", "unlisted": True})
+    put(src / "private" / "b.json", quiz("B"))
+    out = tmp_path / "out"
+    result = build_site(src, out)
+    assert result.output == out and result.count == 2
+    assert "private/index.html" not in hrefs(out / "index.html")
+    assert "Family Fun" not in read(out / "index.html")
+    assert "listed/index.html" in hrefs(out / "index.html")
+    # the page and its quiz still exist, and the quiz links back to the collection page only
+    assert quiz_data(out / "private" / "b.html")["index_url"] == "index.html"
+    page = out / "private" / "index.html"
+    assert "b.html" in hrefs(page) and "../index.html" not in hrefs(page)
+    assert "Family Fun" in read(page)
+
+
+def test_listed_collection_keeps_its_back_link(tmp_path):
+    src = tmp_path / "in"
+    put(src / "school" / "collection.json", {"title": "School", "unlisted": False})
+    put(src / "school" / "a.json", quiz("A"))
+    out = tmp_path / "out"
+    build_site(src, out)
+    assert "school/index.html" in hrefs(out / "index.html")
+    assert "../index.html" in hrefs(out / "school" / "index.html")
+
+
+def test_unlisted_must_be_true_or_false(tmp_path):
+    src = tmp_path / "in"
+    put(src / "private" / "collection.json", {"unlisted": "yes"})
+    put(src / "private" / "b.json", quiz("B"))
+    result = build_site(src, tmp_path / "out")
+    assert result.output is None
+    assert any("unlisted" in e.path for e in result.validation.errors)

@@ -452,6 +452,7 @@ All values are plain strings and are never translated. Unknown keys are errors.
 | `author` | Author | no | none | Inherited by the collection's quizzes that have no `author`; shown in the collection's header. |
 | `language` | string | no | the site's language | Language of this collection's index text. |
 | `ui` | object | no | none | Text overrides for the quiz pages in this collection (a quiz's own `ui` wins). Values are plain strings, or a map using language codes or `any`. |
+| `unlisted` | boolean | no | `false` | `true` builds the collection (its page and quizzes) but leaves it off the main index and removes the "All quizzes" link from its page. See [Unlisted collections](#unlisted-collections). |
 
 <!-- file: collection.json -->
 ```json
@@ -469,6 +470,12 @@ All values are plain strings and are never translated. Unknown keys are errors.
 The generated site mirrors your folder: the page for `class-4b/tables.json` is `class-4b/tables.html`, and a local image keeps its relative path (so `images/cow.png` is copied to `images/cow.png`). See [Output modes](#output-modes) for the exact tree.
 
 Index entries are sorted by title, ignoring case and accents, with collections first. A collection's card shows its quiz count; a quiz card shows its title in the quiz's first language, its description, question count, language flags and author.
+
+#### Unlisted collections
+
+For a set of quizzes that should not appear on the main index (for example a family's private fun quizzes), put `"unlisted": true` in the collection's `collection.json`. The collection is still built and published at `<collection>/index.html`, so share that address directly. Only the link on the main index is removed.
+
+"Unlisted" is not "private": anyone who knows or guesses the address can open it, the quiz files are public in the repository, and search engines may still find the pages. Do not put anything in an unlisted collection that you would not want public.
 
 ## Multiple languages
 
