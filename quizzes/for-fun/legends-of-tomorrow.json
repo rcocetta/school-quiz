@@ -1,0 +1,961 @@
+{
+  "$schema": "../../src/quizgen/schema.json",
+  "title": "DC's Legends of Tomorrow",
+  "description": "50 questions about the TV series DC's Legends of Tomorrow, from season 1 to season 7. Each game asks you 10.",
+  "language": "en",
+  "questions_per_quiz": 10,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": "Legends of Tomorrow is a spin-off of which two TV shows?",
+      "explanation": "The show started in January 2016.",
+      "options": [
+        {
+          "text": "Arrow and The Flash",
+          "correct": true
+        },
+        {
+          "text": "Supergirl and Batwoman"
+        },
+        {
+          "text": "Smallville and Gotham"
+        },
+        {
+          "text": "Black Lightning and Titans"
+        }
+      ]
+    },
+    {
+      "text": "Which TV network showed Legends of Tomorrow?",
+      "explanation": "It ran from 2016 to 2022.",
+      "options": [
+        {
+          "text": "The CW",
+          "correct": true
+        },
+        {
+          "text": "BBC One"
+        },
+        {
+          "text": "Netflix"
+        },
+        {
+          "text": "Disney Channel"
+        }
+      ]
+    },
+    {
+      "text": "How many seasons did Legends of Tomorrow have?",
+      "explanation": "The CW ended the show in April 2022.",
+      "options": [
+        {
+          "text": "Seven",
+          "correct": true
+        },
+        {
+          "text": "Five"
+        },
+        {
+          "text": "Ten"
+        },
+        {
+          "text": "Three"
+        }
+      ]
+    },
+    {
+      "text": "What is the name of the Legends' time-travelling ship?",
+      "explanation": "The Waverider belonged to Rip Hunter at first.",
+      "options": [
+        {
+          "text": "The Waverider",
+          "correct": true
+        },
+        {
+          "text": "The Starfire"
+        },
+        {
+          "text": "The Chronos"
+        },
+        {
+          "text": "The Hawkship"
+        }
+      ]
+    },
+    {
+      "text": "What is the name of the Waverider's artificial intelligence?",
+      "explanation": "Gideon helps the Legends from the very first season.",
+      "options": [
+        {
+          "text": "Gideon",
+          "correct": true
+        },
+        {
+          "text": "Friday"
+        },
+        {
+          "text": "Cortana"
+        },
+        {
+          "text": "Skynet"
+        }
+      ]
+    },
+    {
+      "text": "Who brings the first team of Legends together in season 1?",
+      "explanation": "Rip recruits a mix of heroes and villains from 2016.",
+      "options": [
+        {
+          "text": "Rip Hunter",
+          "correct": true
+        },
+        {
+          "text": "Vandal Savage"
+        },
+        {
+          "text": "Oliver Queen"
+        },
+        {
+          "text": "John Constantine"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Rip Hunter?",
+      "explanation": "Rip Hunter leads the team in season 1.",
+      "options": [
+        {
+          "text": "Arthur Darvill",
+          "correct": true
+        },
+        {
+          "text": "Brandon Routh"
+        },
+        {
+          "text": "Casper Crump"
+        },
+        {
+          "text": "Matt Ryan"
+        }
+      ]
+    },
+    {
+      "text": "What is Ray Palmer's superhero name?",
+      "explanation": "Ray Palmer is the Atom.",
+      "options": [
+        {
+          "text": "The Atom",
+          "correct": true
+        },
+        {
+          "text": "Firestorm"
+        },
+        {
+          "text": "Steel"
+        },
+        {
+          "text": "Vixen"
+        }
+      ]
+    },
+    {
+      "text": "What is Sara Lance's hero name?",
+      "explanation": "Sara Lance is White Canary. Later she becomes the captain of the Waverider.",
+      "options": [
+        {
+          "text": "White Canary",
+          "correct": true
+        },
+        {
+          "text": "Red Canary"
+        },
+        {
+          "text": "Hawkgirl"
+        },
+        {
+          "text": "Vixen"
+        }
+      ]
+    },
+    {
+      "text": "What is Mick Rory's nickname?",
+      "explanation": "Mick Rory is Heat Wave.",
+      "options": [
+        {
+          "text": "Heat Wave",
+          "correct": true
+        },
+        {
+          "text": "Captain Cold"
+        },
+        {
+          "text": "Heat Blast"
+        },
+        {
+          "text": "Firestorm"
+        }
+      ]
+    },
+    {
+      "text": "What is Leonard Snart's nickname?",
+      "explanation": "Leonard Snart is Captain Cold.",
+      "options": [
+        {
+          "text": "Captain Cold",
+          "correct": true
+        },
+        {
+          "text": "Heat Wave"
+        },
+        {
+          "text": "Mr Freeze"
+        },
+        {
+          "text": "Ice Man"
+        }
+      ]
+    },
+    {
+      "text": "Firestorm is made when which two people merge?",
+      "explanation": "Martin Stein and Jefferson 'Jax' Jackson share the powers of Firestorm.",
+      "options": [
+        {
+          "text": "Martin Stein and Jax",
+          "correct": true
+        },
+        {
+          "text": "Ray Palmer and Nate Heywood"
+        },
+        {
+          "text": "Sara Lance and Mick Rory"
+        },
+        {
+          "text": "Rip Hunter and Gideon"
+        }
+      ]
+    },
+    {
+      "text": "Which Legend is Hawkgirl?",
+      "explanation": "Kendra and Hawkman (Carter Hall) leave the team after Vandal Savage is defeated.",
+      "options": [
+        {
+          "text": "Kendra Saunders",
+          "correct": true
+        },
+        {
+          "text": "Amaya Jiwe"
+        },
+        {
+          "text": "Ava Sharpe"
+        },
+        {
+          "text": "Charlie"
+        }
+      ]
+    },
+    {
+      "text": "What is Nate Heywood's hero name?",
+      "explanation": "Nate is a historian when he first appears.",
+      "options": [
+        {
+          "text": "Steel",
+          "correct": true
+        },
+        {
+          "text": "Iron"
+        },
+        {
+          "text": "Titanium"
+        },
+        {
+          "text": "Gold"
+        }
+      ]
+    },
+    {
+      "text": "Which actress plays Sara Lance?",
+      "explanation": "Caity Lotz is in the main cast of the show.",
+      "options": [
+        {
+          "text": "Caity Lotz",
+          "correct": true
+        },
+        {
+          "text": "Ciara Renée"
+        },
+        {
+          "text": "Tala Ashe"
+        },
+        {
+          "text": "Olivia Swann"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Ray Palmer?",
+      "explanation": "Brandon Routh is in the main cast of the show.",
+      "options": [
+        {
+          "text": "Brandon Routh",
+          "correct": true
+        },
+        {
+          "text": "Dominic Purcell"
+        },
+        {
+          "text": "Victor Garber"
+        },
+        {
+          "text": "Franz Drameh"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Mick Rory?",
+      "explanation": "Dominic Purcell is in the main cast of the show.",
+      "options": [
+        {
+          "text": "Dominic Purcell",
+          "correct": true
+        },
+        {
+          "text": "Wentworth Miller"
+        },
+        {
+          "text": "Brandon Routh"
+        },
+        {
+          "text": "Victor Garber"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Leonard Snart?",
+      "explanation": "Wentworth Miller also plays Leo Snart, a double from another Earth, in season 3.",
+      "options": [
+        {
+          "text": "Wentworth Miller",
+          "correct": true
+        },
+        {
+          "text": "Dominic Purcell"
+        },
+        {
+          "text": "Arthur Darvill"
+        },
+        {
+          "text": "Falk Hentschel"
+        }
+      ]
+    },
+    {
+      "text": "Which actor plays Martin Stein?",
+      "explanation": "Victor Garber plays one half of Firestorm.",
+      "options": [
+        {
+          "text": "Victor Garber",
+          "correct": true
+        },
+        {
+          "text": "Arthur Darvill"
+        },
+        {
+          "text": "Falk Hentschel"
+        },
+        {
+          "text": "Casper Crump"
+        }
+      ]
+    },
+    {
+      "text": "Which actress plays Zari?",
+      "explanation": "Zari joins the team in season 3.",
+      "options": [
+        {
+          "text": "Tala Ashe",
+          "correct": true
+        },
+        {
+          "text": "Caity Lotz"
+        },
+        {
+          "text": "Ciara Renée"
+        },
+        {
+          "text": "Olivia Swann"
+        }
+      ]
+    },
+    {
+      "text": "John Barrowman, who plays Captain Jack in Doctor Who, plays which villain in season 2?",
+      "explanation": "Malcolm Merlyn is one of the villains who team up against the Legends.",
+      "options": [
+        {
+          "text": "Malcolm Merlyn",
+          "correct": true
+        },
+        {
+          "text": "Eobard Thawne"
+        },
+        {
+          "text": "Damien Darhk"
+        },
+        {
+          "text": "Vandal Savage"
+        }
+      ]
+    },
+    {
+      "text": "Who is the immortal villain the Legends chase in season 1?",
+      "explanation": "In the future, Savage has conquered the Earth, and Rip wants to stop him.",
+      "options": [
+        {
+          "text": "Vandal Savage",
+          "correct": true
+        },
+        {
+          "text": "Mallus"
+        },
+        {
+          "text": "Damien Darhk"
+        },
+        {
+          "text": "Eobard Thawne"
+        }
+      ]
+    },
+    {
+      "text": "In season 1, Rip Hunter is a member of which group?",
+      "explanation": "The Time Masters are also part of the trouble the Legends face in season 1.",
+      "options": [
+        {
+          "text": "The Time Masters",
+          "correct": true
+        },
+        {
+          "text": "The Time Bureau"
+        },
+        {
+          "text": "The Legion of Doom"
+        },
+        {
+          "text": "The Justice Society"
+        }
+      ]
+    },
+    {
+      "text": "Which time-travelling bounty hunter attacks the Waverider in season 1?",
+      "explanation": "Chronos is a bounty hunter who travels through time.",
+      "options": [
+        {
+          "text": "Chronos",
+          "correct": true
+        },
+        {
+          "text": "Mallus"
+        },
+        {
+          "text": "Gideon"
+        },
+        {
+          "text": "Neron"
+        }
+      ]
+    },
+    {
+      "text": "In the pilot, the Legends first travel to which year?",
+      "explanation": "They go there to meet an expert who knows a lot about Vandal Savage.",
+      "options": [
+        {
+          "text": "1975",
+          "correct": true
+        },
+        {
+          "text": "1066"
+        },
+        {
+          "text": "1999"
+        },
+        {
+          "text": "1888"
+        }
+      ]
+    },
+    {
+      "text": "At the end of season 1, which Legend sacrifices himself to save the team?",
+      "explanation": "Captain Cold's sacrifice is one of the big moments of season 1.",
+      "options": [
+        {
+          "text": "Leonard Snart",
+          "correct": true
+        },
+        {
+          "text": "Mick Rory"
+        },
+        {
+          "text": "Martin Stein"
+        },
+        {
+          "text": "Ray Palmer"
+        }
+      ]
+    },
+    {
+      "text": "What is the team of villains in season 2 called?",
+      "explanation": "It includes Eobard Thawne, Damien Darhk and Malcolm Merlyn.",
+      "options": [
+        {
+          "text": "The Legion of Doom",
+          "correct": true
+        },
+        {
+          "text": "The Time Masters"
+        },
+        {
+          "text": "The Justice Society"
+        },
+        {
+          "text": "The Shadow League"
+        }
+      ]
+    },
+    {
+      "text": "In season 2, which of these villains is part of the team against the Legends?",
+      "explanation": "Matt Letscher plays Eobard Thawne.",
+      "options": [
+        {
+          "text": "Eobard Thawne, the Reverse-Flash",
+          "correct": true
+        },
+        {
+          "text": "Vandal Savage"
+        },
+        {
+          "text": "Mallus"
+        },
+        {
+          "text": "Neron"
+        }
+      ]
+    },
+    {
+      "text": "In season 2, the villains hunt for the Spear of Destiny. What is special about it?",
+      "explanation": "With the Spear, the villains rewrite reality.",
+      "options": [
+        {
+          "text": "It can rewrite reality",
+          "correct": true
+        },
+        {
+          "text": "It can make people invisible"
+        },
+        {
+          "text": "It is a spaceship"
+        },
+        {
+          "text": "It cures every illness"
+        }
+      ]
+    },
+    {
+      "text": "Which hero from Arrow does Nate Heywood ask for help to find the scattered Legends?",
+      "explanation": "Oliver Queen is played by Stephen Amell.",
+      "options": [
+        {
+          "text": "Oliver Queen",
+          "correct": true
+        },
+        {
+          "text": "Barry Allen"
+        },
+        {
+          "text": "Ray Palmer"
+        },
+        {
+          "text": "John Constantine"
+        }
+      ]
+    },
+    {
+      "text": "In 'The Justice Society of America', the Legends meet the JSA in which occupied city?",
+      "explanation": "The Legends land in Nazi-occupied Paris.",
+      "options": [
+        {
+          "text": "Paris",
+          "correct": true
+        },
+        {
+          "text": "London"
+        },
+        {
+          "text": "Rome"
+        },
+        {
+          "text": "Madrid"
+        }
+      ]
+    },
+    {
+      "text": "In season 3, who creates the Time Bureau to replace the Time Masters?",
+      "explanation": "At first, the Legends are told to stop travelling through time.",
+      "options": [
+        {
+          "text": "Rip Hunter",
+          "correct": true
+        },
+        {
+          "text": "Sara Lance"
+        },
+        {
+          "text": "Gary Green"
+        },
+        {
+          "text": "Ray Palmer"
+        }
+      ]
+    },
+    {
+      "text": "What kind of villain is Mallus?",
+      "explanation": "Mallus is the main villain of season 3.",
+      "options": [
+        {
+          "text": "A demon",
+          "correct": true
+        },
+        {
+          "text": "A robot"
+        },
+        {
+          "text": "An alien"
+        },
+        {
+          "text": "A time pirate"
+        }
+      ]
+    },
+    {
+      "text": "In 'Aruba-Con', which Roman ruler turns up in Aruba?",
+      "explanation": "Sara, Nate and Ray try to take him back to his own time.",
+      "options": [
+        {
+          "text": "Julius Caesar",
+          "correct": true
+        },
+        {
+          "text": "Nero"
+        },
+        {
+          "text": "Augustus"
+        },
+        {
+          "text": "Caligula"
+        }
+      ]
+    },
+    {
+      "text": "In 'Freakshow', the Legends visit a circus in 1870 Wisconsin. Which extinct animal do they find there?",
+      "explanation": "It is an anachronism: something that does not belong in that time.",
+      "options": [
+        {
+          "text": "A sabertooth",
+          "correct": true
+        },
+        {
+          "text": "A mammoth"
+        },
+        {
+          "text": "A dodo"
+        },
+        {
+          "text": "A T. rex"
+        }
+      ]
+    },
+    {
+      "text": "What is the name of the Time Bureau agent who chases Zari in 2042?",
+      "explanation": "Agent Gary Green first meets Zari in season 3.",
+      "options": [
+        {
+          "text": "Gary Green",
+          "correct": true
+        },
+        {
+          "text": "Harry Black"
+        },
+        {
+          "text": "Larry Gray"
+        },
+        {
+          "text": "Barry Blue"
+        }
+      ]
+    },
+    {
+      "text": "In 'Beebo the God of War', a young Martin Stein gets a toy that sends him back in time. What is it called?",
+      "explanation": "Beebo comes back in the season 3 finale, 'The Good, the Bad & the Cuddly'.",
+      "options": [
+        {
+          "text": "Cuddle Me Beebo",
+          "correct": true
+        },
+        {
+          "text": "Teddy Time"
+        },
+        {
+          "text": "Fuzzy Wuzzy"
+        },
+        {
+          "text": "Snuggle Bear"
+        }
+      ]
+    },
+    {
+      "text": "In the season 3 finale, Mallus demands that the Legends hand over what?",
+      "explanation": "Mallus is the demon from season 3.",
+      "options": [
+        {
+          "text": "The six totems",
+          "correct": true
+        },
+        {
+          "text": "The Waverider"
+        },
+        {
+          "text": "The Spear of Destiny"
+        },
+        {
+          "text": "Gideon"
+        }
+      ]
+    },
+    {
+      "text": "In which city does Zari live in 2042?",
+      "explanation": "Zari is a hacktivist.",
+      "options": [
+        {
+          "text": "Seattle",
+          "correct": true
+        },
+        {
+          "text": "Star City"
+        },
+        {
+          "text": "Central City"
+        },
+        {
+          "text": "Gotham"
+        }
+      ]
+    },
+    {
+      "text": "After the Legends defeat Mallus, where do they go on vacation?",
+      "explanation": "The vacation does not last long.",
+      "options": [
+        {
+          "text": "Aruba",
+          "correct": true
+        },
+        {
+          "text": "Hawaii"
+        },
+        {
+          "text": "Paris"
+        },
+        {
+          "text": "The Moon"
+        }
+      ]
+    },
+    {
+      "text": "Which magic expert interrupts their vacation to tell them they have released magical creatures?",
+      "explanation": "The Legends must now recapture the magical fugitives.",
+      "options": [
+        {
+          "text": "John Constantine",
+          "correct": true
+        },
+        {
+          "text": "Rip Hunter"
+        },
+        {
+          "text": "Gary Green"
+        },
+        {
+          "text": "Nate Heywood"
+        }
+      ]
+    },
+    {
+      "text": "In 'Witch Hunt', the Legends visit which famous witch trials?",
+      "explanation": "A magical creature is causing trouble in the town.",
+      "options": [
+        {
+          "text": "Salem",
+          "correct": true
+        },
+        {
+          "text": "Plymouth"
+        },
+        {
+          "text": "Boston"
+        },
+        {
+          "text": "New Orleans"
+        }
+      ]
+    },
+    {
+      "text": "In the season 4 premiere, a magical threat leads the team to which famous music festival?",
+      "explanation": "John Constantine tells Sara about the threat.",
+      "options": [
+        {
+          "text": "Woodstock",
+          "correct": true
+        },
+        {
+          "text": "Glastonbury"
+        },
+        {
+          "text": "Coachella"
+        },
+        {
+          "text": "Lollapalooza"
+        }
+      ]
+    },
+    {
+      "text": "Who becomes the captain of the Waverider after Rip Hunter?",
+      "explanation": "Sara is promoted after Rip's sacrifice in the fight against Mallus.",
+      "options": [
+        {
+          "text": "Sara Lance",
+          "correct": true
+        },
+        {
+          "text": "Gary Green"
+        },
+        {
+          "text": "Nate Heywood"
+        },
+        {
+          "text": "Ray Palmer"
+        }
+      ]
+    },
+    {
+      "text": "In 'A Head of Her Time', the Legends meet which famous French queen in 1793?",
+      "explanation": "She has a magic perfume.",
+      "options": [
+        {
+          "text": "Marie Antoinette",
+          "correct": true
+        },
+        {
+          "text": "Joan of Arc"
+        },
+        {
+          "text": "Queen Victoria"
+        },
+        {
+          "text": "Cleopatra"
+        }
+      ]
+    },
+    {
+      "text": "Who takes Sara Lance away at the end of season 5?",
+      "explanation": "The Legends spend season 6 chasing aliens through history.",
+      "options": [
+        {
+          "text": "Aliens",
+          "correct": true
+        },
+        {
+          "text": "Demons"
+        },
+        {
+          "text": "Time Masters"
+        },
+        {
+          "text": "Robots"
+        }
+      ]
+    },
+    {
+      "text": "Which famous musician tells Ava Sharpe in 1977 London that Sara was about to propose?",
+      "explanation": "Ava learns it in the season 6 premiere, 'Ground Control to Sara Lance'.",
+      "options": [
+        {
+          "text": "David Bowie",
+          "correct": true
+        },
+        {
+          "text": "Elton John"
+        },
+        {
+          "text": "Freddie Mercury"
+        },
+        {
+          "text": "Prince"
+        }
+      ]
+    },
+    {
+      "text": "What special ability does Esperanza 'Spooner' Cruz have?",
+      "explanation": "Spooner joins the Legends in season 6.",
+      "options": [
+        {
+          "text": "She can talk to aliens",
+          "correct": true
+        },
+        {
+          "text": "She can read minds"
+        },
+        {
+          "text": "She can turn invisible"
+        },
+        {
+          "text": "She can fly"
+        }
+      ]
+    },
+    {
+      "text": "At the start of season 7, the Legends are stuck in which year?",
+      "explanation": "They are stranded in Odessa, Texas.",
+      "options": [
+        {
+          "text": "1925",
+          "correct": true
+        },
+        {
+          "text": "1066"
+        },
+        {
+          "text": "1999"
+        },
+        {
+          "text": "2042"
+        }
+      ]
+    },
+    {
+      "text": "In season 7, the Waverider's AI goes rogue. What does she send after the Legends?",
+      "explanation": "The Legends have to beat their own robot copies.",
+      "options": [
+        {
+          "text": "Robot copies of the Legends",
+          "correct": true
+        },
+        {
+          "text": "Dinosaurs"
+        },
+        {
+          "text": "A giant toy"
+        },
+        {
+          "text": "A time storm"
+        }
+      ]
+    }
+  ]
+}
