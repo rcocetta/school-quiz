@@ -53,7 +53,7 @@ Without Playwright these tests are skipped. With `QUIZGEN_BROWSER_TESTS=1` set, 
 
 ## Code conventions
 
-Read the **Working principles** in [PLAN.md](PLAN.md) and [CLAUDE.md](CLAUDE.md). In short:
+Read the **Working principles** in [DESIGN.md](DESIGN.md) and [CLAUDE.md](CLAUDE.md). In short:
 
 - **Kids first.** Big tap targets, large clear text, few words per screen, a kind tone (never shaming a wrong answer), gender-neutral interface text in gendered languages, keyboard and screen-reader friendly, WCAG 2.2 AA contrast.
 - **Easy for creators.** Sensible defaults. Error messages say *where* the problem is and *how to fix it*.
@@ -75,10 +75,10 @@ If your change affects the schema, the command line or behaviour, update these i
 
 - the JSON schema files in `src/quizgen/` (`schema.json`, `collection.schema.json`, `site.schema.json`),
 - the field reference and other sections of [README.md](README.md),
-- [PLAN.md](PLAN.md) (decisions, rules, status) if it changes something the plan describes,
+- [DESIGN.md](DESIGN.md) (decisions, rules, contracts) if it changes something it describes,
 - [CHANGELOG.md](CHANGELOG.md) under **Unreleased**.
 
-Settled decisions in `PLAN.md` (marked with a tick) should not be reopened inside a pull request; open an issue to discuss them first.
+Settled decisions in `DESIGN.md` (marked with a tick) should not be reopened inside a pull request; open an issue to discuss them first.
 
 ## Contributing a quiz or collection
 

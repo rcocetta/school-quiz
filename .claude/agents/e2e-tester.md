@@ -7,7 +7,7 @@ tools: Read, Grep, Glob, Bash
 
 You test the school-quiz project end to end. Don't change project source; work in a temp directory.
 
-Read `CLAUDE.md` and `PLAN.md` (the phase's "Done when" criteria) first.
+Read `CLAUDE.md` and `DESIGN.md` first, then the expected outcome in your brief.
 
 - Install from scratch in a fresh venv; run the CLI exactly as documented.
 - Build the examples in every relevant mode (single file, site); serve with `python -m http.server`; check every page and asset loads (no 404s, no external requests).

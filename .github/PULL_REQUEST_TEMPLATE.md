@@ -29,4 +29,4 @@
 <!-- Skip this section for quiz-only changes. -->
 
 - [ ] Tests added or updated, and `.venv/bin/pytest -q` passes.
-- [ ] README, CHANGELOG and PLAN.md updated if behaviour, schema or the CLI changed.
+- [ ] README, CHANGELOG and DESIGN.md updated if behaviour, schema or the CLI changed.
