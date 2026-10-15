@@ -815,7 +815,7 @@ Optional browser smoke tests (`tests/browser/`, Playwright and Chromium, install
 pyproject.toml            package metadata, dependencies, entry point
 README.md  CONTRIBUTING.md  CHANGELOG.md  LICENSE
 CODE_OF_CONDUCT.md  SECURITY.md   community files (Contributor Covenant 2.1, how to report problems privately)
-PLAN.md  CLAUDE.md        project plan/decisions and instructions for AI agents
+DESIGN.md  PLAN.md  CLAUDE.md   design decisions, status/next steps, instructions for AI agents
 src/quizgen/
   cli.py                  argparse; dispatches to validate/build
   validate.py             loads and validates JSON, produces the normalised quiz
