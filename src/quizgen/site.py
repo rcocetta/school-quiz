@@ -172,10 +172,14 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
     for sec in collections:
         cards = _add_quizzes(plan, sec)
         ui = ui_strings()[sec.lang]
+        unlisted = sec.meta.get("unlisted", False)  # D31: built, but not linked from the top index
         plan.pages[_join(sec.folder, "index.html")] = _render_index(
             lang=sec.lang, heading=sec.meta.get("title", sec.folder), description=sec.meta.get("description"),
-            author=sec.meta.get("author"), back={"href": "../index.html", "text": ui["back_to_all"]},
+            author=sec.meta.get("author"),
+            back=None if unlisted else {"href": "../index.html", "text": ui["back_to_all"]},
             quizzes=cards, asset_base="../assets/")
+        if unlisted:
+            continue
         collection_cards.append({
             "href": quote(sec.folder) + "/index.html", "title": sec.meta.get("title", sec.folder),
             "description": sec.meta.get("description"),

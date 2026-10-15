@@ -1,0 +1,6 @@
+{
+  "$schema": "../../src/quizgen/collection.schema.json",
+  "title": "Fun Quizzes",
+  "description": "Quizzes just for fun.",
+  "unlisted": true
+}
