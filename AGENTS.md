@@ -56,6 +56,10 @@ Rules the validator enforces (an error stops the build):
 - **Images:** local `png`, `jpg`, `jpeg`, `gif` or `webp` files next to the quiz (usually `images/`), at most 5 MB, relative paths with no `..`; or `https://` links. No SVG. Give each picture an `image_alt` that describes it **without giving away the answer** (for "Which animal is this?" write "A brown and white animal with horns", not "A cow"). Use `"image_alt": ""` for pure decoration.
 - Valid JSON: double quotes, no trailing commas, no comments.
 
+## Collections
+
+A group of quizzes (one teacher's, one class's) goes in a folder `quizzes/<collection>/`, one level deep. An optional `collection.json` next to the quizzes sets the collection's `title`, `description`, `author`, `language`, `ui` and `unlisted` (no other fields). `"unlisted": true` leaves the collection off the main index but still publishes it, so anyone with the address can open it: it is **not private**, so apply the privacy rules below as usual. See the [README](README.md#collections-and-folder-layout).
+
 ## Writing good questions for children
 
 - **Match the lesson and the age.** Use the words, dates and names from the child's lesson. If the child is 9, write for a 9-year-old: short sentences, everyday words, one idea per question.
