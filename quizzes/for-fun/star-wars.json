@@ -1,395 +1,91 @@
 {
   "$schema": "../../src/quizgen/schema.json",
   "title": "Star Wars",
-  "description": "100 questions about Star Wars: the films, the animated series and the live-action series. Each game asks you 10.",
+  "description": "100 questions about the Star Wars story, its heroes, villains, planets and ships: the films and the series. Each game asks you 10.",
   "language": "en",
   "questions_per_quiz": 10,
   "feedback": "immediate",
   "shuffle_options": true,
   "questions": [
     {
-      "text": "Who created Star Wars?",
-      "explanation": "George Lucas wrote and directed the first film, A New Hope.",
+      "text": "Which desert planet is Luke Skywalker's home?",
+      "explanation": "Tatooine has two suns.",
       "options": [
         {
-          "text": "George Lucas",
+          "text": "Tatooine",
           "correct": true
         },
         {
-          "text": "Steven Spielberg"
+          "text": "Hoth"
         },
         {
-          "text": "James Cameron"
+          "text": "Endor"
         },
         {
-          "text": "J. J. Abrams"
+          "text": "Naboo"
         }
       ]
     },
     {
-      "text": "In which year did the first Star Wars film come out?",
-      "explanation": "It was released on May 25, 1977.",
+      "text": "Who captures R2-D2 and C-3PO in the desert and sells them to Luke's family?",
+      "explanation": "Luke's uncle, Owen Lars, buys them.",
       "options": [
         {
-          "text": "1977",
+          "text": "The Jawas",
           "correct": true
         },
         {
-          "text": "1980"
+          "text": "The Tusken Raiders"
         },
         {
-          "text": "1983"
+          "text": "Stormtroopers"
         },
         {
-          "text": "1999"
+          "text": "The Hutts"
         }
       ]
     },
     {
-      "text": "On which date do fans celebrate Star Wars Day?",
-      "explanation": "It is a pun on 'May the Fourth be with you'.",
+      "text": "Who is the secret message hidden inside R2-D2 meant for?",
+      "explanation": "Luke finds Princess Leia's message while cleaning R2-D2.",
       "options": [
         {
-          "text": "May 4",
+          "text": "Obi-Wan Kenobi",
           "correct": true
         },
         {
-          "text": "May 25"
+          "text": "Han Solo"
         },
         {
-          "text": "October 31"
+          "text": "Yoda"
         },
         {
-          "text": "January 1"
+          "text": "Grand Moff Tarkin"
         }
       ]
     },
     {
-      "text": "Which company bought Lucasfilm in 2012?",
-      "explanation": "Disney paid $4.05 billion for it.",
+      "text": "At Mos Eisley, who agrees to fly Luke and Obi-Wan away from Tatooine?",
+      "explanation": "They are the crew of the Millennium Falcon.",
       "options": [
         {
-          "text": "Disney",
+          "text": "Han Solo and Chewbacca",
           "correct": true
         },
         {
-          "text": "Warner Bros."
+          "text": "Lando and Nien Nunb"
         },
         {
-          "text": "Netflix"
+          "text": "Boba Fett and Greedo"
         },
         {
-          "text": "Sony"
-        }
-      ]
-    },
-    {
-      "text": "Who became the president of Lucasfilm after Disney bought it?",
-      "explanation": "She also became the brand manager of Star Wars.",
-      "options": [
-        {
-          "text": "Kathleen Kennedy",
-          "correct": true
-        },
-        {
-          "text": "Alan Horn"
-        },
-        {
-          "text": "Jon Favreau"
-        },
-        {
-          "text": "Dave Filoni"
-        }
-      ]
-    },
-    {
-      "text": "Which composer won an Oscar for the music of the first Star Wars film?",
-      "explanation": "The music was recorded in London in 1977.",
-      "options": [
-        {
-          "text": "John Williams",
-          "correct": true
-        },
-        {
-          "text": "Hans Zimmer"
-        },
-        {
-          "text": "Danny Elfman"
-        },
-        {
-          "text": "Alan Silvestri"
-        }
-      ]
-    },
-    {
-      "text": "About how much did the first Star Wars film cost to make?",
-      "explanation": "It earned about $798 million around the world during its first run.",
-      "options": [
-        {
-          "text": "$11 million",
-          "correct": true
-        },
-        {
-          "text": "$1 million"
-        },
-        {
-          "text": "$110 million"
-        },
-        {
-          "text": "$500 million"
-        }
-      ]
-    },
-    {
-      "text": "Which 1978 TV special was so badly received that it has never been rebroadcast?",
-      "explanation": "It has not been officially released on home video either.",
-      "options": [
-        {
-          "text": "The Star Wars Holiday Special",
-          "correct": true
-        },
-        {
-          "text": "The Droid Hour"
-        },
-        {
-          "text": "A Wookiee Christmas"
-        },
-        {
-          "text": "The Jedi Show"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays Luke Skywalker in the original films?",
-      "explanation": "Mark Hamill plays Luke in all three original films.",
-      "options": [
-        {
-          "text": "Mark Hamill",
-          "correct": true
-        },
-        {
-          "text": "Harrison Ford"
-        },
-        {
-          "text": "Alec Guinness"
-        },
-        {
-          "text": "Billy Dee Williams"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays Han Solo in the original films?",
-      "explanation": "Harrison Ford plays Han in all three original films.",
-      "options": [
-        {
-          "text": "Harrison Ford",
-          "correct": true
-        },
-        {
-          "text": "Mark Hamill"
-        },
-        {
-          "text": "Billy Dee Williams"
-        },
-        {
-          "text": "Alec Guinness"
-        }
-      ]
-    },
-    {
-      "text": "Which actress plays Princess Leia?",
-      "explanation": "Carrie Fisher plays Leia in the original films.",
-      "options": [
-        {
-          "text": "Carrie Fisher",
-          "correct": true
-        },
-        {
-          "text": "Daisy Ridley"
-        },
-        {
-          "text": "Natalie Portman"
-        },
-        {
-          "text": "Felicity Jones"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays Obi-Wan Kenobi in the original films?",
-      "explanation": "In the first film he is called 'Old Ben'.",
-      "options": [
-        {
-          "text": "Alec Guinness",
-          "correct": true
-        },
-        {
-          "text": "Ewan McGregor"
-        },
-        {
-          "text": "Liam Neeson"
-        },
-        {
-          "text": "Peter Cushing"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays the droid C-3PO?",
-      "explanation": "Anthony Daniels plays C-3PO in the original films.",
-      "options": [
-        {
-          "text": "Anthony Daniels",
-          "correct": true
-        },
-        {
-          "text": "Kenny Baker"
-        },
-        {
-          "text": "Peter Mayhew"
-        },
-        {
-          "text": "Frank Oz"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays R2-D2 in the original films?",
-      "explanation": "Kenny Baker is the actor inside R2-D2.",
-      "options": [
-        {
-          "text": "Kenny Baker",
-          "correct": true
-        },
-        {
-          "text": "Anthony Daniels"
-        },
-        {
-          "text": "Peter Mayhew"
-        },
-        {
-          "text": "Frank Oz"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays Chewbacca in the original films?",
-      "explanation": "Peter Mayhew plays the Wookiee in the original films.",
-      "options": [
-        {
-          "text": "Peter Mayhew",
-          "correct": true
-        },
-        {
-          "text": "Kenny Baker"
-        },
-        {
-          "text": "Anthony Daniels"
-        },
-        {
-          "text": "Mark Hamill"
-        }
-      ]
-    },
-    {
-      "text": "Who provided the voice of Darth Vader in the original films?",
-      "explanation": "David Prowse wore the suit, but James Earl Jones spoke the lines.",
-      "options": [
-        {
-          "text": "James Earl Jones",
-          "correct": true
-        },
-        {
-          "text": "David Prowse"
-        },
-        {
-          "text": "Harrison Ford"
-        },
-        {
-          "text": "Frank Oz"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays Grand Moff Tarkin in A New Hope?",
-      "explanation": "Tarkin is in charge of the Death Star.",
-      "options": [
-        {
-          "text": "Peter Cushing",
-          "correct": true
-        },
-        {
-          "text": "Alec Guinness"
-        },
-        {
-          "text": "Ian McDiarmid"
-        },
-        {
-          "text": "Christopher Lee"
-        }
-      ]
-    },
-    {
-      "text": "Who voices and puppeteers Yoda?",
-      "explanation": "Yoda first appears in The Empire Strikes Back.",
-      "options": [
-        {
-          "text": "Frank Oz",
-          "correct": true
-        },
-        {
-          "text": "Mark Hamill"
-        },
-        {
-          "text": "Anthony Daniels"
-        },
-        {
-          "text": "Kenny Baker"
-        }
-      ]
-    },
-    {
-      "text": "What does Luke Skywalker do at the start of A New Hope?",
-      "explanation": "Luke lives on Tatooine.",
-      "options": [
-        {
-          "text": "He is a young farmer",
-          "correct": true
-        },
-        {
-          "text": "He is a Rebel pilot"
-        },
-        {
-          "text": "He is a Jedi Knight"
-        },
-        {
-          "text": "He is a bounty hunter"
-        }
-      ]
-    },
-    {
-      "text": "How many suns does Tatooine have?",
-      "explanation": "Tatooine is a desert planet and the homeworld of Anakin and Luke.",
-      "options": [
-        {
-          "text": "Two",
-          "correct": true
-        },
-        {
-          "text": "One"
-        },
-        {
-          "text": "Three"
-        },
-        {
-          "text": "None"
+          "text": "Qui-Gon and Jar Jar"
         }
       ]
     },
     {
       "text": "Who steals the Death Star plans?",
-      "explanation": "She hopes the Rebels can find a weakness in the Death Star.",
+      "explanation": "She is captured and taken aboard the Death Star.",
       "options": [
         {
           "text": "Princess Leia",
@@ -407,8 +103,8 @@
       ]
     },
     {
-      "text": "Which planet does the Death Star destroy in A New Hope?",
-      "explanation": "The Death Star is under the command of Grand Moff Tarkin.",
+      "text": "Which planet does the Death Star destroy with its superlaser?",
+      "explanation": "Grand Moff Tarkin is in command of the Death Star.",
       "options": [
         {
           "text": "Alderaan",
@@ -426,45 +122,26 @@
       ]
     },
     {
-      "text": "On which moon is the Rebel base in A New Hope?",
-      "explanation": "The Empire finds it using a tracking device on the Millennium Falcon.",
+      "text": "What does Obi-Wan do aboard the Death Star to help the others escape?",
+      "explanation": "Then he faces Darth Vader in a lightsaber duel.",
       "options": [
         {
-          "text": "Yavin 4",
+          "text": "He disables the tractor beam",
           "correct": true
         },
         {
-          "text": "Endor"
+          "text": "He steals the plans"
         },
         {
-          "text": "Naboo"
+          "text": "He fires the superlaser"
         },
         {
-          "text": "Kashyyyk"
+          "text": "He calls the Rebel fleet"
         }
       ]
     },
     {
-      "text": "Who defeats Obi-Wan Kenobi in a lightsaber duel in A New Hope?",
-      "explanation": "His sacrifice lets the others escape.",
-      "options": [
-        {
-          "text": "Darth Vader",
-          "correct": true
-        },
-        {
-          "text": "Count Dooku"
-        },
-        {
-          "text": "Darth Maul"
-        },
-        {
-          "text": "Grand Moff Tarkin"
-        }
-      ]
-    },
-    {
-      "text": "What does Luke fire into the Death Star's exhaust port?",
+      "text": "What does Luke fire into the Death Star's thermal exhaust port?",
       "explanation": "It is the weak spot in the design of the space station.",
       "options": [
         {
@@ -483,8 +160,8 @@
       ]
     },
     {
-      "text": "Who returns in the Millennium Falcon to help Luke during the trench run?",
-      "explanation": "Han knocks Darth Vader out of the trench.",
+      "text": "Who returns in the Millennium Falcon and knocks Darth Vader out of the trench?",
+      "explanation": "Luke then fires his torpedoes.",
       "options": [
         {
           "text": "Han Solo",
@@ -497,64 +174,45 @@
           "text": "Boba Fett"
         },
         {
-          "text": "Grand Moff Tarkin"
+          "text": "Obi-Wan Kenobi"
         }
       ]
     },
     {
-      "text": "Han says he did the Kessel Run in less than twelve parsecs. What does a parsec measure?",
-      "explanation": "He is bragging about finding a short route, not about going fast.",
+      "text": "Han says he did the Kessel Run in less than twelve parsecs. What is a parsec?",
+      "explanation": "He is bragging about finding a short route past the dangerous black holes called the Maw.",
       "options": [
         {
-          "text": "Distance",
+          "text": "A unit of distance",
           "correct": true
         },
         {
-          "text": "Time"
+          "text": "A unit of time"
         },
         {
-          "text": "Speed"
+          "text": "A unit of speed"
         },
         {
-          "text": "Weight"
+          "text": "A type of engine"
         }
       ]
     },
     {
-      "text": "Who directed The Empire Strikes Back?",
-      "explanation": "George Lucas wrote the story but wanted time for his special effects company.",
+      "text": "Where do the Rebels hide at the start of The Empire Strikes Back?",
+      "explanation": "The Empire attacks the base and the Rebels have to scatter.",
       "options": [
         {
-          "text": "Irvin Kershner",
+          "text": "On the ice planet Hoth",
           "correct": true
         },
         {
-          "text": "George Lucas"
+          "text": "On the swamp planet Dagobah"
         },
         {
-          "text": "Ron Howard"
+          "text": "In Cloud City"
         },
         {
-          "text": "Gareth Edwards"
-        }
-      ]
-    },
-    {
-      "text": "Which ice planet is the Rebel base on at the start of The Empire Strikes Back?",
-      "explanation": "The Empire attacks the base, and the Rebels scatter.",
-      "options": [
-        {
-          "text": "Hoth",
-          "correct": true
-        },
-        {
-          "text": "Dagobah"
-        },
-        {
-          "text": "Bespin"
-        },
-        {
-          "text": "Naboo"
+          "text": "On the forest moon of Endor"
         }
       ]
     },
@@ -579,7 +237,7 @@
     },
     {
       "text": "Which general leads the attack of the AT-AT walkers on Hoth?",
-      "explanation": "The Rebels lose their base.",
+      "explanation": "Han, Leia, Chewbacca and C-3PO get away in the Falcon.",
       "options": [
         {
           "text": "General Veers",
@@ -597,46 +255,84 @@
       ]
     },
     {
-      "text": "On which swamp planet does Luke train with Yoda?",
-      "explanation": "Luke also faces a vision of Darth Vader in a dark cave there.",
+      "text": "After the escape from Hoth the Falcon's hyperdrive fails. Where do the heroes hide?",
+      "explanation": "Han and Leia grow closer there.",
       "options": [
         {
-          "text": "Dagobah",
+          "text": "In an asteroid field",
           "correct": true
         },
         {
-          "text": "Hoth"
+          "text": "On the moon of Endor"
         },
         {
-          "text": "Bespin"
+          "text": "In Cloud City"
         },
         {
-          "text": "Naboo"
+          "text": "In a Hutt palace"
         }
       ]
     },
     {
-      "text": "Cloud City floats in the atmosphere of which gas giant?",
-      "explanation": "It has no solid surface.",
+      "text": "Who tells Luke to go to Dagobah to train with Yoda?",
+      "explanation": "Luke is nearly frozen on Hoth when this happens.",
       "options": [
         {
-          "text": "Bespin",
+          "text": "The Force spirit of Obi-Wan",
           "correct": true
         },
         {
-          "text": "Tatooine"
+          "text": "Princess Leia"
         },
         {
-          "text": "Naboo"
+          "text": "R2-D2"
         },
         {
-          "text": "Hoth"
+          "text": "Lando Calrissian"
         }
       ]
     },
     {
-      "text": "Who welcomes the heroes to Cloud City?",
-      "explanation": "Lando later switches sides and helps free Leia.",
+      "text": "How does Yoda show Luke the power of the Force?",
+      "explanation": "Luke struggles to understand the Force until he sees this.",
+      "options": [
+        {
+          "text": "He lifts Luke's X-wing out of the swamp",
+          "correct": true
+        },
+        {
+          "text": "He beats Luke in a lightsaber duel"
+        },
+        {
+          "text": "He summons a storm over the swamp"
+        },
+        {
+          "text": "He makes himself invisible to Luke"
+        }
+      ]
+    },
+    {
+      "text": "What does Luke face in the dark cave on Dagobah?",
+      "explanation": "Yoda is training him on Dagobah.",
+      "options": [
+        {
+          "text": "A vision of Darth Vader",
+          "correct": true
+        },
+        {
+          "text": "A sleeping rancor"
+        },
+        {
+          "text": "A hidden Rebel base"
+        },
+        {
+          "text": "Boba Fett's ship"
+        }
+      ]
+    },
+    {
+      "text": "Who welcomes the heroes to Cloud City on Bespin?",
+      "explanation": "Darth Vader and Boba Fett are waiting for them there.",
       "options": [
         {
           "text": "Lando Calrissian",
@@ -654,26 +350,83 @@
       ]
     },
     {
-      "text": "Who delivers the frozen Han Solo to Jabba the Hutt?",
-      "explanation": "Han is frozen in carbonite.",
+      "text": "What is Han Solo frozen in so that he can be delivered to Jabba the Hutt?",
+      "explanation": "Leia tells Han she loves him before he is frozen.",
       "options": [
         {
-          "text": "Boba Fett",
+          "text": "Carbonite",
           "correct": true
         },
         {
-          "text": "Darth Vader"
+          "text": "Ice"
         },
         {
-          "text": "Lando Calrissian"
+          "text": "Amber"
         },
         {
-          "text": "Greedo"
+          "text": "Plastic"
         }
       ]
     },
     {
-      "text": "What is the name of the creature in the pit where Jabba wants to drop his prisoners?",
+      "text": "What shocking thing does Darth Vader tell Luke during their duel?",
+      "explanation": "In the duel, Vader also cuts off Luke's hand.",
+      "options": [
+        {
+          "text": "That he is Luke's father",
+          "correct": true
+        },
+        {
+          "text": "That he is Luke's brother"
+        },
+        {
+          "text": "That Yoda is his master"
+        },
+        {
+          "text": "That Leia is a Sith"
+        }
+      ]
+    },
+    {
+      "text": "How does Leia first get into Jabba's palace to free Han?",
+      "explanation": "She frees Han from the carbonite, but she is captured.",
+      "options": [
+        {
+          "text": "Disguised as a bounty hunter",
+          "correct": true
+        },
+        {
+          "text": "She flies in on the Falcon"
+        },
+        {
+          "text": "Hidden in a crate"
+        },
+        {
+          "text": "Jabba invites her"
+        }
+      ]
+    },
+    {
+      "text": "What does Jabba drop Luke through a trapdoor to?",
+      "explanation": "Luke came to the palace to bargain for the release of his friends.",
+      "options": [
+        {
+          "text": "A rancor",
+          "correct": true
+        },
+        {
+          "text": "A sarlacc"
+        },
+        {
+          "text": "A wampa"
+        },
+        {
+          "text": "A krayt dragon"
+        }
+      ]
+    },
+    {
+      "text": "What lives in the pit where Jabba wants to drop his prisoners?",
       "explanation": "The pit is called the Pit of Carkoon.",
       "options": [
         {
@@ -692,8 +445,27 @@
       ]
     },
     {
+      "text": "How does Luke get his lightsaber back during the fight at the pit?",
+      "explanation": "Luke had hidden it inside R2-D2.",
+      "options": [
+        {
+          "text": "R2-D2 launches it to him",
+          "correct": true
+        },
+        {
+          "text": "Obi-Wan sends it with the Force"
+        },
+        {
+          "text": "Leia throws it"
+        },
+        {
+          "text": "Chewbacca catches it"
+        }
+      ]
+    },
+    {
       "text": "How does Leia defeat Jabba the Hutt?",
-      "explanation": "It happens during the fight at the Sarlacc pit.",
+      "explanation": "It happens during the fight on Jabba's sail barge.",
       "options": [
         {
           "text": "She strangles him with her chains",
@@ -711,8 +483,27 @@
       ]
     },
     {
+      "text": "What does Yoda tell Luke before he dies?",
+      "explanation": "He also confirms that Darth Vader was once Anakin Skywalker.",
+      "options": [
+        {
+          "text": "That there is another Skywalker",
+          "correct": true
+        },
+        {
+          "text": "That the Emperor is his uncle"
+        },
+        {
+          "text": "That Dagobah must be destroyed"
+        },
+        {
+          "text": "That Han is a Jedi"
+        }
+      ]
+    },
+    {
       "text": "On which forest moon do the Ewoks live?",
-      "explanation": "The Ewoks help the Rebels in the battle on the moon.",
+      "explanation": "The Ewoks look like furry teddy bears.",
       "options": [
         {
           "text": "Endor",
@@ -730,8 +521,27 @@
       ]
     },
     {
+      "text": "What must the Rebels destroy on Endor before they can attack the second Death Star?",
+      "explanation": "An energy shield protects the Death Star.",
+      "options": [
+        {
+          "text": "The shield generator",
+          "correct": true
+        },
+        {
+          "text": "The Emperor's palace"
+        },
+        {
+          "text": "The Imperial walkers"
+        },
+        {
+          "text": "The speeder bikes"
+        }
+      ]
+    },
+    {
       "text": "What famous warning does Admiral Ackbar shout at the Battle of Endor?",
-      "explanation": "The Imperial fleet was waiting for the Rebels.",
+      "explanation": "The Imperial fleet was waiting behind the shield.",
       "options": [
         {
           "text": "It's a trap!",
@@ -749,103 +559,27 @@
       ]
     },
     {
-      "text": "Admiral Ackbar belongs to which species?",
-      "explanation": "The Mon Calamari are an aquatic species.",
+      "text": "Which three Force ghosts does Luke see together at the end of Return of the Jedi?",
+      "explanation": "The Ewoks celebrate the victory around them.",
       "options": [
         {
-          "text": "Mon Calamari",
+          "text": "Obi-Wan, Yoda and Anakin",
           "correct": true
         },
         {
-          "text": "Gungan"
+          "text": "Qui-Gon, Mace Windu and Dooku"
         },
         {
-          "text": "Wookiee"
+          "text": "Han, Leia and Chewbacca"
         },
         {
-          "text": "Twi'lek"
+          "text": "The Emperor, Vader and Tarkin"
         }
       ]
     },
     {
-      "text": "What surprising thing does Luke tell Leia in Return of the Jedi?",
-      "explanation": "They are twins.",
-      "options": [
-        {
-          "text": "That they are brother and sister",
-          "correct": true
-        },
-        {
-          "text": "That she is a Jedi"
-        },
-        {
-          "text": "That Han is his brother"
-        },
-        {
-          "text": "That they are from Naboo"
-        }
-      ]
-    },
-    {
-      "text": "What protects the second Death Star near Endor?",
-      "explanation": "The Rebels need to turn the shield off.",
-      "options": [
-        {
-          "text": "An energy shield from a generator on the moon",
-          "correct": true
-        },
-        {
-          "text": "A huge field of asteroids around the moon"
-        },
-        {
-          "text": "A giant metal wall around the whole moon"
-        },
-        {
-          "text": "A fleet of Hutt warships guarding the moon"
-        }
-      ]
-    },
-    {
-      "text": "Who throws the Emperor down a shaft in Return of the Jedi?",
-      "explanation": "It is the end of the Emperor.",
-      "options": [
-        {
-          "text": "Darth Vader",
-          "correct": true
-        },
-        {
-          "text": "Luke Skywalker"
-        },
-        {
-          "text": "Lando Calrissian"
-        },
-        {
-          "text": "Leia"
-        }
-      ]
-    },
-    {
-      "text": "Which pilot flies with Lando Calrissian in the attack on the second Death Star?",
-      "explanation": "Lando leads the attack on the Death Star.",
-      "options": [
-        {
-          "text": "Nien Nunb",
-          "correct": true
-        },
-        {
-          "text": "Admiral Ackbar"
-        },
-        {
-          "text": "Mon Mothma"
-        },
-        {
-          "text": "Wicket"
-        }
-      ]
-    },
-    {
-      "text": "What does the Trade Federation do to the planet Naboo in The Phantom Menace?",
-      "explanation": "Qui-Gon Jinn and Obi-Wan Kenobi are sent to negotiate.",
+      "text": "What does the Trade Federation do to the planet Naboo?",
+      "explanation": "Two Jedi are sent to negotiate with the Viceroy.",
       "options": [
         {
           "text": "It blockades it",
@@ -863,8 +597,27 @@
       ]
     },
     {
+      "text": "Which Trade Federation Viceroy is ordered by Darth Sidious to kill the Jedi?",
+      "explanation": "Darth Sidious is secretly behind the Trade Federation.",
+      "options": [
+        {
+          "text": "Nute Gunray",
+          "correct": true
+        },
+        {
+          "text": "Finis Valorum"
+        },
+        {
+          "text": "Boss Nass"
+        },
+        {
+          "text": "Watto"
+        }
+      ]
+    },
+    {
       "text": "Which Jedi Master discovers young Anakin on Tatooine?",
-      "explanation": "He believes Anakin is very strong in the Force.",
+      "explanation": "He senses that Anakin is very strong in the Force.",
       "options": [
         {
           "text": "Qui-Gon Jinn",
@@ -882,83 +635,7 @@
       ]
     },
     {
-      "text": "Which actor plays Qui-Gon Jinn?",
-      "explanation": "He plays the Jedi Master in The Phantom Menace.",
-      "options": [
-        {
-          "text": "Liam Neeson",
-          "correct": true
-        },
-        {
-          "text": "Ewan McGregor"
-        },
-        {
-          "text": "Samuel L. Jackson"
-        },
-        {
-          "text": "Christopher Lee"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays the young Obi-Wan Kenobi in the prequels?",
-      "explanation": "He also plays him in the Obi-Wan Kenobi series.",
-      "options": [
-        {
-          "text": "Ewan McGregor",
-          "correct": true
-        },
-        {
-          "text": "Alec Guinness"
-        },
-        {
-          "text": "Hayden Christensen"
-        },
-        {
-          "text": "Jake Lloyd"
-        }
-      ]
-    },
-    {
-      "text": "Which actress plays Padmé Amidala?",
-      "explanation": "Padmé is the Queen of Naboo in The Phantom Menace.",
-      "options": [
-        {
-          "text": "Natalie Portman",
-          "correct": true
-        },
-        {
-          "text": "Daisy Ridley"
-        },
-        {
-          "text": "Felicity Jones"
-        },
-        {
-          "text": "Carrie Fisher"
-        }
-      ]
-    },
-    {
-      "text": "Which actor plays Jar Jar Binks?",
-      "explanation": "Jar Jar is a Gungan from Naboo.",
-      "options": [
-        {
-          "text": "Ahmed Best",
-          "correct": true
-        },
-        {
-          "text": "Brian Blessed"
-        },
-        {
-          "text": "Andy Secombe"
-        },
-        {
-          "text": "Ray Park"
-        }
-      ]
-    },
-    {
-      "text": "How does Anakin win the parts his friends need to leave Tatooine?",
+      "text": "How does Anakin win the parts needed to repair the ship?",
       "explanation": "The prize is a new hyperdrive from his owner, Watto.",
       "options": [
         {
@@ -977,8 +654,103 @@
       ]
     },
     {
-      "text": "In Attack of the Clones, on which planet does Obi-Wan find a secret army of clones?",
-      "explanation": "The clones are copies of the bounty hunter Jango Fett.",
+      "text": "Which Sith warrior attacks Qui-Gon Jinn?",
+      "explanation": "Obi-Wan defeats him in the end.",
+      "options": [
+        {
+          "text": "Darth Maul",
+          "correct": true
+        },
+        {
+          "text": "Count Dooku"
+        },
+        {
+          "text": "Darth Vader"
+        },
+        {
+          "text": "General Grievous"
+        }
+      ]
+    },
+    {
+      "text": "What does Anakin destroy by accident during the Battle of Naboo?",
+      "explanation": "The auto-pilot takes him and R2-D2 right to it.",
+      "options": [
+        {
+          "text": "The Droid Control Ship",
+          "correct": true
+        },
+        {
+          "text": "The Death Star"
+        },
+        {
+          "text": "A Star Destroyer"
+        },
+        {
+          "text": "A Jedi temple"
+        }
+      ]
+    },
+    {
+      "text": "Who leads the Separatists in Attack of the Clones?",
+      "explanation": "He is a rogue Jedi Master.",
+      "options": [
+        {
+          "text": "Count Dooku",
+          "correct": true
+        },
+        {
+          "text": "Darth Maul"
+        },
+        {
+          "text": "Grand Moff Tarkin"
+        },
+        {
+          "text": "Jabba the Hutt"
+        }
+      ]
+    },
+    {
+      "text": "Who is given the job of protecting Padmé after an attempt on her life?",
+      "explanation": "Obi-Wan is sent to find out who is behind it.",
+      "options": [
+        {
+          "text": "Anakin Skywalker",
+          "correct": true
+        },
+        {
+          "text": "Yoda"
+        },
+        {
+          "text": "Jar Jar Binks"
+        },
+        {
+          "text": "Qui-Gon Jinn"
+        }
+      ]
+    },
+    {
+      "text": "Which bounty hunter is hired by Count Dooku?",
+      "explanation": "Jango's attempt to harm Padmé fails.",
+      "options": [
+        {
+          "text": "Jango Fett",
+          "correct": true
+        },
+        {
+          "text": "Boba Fett"
+        },
+        {
+          "text": "Greedo"
+        },
+        {
+          "text": "Bossk"
+        }
+      ]
+    },
+    {
+      "text": "On which planet does Obi-Wan find a secret clone army?",
+      "explanation": "The clones are copies of Jango Fett.",
       "options": [
         {
           "text": "Kamino",
@@ -1015,8 +787,27 @@
       ]
     },
     {
+      "text": "On which planet are Obi-Wan, Anakin and Padmé sentenced to death?",
+      "explanation": "Their rescue starts the first battle of the Clone Wars.",
+      "options": [
+        {
+          "text": "Geonosis",
+          "correct": true
+        },
+        {
+          "text": "Kamino"
+        },
+        {
+          "text": "Tatooine"
+        },
+        {
+          "text": "Mustafar"
+        }
+      ]
+    },
+    {
       "text": "Which villain cuts off Anakin's arm in Attack of the Clones?",
-      "explanation": "It happens during the fight on Geonosis.",
+      "explanation": "It happens in a duel on Geonosis.",
       "options": [
         {
           "text": "Count Dooku",
@@ -1034,27 +825,8 @@
       ]
     },
     {
-      "text": "Which Jedi Master fights Count Dooku on Geonosis while Dooku escapes?",
-      "explanation": "That battle is the first of the Clone Wars.",
-      "options": [
-        {
-          "text": "Yoda",
-          "correct": true
-        },
-        {
-          "text": "Mace Windu"
-        },
-        {
-          "text": "Obi-Wan Kenobi"
-        },
-        {
-          "text": "Qui-Gon Jinn"
-        }
-      ]
-    },
-    {
-      "text": "What is the secret command that turns the clones against the Jedi?",
-      "explanation": "Palpatine gives the order in Revenge of the Sith.",
+      "text": "What is the secret command that turns the clone troopers against the Jedi?",
+      "explanation": "Palpatine gives the order.",
       "options": [
         {
           "text": "Order 66",
@@ -1068,6 +840,44 @@
         },
         {
           "text": "Order 1"
+        }
+      ]
+    },
+    {
+      "text": "On which fiery volcanic planet do Anakin and Obi-Wan duel?",
+      "explanation": "Padmé travels there to plead with Anakin.",
+      "options": [
+        {
+          "text": "Mustafar",
+          "correct": true
+        },
+        {
+          "text": "Hoth"
+        },
+        {
+          "text": "Naboo"
+        },
+        {
+          "text": "Endor"
+        }
+      ]
+    },
+    {
+      "text": "Who secretly stows away on Padmé's ship to Mustafar?",
+      "explanation": "Anakin thinks Padmé has betrayed him.",
+      "options": [
+        {
+          "text": "Obi-Wan Kenobi",
+          "correct": true
+        },
+        {
+          "text": "Yoda"
+        },
+        {
+          "text": "C-3PO"
+        },
+        {
+          "text": "Jar Jar Binks"
         }
       ]
     },
@@ -1091,121 +901,102 @@
       ]
     },
     {
-      "text": "On which fiery volcanic planet do Anakin and Obi-Wan duel?",
-      "explanation": "Mustafar is also where Kylo Ren finds a Sith wayfinder years later.",
+      "text": "What is Anakin's body encased in after the duel on Mustafar?",
+      "explanation": "That is the beginning of Darth Vader.",
       "options": [
         {
-          "text": "Mustafar",
+          "text": "A black armored life-support suit",
           "correct": true
         },
         {
-          "text": "Hoth"
+          "text": "A golden robe from the Jedi Temple"
         },
         {
-          "text": "Naboo"
+          "text": "White armor from a clone trooper"
         },
         {
-          "text": "Endor"
+          "text": "Shiny Mandalorian beskar armor"
         }
       ]
     },
     {
-      "text": "How long after Return of the Jedi is The Force Awakens set?",
-      "explanation": "The Empire has become the First Order.",
+      "text": "Who adopts baby Leia and takes her to Alderaan?",
+      "explanation": "Obi-Wan takes Luke to his uncle Owen and aunt Beru on Tatooine.",
       "options": [
         {
-          "text": "About 30 years",
+          "text": "Bail Organa and his wife",
           "correct": true
         },
         {
-          "text": "About 3 years"
+          "text": "Owen and Beru Lars"
         },
         {
-          "text": "About 100 years"
+          "text": "Obi-Wan Kenobi"
         },
         {
-          "text": "About 1,000 years"
+          "text": "Yoda"
         }
       ]
     },
     {
-      "text": "On which desert planet does Rey scavenge parts at the start of The Force Awakens?",
-      "explanation": "She lives in a ship graveyard.",
+      "text": "What does Poe Dameron go to Jakku to find at the start of The Force Awakens?",
+      "explanation": "He gives the map to BB-8.",
       "options": [
         {
-          "text": "Jakku",
+          "text": "A partial map to Luke's location",
           "correct": true
         },
         {
-          "text": "Tatooine"
+          "text": "The Death Star plans"
         },
         {
-          "text": "Crait"
+          "text": "A lightsaber"
         },
         {
-          "text": "Exegol"
+          "text": "A droid army code"
         }
       ]
     },
     {
-      "text": "Which actress plays Rey?",
-      "explanation": "Rey is the new hero of the sequel films.",
+      "text": "Which stormtrooper defects from the First Order and frees Poe?",
+      "explanation": "They escape in a stolen TIE fighter.",
       "options": [
         {
-          "text": "Daisy Ridley",
+          "text": "Finn",
           "correct": true
         },
         {
-          "text": "Carrie Fisher"
+          "text": "Captain Phasma"
         },
         {
-          "text": "Felicity Jones"
+          "text": "Kylo Ren"
         },
         {
-          "text": "Kelly Marie Tran"
+          "text": "General Hux"
         }
       ]
     },
     {
-      "text": "Which actor plays Finn?",
-      "explanation": "Finn is introduced on Jakku with Rey and BB-8.",
+      "text": "In which ship do Rey and Finn escape from Jakku?",
+      "explanation": "They run into Han Solo and Chewbacca.",
       "options": [
         {
-          "text": "John Boyega",
+          "text": "The Millennium Falcon",
           "correct": true
         },
         {
-          "text": "Oscar Isaac"
+          "text": "Slave I"
         },
         {
-          "text": "Adam Driver"
+          "text": "The Ghost"
         },
         {
-          "text": "Mark Hamill"
+          "text": "A TIE fighter"
         }
       ]
     },
     {
-      "text": "Which actor performs the motion-capture role of Supreme Leader Snoke?",
-      "explanation": "Snoke is the leader of the First Order.",
-      "options": [
-        {
-          "text": "Andy Serkis",
-          "correct": true
-        },
-        {
-          "text": "Adam Driver"
-        },
-        {
-          "text": "Oscar Isaac"
-        },
-        {
-          "text": "Domhnall Gleeson"
-        }
-      ]
-    },
-    {
-      "text": "In The Last Jedi, Finn and Rose visit a casino city. What is it called?",
+      "text": "In The Last Jedi, Finn and Rose go to a casino town to find a hacker. What is it called?",
       "explanation": "Maz Kanata sends them there.",
       "options": [
         {
@@ -1224,8 +1015,65 @@
       ]
     },
     {
+      "text": "What does Vice Admiral Holdo do with her ship at the end of the chase?",
+      "explanation": "The move is known as the 'Holdo Maneuver'.",
+      "options": [
+        {
+          "text": "She crashes it into the First Order flagship",
+          "correct": true
+        },
+        {
+          "text": "She surrenders"
+        },
+        {
+          "text": "She hides it on Crait"
+        },
+        {
+          "text": "She steals the Millennium Falcon"
+        }
+      ]
+    },
+    {
+      "text": "To which abandoned Rebel base on a mineral planet does the Resistance flee?",
+      "explanation": "It is a mineral planet with an old Rebel base.",
+      "options": [
+        {
+          "text": "Crait",
+          "correct": true
+        },
+        {
+          "text": "Yavin 4"
+        },
+        {
+          "text": "Hoth"
+        },
+        {
+          "text": "Dagobah"
+        }
+      ]
+    },
+    {
+      "text": "Which villain does Kylo Ren kill in The Last Jedi?",
+      "explanation": "Rey helps him fight Snoke's guards.",
+      "options": [
+        {
+          "text": "Supreme Leader Snoke",
+          "correct": true
+        },
+        {
+          "text": "Captain Phasma"
+        },
+        {
+          "text": "General Hux"
+        },
+        {
+          "text": "Palpatine"
+        }
+      ]
+    },
+    {
       "text": "Where does Palpatine hide in The Rise of Skywalker?",
-      "explanation": "It is a planet far out in the Unknown Regions.",
+      "explanation": "He is surrounded by his Sith followers.",
       "options": [
         {
           "text": "Exegol",
@@ -1243,8 +1091,27 @@
       ]
     },
     {
+      "text": "What does Kylo Ren find on Mustafar that shows the way to Exegol?",
+      "explanation": "It once belonged to Darth Vader.",
+      "options": [
+        {
+          "text": "A Sith wayfinder",
+          "correct": true
+        },
+        {
+          "text": "A holocron"
+        },
+        {
+          "text": "A lightsaber"
+        },
+        {
+          "text": "A star map"
+        }
+      ]
+    },
+    {
       "text": "What fleet does Palpatine offer Kylo Ren in The Rise of Skywalker?",
-      "explanation": "He wants Kylo to kill Rey in exchange.",
+      "explanation": "He wants Kylo to kill Rey in return.",
       "options": [
         {
           "text": "The Final Order",
@@ -1262,97 +1129,173 @@
       ]
     },
     {
-      "text": "Who directed Rogue One?",
-      "explanation": "The film is set just before A New Hope.",
+      "text": "What does the Empire take from Jedha City to power the Death Star?",
+      "explanation": "Saw Gerrera's partisans fight against the Empire there.",
       "options": [
         {
-          "text": "Gareth Edwards",
+          "text": "Kyber crystals",
           "correct": true
         },
         {
-          "text": "Rian Johnson"
+          "text": "Beskar"
         },
         {
-          "text": "J. J. Abrams"
+          "text": "Coaxium"
         },
         {
-          "text": "George Lucas"
+          "text": "Carbonite"
         }
       ]
     },
     {
-      "text": "What are the rebels in Rogue One trying to steal?",
-      "explanation": "It is the Rebel Alliance's first big victory against the Empire.",
+      "text": "What does Galen Erso reveal in his secret message to his daughter Jyn?",
+      "explanation": "Galen is a research scientist.",
       "options": [
         {
-          "text": "The Death Star plans",
+          "text": "A weakness he built on purpose into the Death Star",
           "correct": true
         },
         {
-          "text": "A Jedi holocron"
+          "text": "The secret location of the last Jedi hideout"
         },
         {
-          "text": "The Millennium Falcon"
+          "text": "The location of a hidden Rebel base on Yavin"
         },
         {
-          "text": "Kyber crystals"
+          "text": "The Emperor's secret plan to rule the galaxy"
         }
       ]
     },
     {
-      "text": "What was K-2SO before Cassian Andor reprogrammed him?",
-      "explanation": "Alan Tudyk plays him.",
+      "text": "On which planet are the Death Star schematics kept in an Imperial data bank?",
+      "explanation": "Jyn wants to steal them for the Rebel fleet.",
       "options": [
         {
-          "text": "An Imperial enforcer droid",
+          "text": "Scarif",
           "correct": true
         },
         {
-          "text": "A protocol droid"
+          "text": "Jedha"
         },
         {
-          "text": "A Jawa's droid"
+          "text": "Eadu"
         },
         {
-          "text": "A pit droid"
+          "text": "Hoth"
         }
       ]
     },
     {
-      "text": "Which actor plays the blind warrior Chirrut Îmwe?",
-      "explanation": "Chirrut believes in the Force.",
+      "text": "Which droid, a former Imperial enforcer, travels with Cassian Andor?",
+      "explanation": "Cassian reprogrammed him to serve the Rebellion.",
       "options": [
         {
-          "text": "Donnie Yen",
+          "text": "K-2SO",
           "correct": true
         },
         {
-          "text": "Riz Ahmed"
+          "text": "C-3PO"
         },
         {
-          "text": "Mads Mikkelsen"
+          "text": "BB-8"
         },
         {
-          "text": "Alan Tudyk"
+          "text": "IG-11"
         }
       ]
     },
     {
-      "text": "Who directed Solo: A Star Wars Story after the first directors were fired?",
-      "explanation": "The film came out on May 25, 2018.",
+      "text": "Which blind warrior in Rogue One believes in the Force?",
+      "explanation": "He is a blind warrior.",
       "options": [
         {
-          "text": "Ron Howard",
+          "text": "Chirrut Îmwe",
           "correct": true
         },
         {
-          "text": "Gareth Edwards"
+          "text": "Baze Malbus"
         },
         {
-          "text": "Rian Johnson"
+          "text": "Bodhi Rook"
         },
         {
-          "text": "Jon Favreau"
+          "text": "Saw Gerrera"
+        }
+      ]
+    },
+    {
+      "text": "Which former Imperial cargo pilot defects to the Rebels in Rogue One?",
+      "explanation": "Galen Erso convinced him to defect.",
+      "options": [
+        {
+          "text": "Bodhi Rook",
+          "correct": true
+        },
+        {
+          "text": "Cassian Andor"
+        },
+        {
+          "text": "Galen Erso"
+        },
+        {
+          "text": "Orson Krennic"
+        }
+      ]
+    },
+    {
+      "text": "In Solo, which gangster does Han Solo's crew owe?",
+      "explanation": "The crew plans a risky job to pay him back.",
+      "options": [
+        {
+          "text": "Dryden Vos",
+          "correct": true
+        },
+        {
+          "text": "Jabba the Hutt"
+        },
+        {
+          "text": "Greedo"
+        },
+        {
+          "text": "Boba Fett"
+        }
+      ]
+    },
+    {
+      "text": "How does Han get the last name 'Solo'?",
+      "explanation": "Han joins the Imperial Navy as a flight cadet after he and Qi'ra try to escape from Corellia.",
+      "options": [
+        {
+          "text": "An Imperial recruiter gives it to him",
+          "correct": true
+        },
+        {
+          "text": "His parents gave it to him"
+        },
+        {
+          "text": "Lando named him"
+        },
+        {
+          "text": "Chewbacca named him"
+        }
+      ]
+    },
+    {
+      "text": "Where does Han Solo first meet Chewbacca in Solo?",
+      "explanation": "Han is thrown into the pit with the Wookiee prisoner.",
+      "options": [
+        {
+          "text": "In a pit on Mimban",
+          "correct": true
+        },
+        {
+          "text": "In the Mos Eisley cantina"
+        },
+        {
+          "text": "In Jabba's palace"
+        },
+        {
+          "text": "On the planet Kashyyyk"
         }
       ]
     },
@@ -1376,27 +1319,8 @@
       ]
     },
     {
-      "text": "Who owns the Millennium Falcon when Han Solo first meets him in Solo?",
-      "explanation": "Donald Glover plays the young Lando.",
-      "options": [
-        {
-          "text": "Lando Calrissian",
-          "correct": true
-        },
-        {
-          "text": "Jabba the Hutt"
-        },
-        {
-          "text": "Dryden Vos"
-        },
-        {
-          "text": "Tobias Beckett"
-        }
-      ]
-    },
-    {
       "text": "In The Clone Wars, which young Padawan learns from Anakin Skywalker?",
-      "explanation": "Ashley Eckstein gives Ahsoka her voice.",
+      "explanation": "Ahsoka later leaves the Jedi Order.",
       "options": [
         {
           "text": "Ahsoka Tano",
@@ -1414,84 +1338,84 @@
       ]
     },
     {
-      "text": "Who was the supervising director of The Clone Wars?",
-      "explanation": "The series started with a film in August 2008.",
+      "text": "Which clone captain fights beside the Jedi in The Clone Wars?",
+      "explanation": "Rex belongs to the 501st Legion.",
       "options": [
         {
-          "text": "Dave Filoni",
+          "text": "Captain Rex",
           "correct": true
         },
         {
-          "text": "Jon Favreau"
+          "text": "Captain Phasma"
         },
         {
-          "text": "Rian Johnson"
+          "text": "Captain Needa"
         },
         {
-          "text": "Gareth Edwards"
+          "text": "Captain Panaka"
         }
       ]
     },
     {
-      "text": "The Clone Wars is set between which two films?",
-      "explanation": "It ran for seven seasons.",
+      "text": "In the Umbara story, who replaces Anakin as the general of Rex and the 501st?",
+      "explanation": "Anakin is reassigned.",
       "options": [
         {
-          "text": "Attack of the Clones and Revenge of the Sith",
-          "correct": true
-        },
-        {
-          "text": "A New Hope and The Empire Strikes Back"
-        },
-        {
-          "text": "The Phantom Menace and Attack of the Clones"
-        },
-        {
-          "text": "Return of the Jedi and The Force Awakens"
-        }
-      ]
-    },
-    {
-      "text": "How many seasons does The Clone Wars have?",
-      "explanation": "The final season was shown on Disney+ in 2020.",
-      "options": [
-        {
-          "text": "Seven",
-          "correct": true
-        },
-        {
-          "text": "Three"
-        },
-        {
-          "text": "Five"
-        },
-        {
-          "text": "Ten"
-        }
-      ]
-    },
-    {
-      "text": "In the Siege of Mandalore, which dark side villain holds the planet?",
-      "explanation": "Ahsoka teams up with Bo-Katan and Captain Rex.",
-      "options": [
-        {
-          "text": "Darth Maul",
+          "text": "Pong Krell",
           "correct": true
         },
         {
           "text": "Count Dooku"
         },
         {
-          "text": "Darth Vader"
+          "text": "General Grievous"
         },
         {
-          "text": "Grand Admiral Thrawn"
+          "text": "Cad Bane"
+        }
+      ]
+    },
+    {
+      "text": "Who turns out to be behind the Jedi Temple bombing that Ahsoka is accused of?",
+      "explanation": "Ahsoka leaves the Jedi Order even though she is cleared.",
+      "options": [
+        {
+          "text": "Barriss Offee",
+          "correct": true
+        },
+        {
+          "text": "Count Dooku"
+        },
+        {
+          "text": "Darth Maul"
+        },
+        {
+          "text": "Rex"
+        }
+      ]
+    },
+    {
+      "text": "On the mysterious world of Mortis, which three powerful Force users do Obi-Wan, Anakin and Ahsoka meet?",
+      "explanation": "They go there after a distress call from Captain Rex.",
+      "options": [
+        {
+          "text": "The Daughter, the Son and the Father",
+          "correct": true
+        },
+        {
+          "text": "The Mother, the Sister and the Brother"
+        },
+        {
+          "text": "Yoda, Dooku and Maul"
+        },
+        {
+          "text": "Three Sith Lords"
         }
       ]
     },
     {
       "text": "In Star Wars Rebels, who is the captain of the starship Ghost?",
-      "explanation": "The show ran for four seasons, from 2014 to 2018.",
+      "explanation": "She is a natural leader.",
       "options": [
         {
           "text": "Hera Syndulla",
@@ -1509,8 +1433,8 @@
       ]
     },
     {
-      "text": "In Star Wars Rebels, which crew member is a Mandalorian warrior and artist?",
-      "explanation": "She keeps watch over the planet Lothal at the end.",
+      "text": "Which Ghost crew member is a Mandalorian warrior and artist?",
+      "explanation": "She keeps watch over Lothal at the end.",
       "options": [
         {
           "text": "Sabine Wren",
@@ -1528,8 +1452,46 @@
       ]
     },
     {
-      "text": "At the end of Star Wars Rebels, what carries Ezra and Grand Admiral Thrawn away into hyperspace?",
-      "explanation": "Dave Filoni later said that both of them survive.",
+      "text": "Which Ghost crew member is a former Padawan who survived the Great Jedi Purge?",
+      "explanation": "He leads the crew and trains Ezra.",
+      "options": [
+        {
+          "text": "Kanan Jarrus",
+          "correct": true
+        },
+        {
+          "text": "Ezra Bridger"
+        },
+        {
+          "text": "Zeb Orrelios"
+        },
+        {
+          "text": "Chopper"
+        }
+      ]
+    },
+    {
+      "text": "On the planet Malachor, who tricks Ezra into using a Sith holocron at an ancient temple?",
+      "explanation": "Darth Vader arrives and fights Ahsoka.",
+      "options": [
+        {
+          "text": "Maul",
+          "correct": true
+        },
+        {
+          "text": "Grand Admiral Thrawn"
+        },
+        {
+          "text": "The Seventh Sister"
+        },
+        {
+          "text": "Darth Vader"
+        }
+      ]
+    },
+    {
+      "text": "At the end of Star Wars Rebels, what carries Ezra and Grand Admiral Thrawn into hyperspace?",
+      "explanation": "Ezra had called them to destroy the Imperial blockade.",
       "options": [
         {
           "text": "The Purrgil, space whales",
@@ -1543,6 +1505,44 @@
         },
         {
           "text": "A Jedi starfighter"
+        }
+      ]
+    },
+    {
+      "text": "Which member of Clone Force 99 in The Bad Batch is the team's technical expert?",
+      "explanation": "Wrecker is the strong one, and Crosshair is a marksman.",
+      "options": [
+        {
+          "text": "Tech",
+          "correct": true
+        },
+        {
+          "text": "Wrecker"
+        },
+        {
+          "text": "Crosshair"
+        },
+        {
+          "text": "Hunter"
+        }
+      ]
+    },
+    {
+      "text": "In The Bad Batch, which young clone is held in an Imperial science lab?",
+      "explanation": "Hunter and Wrecker try to reunite with her at the Imperial lab, Tantiss.",
+      "options": [
+        {
+          "text": "Omega",
+          "correct": true
+        },
+        {
+          "text": "Echo"
+        },
+        {
+          "text": "Crosshair"
+        },
+        {
+          "text": "Hunter"
         }
       ]
     },
@@ -1566,122 +1566,84 @@
       ]
     },
     {
-      "text": "In the third season of The Bad Batch, what has happened to Omega?",
-      "explanation": "Hunter, Wrecker and the others try to rescue her.",
+      "text": "What bounty does the Mandalorian, Din Djarin, take in the first episode?",
+      "explanation": "The child is known as 'the Child'.",
       "options": [
         {
-          "text": "She is held in an Imperial science lab",
+          "text": "A small child of Yoda's species",
           "correct": true
         },
         {
-          "text": "She has joined the Empire as a pilot"
+          "text": "A stolen Imperial battle droid"
         },
         {
-          "text": "She has moved to live on Tatooine"
+          "text": "A map of the Empire's secret bases"
         },
         {
-          "text": "She has become a famous Jedi Knight"
+          "text": "A baby Hutt from Jabba's palace"
         }
       ]
     },
     {
-      "text": "Which actor plays the Mandalorian, Din Djarin?",
-      "explanation": "The Mandalorian started on Disney+ on November 12, 2019.",
+      "text": "Which vapor farmer guides Din Djarin to the Child's camp?",
+      "explanation": "Din Djarin took the job from a client with Imperial ties.",
       "options": [
         {
-          "text": "Pedro Pascal",
+          "text": "Kuiil",
           "correct": true
         },
         {
-          "text": "Diego Luna"
+          "text": "Greef Karga"
         },
         {
-          "text": "Oscar Isaac"
+          "text": "Cara Dune"
         },
         {
-          "text": "Temuera Morrison"
+          "text": "Cobb Vanth"
         }
       ]
     },
     {
-      "text": "Who created The Mandalorian?",
-      "explanation": "It is a space western.",
+      "text": "On which quiet planet does Din Djarin meet the ex-Rebel Cara Dune?",
+      "explanation": "He goes there to hide with the Child.",
       "options": [
         {
-          "text": "Jon Favreau",
+          "text": "Sorgan",
           "correct": true
         },
         {
-          "text": "Dave Filoni"
+          "text": "Nevarro"
         },
         {
-          "text": "J. J. Abrams"
+          "text": "Tatooine"
         },
         {
-          "text": "George Lucas"
+          "text": "Mandalore"
         }
       ]
     },
     {
-      "text": "Grogu, also called the Child, belongs to the same species as which famous Jedi?",
-      "explanation": "The species has never been named.",
+      "text": "What does Cobb Vanth ask in return for the Mandalorian armor that once belonged to Boba Fett?",
+      "explanation": "The Tusken Raiders help them in the fight.",
       "options": [
         {
-          "text": "Yoda",
+          "text": "Help killing a krayt dragon",
           "correct": true
         },
         {
-          "text": "Obi-Wan Kenobi"
+          "text": "A big pile of credits"
         },
         {
-          "text": "Mace Windu"
+          "text": "A free ride off Tatooine"
         },
         {
-          "text": "Qui-Gon Jinn"
+          "text": "A new droid"
         }
       ]
     },
     {
-      "text": "What does the Mandalorian Creed say about helmets?",
-      "explanation": "The Armorer reminds the tribe of this.",
-      "options": [
-        {
-          "text": "Never take your helmet off in front of others",
-          "correct": true
-        },
-        {
-          "text": "Always wear a red helmet during a battle"
-        },
-        {
-          "text": "Only wear a helmet when you are fighting"
-        },
-        {
-          "text": "Never wear a helmet inside a building"
-        }
-      ]
-    },
-    {
-      "text": "What rare, tough metal is used for Mandalorian armor?",
-      "explanation": "Beskar can stop blaster bolts and even lightsaber strikes.",
-      "options": [
-        {
-          "text": "Beskar",
-          "correct": true
-        },
-        {
-          "text": "Coaxium"
-        },
-        {
-          "text": "Kyber"
-        },
-        {
-          "text": "Carbonite"
-        }
-      ]
-    },
-    {
-      "text": "Whoever holds the black-bladed Darksaber can lead which world?",
-      "explanation": "Bo-Katan Kryze wants it.",
+      "text": "Whoever wins the Darksaber in battle can lead which world?",
+      "explanation": "Din Djarin ends up with the Darksaber at the end of season 2.",
       "options": [
         {
           "text": "Mandalore",
@@ -1718,8 +1680,27 @@
       ]
     },
     {
+      "text": "In season 3 of The Mandalorian, Din Djarin travels to Mandalore to find what?",
+      "explanation": "Grogu chooses to stay with Din instead of continuing Jedi training.",
+      "options": [
+        {
+          "text": "The Living Waters",
+          "correct": true
+        },
+        {
+          "text": "A Jedi temple"
+        },
+        {
+          "text": "The Death Star"
+        },
+        {
+          "text": "A lost Darksaber"
+        }
+      ]
+    },
+    {
       "text": "In The Book of Boba Fett, what does Boba Fett become on Tatooine?",
-      "explanation": "Fennec Shand, played by Ming-Na Wen, is his partner.",
+      "explanation": "Fennec Shand is his partner.",
       "options": [
         {
           "text": "The crime lord of Jabba's old territory",
@@ -1737,84 +1718,103 @@
       ]
     },
     {
-      "text": "How long after Revenge of the Sith is the Obi-Wan Kenobi series set?",
-      "explanation": "It was first shown on Disney+ on May 25, 2022.",
+      "text": "In the Obi-Wan Kenobi series, who is kidnapped and then rescued by Obi-Wan?",
+      "explanation": "Her adoptive father, Bail Organa, asks Obi-Wan for help.",
       "options": [
         {
-          "text": "Ten years",
+          "text": "Leia",
           "correct": true
         },
         {
-          "text": "One year"
+          "text": "Luke"
         },
         {
-          "text": "Thirty years"
+          "text": "Padmé"
         },
         {
-          "text": "A hundred years"
+          "text": "Rey"
         }
       ]
     },
     {
-      "text": "Which actor returns as Darth Vader in the Obi-Wan Kenobi series?",
-      "explanation": "Moses Ingram plays the Inquisitor Reva.",
+      "text": "In Andor season 1, what do Cassian and a rebel crew try to rob on the planet Aldhani?",
+      "explanation": "Luthen Rael recruits Cassian for the job.",
       "options": [
         {
-          "text": "Hayden Christensen",
+          "text": "An Imperial garrison",
           "correct": true
         },
         {
-          "text": "James Earl Jones"
+          "text": "A Hutt palace"
         },
         {
-          "text": "Ewan McGregor"
+          "text": "A Jedi temple"
         },
         {
-          "text": "Joel Edgerton"
+          "text": "A bank on Coruscant"
         }
       ]
     },
     {
-      "text": "Which actress plays Ahsoka Tano in the live-action series?",
-      "explanation": "She first appeared in live-action in The Mandalorian season 2.",
+      "text": "In Andor season 2, whose speech against Emperor Palpatine makes her an enemy of the Empire?",
+      "explanation": "She has to leave Coruscant afterwards.",
       "options": [
         {
-          "text": "Rosario Dawson",
+          "text": "Mon Mothma",
           "correct": true
         },
         {
-          "text": "Natasha Liu Bordizzo"
+          "text": "Leia Organa"
         },
         {
-          "text": "Mary Elizabeth Winstead"
+          "text": "Padmé Amidala"
         },
         {
-          "text": "Moses Ingram"
+          "text": "Dedra Meero"
         }
       ]
     },
     {
-      "text": "Which actor plays Grand Admiral Thrawn in Ahsoka?",
-      "explanation": "Ahsoka's search for Thrawn drives the story.",
+      "text": "Ahsoka's live-action story starts with a search for which two people who vanished at the end of Rebels?",
+      "explanation": "Ahsoka works together with Sabine Wren and Hera Syndulla.",
       "options": [
         {
-          "text": "Lars Mikkelsen",
+          "text": "Grand Admiral Thrawn and Ezra Bridger",
           "correct": true
         },
         {
-          "text": "Eman Esfandi"
+          "text": "Kanan Jarrus and Hera Syndulla"
         },
         {
-          "text": "Hayden Christensen"
+          "text": "Darth Maul and Captain Rex"
         },
         {
-          "text": "Pedro Pascal"
+          "text": "Luke Skywalker and Leia Organa"
+        }
+      ]
+    },
+    {
+      "text": "In Skeleton Crew, which starship takes four lost kids deep into space?",
+      "explanation": "The droid SM-33 becomes loyal to its new captain, Fern.",
+      "options": [
+        {
+          "text": "The Onyx Cinder",
+          "correct": true
+        },
+        {
+          "text": "The Ghost"
+        },
+        {
+          "text": "Slave I"
+        },
+        {
+          "text": "The Razor Crest"
         }
       ]
     },
     {
       "text": "What colour are Sith lightsabers usually?",
-      "explanation": "Jedi lightsabers are often blue or green.",
+      "explanation": "A dark side user makes a kyber crystal 'bleed', and the blade turns red.",
       "options": [
         {
           "text": "Red",
@@ -1852,7 +1852,7 @@
     },
     {
       "text": "On which planet do the Wookiees live?",
-      "explanation": "Chewbacca is a Wookiee.",
+      "explanation": "Chewbacca is a Wookiee. The Empire later blockaded the planet.",
       "options": [
         {
           "text": "Kashyyyk",
