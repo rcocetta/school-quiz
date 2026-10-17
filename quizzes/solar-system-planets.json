@@ -1,0 +1,1391 @@
+{
+  "$schema": "../src/quizgen/schema.json",
+  "title": {
+    "en": "Solar System Planets",
+    "fr": "Les plan\u00e8tes du syst\u00e8me solaire",
+    "it": "I pianeti del sistema solare"
+  },
+  "description": {
+    "en": "Learn about the planets in our solar system. How well do you know our cosmic neighborhood?",
+    "fr": "D\u00e9couvrez les plan\u00e8tes de notre syst\u00e8me solaire. Que savez-vous de notre voisinage cosmique ?",
+    "it": "Scopri i pianeti del nostro sistema solare. Quanto conosci il nostro vicinato cosmico?"
+  },
+  "languages": ["en", "fr", "it"],
+  "author": {
+    "name": "school-quiz",
+    "url": "https://github.com/rcocetta/school-quiz"
+  },
+  "questions_per_quiz": 10,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": {
+        "en": "Which planet is closest to the Sun?",
+        "fr": "Quelle plan\u00e8te est la plus proche du Soleil ?",
+        "it": "Quale pianeta \u00e8 pi\u00f9 vicino al Sole?"
+      },
+      "explanation": {
+        "en": "Mercury is the first planet from the Sun, at a distance of about 58 million kilometers.",
+        "fr": "Mercure est la premi\u00e8re plan\u00e8te \u00e0 partir du Soleil, \u00e0 environ 58 millions de kilom\u00e8tres.",
+        "it": "Mercurio \u00e8 il primo pianeta dal Sole, a una distanza di circa 58 milioni di chilometri."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          }
+        },
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet do we live on?",
+        "fr": "Sur quelle plan\u00e8te vivons-nous ?",
+        "it": "Su quale pianeta viviamo?"
+      },
+      "explanation": {
+        "en": "Earth is our home planet and the only one known to support life.",
+        "fr": "La Terre est notre plan\u00e8te et la seule connue pour abriter la vie.",
+        "it": "La Terra \u00e8 il nostro pianeta e l'unico noto per sostenere la vita."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        },
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which is the largest planet in our solar system?",
+        "fr": "Quelle est la plus grande plan\u00e8te de notre syst\u00e8me solaire ?",
+        "it": "Qual \u00e8 il pianeta pi\u00f9 grande del nostro sistema solare?"
+      },
+      "explanation": {
+        "en": "Jupiter is the largest planet. It is so big that over 1,300 Earths could fit inside it!",
+        "fr": "Jupiter est la plus grande plan\u00e8te. Elle est si grande que plus de 1 300 Terres pourraient y tenir !",
+        "it": "Giove \u00e8 il pianeta pi\u00f9 grande. \u00c8 cos\u00ec grande che potrebbero entrarci pi\u00f9 di 1.300 Terre!"
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        },
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is known for its beautiful rings?",
+        "fr": "Quelle plan\u00e8te est connue pour ses magnifiques anneaux ?",
+        "it": "Quale pianeta \u00e8 noto per i suoi bellissimi anelli?"
+      },
+      "explanation": {
+        "en": "Saturn has the most visible and beautiful ring system made of ice and rock particles.",
+        "fr": "Saturne poss\u00e8de le syst\u00e8me d'anneaux le plus visible et le plus beau, compos\u00e9 de particules de glace et de roche.",
+        "it": "Saturno ha il sistema di anelli pi\u00f9 visibile e bello, composto da particelle di ghiaccio e roccia."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is called the Red Planet?",
+        "fr": "Quelle plan\u00e8te est appel\u00e9e la Plan\u00e8te Rouge ?",
+        "it": "Quale pianeta \u00e8 chiamato il Pianeta Rosso?"
+      },
+      "explanation": {
+        "en": "Mars appears red because of iron oxide (rust) on its surface.",
+        "fr": "Mars para\u00eet rouge en raison de l'oxyde de fer (rouille) \u00e0 sa surface.",
+        "it": "Marte appare rosso a causa dell'ossido di ferro (ruggine) sulla sua superficie."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        },
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is the hottest?",
+        "fr": "Quelle est la plan\u00e8te la plus chaude ?",
+        "it": "Quale pianeta \u00e8 il pi\u00f9 caldo?"
+      },
+      "explanation": {
+        "en": "Venus is the hottest planet with temperatures over 460\u00b0C due to its thick atmosphere trapping heat.",
+        "fr": "V\u00e9nus est la plan\u00e8te la plus chaude avec des temp\u00e9ratures sup\u00e9rieures \u00e0 460\u00b0C en raison de son atmosph\u00e8re \u00e9paisse qui pi\u00e8ge la chaleur.",
+        "it": "Venere \u00e8 il pianeta pi\u00f9 caldo con temperature superiori a 460\u00b0C a causa della sua densa atmosfera che intrappola il calore."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          }
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has the most moons?",
+        "fr": "Quelle plan\u00e8te poss\u00e8de le plus de lunes ?",
+        "it": "Quale pianeta ha il maggior numero di lune?"
+      },
+      "explanation": {
+        "en": "Saturn has the most known moons, with over 140 confirmed moons.",
+        "fr": "Saturne poss\u00e8de le plus grand nombre de lunes confirm\u00e9es, avec plus de 140.",
+        "it": "Saturno ha il maggior numero di lune confermate, con pi\u00f9 di 140."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which is the smallest planet?",
+        "fr": "Quelle est la plus petite plan\u00e8te ?",
+        "it": "Qual \u00e8 il pianeta pi\u00f9 piccolo?"
+      },
+      "explanation": {
+        "en": "Mercury is the smallest planet in our solar system, only slightly larger than Earth's Moon.",
+        "fr": "Mercure est la plus petite plan\u00e8te de notre syst\u00e8me solaire, seulement l\u00e9g\u00e8rement plus grande que la Lune de la Terre.",
+        "it": "Mercurio \u00e8 il pianeta pi\u00f9 piccolo del nostro sistema solare, solo leggermente pi\u00f9 grande della Luna terrestre."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Pluto",
+            "fr": "Pluton",
+            "it": "Plutone"
+          }
+        },
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is known as the Blue Planet?",
+        "fr": "Quelle plan\u00e8te est appel\u00e9e la Plan\u00e8te Bleue ?",
+        "it": "Quale pianeta \u00e8 chiamato il Pianeta Blu?"
+      },
+      "explanation": {
+        "en": "Earth appears blue from space because about 71% of its surface is covered by water.",
+        "fr": "La Terre para\u00eet bleue depuis l'espace car environ 71 % de sa surface est recouverte d'eau.",
+        "it": "La Terra appare blu dallo spazio perché circa il 71% della sua superficie \u00e8 coperta da acqua."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        },
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          }
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet spins on its side?",
+        "fr": "Quelle plan\u00e8te tourne sur le c\u00f4t\u00e9 ?",
+        "it": "Quale pianeta ruota su un lato?"
+      },
+      "explanation": {
+        "en": "Uranus rotates on its side with an axial tilt of about 98 degrees, making it appear to roll around the Sun.",
+        "fr": "Uranus tourne sur le c\u00f4t\u00e9 avec une inclinaison axiale d'environ 98 degr\u00e9s, ce qui lui donne l'air de rouler autour du Soleil.",
+        "it": "Urano ruota su un lato con un'inclinazione assiale di circa 98 gradi, facendolo sembrare rotolare intorno al Sole."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        },
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is farthest from the Sun?",
+        "fr": "Quelle plan\u00e8te est la plus \u00e9loign\u00e9e du Soleil ?",
+        "it": "Quale pianeta \u00e8 il pi\u00f9 lontano dal Sole?"
+      },
+      "explanation": {
+        "en": "Neptune is the eighth and farthest planet from the Sun, about 4.5 billion kilometers away.",
+        "fr": "Neptune est la huiti\u00e8me plan\u00e8te et la plus \u00e9loign\u00e9e du Soleil, \u00e0 environ 4,5 milliards de kilom\u00e8tres.",
+        "it": "Nettuno \u00e8 l'ottavo pianeta e il pi\u00f9 lontano dal Sole, a circa 4,5 miliardi di chilometri di distanza."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Pluto",
+            "fr": "Pluton",
+            "it": "Plutone"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is the name of Earth's natural satellite?",
+        "fr": "Quel est le nom du satellite naturel de la Terre ?",
+        "it": "Qual \u00e8 il nome del satellite naturale della Terra?"
+      },
+      "explanation": {
+        "en": "The Moon is Earth's only natural satellite, orbiting our planet for billions of years.",
+        "fr": "La Lune est le seul satellite naturel de la Terre, en orbite autour de notre plan\u00e8te depuis des milliards d'ann\u00e9es.",
+        "it": "La Luna \u00e8 l'unico satellite naturale della Terra, in orbita intorno al nostro pianeta da miliardi di anni."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Phobos",
+            "fr": "Phobos",
+            "it": "Fobos"
+          }
+        },
+        {
+          "text": {
+            "en": "Moon",
+            "fr": "Lune",
+            "it": "Luna"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Deimos",
+            "fr": "Deimos",
+            "it": "Deimos"
+          }
+        },
+        {
+          "text": {
+            "en": "Io",
+            "fr": "Io",
+            "it": "Io"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which two planets are between Earth and Jupiter?",
+        "fr": "Quelles sont les deux plan\u00e8tes situ\u00e9es entre la Terre et Jupiter ?",
+        "it": "Quali due pianeti si trovano tra la Terra e Giove?"
+      },
+      "explanation": {
+        "en": "The planets in order from the Sun are: Mercury, Venus, Earth, Mars, Jupiter. So Mars is between Earth and Jupiter.",
+        "fr": "Les plan\u00e8tes dans l'ordre \u00e0 partir du Soleil sont : Mercure, V\u00e9nus, Terre, Mars, Jupiter. Donc Mars se trouve entre la Terre et Jupiter.",
+        "it": "I pianeti in ordine dal Sole sono: Mercurio, Venere, Terra, Marte, Giove. Quindi Marte si trova tra la Terra e Giove."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Venus and Mars",
+            "fr": "V\u00e9nus et Mars",
+            "it": "Venere e Marte"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Mercury and Venus",
+            "fr": "Mercure et V\u00e9nus",
+            "it": "Mercurio e Venere"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars and Saturn",
+            "fr": "Mars et Saturne",
+            "it": "Marte e Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Venus and Saturn",
+            "fr": "V\u00e9nus et Saturne",
+            "it": "Venere e Saturno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has a Great Red Spot?",
+        "fr": "Quelle plan\u00e8te poss\u00e8de une Grande Tache Rouge ?",
+        "it": "Quale pianeta ha una Grande Macchia Rossa?"
+      },
+      "explanation": {
+        "en": "Jupiter has a massive storm called the Great Red Spot that has been raging for hundreds of years.",
+        "fr": "Jupiter poss\u00e8de une temp\u00eate g\u00e9ante appel\u00e9e la Grande Tache Rouge qui fait rage depuis des centaines d'ann\u00e9es.",
+        "it": "Giove ha una tempesta massiccia chiamata Grande Macchia Rossa che infuria da centinaia di anni."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is most similar in size to Earth?",
+        "fr": "Quelle plan\u00e8te a une taille la plus proche de celle de la Terre ?",
+        "it": "Quale pianeta ha una dimensione pi\u00f9 simile a quella della Terra?"
+      },
+      "explanation": {
+        "en": "Venus is often called Earth's sister planet because they are very similar in size and mass.",
+        "fr": "V\u00e9nus est souvent appel\u00e9e la plan\u00e8te s\u001bur de la Terre car elles sont tr\u00e8s similaires en taille et en masse.",
+        "it": "Venere viene spesso chiamata il pianeta gemello della Terra perché sono molto simili in dimensioni e massa."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        },
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "How many planets are in our solar system?",
+        "fr": "Combien y a-t-il de plan\u00e8tes dans notre syst\u00e8me solaire ?",
+        "it": "Quanti pianeti ci sono nel nostro sistema solare?"
+      },
+      "explanation": {
+        "en": "There are 8 planets in our solar system: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+        "fr": "Il y a 8 plan\u00e8tes dans notre syst\u00e8me solaire : Mercure, V\u00e9nus, Terre, Mars, Jupiter, Saturne, Uranus et Neptune.",
+        "it": "Ci sono 8 pianeti nel nostro sistema solare: Mercurio, Venere, Terra, Marte, Giove, Saturno, Urano e Nettuno."
+      },
+      "options": [
+        {
+          "text": {
+            "any": "8"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "any": "9"
+          }
+        },
+        {
+          "text": {
+            "any": "10"
+          }
+        },
+        {
+          "text": {
+            "any": "7"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is known as the Morning Star or Evening Star?",
+        "fr": "Quelle plan\u00e8te est appel\u00e9e l'\u00c9toile du Matin ou l'\u00c9toile du Soir ?",
+        "it": "Quale pianeta \u00e8 chiamato Stella del Mattino o Stella della Sera?"
+      },
+      "explanation": {
+        "en": "Venus appears very bright in the sky and can be seen just before sunrise or just after sunset.",
+        "fr": "V\u00e9nus para\u00eet tr\u00e8s brillante dans le ciel et peut \u00eatre vue juste avant le lever du soleil ou juste apr\u00e8s le coucher du soleil.",
+        "it": "Venere appare molto luminosa nel cielo e pu\u00f2 essere vista poco prima dell'alba o poco dopo il tramonto."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        },
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which gas giant planets have rings?",
+        "fr": "Quelles plan\u00e8tes g\u00e9antes gazeuses poss\u00e8dent des anneaux ?",
+        "it": "Quali pianeti gassosi hanno anelli?"
+      },
+      "explanation": {
+        "en": "All four gas giants (Jupiter, Saturn, Uranus, and Neptune) have ring systems, but Saturn's are the most visible.",
+        "fr": "Les quatre g\u00e9antes gazeuses (Jupiter, Saturne, Uranus et Neptune) poss\u00e8dent des syst\u00e8mes d'anneaux, mais ceux de Saturne sont les plus visibles.",
+        "it": "Tutti e quattro i giganti gassosi (Giove, Saturno, Urano e Nettuno) hanno sistemi di anelli, ma quelli di Saturno sono i pi\u00f9 visibili."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Jupiter and Saturn only",
+            "fr": "Jupiter et Saturne seulement",
+            "it": "Solo Giove e Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "All four gas giants",
+            "fr": "Les quatre g\u00e9antes gazeuses",
+            "it": "Tutti e quattro i giganti gassosi"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Saturn and Uranus only",
+            "fr": "Saturne et Uranus seulement",
+            "it": "Solo Saturno e Urano"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune and Uranus only",
+            "fr": "Neptune et Uranus seulement",
+            "it": "Solo Nettuno e Urano"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has the shortest year?",
+        "fr": "Quelle plan\u00e8te a l'ann\u00e9e la plus courte ?",
+        "it": "Quale pianeta ha l'anno pi\u00f9 corto?"
+      },
+      "explanation": {
+        "en": "Mercury orbits the Sun the fastest, completing one orbit in just 88 Earth days.",
+        "fr": "Mercure orbite autour du Soleil le plus rapidement, compl\u00e9tant une orbite en seulement 88 jours terrestres.",
+        "it": "Mercurio orbita intorno al Sole pi\u00f9 velocemente, completando un'orbita in soli 88 giorni terrestri."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          }
+        },
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has the longest day?",
+        "fr": "Quelle plan\u00e8te a le jour le plus long ?",
+        "it": "Quale pianeta ha il giorno pi\u00f9 lungo?"
+      },
+      "explanation": {
+        "en": "Venus rotates very slowly on its axis, taking about 243 Earth days to complete one rotation.",
+        "fr": "V\u00e9nus tourne tr\u00e8s lentement sur son axe, mettant environ 243 jours terrestres pour effectuer une rotation.",
+        "it": "Venere ruota molto lentamente sul suo asse, impiegando circa 243 giorni terrestri per completare una rotazione."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is named after the Roman god of the sea?",
+        "fr": "Quelle plan\u00e8te porte le nom du dieu romain de la mer ?",
+        "it": "Quale pianeta prende il nome dal dio romano del mare?"
+      },
+      "explanation": {
+        "en": "Neptune was named after the Roman god of the sea because of its deep blue color.",
+        "fr": "Neptune a \u00e9t\u00e9 nomm\u00e9e d'apr\u00e8s le dieu romain de la mer en raison de sa couleur bleu profond.",
+        "it": "Nettuno \u00e8 stato chiamato cos\u00ec in onore del dio romano del mare a causa del suo colore blu scuro."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet is the windiest?",
+        "fr": "Quelle est la plan\u00e8te la plus venteuse ?",
+        "it": "Quale pianeta \u00e8 il pi\u00f9 ventoso?"
+      },
+      "explanation": {
+        "en": "Neptune has the strongest winds in the solar system, reaching speeds of over 2,000 km/h.",
+        "fr": "Neptune poss\u00e8de les vents les plus forts du syst\u00e8me solaire, atteignant des vitesses sup\u00e9rieures \u00e0 2 000 km/h.",
+        "it": "Nettuno ha i venti pi\u00f9 forti del sistema solare, che raggiungono velocit\u00e0 superiori a 2.000 km/h."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What are the four terrestrial (rocky) planets?",
+        "fr": "Quelles sont les quatre plan\u00e8tes telluriques (rocheuses) ?",
+        "it": "Quali sono i quattro pianeti terrestri (rocciosi)?"
+      },
+      "explanation": {
+        "en": "The four terrestrial planets are Mercury, Venus, Earth, and Mars. They are made of rock and metal.",
+        "fr": "Les quatre plan\u00e8tes telluriques sont Mercure, V\u00e9nus, la Terre et Mars. Elles sont compos\u00e9es de roche et de m\u00e9tal.",
+        "it": "I quattro pianeti terrestri sono Mercurio, Venere, Terra e Marte. Sono composti da roccia e metallo."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Mercury, Venus, Earth, Mars",
+            "fr": "Mercure, V\u00e9nus, Terre, Mars",
+            "it": "Mercurio, Venere, Terra, Marte"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Jupiter, Saturn, Uranus, Neptune",
+            "fr": "Jupiter, Saturne, Uranus, Neptune",
+            "it": "Giove, Saturno, Urano, Nettuno"
+          }
+        },
+        {
+          "text": {
+            "en": "Venus, Earth, Mars, Jupiter",
+            "fr": "V\u00e9nus, Terre, Mars, Jupiter",
+            "it": "Venere, Terra, Marte, Giove"
+          }
+        },
+        {
+          "text": {
+            "en": "Earth, Mars, Jupiter, Saturn",
+            "fr": "Terre, Mars, Jupiter, Saturne",
+            "it": "Terra, Marte, Giove, Saturno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has the most volcanoes in the solar system?",
+        "fr": "Quelle plan\u00e8te poss\u00e8de le plus de volcans dans le syst\u00e8me solaire ?",
+        "it": "Quale pianeta ha il maggior numero di vulcani nel sistema solare?"
+      },
+      "explanation": {
+        "en": "Venus has more volcanoes than any other planet in our solar system, with over 1,600 major volcanic features.",
+        "fr": "V\u00e9nus poss\u00e8de plus de volcans que toute autre plan\u00e8te de notre syst\u00e8me solaire, avec plus de 1 600 formations volcaniques majeures.",
+        "it": "Venere ha pi\u00f9 vulcani di qualsiasi altro pianeta nel nostro sistema solare, con oltre 1.600 principali caratteristiche vulcaniche."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Io (Jupiter's moon)",
+            "fr": "Io (lune de Jupiter)",
+            "it": "Io (luna di Giove)"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has the largest canyon in the solar system?",
+        "fr": "Quelle plan\u00e8te poss\u00e8de le plus grand canyon du syst\u00e8me solaire ?",
+        "it": "Quale pianeta ha il canyon pi\u00f9 grande del sistema solare?"
+      },
+      "explanation": {
+        "en": "Mars has Valles Marineris, a canyon system that is about 4,000 km long, much larger than Earth's Grand Canyon.",
+        "fr": "Mars poss\u00e8de Valles Marineris, un syst\u00e8me de canyons d'environ 4 000 km de long, bien plus grand que le Grand Canyon terrestre.",
+        "it": "Marte ha Valles Marineris, un sistema di canyon lungo circa 4.000 km, molto pi\u00f9 grande del Grand Canyon terrestre."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          }
+        },
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has a thick atmosphere made mostly of carbon dioxide?",
+        "fr": "Quelle plan\u00e8te poss\u00e8de une atmosph\u00e8re \u00e9paisse compos\u00e9e principalement de dioxyde de carbone ?",
+        "it": "Quale pianeta ha un'atmosfera densa composta principalmente da anidride carbonica?"
+      },
+      "explanation": {
+        "en": "Venus has a very thick atmosphere that is about 96.5% carbon dioxide, which creates a strong greenhouse effect.",
+        "fr": "V\u00e9nus poss\u00e8de une atmosph\u00e8re tr\u00e8s \u00e9paisse compos\u00e9e \u00e0 environ 96,5 % de dioxyde de carbone, ce qui cr\u00e9e un fort effet de serre.",
+        "it": "Venere ha un'atmosfera molto densa composta per circa il 96,5% da anidride carbonica, che crea un forte effetto serra."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          }
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          }
+        },
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet was the first to be discovered with a telescope?",
+        "fr": "Quelle plan\u00e8te a \u00e9t\u00e9 la premi\u00e8re \u00e0 \u00eatre d\u00e9couverte avec un t\u00e9lescope ?",
+        "it": "Quale pianeta \u00e8 stato il primo ad essere scoperto con un telescopio?"
+      },
+      "explanation": {
+        "en": "Uranus was discovered by William Herschel in 1781 using a telescope. All planets closer to the Sun were known since ancient times.",
+        "fr": "Uranus a \u00e9t\u00e9 d\u00e9couverte par William Herschel en 1781 \u00e0 l'aide d'un t\u00e9lescope. Toutes les plan\u00e8tes plus proches du Soleil \u00e9taient connues depuis l'Antiquit\u00e9.",
+        "it": "Urano \u00e8 stato scoperto da William Herschel nel 1781 usando un telescopio. Tutti i pianeti pi\u00f9 vicini al Sole erano noti sin dall'antichit\u00e0."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        },
+        {
+          "text": {
+            "en": "Uranus",
+            "fr": "Uranus",
+            "it": "Urano"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Pluto",
+            "fr": "Pluton",
+            "it": "Plutone"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which two planets are called ice giants?",
+        "fr": "Quelles sont les deux plan\u00e8tes appel\u00e9es g\u00e9antes de glace ?",
+        "it": "Quali due pianeti sono chiamati giganti di ghiaccio?"
+      },
+      "explanation": {
+        "en": "Uranus and Neptune are called ice giants because they contain large amounts of water, ammonia, and methane ices.",
+        "fr": "Uranus et Neptune sont appel\u00e9es g\u00e9antes de glace car elles contiennent de grandes quantit\u00e9s de glaces d'eau, d'ammoniac et de m\u00e9thane.",
+        "it": "Urano e Nettuno sono chiamati giganti di ghiaccio perché contengono grandi quantit\u00e0 di ghiacci di acqua, ammoniaca e metano."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Jupiter and Saturn",
+            "fr": "Jupiter et Saturne",
+            "it": "Giove e Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Saturn and Neptune",
+            "fr": "Saturne et Neptune",
+            "it": "Saturno e Nettuno"
+          }
+        },
+        {
+          "text": {
+            "en": "Uranus and Neptune",
+            "fr": "Uranus et Neptune",
+            "it": "Urano e Nettuno"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Earth and Mars",
+            "fr": "Terre et Mars",
+            "it": "Terra e Marte"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has the strongest magnetic field?",
+        "fr": "Quelle plan\u00e8te poss\u00e8de le champ magn\u00e9tique le plus puissant ?",
+        "it": "Quale pianeta ha il campo magnetico pi\u00f9 forte?"
+      },
+      "explanation": {
+        "en": "Jupiter has the strongest magnetic field of all planets, about 20,000 times stronger than Earth's.",
+        "fr": "Jupiter poss\u00e8de le champ magn\u00e9tique le plus puissant de toutes les plan\u00e8tes, environ 20 000 fois plus puissant que celui de la Terre.",
+        "it": "Giove ha il campo magnetico pi\u00f9 forte di tutti i pianeti, circa 20.000 volte pi\u00f9 forte di quello della Terra."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          }
+        },
+        {
+          "text": {
+            "en": "Jupiter",
+            "fr": "Jupiter",
+            "it": "Giove"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
+          }
+        },
+        {
+          "text": {
+            "en": "Neptune",
+            "fr": "Neptune",
+            "it": "Nettuno"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is the name of the largest moon of Saturn?",
+        "fr": "Quel est le nom de la plus grande lune de Saturne ?",
+        "it": "Qual \u00e8 il nome della luna pi\u00f9 grande di Saturno?"
+      },
+      "explanation": {
+        "en": "Titan is Saturn's largest moon and the second-largest moon in the solar system after Jupiter's Ganymede.",
+        "fr": "Titan est la plus grande lune de Saturne et la deuxi\u00e8me plus grande lune du syst\u00e8me solaire apr\u00e8s Ganym\u00e8de de Jupiter.",
+        "it": "Titan \u00e8 la luna pi\u00f9 grande di Saturno e la seconda luna pi\u00f9 grande del sistema solare dopo Ganimede di Giove."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Titan",
+            "fr": "Titan",
+            "it": "Titano"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Rhea",
+            "fr": "Rh\u00e9a",
+            "it": "Rea"
+          }
+        },
+        {
+          "text": {
+            "en": "Iapetus",
+            "fr": "Japet",
+            "it": "Giapeto"
+          }
+        },
+        {
+          "text": {
+            "en": "Dione",
+            "fr": "Dion\u00e9",
+            "it": "Dione"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "Which planet has polar ice caps made of water ice and dry ice?",
+        "fr": "Quelle plan\u00e8te poss\u00e8de des calottes polaires compos\u00e9es de glace d'eau et de glace s\u00e8che ?",
+        "it": "Quale pianeta ha calotte polari composte da ghiaccio d'acqua e ghiaccio secco?"
+      },
+      "explanation": {
+        "en": "Mars has polar ice caps made of both water ice and frozen carbon dioxide (dry ice).",
+        "fr": "Mars poss\u00e8de des calottes polaires compos\u00e9es de glace d'eau et de dioxyde de carbone gel\u00e9 (glace s\u00e8che).",
+        "it": "Marte ha calotte polari composte sia da ghiaccio d'acqua che da anidride carbonica congelata (ghiaccio secco)."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Earth",
+            "fr": "Terre",
+            "it": "Terra"
+          }
+        },
+        {
+          "text": {
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
+          }
+        },
+        {
+          "text": {
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
+          }
+        }
+      ]
+    },
+    {
+      "text": {
+        "en": "What is the order of planets from the Sun?",
+        "fr": "Quel est l'ordre des plan\u00e8tes \u00e0 partir du Soleil ?",
+        "it": "Qual \u00e8 l'ordine dei pianeti dal Sole?"
+      },
+      "explanation": {
+        "en": "The order from the Sun is: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.",
+        "fr": "L'ordre \u00e0 partir du Soleil est : Mercure, V\u00e9nus, Terre, Mars, Jupiter, Saturne, Uranus, Neptune.",
+        "it": "L'ordine dal Sole \u00e8: Mercurio, Venere, Terra, Marte, Giove, Saturno, Urano, Nettuno."
+      },
+      "options": [
+        {
+          "text": {
+            "en": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Neptune, Uranus",
+            "fr": "Mercure, V\u00e9nus, Terre, Mars, Jupiter, Saturne, Neptune, Uranus",
+            "it": "Mercurio, Venere, Terra, Marte, Giove, Saturno, Nettuno, Urano"
+          }
+        },
+        {
+          "text": {
+            "en": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune",
+            "fr": "Mercure, V\u00e9nus, Terre, Mars, Jupiter, Saturne, Uranus, Neptune",
+            "it": "Mercurio, Venere, Terra, Marte, Giove, Saturno, Urano, Nettuno"
+          },
+          "correct": true
+        },
+        {
+          "text": {
+            "en": "Venus, Mercury, Earth, Mars, Jupiter, Saturn, Uranus, Neptune",
+            "fr": "V\u00e9nus, Mercure, Terre, Mars, Jupiter, Saturne, Uranus, Neptune",
+            "it": "Venere, Mercurio, Terra, Marte, Giove, Saturno, Urano, Nettuno"
+          }
+        },
+        {
+          "text": {
+            "en": "Mercury, Mars, Venus, Earth, Jupiter, Saturn, Uranus, Neptune",
+            "fr": "Mercure, Mars, V\u00e9nus, Terre, Jupiter, Saturne, Uranus, Neptune",
+            "it": "Mercurio, Marte, Venere, Terra, Giove, Saturno, Urano, Nettuno"
+          }
+        }
+      ]
+    }
+  ]
+}
