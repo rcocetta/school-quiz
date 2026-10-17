@@ -537,9 +537,9 @@
     },
     {
       "text": {
-        "en": "Which two planets are between Earth and Jupiter?",
-        "fr": "Quelles sont les deux plan\u00e8tes situ\u00e9es entre la Terre et Jupiter ?",
-        "it": "Quali due pianeti si trovano tra la Terra e Giove?"
+        "en": "Which planet is between Earth and Jupiter?",
+        "fr": "Quelle plan\u00e8te se trouve entre la Terre et Jupiter ?",
+        "it": "Quale pianeta si trova tra la Terra e Giove?"
       },
       "explanation": {
         "en": "The planets in order from the Sun are: Mercury, Venus, Earth, Mars, Jupiter. So Mars is between Earth and Jupiter.",
@@ -549,31 +549,31 @@
       "options": [
         {
           "text": {
-            "en": "Venus and Mars",
-            "fr": "V\u00e9nus et Mars",
-            "it": "Venere e Marte"
+            "en": "Mars",
+            "fr": "Mars",
+            "it": "Marte"
           },
           "correct": true
         },
         {
           "text": {
-            "en": "Mercury and Venus",
-            "fr": "Mercure et V\u00e9nus",
-            "it": "Mercurio e Venere"
+            "en": "Venus",
+            "fr": "V\u00e9nus",
+            "it": "Venere"
           }
         },
         {
           "text": {
-            "en": "Mars and Saturn",
-            "fr": "Mars et Saturne",
-            "it": "Marte e Saturno"
+            "en": "Saturn",
+            "fr": "Saturne",
+            "it": "Saturno"
           }
         },
         {
           "text": {
-            "en": "Venus and Saturn",
-            "fr": "V\u00e9nus et Saturne",
-            "it": "Venere e Saturno"
+            "en": "Mercury",
+            "fr": "Mercure",
+            "it": "Mercurio"
           }
         }
       ]
@@ -629,7 +629,7 @@
       },
       "explanation": {
         "en": "Venus is often called Earth's sister planet because they are very similar in size and mass.",
-        "fr": "V\u00e9nus est souvent appel\u00e9e la plan\u00e8te s\u001bur de la Terre car elles sont tr\u00e8s similaires en taille et en masse.",
+        "fr": "V\u00e9nus est souvent appel\u00e9e la plan\u00e8te s\u0153ur de la Terre car elles sont tr\u00e8s similaires en taille et en masse.",
         "it": "Venere viene spesso chiamata il pianeta gemello della Terra perché sono molto simili in dimensioni e massa."
       },
       "options": [
