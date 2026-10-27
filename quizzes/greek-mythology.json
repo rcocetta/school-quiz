@@ -396,8 +396,8 @@
         "fr": "Quelle déesse veillait sur les récoltes et les céréales ?"
       },
       "explanation": {
-        "en": "Demeter taught people how to grow wheat and barley.",
-        "fr": "Déméter apprit aux hommes à cultiver le blé et l'orge."
+        "en": "Demeter taught people how to grow grain.",
+        "fr": "Déméter apprit aux hommes à cultiver les céréales."
       },
       "options": [
         {
@@ -544,8 +544,8 @@
         "fr": "Quel dieu de l'amour et du désir, souvent représenté en enfant ailé avec un arc et des flèches ?"
       },
       "explanation": {
-        "en": "In most stories Eros is the son of Aphrodite. The Romans called him Cupid.",
-        "fr": "Dans la plupart des récits, Éros est le fils d'Aphrodite. Les Romains l'appelaient Cupidon."
+        "en": "In later stories Eros is often called the son of Aphrodite. The Romans called him Cupid.",
+        "fr": "Dans les récits plus tardifs, Éros est souvent appelé le fils d'Aphrodite. Les Romains l'appelaient Cupidon."
       },
       "options": [
         {
@@ -1025,8 +1025,8 @@
         "fr": "Quelle déesse personnifiait la nuit ?"
       },
       "explanation": {
-        "en": "Nyx was the goddess of the night. In the myths she was the mother of many dark spirits.",
-        "fr": "Nyx était la déesse de la nuit. Dans les récits, elle était la mère de nombreux esprits de l'ombre."
+        "en": "Nyx was the goddess of the night. In Hesiod she is the mother of Aether and Day.",
+        "fr": "Nyx était la déesse de la nuit. Chez Hésiode, elle est la mère d'Éther et de Héméra, le jour."
       },
       "options": [
         {
@@ -1798,12 +1798,12 @@
     },
     {
       "text": {
-        "en": "Which giant monster had a hundred snake heads and was trapped under a mountain by Zeus?",
-        "fr": "Quel monstre géant aux cent têtes de serpent fut enfermé sous une montagne par Zeus ?"
+        "en": "Which giant monster had a hundred snake heads and tried to take the heavens from the gods?",
+        "fr": "Quel monstre géant aux cent têtes de serpent voulut s'emparer du ciel aux dépens des dieux ?"
       },
       "explanation": {
-        "en": "Typhon was one of the most dangerous monsters. Zeus defeated him with thunderbolts and trapped him under a mountain.",
-        "fr": "Typhon était l'un des monstres les plus dangereux. Zeus le vainquit à coups de foudre et l'enferma sous une montagne."
+        "en": "Typhon was one of the most dangerous monsters. Zeus defeated him and imprisoned him in Tartarus; later poets placed him under Mount Etna.",
+        "fr": "Typhon était l'un des monstres les plus dangereux. Zeus le vainquit et l'enferma au Tartare ; des poètes plus tardifs le placèrent sous l'Etna."
       },
       "options": [
         {
@@ -2172,8 +2172,8 @@
         "fr": "Quelle nymphe garda Ulysse sur son île pendant sept ans ?"
       },
       "explanation": {
-        "en": "Calypso offered Odysseus immortality, but he wanted to go home to his wife and son.",
-        "fr": "Calypso offrit l'immortalité à Ulysse, mais il voulait rentrer chez lui auprès de sa femme et de son fils."
+        "en": "Calypso offered Odysseus immortality, but he wanted to go home to his wife, Penelope.",
+        "fr": "Calypso offrit l'immortalité à Ulysse, mais il voulait rentrer chez lui auprès de sa femme, Pénélope."
       },
       "options": [
         {
@@ -2246,8 +2246,8 @@
         "fr": "Sur quelle montagne vivaient les dieux grecs ?"
       },
       "explanation": {
-        "en": "Mount Olympus, the highest mountain in Greece, was the home of the gods. They were said to live above the clouds.",
-        "fr": "Le mont Olympe, la plus haute montagne de Grèce, était la demeure des dieux. On disait qu'ils vivaient au-dessus des nuages."
+        "en": "Mount Olympus, the highest mountain in Greece, was the home of the gods. The gods were said to live on its peak.",
+        "fr": "Le mont Olympe, la plus haute montagne de Grèce, était la demeure des dieux. On disait qu'ils vivaient sur son sommet."
       },
       "options": [
         {
@@ -2649,12 +2649,12 @@
     },
     {
       "text": {
-        "en": "Which god gave his name to the word 'panic'?",
-        "fr": "Quel dieu a donné son nom au mot « panique » ?"
+        "en": "Which god is said to have given his name to the word 'panic'?",
+        "fr": "Quel dieu aurait donné son nom au mot « panique » ?"
       },
       "explanation": {
-        "en": "Ancient Greeks believed that the sudden shouts of Pan could frighten people, so 'panic' comes from his name.",
-        "fr": "Les Grecs croyaient que les cris soudains de Pan pouvaient effrayer les gens. Le mot « panique » vient donc de son nom."
+        "en": "Ancient Greeks linked the word 'panic' to Pan, whose sudden shouts were thought to frighten people.",
+        "fr": "Les Grecs reliaient le mot « panique » à Pan, dont les cris soudains étaient censés effrayer les gens."
       },
       "options": [
         {
@@ -2834,8 +2834,8 @@
     },
     {
       "text": {
-        "en": "Which goddess of the dawn rode ahead of the sun each morning?",
-        "fr": "Quelle déesse de l'aube précédait le soleil chaque matin ?"
+        "en": "Which goddess personified the dawn?",
+        "fr": "Quelle déesse personnifiait l'aube ?"
       },
       "explanation": {
         "en": "Eos was the goddess of the dawn. Her name is the Greek word for dawn.",
