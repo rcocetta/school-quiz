@@ -1,0 +1,1531 @@
+{
+  "$schema": "../../src/quizgen/schema.json",
+  "title": "Jurassic Park",
+  "description": "80 questions about the Jurassic Park story and its dinosaurs, from the first film to Jurassic World, Dominion and Camp Cretaceous. Each game asks you 10.",
+  "language": "en",
+  "questions_per_quiz": 10,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": "On which island is Jurassic Park built?",
+      "explanation": "The park is on the fictional island of Isla Nublar, off the coast of Costa Rica.",
+      "options": [
+        {
+          "text": "Isla Nublar",
+          "correct": true
+        },
+        {
+          "text": "Madagascar"
+        },
+        {
+          "text": "Galápagos Islands"
+        },
+        {
+          "text": "Hawaii"
+        }
+      ]
+    },
+    {
+      "text": "Which company builds the park's dinosaurs?",
+      "explanation": "InGen stands for International Genetic Technologies.",
+      "options": [
+        {
+          "text": "InGen",
+          "correct": true
+        },
+        {
+          "text": "Hammond Toys"
+        },
+        {
+          "text": "Dino Dynamics"
+        },
+        {
+          "text": "Genetic Zoo Ltd"
+        }
+      ]
+    },
+    {
+      "text": "Who founded Jurassic Park?",
+      "explanation": "John Hammond wants to show the world living dinosaurs.",
+      "options": [
+        {
+          "text": "John Hammond",
+          "correct": true
+        },
+        {
+          "text": "Henry Wu"
+        },
+        {
+          "text": "Alan Grant"
+        },
+        {
+          "text": "Dennis Nedry"
+        }
+      ]
+    },
+    {
+      "text": "Who is the park's lead geneticist?",
+      "explanation": "Dr. Henry Wu is the scientist who leads the work on the dinosaurs' genes.",
+      "options": [
+        {
+          "text": "Henry Wu",
+          "correct": true
+        },
+        {
+          "text": "Alan Grant"
+        },
+        {
+          "text": "Ian Malcolm"
+        },
+        {
+          "text": "Ellie Sattler"
+        }
+      ]
+    },
+    {
+      "text": "What does Dr. Alan Grant study?",
+      "explanation": "Alan Grant is a paleontologist: he studies fossils of ancient animals.",
+      "options": [
+        {
+          "text": "Fossils and dinosaurs",
+          "correct": true
+        },
+        {
+          "text": "The weather"
+        },
+        {
+          "text": "Stars and planets"
+        },
+        {
+          "text": "Spiders and insects"
+        }
+      ]
+    },
+    {
+      "text": "What does Dr. Ellie Sattler study?",
+      "explanation": "Ellie is a paleobotanist. She studies plants that lived millions of years ago.",
+      "options": [
+        {
+          "text": "Ancient plants",
+          "correct": true
+        },
+        {
+          "text": "Dinosaur eggs"
+        },
+        {
+          "text": "Sea creatures"
+        },
+        {
+          "text": "Rocks from space"
+        }
+      ]
+    },
+    {
+      "text": "Which programmer disables the park's security so he can steal dinosaur embryos?",
+      "explanation": "Nedry switches off the security system to reach the embryo storage room, and the dinosaurs escape.",
+      "options": [
+        {
+          "text": "Dennis Nedry",
+          "correct": true
+        },
+        {
+          "text": "Robert Muldoon"
+        },
+        {
+          "text": "Henry Wu"
+        },
+        {
+          "text": "Alan Grant"
+        }
+      ]
+    },
+    {
+      "text": "How does Dennis Nedry die in the first film?",
+      "explanation": "After his car gets stuck in mud during the storm, a Dilophosaurus finds him.",
+      "options": [
+        {
+          "text": "A Dilophosaurus attacks him",
+          "correct": true
+        },
+        {
+          "text": "A velociraptor pounces on him"
+        },
+        {
+          "text": "A T. rex stamps on him"
+        },
+        {
+          "text": "A falling tree hits him"
+        }
+      ]
+    },
+    {
+      "text": "What keeps the dinosaurs inside their enclosures in the first film?",
+      "explanation": "Nedry turns off the computers that run the electric fences.",
+      "options": [
+        {
+          "text": "Electric fences run by computers",
+          "correct": true
+        },
+        {
+          "text": "Thick glass walls"
+        },
+        {
+          "text": "Deep water moats"
+        },
+        {
+          "text": "Stone walls built by workers"
+        }
+      ]
+    },
+    {
+      "text": "Which two children are John Hammond's grandchildren in the first film?",
+      "explanation": "Lex and Tim visit the park with their grandfather, and they are in danger when the park fails.",
+      "options": [
+        {
+          "text": "Lex and Tim",
+          "correct": true
+        },
+        {
+          "text": "Sam and Max"
+        },
+        {
+          "text": "Jack and Emma"
+        },
+        {
+          "text": "Lucy and Ben"
+        }
+      ]
+    },
+    {
+      "text": "Why does John Hammond want to open the park?",
+      "explanation": "Hammond wants visitors to see dinosaurs up close, in a theme park.",
+      "options": [
+        {
+          "text": "To show people living dinosaurs",
+          "correct": true
+        },
+        {
+          "text": "To find gold on the island"
+        },
+        {
+          "text": "To build a shopping mall"
+        },
+        {
+          "text": "To study the weather"
+        }
+      ]
+    },
+    {
+      "text": "Who wrote the 1990 novel Jurassic Park?",
+      "explanation": "Michael Crichton wrote the novel that the first film is based on.",
+      "options": [
+        {
+          "text": "Michael Crichton",
+          "correct": true
+        },
+        {
+          "text": "Roald Dahl"
+        },
+        {
+          "text": "J.K. Rowling"
+        },
+        {
+          "text": "Dr. Seuss"
+        }
+      ]
+    },
+    {
+      "text": "Where do the scientists find dinosaur blood?",
+      "explanation": "A mosquito that had fed on a dinosaur was trapped in tree resin, which hardened into amber.",
+      "options": [
+        {
+          "text": "In a mosquito trapped in amber",
+          "correct": true
+        },
+        {
+          "text": "In dinosaur eggs in a museum"
+        },
+        {
+          "text": "In a meteorite from space"
+        },
+        {
+          "text": "In frozen mud in Siberia"
+        }
+      ]
+    },
+    {
+      "text": "What is amber?",
+      "explanation": "Amber is tree sap that has hardened over millions of years. Insects can be trapped in it.",
+      "options": [
+        {
+          "text": "Hardened tree resin",
+          "correct": true
+        },
+        {
+          "text": "Frozen water"
+        },
+        {
+          "text": "Volcanic glass"
+        },
+        {
+          "text": "Dried mud"
+        }
+      ]
+    },
+    {
+      "text": "What fills the gaps in the dinosaur DNA in the first film?",
+      "explanation": "The gaps in the recovered DNA are filled with frog DNA.",
+      "options": [
+        {
+          "text": "Frog DNA",
+          "correct": true
+        },
+        {
+          "text": "Shark DNA"
+        },
+        {
+          "text": "Mushroom DNA"
+        },
+        {
+          "text": "Human DNA"
+        }
+      ]
+    },
+    {
+      "text": "What does Ian Malcolm mean by 'life finds a way'?",
+      "explanation": "Malcolm warns that nature escapes human control.",
+      "options": [
+        {
+          "text": "Nature cannot be fully controlled",
+          "correct": true
+        },
+        {
+          "text": "Dinosaurs are easy to keep"
+        },
+        {
+          "text": "The park needs more fences"
+        },
+        {
+          "text": "Scientists need more money"
+        }
+      ]
+    },
+    {
+      "text": "What does the T. rex do during the rainstorm in the first film?",
+      "explanation": "The T. rex breaks out of its enclosure and attacks the tour vehicles in heavy rain.",
+      "options": [
+        {
+          "text": "It breaks out and chases the tour jeeps",
+          "correct": true
+        },
+        {
+          "text": "It sleeps in the visitor centre"
+        },
+        {
+          "text": "It swims across the lagoon"
+        },
+        {
+          "text": "It guards the park gates"
+        }
+      ]
+    },
+    {
+      "text": "Which dinosaurs hunt Lex and Tim in the park's kitchen?",
+      "explanation": "Velociraptors come into the kitchen while the children are inside.",
+      "options": [
+        {
+          "text": "Velociraptors",
+          "correct": true
+        },
+        {
+          "text": "Compsognathus"
+        },
+        {
+          "text": "Gallimimus"
+        },
+        {
+          "text": "Parasaurolophus"
+        }
+      ]
+    },
+    {
+      "text": "Who says 'Clever girl' about a velociraptor?",
+      "explanation": "Muldoon, the park's game warden, says it as a raptor attacks him.",
+      "options": [
+        {
+          "text": "Robert Muldoon",
+          "correct": true
+        },
+        {
+          "text": "Ian Malcolm"
+        },
+        {
+          "text": "Alan Grant"
+        },
+        {
+          "text": "John Hammond"
+        }
+      ]
+    },
+    {
+      "text": "What is the first live dinosaur the group sees in the park?",
+      "explanation": "A Brachiosaurus feeds from the treetops, seen from the group's jeep.",
+      "options": [
+        {
+          "text": "Brachiosaurus",
+          "correct": true
+        },
+        {
+          "text": "Stegosaurus"
+        },
+        {
+          "text": "Triceratops"
+        },
+        {
+          "text": "Gallimimus"
+        }
+      ]
+    },
+    {
+      "text": "What does the T. rex do at the visitor centre at the end of the first film?",
+      "explanation": "The T. rex attacks the raptors inside the visitor centre, and the group escapes.",
+      "options": [
+        {
+          "text": "It fights the raptors and saves the group",
+          "correct": true
+        },
+        {
+          "text": "It eats the park's staff"
+        },
+        {
+          "text": "It escapes into the ocean"
+        },
+        {
+          "text": "It falls asleep in the jungle"
+        }
+      ]
+    },
+    {
+      "text": "In the first film, the Dilophosaurus spits venom. Is that true of the real animal?",
+      "explanation": "Real Dilophosaurus had two crests on its head and no frill. The venom and frill were invented for the film.",
+      "options": [
+        {
+          "text": "No: the venom was made up for the film",
+          "correct": true
+        },
+        {
+          "text": "Yes, it had venom glands"
+        },
+        {
+          "text": "Yes, it spat at its prey"
+        },
+        {
+          "text": "Yes, it is a venomous lizard"
+        }
+      ]
+    },
+    {
+      "text": "Where is Site B, the island where the dinosaurs were bred, in The Lost World?",
+      "explanation": "Isla Sorna is InGen's Site B.",
+      "options": [
+        {
+          "text": "Isla Sorna",
+          "correct": true
+        },
+        {
+          "text": "Madagascar"
+        },
+        {
+          "text": "Galápagos Islands"
+        },
+        {
+          "text": "Hawaii"
+        }
+      ]
+    },
+    {
+      "text": "What happens to the T. rex brought to San Diego in The Lost World?",
+      "explanation": "A freighter crash in San Diego releases the T. rex, which rampages through the city.",
+      "options": [
+        {
+          "text": "It escapes and runs through the city",
+          "correct": true
+        },
+        {
+          "text": "It is sent back to the island"
+        },
+        {
+          "text": "It is put in a museum"
+        },
+        {
+          "text": "It is set free in the ocean"
+        }
+      ]
+    },
+    {
+      "text": "Which huge dinosaur fights the T. rex in Jurassic Park III?",
+      "explanation": "Spinosaurus, with a large sail on its back, defeats the T. rex.",
+      "options": [
+        {
+          "text": "Spinosaurus",
+          "correct": true
+        },
+        {
+          "text": "Velociraptor"
+        },
+        {
+          "text": "Dilophosaurus"
+        },
+        {
+          "text": "Brachiosaurus"
+        }
+      ]
+    },
+    {
+      "text": "What is the ball-shaped vehicle visitors ride in Jurassic World?",
+      "explanation": "The gyrosphere is a rolling, ball-shaped vehicle that carries visitors among the dinosaurs.",
+      "options": [
+        {
+          "text": "A gyrosphere",
+          "correct": true
+        },
+        {
+          "text": "A gyrocopter"
+        },
+        {
+          "text": "A hovercraft"
+        },
+        {
+          "text": "A bubble bus"
+        }
+      ]
+    },
+    {
+      "text": "Which hybrid dinosaur escapes in Jurassic World?",
+      "explanation": "Dr. Henry Wu's team makes the Indominus rex from mixed DNA. It is a hybrid.",
+      "options": [
+        {
+          "text": "Indominus rex",
+          "correct": true
+        },
+        {
+          "text": "Stegosaurus"
+        },
+        {
+          "text": "Carnotaurus"
+        },
+        {
+          "text": "Pteranodon"
+        }
+      ]
+    },
+    {
+      "text": "What is the name of the velociraptor in Owen Grady's pack in Jurassic World?",
+      "explanation": "Owen Grady, a raptor trainer, works with a pack that includes Blue.",
+      "options": [
+        {
+          "text": "Blue",
+          "correct": true
+        },
+        {
+          "text": "Rex"
+        },
+        {
+          "text": "Max"
+        },
+        {
+          "text": "Buddy"
+        }
+      ]
+    },
+    {
+      "text": "Which giant sea reptile lives in the Jurassic World lagoon?",
+      "explanation": "A Mosasaurus is a marine reptile, not a dinosaur.",
+      "options": [
+        {
+          "text": "Mosasaurus",
+          "correct": true
+        },
+        {
+          "text": "A giant octopus"
+        },
+        {
+          "text": "A giant squid"
+        },
+        {
+          "text": "A whale"
+        }
+      ]
+    },
+    {
+      "text": "What threatens the dinosaurs on Isla Nublar in Fallen Kingdom?",
+      "explanation": "The volcano on Isla Nublar erupts, and Owen and Claire return to rescue the dinosaurs.",
+      "options": [
+        {
+          "text": "A volcano erupting",
+          "correct": true
+        },
+        {
+          "text": "A flood from the sea"
+        },
+        {
+          "text": "A giant ice wall"
+        },
+        {
+          "text": "A wildfire in the forest"
+        }
+      ]
+    },
+    {
+      "text": "Where do dinosaurs live in Jurassic World Dominion?",
+      "explanation": "By Dominion, dinosaurs have spread into the human world.",
+      "options": [
+        {
+          "text": "Among people, all around the world",
+          "correct": true
+        },
+        {
+          "text": "Only on remote islands"
+        },
+        {
+          "text": "Only under the sea"
+        },
+        {
+          "text": "Only in zoos"
+        }
+      ]
+    },
+    {
+      "text": "What threatens crops in Jurassic World Dominion?",
+      "explanation": "Biosyn's scientists create engineered locusts that damage crops.",
+      "options": [
+        {
+          "text": "Genetically engineered locusts",
+          "correct": true
+        },
+        {
+          "text": "Ladybirds"
+        },
+        {
+          "text": "Honey bees"
+        },
+        {
+          "text": "Garden snails"
+        }
+      ]
+    },
+    {
+      "text": "Where is Biosyn's dinosaur preserve in Jurassic World Dominion?",
+      "explanation": "The story's climax takes place at the preserve in Italy's Dolomites.",
+      "options": [
+        {
+          "text": "In the Dolomite mountains of Italy",
+          "correct": true
+        },
+        {
+          "text": "The Scottish Highlands"
+        },
+        {
+          "text": "The Canadian Rockies"
+        },
+        {
+          "text": "The Australian outback"
+        }
+      ]
+    },
+    {
+      "text": "How many years after the events of Jurassic Park is Jurassic World set?",
+      "explanation": "Jurassic World is set 22 years after the events of the first film, on the same island.",
+      "options": [
+        {
+          "text": "22 years",
+          "correct": true
+        },
+        {
+          "text": "5 years"
+        },
+        {
+          "text": "10 years"
+        },
+        {
+          "text": "50 years"
+        }
+      ]
+    },
+    {
+      "text": "What kind of show is Camp Cretaceous?",
+      "explanation": "Camp Cretaceous is an animated series from DreamWorks Animation, shown on Netflix.",
+      "options": [
+        {
+          "text": "An animated series on Netflix",
+          "correct": true
+        },
+        {
+          "text": "A live-action film"
+        },
+        {
+          "text": "A video game"
+        },
+        {
+          "text": "A board game"
+        }
+      ]
+    },
+    {
+      "text": "What is the trip the teenagers are on in Camp Cretaceous?",
+      "explanation": "When the dinosaurs get loose, the campers are cut off from the outside world.",
+      "options": [
+        {
+          "text": "A summer camp on Isla Nublar",
+          "correct": true
+        },
+        {
+          "text": "A school trip to a museum"
+        },
+        {
+          "text": "A family cruise"
+        },
+        {
+          "text": "A science fair"
+        }
+      ]
+    },
+    {
+      "text": "How many teenagers are the main campers in Camp Cretaceous?",
+      "explanation": "Six teenagers are stranded at a camp on the far side of Isla Nublar.",
+      "options": [
+        {
+          "text": "Six",
+          "correct": true
+        },
+        {
+          "text": "Four"
+        },
+        {
+          "text": "Eight"
+        },
+        {
+          "text": "Twelve"
+        }
+      ]
+    },
+    {
+      "text": "Who is the park's operations manager in Jurassic World?",
+      "explanation": "Claire Dearing runs park operations.",
+      "options": [
+        {
+          "text": "Claire Dearing",
+          "correct": true
+        },
+        {
+          "text": "Ellie Sattler"
+        },
+        {
+          "text": "Ian Malcolm"
+        },
+        {
+          "text": "Dennis Nedry"
+        }
+      ]
+    },
+    {
+      "text": "What does Tyrannosaurus rex mean?",
+      "explanation": "The name combines Greek for 'tyrant' and Latin for 'king'.",
+      "options": [
+        {
+          "text": "Tyrant lizard king",
+          "correct": true
+        },
+        {
+          "text": "Speedy thief"
+        },
+        {
+          "text": "Three-horned face"
+        },
+        {
+          "text": "Chicken mimic"
+        }
+      ]
+    },
+    {
+      "text": "What does Triceratops mean?",
+      "explanation": "The name refers to the three horns on its face.",
+      "options": [
+        {
+          "text": "Three-horned face",
+          "correct": true
+        },
+        {
+          "text": "Tyrant lizard king"
+        },
+        {
+          "text": "Speedy thief"
+        },
+        {
+          "text": "Chicken mimic"
+        }
+      ]
+    },
+    {
+      "text": "What does Velociraptor mean?",
+      "explanation": "Velociraptor means 'speedy thief'.",
+      "options": [
+        {
+          "text": "Speedy thief",
+          "correct": true
+        },
+        {
+          "text": "Three-horned face"
+        },
+        {
+          "text": "Tyrant lizard king"
+        },
+        {
+          "text": "Chicken mimic"
+        }
+      ]
+    },
+    {
+      "text": "What does Gallimimus mean?",
+      "explanation": "The name comes from Latin words for chicken and mimic.",
+      "options": [
+        {
+          "text": "Chicken mimic",
+          "correct": true
+        },
+        {
+          "text": "Two-crested lizard"
+        },
+        {
+          "text": "Wing without teeth"
+        },
+        {
+          "text": "Speedy thief"
+        }
+      ]
+    },
+    {
+      "text": "What does Dilophosaurus mean?",
+      "explanation": "It was named for the two thin crests on its skull.",
+      "options": [
+        {
+          "text": "Two-crested lizard",
+          "correct": true
+        },
+        {
+          "text": "Speedy thief"
+        },
+        {
+          "text": "Wing without teeth"
+        },
+        {
+          "text": "Chicken mimic"
+        }
+      ]
+    },
+    {
+      "text": "What does Pteranodon mean?",
+      "explanation": "Pteranodon was a flying reptile, not a dinosaur.",
+      "options": [
+        {
+          "text": "Wing without teeth",
+          "correct": true
+        },
+        {
+          "text": "Tyrant lizard king"
+        },
+        {
+          "text": "Chicken mimic"
+        },
+        {
+          "text": "Two-crested lizard"
+        }
+      ]
+    },
+    {
+      "text": "How many fingers does a T. rex have on each arm?",
+      "explanation": "Its short arms each had two fingers.",
+      "options": [
+        {
+          "text": "Two",
+          "correct": true
+        },
+        {
+          "text": "Three"
+        },
+        {
+          "text": "Five"
+        },
+        {
+          "text": "One"
+        }
+      ]
+    },
+    {
+      "text": "What is the velociraptor's famous feature on its feet?",
+      "explanation": "Velociraptor had a sickle-shaped claw on its second toe.",
+      "options": [
+        {
+          "text": "A large, curved claw on each second toe",
+          "correct": true
+        },
+        {
+          "text": "Webbed toes"
+        },
+        {
+          "text": "Spikes on the soles"
+        },
+        {
+          "text": "Hooves"
+        }
+      ]
+    },
+    {
+      "text": "How big were real velociraptors compared with the film's?",
+      "explanation": "The film's raptors are much bigger. Real velociraptors were roughly turkey-sized.",
+      "options": [
+        {
+          "text": "About the size of a turkey",
+          "correct": true
+        },
+        {
+          "text": "About the size of a horse"
+        },
+        {
+          "text": "About the size of a car"
+        },
+        {
+          "text": "About the size of a bus"
+        }
+      ]
+    },
+    {
+      "text": "What covered many raptors, including Velociraptor?",
+      "explanation": "Velociraptor forearm bones show bumps where feathers were anchored.",
+      "options": [
+        {
+          "text": "Feathers",
+          "correct": true
+        },
+        {
+          "text": "Thick fur"
+        },
+        {
+          "text": "Bony armour"
+        },
+        {
+          "text": "Smooth shells"
+        }
+      ]
+    },
+    {
+      "text": "What is Brachiosaurus famous for?",
+      "explanation": "Its long neck let it reach leaves high in the trees.",
+      "options": [
+        {
+          "text": "Its very long neck",
+          "correct": true
+        },
+        {
+          "text": "Its three horns"
+        },
+        {
+          "text": "Its club tail"
+        },
+        {
+          "text": "Its feathers"
+        }
+      ]
+    },
+    {
+      "text": "What is the frill on Triceratops?",
+      "explanation": "The bony frill covers the back of its head and neck.",
+      "options": [
+        {
+          "text": "A large bony shield at the back of the head",
+          "correct": true
+        },
+        {
+          "text": "A row of spikes on the tail"
+        },
+        {
+          "text": "A sail on the back"
+        },
+        {
+          "text": "A pouch under the jaw"
+        }
+      ]
+    },
+    {
+      "text": "What covers the back of Stegosaurus?",
+      "explanation": "Stegosaurus had plates along its back and spikes on its tail.",
+      "options": [
+        {
+          "text": "Large bony plates",
+          "correct": true
+        },
+        {
+          "text": "A hard shell like a turtle"
+        },
+        {
+          "text": "Long feathers"
+        },
+        {
+          "text": "Sharp horns"
+        }
+      ]
+    },
+    {
+      "text": "What is the name for the spiked tail of Stegosaurus?",
+      "explanation": "Cartoonist Gary Larson coined the name as a joke in The Far Side.",
+      "options": [
+        {
+          "text": "Thagomizer",
+          "correct": true
+        },
+        {
+          "text": "Tailhammer"
+        },
+        {
+          "text": "Spikeback"
+        },
+        {
+          "text": "Clubtail"
+        }
+      ]
+    },
+    {
+      "text": "Which dinosaur had a heavy bony club at the end of its tail?",
+      "explanation": "Ankylosaurus's tail ended in a bony club, probably used for defence.",
+      "options": [
+        {
+          "text": "Ankylosaurus",
+          "correct": true
+        },
+        {
+          "text": "Velociraptor"
+        },
+        {
+          "text": "Gallimimus"
+        },
+        {
+          "text": "Compsognathus"
+        }
+      ]
+    },
+    {
+      "text": "What is unusual about Gallimimus's mouth?",
+      "explanation": "Gallimimus was toothless and had a beak.",
+      "options": [
+        {
+          "text": "It had no teeth",
+          "correct": true
+        },
+        {
+          "text": "It had three rows of teeth"
+        },
+        {
+          "text": "It had fangs"
+        },
+        {
+          "text": "It had a huge tusk"
+        }
+      ]
+    },
+    {
+      "text": "What is the long crest on Parasaurolophus's head?",
+      "explanation": "The hollow crest probably helped it make loud sounds.",
+      "options": [
+        {
+          "text": "A hollow tube",
+          "correct": true
+        },
+        {
+          "text": "A set of horns"
+        },
+        {
+          "text": "A row of spikes"
+        },
+        {
+          "text": "A bony helmet"
+        }
+      ]
+    },
+    {
+      "text": "How big was Compsognathus?",
+      "explanation": "Compsognathus was a small, light dinosaur.",
+      "options": [
+        {
+          "text": "About the size of a chicken",
+          "correct": true
+        },
+        {
+          "text": "About the size of a bear"
+        },
+        {
+          "text": "About the size of a sofa"
+        },
+        {
+          "text": "About the size of a bus"
+        }
+      ]
+    },
+    {
+      "text": "Dimetrodon has a big sail on its back. What is it?",
+      "explanation": "Dimetrodon lived millions of years before the first dinosaurs and is more closely related to mammals.",
+      "options": [
+        {
+          "text": "Not a dinosaur: it lived before the first dinosaurs",
+          "correct": true
+        },
+        {
+          "text": "A type of dinosaur"
+        },
+        {
+          "text": "A kind of crocodile"
+        },
+        {
+          "text": "A kind of bird"
+        }
+      ]
+    },
+    {
+      "text": "Which living animals are the closest relatives of dinosaurs?",
+      "explanation": "Birds are living dinosaurs; they evolved from small feathered dinosaurs.",
+      "options": [
+        {
+          "text": "Birds",
+          "correct": true
+        },
+        {
+          "text": "Frogs"
+        },
+        {
+          "text": "Sharks"
+        },
+        {
+          "text": "Snails"
+        }
+      ]
+    },
+    {
+      "text": "Archaeopteryx is an animal that links which two groups?",
+      "explanation": "It had feathers like a bird, but teeth and a long bony tail like a dinosaur.",
+      "options": [
+        {
+          "text": "Dinosaurs and birds",
+          "correct": true
+        },
+        {
+          "text": "Fish and reptiles"
+        },
+        {
+          "text": "Mammals and insects"
+        },
+        {
+          "text": "Frogs and birds"
+        }
+      ]
+    },
+    {
+      "text": "Which period did Tyrannosaurus rex live in?",
+      "explanation": "T. rex lived late in the Cretaceous period.",
+      "options": [
+        {
+          "text": "Cretaceous",
+          "correct": true
+        },
+        {
+          "text": "Jurassic"
+        },
+        {
+          "text": "Triassic"
+        },
+        {
+          "text": "Permian"
+        }
+      ]
+    },
+    {
+      "text": "Which period did Brachiosaurus live in?",
+      "explanation": "Brachiosaurus lived in the Jurassic period, long before T. rex.",
+      "options": [
+        {
+          "text": "Jurassic",
+          "correct": true
+        },
+        {
+          "text": "Cretaceous"
+        },
+        {
+          "text": "Triassic"
+        },
+        {
+          "text": "Ordovician"
+        }
+      ]
+    },
+    {
+      "text": "Which period did Dilophosaurus live in?",
+      "explanation": "Dilophosaurus lived early in the Jurassic period.",
+      "options": [
+        {
+          "text": "Jurassic",
+          "correct": true
+        },
+        {
+          "text": "Cretaceous"
+        },
+        {
+          "text": "Cambrian"
+        },
+        {
+          "text": "Silurian"
+        }
+      ]
+    },
+    {
+      "text": "Which two dinosaurs in the park lived tens of millions of years apart?",
+      "explanation": "Brachiosaurus lived in the Jurassic period; T. rex lived tens of millions of years later, in the Cretaceous.",
+      "options": [
+        {
+          "text": "Brachiosaurus and T. rex",
+          "correct": true
+        },
+        {
+          "text": "Velociraptor and Triceratops"
+        },
+        {
+          "text": "T. rex and Velociraptor"
+        },
+        {
+          "text": "Stegosaurus and Brachiosaurus"
+        }
+      ]
+    },
+    {
+      "text": "When did the first dinosaurs appear?",
+      "explanation": "The first dinosaurs appeared about 230 million years ago.",
+      "options": [
+        {
+          "text": "In the Triassic period",
+          "correct": true
+        },
+        {
+          "text": "In the Cambrian period"
+        },
+        {
+          "text": "In the Ice Age"
+        },
+        {
+          "text": "In the Carboniferous period"
+        }
+      ]
+    },
+    {
+      "text": "What is thought to have ended the non-bird dinosaurs?",
+      "explanation": "The leading theory is an asteroid strike about 66 million years ago.",
+      "options": [
+        {
+          "text": "A huge asteroid hitting Earth",
+          "correct": true
+        },
+        {
+          "text": "A giant flood"
+        },
+        {
+          "text": "Humans hunting them"
+        },
+        {
+          "text": "The sea freezing solid"
+        }
+      ]
+    },
+    {
+      "text": "Which dinosaur was a good parent that cared for its babies in nests?",
+      "explanation": "Maiasaura means 'good mother lizard'. Fossil nests show that parents cared for the hatchlings.",
+      "options": [
+        {
+          "text": "Maiasaura",
+          "correct": true
+        },
+        {
+          "text": "Velociraptor"
+        },
+        {
+          "text": "Spinosaurus"
+        },
+        {
+          "text": "Stegosaurus"
+        }
+      ]
+    },
+    {
+      "text": "What did T. rex eat?",
+      "explanation": "T. rex was a meat-eater.",
+      "options": [
+        {
+          "text": "Meat from other animals",
+          "correct": true
+        },
+        {
+          "text": "Only plants"
+        },
+        {
+          "text": "Only fish"
+        },
+        {
+          "text": "Only insects"
+        }
+      ]
+    },
+    {
+      "text": "What did Triceratops eat?",
+      "explanation": "Triceratops was a plant-eater.",
+      "options": [
+        {
+          "text": "Plants",
+          "correct": true
+        },
+        {
+          "text": "Other dinosaurs"
+        },
+        {
+          "text": "Fish"
+        },
+        {
+          "text": "Insects"
+        }
+      ]
+    },
+    {
+      "text": "What did Parasaurolophus eat?",
+      "explanation": "Parasaurolophus was a plant-eater.",
+      "options": [
+        {
+          "text": "Plants",
+          "correct": true
+        },
+        {
+          "text": "Meat"
+        },
+        {
+          "text": "Fish"
+        },
+        {
+          "text": "Ants"
+        }
+      ]
+    },
+    {
+      "text": "What shape were the teeth of T. rex?",
+      "explanation": "T. rex had big, curved teeth that could crush bone.",
+      "options": [
+        {
+          "text": "Large and curved, roughly like bananas",
+          "correct": true
+        },
+        {
+          "text": "Flat, for grinding plants"
+        },
+        {
+          "text": "Needle-thin"
+        },
+        {
+          "text": "It had no teeth"
+        }
+      ]
+    },
+    {
+      "text": "Which dinosaur is one of the largest land animals ever known?",
+      "explanation": "Argentinosaurus was a huge long-necked plant-eater from South America.",
+      "options": [
+        {
+          "text": "Argentinosaurus",
+          "correct": true
+        },
+        {
+          "text": "Compsognathus"
+        },
+        {
+          "text": "Velociraptor"
+        },
+        {
+          "text": "Gallimimus"
+        }
+      ]
+    },
+    {
+      "text": "Which dinosaur is thought to have eaten fish?",
+      "explanation": "Spinosaurus is thought to have eaten fish.",
+      "options": [
+        {
+          "text": "Spinosaurus",
+          "correct": true
+        },
+        {
+          "text": "Triceratops"
+        },
+        {
+          "text": "Stegosaurus"
+        },
+        {
+          "text": "Ankylosaurus"
+        }
+      ]
+    },
+    {
+      "text": "Which period did Stegosaurus live in?",
+      "explanation": "Stegosaurus lived late in the Jurassic period.",
+      "options": [
+        {
+          "text": "Jurassic",
+          "correct": true
+        },
+        {
+          "text": "Cretaceous"
+        },
+        {
+          "text": "Triassic"
+        },
+        {
+          "text": "Permian"
+        }
+      ]
+    },
+    {
+      "text": "Which period did Triceratops live in?",
+      "explanation": "Triceratops lived late in the Cretaceous period.",
+      "options": [
+        {
+          "text": "Cretaceous",
+          "correct": true
+        },
+        {
+          "text": "Jurassic"
+        },
+        {
+          "text": "Triassic"
+        },
+        {
+          "text": "Silurian"
+        }
+      ]
+    },
+    {
+      "text": "Which period did Velociraptor live in?",
+      "explanation": "Velociraptor lived late in the Cretaceous period.",
+      "options": [
+        {
+          "text": "Cretaceous",
+          "correct": true
+        },
+        {
+          "text": "Jurassic"
+        },
+        {
+          "text": "Triassic"
+        },
+        {
+          "text": "Cambrian"
+        }
+      ]
+    },
+    {
+      "text": "What is a fossil?",
+      "explanation": "Fossils show what ancient life looked like.",
+      "options": [
+        {
+          "text": "Preserved remains or traces of ancient life",
+          "correct": true
+        },
+        {
+          "text": "A living plant in a museum"
+        },
+        {
+          "text": "A type of dinosaur egg"
+        },
+        {
+          "text": "A rock from space"
+        }
+      ]
+    },
+    {
+      "text": "What is DNA?",
+      "explanation": "DNA is the code in every living cell, and it is what the park's scientists try to copy.",
+      "options": [
+        {
+          "text": "The instructions inside living cells that tell a body how to grow",
+          "correct": true
+        },
+        {
+          "text": "A type of dinosaur"
+        },
+        {
+          "text": "A kind of amber"
+        },
+        {
+          "text": "A park security code"
+        }
+      ]
+    },
+    {
+      "text": "What is an embryo?",
+      "explanation": "An embryo is the earliest stage of an animal, before it hatches or is born.",
+      "options": [
+        {
+          "text": "An early stage of an animal's development",
+          "correct": true
+        },
+        {
+          "text": "A type of fossil"
+        },
+        {
+          "text": "A dinosaur's tail"
+        },
+        {
+          "text": "A museum display"
+        }
+      ]
+    },
+    {
+      "text": "What is a hybrid animal?",
+      "explanation": "The Indominus rex is a hybrid made from the DNA of several animals.",
+      "options": [
+        {
+          "text": "An animal made from the DNA of more than one species",
+          "correct": true
+        },
+        {
+          "text": "A dinosaur that can fly"
+        },
+        {
+          "text": "A kind of amber"
+        },
+        {
+          "text": "A fossil skull"
+        }
+      ]
+    },
+    {
+      "text": "What is extinction?",
+      "explanation": "Dinosaurs became extinct about 66 million years ago, apart from birds.",
+      "options": [
+        {
+          "text": "When a whole kind of living thing dies out for good",
+          "correct": true
+        },
+        {
+          "text": "When a dinosaur hatches from an egg"
+        },
+        {
+          "text": "When a fossil is found"
+        },
+        {
+          "text": "When DNA is copied"
+        }
+      ]
+    }
+  ]
+}
