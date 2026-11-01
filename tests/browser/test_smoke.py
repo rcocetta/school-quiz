@@ -334,7 +334,6 @@ def test_site_is_an_installable_web_app(watched, built, serve):
     parsed = json.loads(manifest["data"])
     assert parsed["display"] == "standalone" and parsed["start_url"] == "../"
     installability = cdp.send("Page.getInstallabilityErrors")
-    print("getInstallabilityErrors:", installability)
     assert installability["installabilityErrors"] == []
     watched.check()
 

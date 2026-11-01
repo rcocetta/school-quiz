@@ -581,7 +581,7 @@ def test_manifest_content_and_icons(tree, tmp_path):
     m = manifest(out)
     assert m == {
         "name": "Quizzes", "lang": "en", "start_url": "../", "scope": "../", "display": "standalone",
-        "background_color": "#fff5e1", "theme_color": "#5233e0",
+        "background_color": "#5233e0", "theme_color": "#5233e0",
         "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
                   {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
                   {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}
@@ -589,13 +589,9 @@ def test_manifest_content_and_icons(tree, tmp_path):
     for icon in m["icons"]:
         assert (out / "assets" / icon["src"]).read_bytes().startswith(bytes.fromhex("89504e470d0a1a0a"))
     assert (out / "assets" / "apple-touch-icon.png").is_file()
-
-
-def test_manifest_is_deterministic(tree, tmp_path):
-    for name in ("a", "b"):
-        build_site(tree, tmp_path / name)
-    assert (tmp_path / "a/assets/manifest.webmanifest").read_bytes() == (tmp_path / "b/assets/manifest.webmanifest").read_bytes()
-    assert read(tmp_path / "a/assets/manifest.webmanifest").endswith("}\n")
+    build_site(tree, tmp_path / "again")  # same input, same bytes, ends with a newline
+    assert (tmp_path / "again/assets/manifest.webmanifest").read_bytes() == (out / "assets/manifest.webmanifest").read_bytes()
+    assert read(out / "assets" / "manifest.webmanifest").endswith("}\n")
 
 
 def test_manifest_name_and_language_from_site_json(tmp_path):
@@ -618,6 +614,7 @@ def test_pages_link_the_manifest_with_the_right_base(tree, tmp_path):
         for name in ("manifest.webmanifest", "icon-192.png", "apple-touch-icon.png"):
             assert base + name in links, (page, name)
         assert '<meta name="theme-color" content="#5233e0">' in read(out / page)
+        assert '<meta name="apple-mobile-web-app-title" content="Quizzes">' in read(out / page)
 
 
 def test_single_file_has_no_manifest(tmp_path):
@@ -625,3 +622,56 @@ def test_single_file_has_no_manifest(tmp_path):
     text = read(page)
     assert "manifest" not in text and "theme-color" not in text and "apple-touch-icon" not in text
     assert "manifest-src" not in csp(page)
+
+
+def test_apple_title_is_the_escaped_site_title(tmp_path):
+    src = tmp_path / "in"
+    put(src / "site.json", {"title": 'Tom & "Jo" <Quizzes>'})
+    put(src / "q.json", quiz())
+    out = tmp_path / "out"
+    assert build_site(src, out).output
+    for page in ("index.html", "q.html"):
+        assert 'name="apple-mobile-web-app-title" content="Tom &amp; &#34;Jo&#34; &lt;Quizzes&gt;"' in read(out / page)
+
+
+def test_unlisted_collection_pages_are_not_part_of_the_app(tmp_path):
+    src = tmp_path / "in"
+    put(src / "private" / "collection.json", {"title": "Family Fun", "unlisted": True})
+    put(src / "private" / "fun.json", quiz("Fun"))
+    put(src / "open" / "art.json", quiz("Art"))
+    out = tmp_path / "out"
+    assert build_site(src, out).output
+    for page in ("private/index.html", "private/fun.html"):
+        text = read(out / page)
+        for tag in ("manifest", "icon", "theme-color", "apple-mobile-web-app-title"):
+            assert tag not in text.replace("manifest-src", ""), (page, tag)
+    for page in ("index.html", "open/index.html", "open/art.html"):
+        assert 'rel="manifest"' in read(out / page)
+
+
+def generated_assets(tmp_path) -> list[str]:
+    src = tmp_path / "probe"
+    put(src / "q.json", quiz())
+    out = tmp_path / "probe-out"
+    build_site(src, out)
+    return sorted(p.name for p in (out / "assets").iterdir())
+
+
+@pytest.mark.parametrize("case", ["same", "upper"])
+def test_image_cannot_replace_a_generated_asset(tmp_path, case):
+    names = generated_assets(tmp_path)
+    assert "manifest.webmanifest" in names and "icon-192.png" in names and "quiz.js" in names
+    for name in names:
+        src = tmp_path / f"in-{case}-{name}"
+        put(src / "q.json", quiz(questions=[
+            {"text": "Q", "image": "assets/" + (name.upper() if case == "upper" else name),
+             "options": [{"text": "A", "correct": True}, {"text": "B"}]}]))
+        fake = src / "assets" / (name.upper() if case == "upper" else name)
+        fake.parent.mkdir(exist_ok=True)
+        fake.write_bytes(b"\x89PNG\r\n\x1a\n" + b"x" * 20)
+        out = tmp_path / f"out-{case}-{name}"
+        res = build_site(src, out)
+        if not name.endswith((".png", ".jpg", ".webp", ".gif", ".svg")):
+            continue  # not an allowed image type: refused earlier
+        assert res.output is None and not out.exists(), name
+        assert "this name is used by the generated site" in res.validation.errors[0].message, name

@@ -24,19 +24,24 @@ from playwright.sync_api import sync_playwright
 ROOT = Path(__file__).resolve().parent.parent
 LOGO = ROOT / "website" / "assets" / "logo.svg"
 OUT = ROOT / "src" / "quizgen" / "static"
-PURPLE = "#5233e0"
+CSP = "default-src 'none'; style-src 'unsafe-inline'"  # the logo is drawn from inline SVG only
+PURPLE = "#5233e0"  # must match THEME_COLOR in src/quizgen/build.py
 
 
 def parts() -> tuple[str, str]:
     """(the whole logo, just its mark: everything except the background square)."""
     svg = LOGO.read_text(encoding="utf-8")
-    inner = re.search(r"<svg[^>]*>(.*)</svg>", svg, re.S).group(1)
+    found = re.search(r"<svg[^>]*>(.*)</svg>", svg, re.S)
+    if not found:
+        raise SystemExit(f"{LOGO}: expected one <svg ...>...</svg> element; the icon script needs to be updated")
+    inner = found.group(1)
     mark = re.sub(r"<rect[^>]*/>", "", inner, count=1)
     return inner, mark
 
 
 def svg_page(size: int, body: str) -> str:
-    return (f'<body style="margin:0;background:transparent"><svg xmlns="http://www.w3.org/2000/svg" '
+    return (f'<meta http-equiv="Content-Security-Policy" content="{CSP}">'
+            f'<body style="margin:0;background:transparent"><svg xmlns="http://www.w3.org/2000/svg" '
             f'width="{size}" height="{size}" viewBox="0 0 64 64" style="display:block">{body}</svg></body>')
 
 

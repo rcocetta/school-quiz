@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Iterable
 from urllib.parse import quote
 
-from quizgen.build import (FLAG_FONT, HOME_URL, BuildError, BuildResult, _asset, _env, _prepare,
+from quizgen.build import (FLAG_FONT, HOME_URL, THEME_COLOR, app_head, BuildError, BuildResult, _asset, _env, _prepare,
                            _rewrite_images, _write_atomic, flag_font, render_page, static_bytes)
 from quizgen.validate import (Issue, ValidationResult, discover, is_remote_image, load_collection, load_quiz,
                               load_site, local_image_path, ui_strings)
@@ -171,16 +171,19 @@ def _load_all(src: Path, override: int | None, result: ValidationResult) -> tupl
 def _plan(top: _Section, collections: list[_Section]) -> _Plan:
     plan = _Plan()
     top_ui = ui_strings()[top.lang]
+    site_title = top.meta.get("title", top_ui["quizzes"])  # heading, app name (manifest) and home-screen title
     collection_cards = []
     for sec in collections:
-        cards = _add_quizzes(plan, sec)
-        ui = ui_strings()[sec.lang]
         unlisted = sec.meta.get("unlisted", False)  # D31: built, but not linked from the top index
+        # an unlisted collection is not part of the app: the start page would not list it (D32)
+        app_title = None if unlisted else site_title
+        cards = _add_quizzes(plan, sec, app_title)
+        ui = ui_strings()[sec.lang]
         plan.pages[_join(sec.folder, "index.html")] = _render_index(
             lang=sec.lang, heading=sec.meta.get("title", sec.folder), description=sec.meta.get("description"),
             author=sec.meta.get("author"),
             back=None if unlisted else {"href": "../index.html", "text": ui["back_to_all"]},
-            quizzes=cards, asset_base="../assets/")
+            quizzes=cards, asset_base="../assets/", app_title=app_title)
         if unlisted:
             continue
         collection_cards.append({
@@ -188,18 +191,23 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
             "description": sec.meta.get("description"),
             "count_text": _count_text(top_ui, "quizzes_count", len(cards)),
             "author_name": sec.meta.get("author", {}).get("name")})
-    top_cards = _add_quizzes(plan, top)
+    top_cards = _add_quizzes(plan, top, site_title)
     plan.pages["index.html"] = _render_index(
-        lang=top.lang, heading=top.meta.get("title", top_ui["quizzes"]), description=top.meta.get("description"),
+        lang=top.lang, heading=site_title, description=top.meta.get("description"),
         author=top.meta.get("author"), collections=_sorted(collection_cards), quizzes=top_cards,
-        empty_text=None if top_cards or collection_cards else top_ui["no_quizzes_yet"], asset_base="assets/")
+        empty_text=None if top_cards or collection_cards else top_ui["no_quizzes_yet"], asset_base="assets/",
+        app_title=site_title)
     for name in ("quiz.css", "quiz.js"):
         plan.pages["assets/" + name] = _asset(name).encode("utf-8")
     plan.pages["assets/" + FLAG_FONT] = flag_font()
-    plan.pages["assets/manifest.webmanifest"] = _manifest(top.meta.get("title", top_ui["quizzes"]), top.lang)
+    plan.pages["assets/manifest.webmanifest"] = _manifest(site_title, top.lang)
     for name in (*(icon[0] for icon in APP_ICONS), "apple-touch-icon.png"):
         plan.pages["assets/" + name] = static_bytes(name)
     plan.pages[".nojekyll"] = b""  # GitHub Pages would otherwise hide folders starting with "_"
+    generated = {rel.casefold() for rel in plan.pages}
+    for rel in plan.images:  # a creator's image must never replace a page or asset the site writes itself
+        if rel.casefold() in generated:
+            raise BuildError(f'"{rel}": this name is used by the generated site; move or rename the image')
     return plan
 
 
@@ -207,13 +215,13 @@ def _manifest(name: str, lang: str) -> bytes:
     """The web app manifest (D32): one app per site, starting at the site root (assets/ is one level down)."""
     manifest = {
         "name": name, "lang": lang, "start_url": "../", "scope": "../", "display": "standalone",
-        "background_color": "#fff5e1", "theme_color": "#5233e0",
+        "background_color": THEME_COLOR, "theme_color": THEME_COLOR,
         "icons": [{"src": icon, "sizes": f"{size}x{size}", "type": "image/png", "purpose": purpose}
                   for icon, size, purpose in APP_ICONS]}
     return (json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
 
-def _add_quizzes(plan: _Plan, sec: _Section) -> list[dict]:
+def _add_quizzes(plan: _Plan, sec: _Section, app_title: str | None) -> list[dict]:
     """Render the quiz pages of one section into the plan; return its (sorted) index cards."""
     ui_index = ui_strings()[sec.lang]
     asset_base = "../assets/" if sec.folder else "assets/"
@@ -224,7 +232,8 @@ def _add_quizzes(plan: _Plan, sec: _Section) -> list[dict]:
             _link_images(quiz, q.path.parent, sec.folder, plan.images)
         except BuildError as err:
             raise BuildError(f"{q.path}: {err}") from err
-        html = render_page(quiz, ui, inline_assets=False, asset_base=asset_base, index_url="index.html")
+        html = render_page(quiz, ui, inline_assets=False, asset_base=asset_base, index_url="index.html",
+                           app_title=app_title)
         plan.pages[_join(sec.folder, q.path.stem + ".html")] = html.encode("utf-8")
         cards.append(_quiz_card(quiz, q.path.stem, ui_index))
     return _sorted(cards)
@@ -266,7 +275,8 @@ def _quiz_card(quiz: dict, stem: str, ui: dict) -> dict:
 
 def _render_index(*, lang: str, heading: str, description: str | None, author: dict | None,
                   asset_base: str, back: dict | None = None, collections: list[dict] | None = None,
-                  quizzes: list[dict] | None = None, empty_text: str | None = None) -> bytes:
+                  quizzes: list[dict] | None = None, empty_text: str | None = None,
+                  app_title: str | None = None) -> bytes:
     ui = ui_strings()[lang]
     link = None
     if author:
@@ -274,7 +284,7 @@ def _render_index(*, lang: str, heading: str, description: str | None, author: d
         link = {"text": ui["made_by"].format(name=author["name"]), "href": href,
                 "external": bool(href and href.startswith(("http://", "https://")))}
     html = _env().get_template("index.html").render(
-        lang=lang, page_title=heading, csp=INDEX_CSP, asset_base=asset_base,
+        lang=lang, page_title=heading, csp=INDEX_CSP, asset_base=asset_base, app=app_head(app_title),
         heading=heading, description=description, author=link, back=back,
         collections_heading=ui["collections"], collections=collections or [],
         quizzes_heading=ui["quizzes"], quizzes=quizzes or [], languages_label=ui["languages"],

@@ -19,6 +19,7 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 - [ ] Check the deployed site (landing ↔ guide ↔ quizzes ↔ repo links) and follow the guide in a real test fork.
 - [ ] First real run of `claude-review.yml`.
 - [ ] `v0.1.0` tag, then pin the install in the README's Pages workflow snippet.
+- [ ] Installable site (D32): check on a real iPhone/iPad and Android (install name, start page after installing from a quiz page, external links in standalone mode). Icons are regenerated with `scripts/app_icons.py` when the logo changes.
 - [ ] Not tested yet: Firefox/WebKit, real devices, screen readers, `es`/`de` index text.
 
 ## Ideas (not planned)

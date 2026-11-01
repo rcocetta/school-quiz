@@ -7,13 +7,8 @@
 <meta name="referrer" content="no-referrer">
 <title>{{ page_title }}</title>
 {% if inline_assets %}<style>{{ css }}</style>{% else %}<link rel="stylesheet" href="{{ asset_base }}quiz.css">{% endif %}
-{%- if not inline_assets %}
-<link rel="manifest" href="{{ asset_base }}manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="192x192" href="{{ asset_base }}icon-192.png">
-<link rel="apple-touch-icon" href="{{ asset_base }}apple-touch-icon.png">
-<meta name="theme-color" content="#5233e0">
-{% endif %}
-</head>
+{% if app %}{% include "_app_head.html" %}
+{% endif %}</head>
 <body>
 <noscript><p class="noscript">This quiz needs JavaScript. Please turn it on and reload the page.</p></noscript>
 <div id="app"></div>
