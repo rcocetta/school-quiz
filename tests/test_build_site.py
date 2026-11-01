@@ -634,19 +634,30 @@ def test_apple_title_is_the_escaped_site_title(tmp_path):
         assert 'name="apple-mobile-web-app-title" content="Tom &amp; &#34;Jo&#34; &lt;Quizzes&gt;"' in read(out / page)
 
 
-def test_unlisted_collection_pages_are_not_part_of_the_app(tmp_path):
+def test_unlisted_collection_is_an_app_of_its_own(tmp_path):
     src = tmp_path / "in"
-    put(src / "private" / "collection.json", {"title": "Family Fun", "unlisted": True})
+    put(src / "site.json", {"title": "Our Site"})
+    put(src / "private" / "collection.json", {"title": "Family Fun", "unlisted": True, "language": "it"})
     put(src / "private" / "fun.json", quiz("Fun"))
     put(src / "open" / "art.json", quiz("Art"))
     out = tmp_path / "out"
     assert build_site(src, out).output
+    manifest = json.loads(read(out / "private" / "manifest.webmanifest"))
+    assert manifest["name"] == "Family Fun" and manifest["lang"] == "it"
+    assert manifest["start_url"] == manifest["scope"] == "./"
+    assert [i["src"] for i in manifest["icons"]] == ["../assets/icon-192.png", "../assets/icon-512.png",
+                                                     "../assets/icon-maskable-512.png"]
     for page in ("private/index.html", "private/fun.html"):
         text = read(out / page)
-        for tag in ("manifest", "icon", "theme-color", "apple-mobile-web-app-title"):
-            assert tag not in text.replace("manifest-src", ""), (page, tag)
-    for page in ("index.html", "open/index.html", "open/art.html"):
-        assert 'rel="manifest"' in read(out / page)
+        assert '<link rel="manifest" href="manifest.webmanifest">' in text, page
+        assert 'href="../assets/apple-touch-icon.png"' in text, page
+        assert '<meta name="apple-mobile-web-app-title" content="Family Fun">' in text, page
+    for page in ("open/index.html", "open/art.html"):
+        text = read(out / page)
+        assert '<link rel="manifest" href="../assets/manifest.webmanifest">' in text, page
+        assert 'content="Our Site"' in text, page
+    assert '<link rel="manifest" href="assets/manifest.webmanifest">' in read(out / "index.html")
+    assert not (out / "open" / "manifest.webmanifest").exists()
 
 
 def generated_assets(tmp_path) -> list[str]:

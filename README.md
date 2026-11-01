@@ -474,7 +474,7 @@ Index entries are sorted by title, ignoring case and accents, with collections f
 
 #### Unlisted collections
 
-For a set of quizzes that should not appear on the main index (for example a family's private fun quizzes), put `"unlisted": true` in the collection's `collection.json`. The collection is still built and published at `<collection>/index.html`, so share that address directly. Only the link on the main index is removed. An unlisted collection can't be installed as an app (its pages carry no app tags), because the app's start page would not list it.
+For a set of quizzes that should not appear on the main index (for example a family's private fun quizzes), put `"unlisted": true` in the collection's `collection.json`. The collection is still built and published at `<collection>/index.html`, so share that address directly. Only the link on the main index is removed. An unlisted collection is an app of its own: added to a home screen from one of its pages, it is named after the collection and opens the collection's page (the build writes `<collection>/manifest.webmanifest` for it).
 
 "Unlisted" is not "private": anyone who knows or guesses the address can open it, the quiz files are public in the repository, and search engines may still find the pages. Do not put anything in an unlisted collection that you would not want public.
 
@@ -716,7 +716,7 @@ site/
 - `index.html` lists collections and loose quizzes. `class-4b/index.html` lists that collection's quizzes. Index pages need no JavaScript.
 - Each quiz page links to the shared `assets/quiz.css` and `assets/quiz.js`, and has a link back to the index.
 - Local images are copied once to the same relative path as in your folder.
-- The site is an installable web app: `assets/manifest.webmanifest` and the icons (made from the project logo) let a phone or tablet add it to the home screen (browser menu, "Add to Home Screen" or "Install app"). The app is named after the `title` in `site.json` (or "Quizzes"), opens the site's front page, fills the whole screen and has a purple splash screen; iPhones and iPads use the same title for the home-screen icon. Unlisted collections are not part of the app. There is no service worker, so nothing is cached for offline use and a changed quiz shows up right away. Single-file mode is unaffected.
+- The site is an installable web app: `assets/manifest.webmanifest` and the icons (made from the project logo) let a phone or tablet add it to the home screen (browser menu, "Add to Home Screen" or "Install app"). The app is named after the `title` in `site.json` (or "Quizzes"), opens the site's front page, fills the whole screen and has a purple splash screen; iPhones and iPads use the same title for the home-screen icon. Each unlisted collection is a separate app, named after the collection and opening its page. There is no service worker, so nothing is cached for offline use and a changed quiz shows up right away. Single-file mode is unaffected.
 - `.nojekyll` is an empty file that tells GitHub Pages not to run Jekyll over the files.
 
 ### Which one should I use?

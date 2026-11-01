@@ -176,32 +176,37 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
     collection_cards = []
     for sec in collections:
         unlisted = sec.meta.get("unlisted", False)  # D31: built, but not linked from the top index
-        # an unlisted collection is not part of the app: the start page would not list it (D32)
-        app_title = None if unlisted else site_title
-        cards = _add_quizzes(plan, sec, app_title)
+        heading = sec.meta.get("title", sec.folder)
+        if unlisted:  # D32: the site app's start page doesn't list it, so it is an app of its own
+            plan.pages[_join(sec.folder, "manifest.webmanifest")] = _manifest(heading, sec.lang, "./", "../assets/")
+            app = app_head(heading, "manifest.webmanifest")
+        else:
+            app = app_head(site_title, "../assets/manifest.webmanifest")
+        cards = _add_quizzes(plan, sec, app)
         ui = ui_strings()[sec.lang]
         plan.pages[_join(sec.folder, "index.html")] = _render_index(
-            lang=sec.lang, heading=sec.meta.get("title", sec.folder), description=sec.meta.get("description"),
+            lang=sec.lang, heading=heading, description=sec.meta.get("description"),
             author=sec.meta.get("author"),
             back=None if unlisted else {"href": "../index.html", "text": ui["back_to_all"]},
-            quizzes=cards, asset_base="../assets/", app_title=app_title)
+            quizzes=cards, asset_base="../assets/", app=app)
         if unlisted:
             continue
         collection_cards.append({
-            "href": quote(sec.folder) + "/index.html", "title": sec.meta.get("title", sec.folder),
+            "href": quote(sec.folder) + "/index.html", "title": heading,
             "description": sec.meta.get("description"),
             "count_text": _count_text(top_ui, "quizzes_count", len(cards)),
             "author_name": sec.meta.get("author", {}).get("name")})
-    top_cards = _add_quizzes(plan, top, site_title)
+    top_app = app_head(site_title, "assets/manifest.webmanifest")
+    top_cards = _add_quizzes(plan, top, top_app)
     plan.pages["index.html"] = _render_index(
         lang=top.lang, heading=site_title, description=top.meta.get("description"),
         author=top.meta.get("author"), collections=_sorted(collection_cards), quizzes=top_cards,
         empty_text=None if top_cards or collection_cards else top_ui["no_quizzes_yet"], asset_base="assets/",
-        app_title=site_title)
+        app=top_app)
     for name in ("quiz.css", "quiz.js"):
         plan.pages["assets/" + name] = _asset(name).encode("utf-8")
     plan.pages["assets/" + FLAG_FONT] = flag_font()
-    plan.pages["assets/manifest.webmanifest"] = _manifest(site_title, top.lang)
+    plan.pages["assets/manifest.webmanifest"] = _manifest(site_title, top.lang, "../", "")
     for name in ICON_FILES:
         plan.pages["assets/" + name] = static_bytes(name)
     plan.pages[".nojekyll"] = b""  # GitHub Pages would otherwise hide folders starting with "_"
@@ -212,17 +217,17 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
     return plan
 
 
-def _manifest(name: str, lang: str) -> bytes:
-    """The web app manifest (D32): one app per site, starting at the site root (assets/ is one level down)."""
+def _manifest(name: str, lang: str, root: str, icon_base: str) -> bytes:
+    """A web app manifest (D32). `root` (start page and scope) and `icon_base` are relative to the manifest."""
     manifest = {
-        "name": name, "lang": lang, "start_url": "../", "scope": "../", "display": "standalone",
+        "name": name, "lang": lang, "start_url": root, "scope": root, "display": "standalone",
         "background_color": THEME_COLOR, "theme_color": THEME_COLOR,
-        "icons": [{"src": icon, "sizes": f"{size}x{size}", "type": "image/png", "purpose": purpose}
+        "icons": [{"src": icon_base + icon, "sizes": f"{size}x{size}", "type": "image/png", "purpose": purpose}
                   for icon, size, purpose in APP_ICONS]}
     return (json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
 
-def _add_quizzes(plan: _Plan, sec: _Section, app_title: str | None) -> list[dict]:
+def _add_quizzes(plan: _Plan, sec: _Section, app: dict) -> list[dict]:
     """Render the quiz pages of one section into the plan; return its (sorted) index cards."""
     ui_index = ui_strings()[sec.lang]
     asset_base = "../assets/" if sec.folder else "assets/"
@@ -234,7 +239,7 @@ def _add_quizzes(plan: _Plan, sec: _Section, app_title: str | None) -> list[dict
         except BuildError as err:
             raise BuildError(f"{q.path}: {err}") from err
         html = render_page(quiz, ui, inline_assets=False, asset_base=asset_base, index_url="index.html",
-                           app_title=app_title)
+                           app=app)
         plan.pages[_join(sec.folder, q.path.stem + ".html")] = html.encode("utf-8")
         cards.append(_quiz_card(quiz, q.path.stem, ui_index))
     return _sorted(cards)
@@ -279,7 +284,7 @@ def _quiz_card(quiz: dict, stem: str, ui: dict) -> dict:
 def _render_index(*, lang: str, heading: str, description: str | None, author: dict | None,
                   asset_base: str, back: dict | None = None, collections: list[dict] | None = None,
                   quizzes: list[dict] | None = None, empty_text: str | None = None,
-                  app_title: str | None = None) -> bytes:
+                  app: dict | None = None) -> bytes:
     ui = ui_strings()[lang]
     link = None
     if author:
@@ -287,7 +292,7 @@ def _render_index(*, lang: str, heading: str, description: str | None, author: d
         link = {"text": ui["made_by"].format(name=author["name"]), "href": href,
                 "external": bool(href and href.startswith(("http://", "https://")))}
     html = _env().get_template("index.html").render(
-        lang=lang, page_title=heading, csp=INDEX_CSP, asset_base=asset_base, app=app_head(app_title),
+        lang=lang, page_title=heading, csp=INDEX_CSP, asset_base=asset_base, app=app,
         heading=heading, description=description, author=link, back=back,
         collections_heading=ui["collections"], collections=collections or [],
         quizzes_heading=ui["quizzes"], quizzes=quizzes or [], languages_label=ui["languages"],
