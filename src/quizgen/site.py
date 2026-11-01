@@ -24,6 +24,7 @@ from quizgen.validate import (Issue, ValidationResult, discover, is_remote_image
 DEFAULT_SITE_DIR = "site"
 # (file, size, purpose) of the app icons, see scripts/app_icons.py; apple-touch-icon is linked, not in the manifest
 APP_ICONS = [("icon-192.png", 192, "any"), ("icon-512.png", 512, "any"), ("icon-maskable-512.png", 512, "maskable")]
+ICON_FILES = (*(icon[0] for icon in APP_ICONS), "apple-touch-icon.png")
 INDEX_CSP = ("default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; "
              "form-action 'none'")
 
@@ -201,11 +202,11 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
         plan.pages["assets/" + name] = _asset(name).encode("utf-8")
     plan.pages["assets/" + FLAG_FONT] = flag_font()
     plan.pages["assets/manifest.webmanifest"] = _manifest(site_title, top.lang)
-    for name in (*(icon[0] for icon in APP_ICONS), "apple-touch-icon.png"):
+    for name in ICON_FILES:
         plan.pages["assets/" + name] = static_bytes(name)
     plan.pages[".nojekyll"] = b""  # GitHub Pages would otherwise hide folders starting with "_"
     generated = {rel.casefold() for rel in plan.pages}
-    for rel in plan.images:  # a creator's image must never replace a page or asset the site writes itself
+    for rel in plan.images:  # backstop: a creator's image must never replace a page or asset the site writes itself
         if rel.casefold() in generated:
             raise BuildError(f'"{rel}": this name is used by the generated site; move or rename the image')
     return plan
@@ -247,6 +248,8 @@ def _link_images(quiz: dict, base: Path, folder: str, images: dict[str, bytes]) 
             return ref
         try:
             source = local_image_path(base, ref)
+            if _join(folder, ref).casefold() in {"assets/" + name.casefold() for name in ICON_FILES}:
+                raise ValueError(f'image "{ref}": this name is used by the generated site; move or rename the image')
             if _join(folder, ref) not in images:
                 images[_join(folder, ref)] = source.read_bytes()
         except ValueError as err:
