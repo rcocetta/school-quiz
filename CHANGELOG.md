@@ -10,7 +10,7 @@ Everything below will be released as 0.1.0, the first version.
 
 ### Added
 
-- Site mode is an installable web app: a web manifest and icons (from the project logo) let phones and tablets add the site to the home screen. No service worker, so nothing is cached offline; single-file mode is unchanged.
+- Site mode is an installable web app: a web manifest and icons (from the project logo) let phones and tablets add the site to the home screen; each unlisted collection is an app of its own. No service worker, so nothing is cached offline; single-file mode is unchanged.
 - `quizgen validate`: checks quiz, `collection.json` and `site.json` files and folders, reports every problem at once with its location in the file and a hint on how to fix it, and warns about things that work but are probably mistakes.
 - Quiz format: JSON files with a pool of N questions of which M are shown per attempt (`questions_per_quiz`); multiple choice with exactly one correct option; text and/or picture options; `explanation`; `feedback` mode (`immediate` or `end`); `shuffle_options`. A JSON Schema (`schema.json`) gives editors autocomplete.
 - Multiple languages in one quiz (`languages`), with per-field translation maps, the `any` key for text that is the same in every language, and a flag-and-code language switcher that keeps the child's place and remembers the choice in `localStorage`. Built-in interface text in English, Italian, Spanish, French and German.

@@ -78,6 +78,8 @@ def built(tmp_path_factory):
         write_quiz(src, f"colours-{feedback}", image_quiz(feedback))
     write_quiz(src, "bilingual", multilang_quiz())
     write_quiz(src / "shapes", "extra", image_quiz("immediate"))
+    write_quiz(src / "secret", "hidden", multilang_quiz())
+    (src / "secret" / "collection.json").write_text('{"title": "Secret", "unlisted": true}', encoding="utf-8")
     for folder in (src, src / "shapes"):
         shutil.copy(EXAMPLES / "images" / "cow.png", folder / "red.png")
 
@@ -322,17 +324,22 @@ def test_site_language_switch(watched, built, serve):
     watched.check()
 
 
-def test_site_is_an_installable_web_app(watched, built, serve):
+@pytest.mark.parametrize("start, manifest_url, name", [
+    ("index.html", "/assets/manifest.webmanifest", "Quizzes"),
+    ("shapes/extra.html", "/assets/manifest.webmanifest", "Quizzes"),
+    ("secret/index.html", "/secret/manifest.webmanifest", "Secret"),  # unlisted: an app of its own
+])
+def test_site_is_an_installable_web_app(watched, built, serve, start, manifest_url, name):
     """The manifest parses with no errors and Chromium finds nothing blocking installation (D32)."""
     page = watched.page
-    page.goto(f"{serve(built['site'])}/index.html")
-    pw.expect(page.locator("a.card-link").first).to_be_visible()
+    page.goto(f"{serve(built['site'])}/{start}")
+    page.wait_for_load_state("load")
     cdp = page.context.new_cdp_session(page)
     manifest = cdp.send("Page.getAppManifest")
-    assert manifest["url"].endswith("/assets/manifest.webmanifest")
+    assert manifest["url"].endswith(manifest_url)
     assert not manifest.get("errors"), manifest["errors"]
     parsed = json.loads(manifest["data"])
-    assert parsed["display"] == "standalone" and parsed["start_url"] == "../"
+    assert parsed["display"] == "standalone" and parsed["name"] == name
     installability = cdp.send("Page.getInstallabilityErrors")
     assert installability["installabilityErrors"] == []
     watched.check()
