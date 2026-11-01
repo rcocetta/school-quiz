@@ -178,7 +178,7 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
         unlisted = sec.meta.get("unlisted", False)  # D31: built, but not linked from the top index
         heading = sec.meta.get("title", sec.folder)
         if unlisted:  # D32: the site app's start page doesn't list it, so it is an app of its own
-            plan.pages[_join(sec.folder, "manifest.webmanifest")] = _manifest(heading, sec.lang, "./", "../assets/")
+            plan.pages[_join(sec.folder, "manifest.webmanifest")] = _manifest(heading, sec.lang, root="./", icon_base="../assets/")
             app = app_head(heading, "manifest.webmanifest")
         else:
             app = app_head(site_title, "../assets/manifest.webmanifest")
@@ -206,7 +206,7 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
     for name in ("quiz.css", "quiz.js"):
         plan.pages["assets/" + name] = _asset(name).encode("utf-8")
     plan.pages["assets/" + FLAG_FONT] = flag_font()
-    plan.pages["assets/manifest.webmanifest"] = _manifest(site_title, top.lang, "../", "")
+    plan.pages["assets/manifest.webmanifest"] = _manifest(site_title, top.lang, root="../", icon_base="")
     for name in ICON_FILES:
         plan.pages["assets/" + name] = static_bytes(name)
     plan.pages[".nojekyll"] = b""  # GitHub Pages would otherwise hide folders starting with "_"
