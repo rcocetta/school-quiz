@@ -98,6 +98,9 @@ def serve():
     servers = []
 
     class Quiet(http.server.SimpleHTTPRequestHandler):
+        extensions_map = {**http.server.SimpleHTTPRequestHandler.extensions_map,
+                          ".webmanifest": "application/manifest+json"}   # as GitHub Pages serves it
+
         def log_message(self, *args):
             pass
 
@@ -316,6 +319,23 @@ def test_site_language_switch(watched, built, serve):
     page.locator('.lang-btn[data-lang="en"]').click()
     pw.expect(page.locator(".feedback")).to_be_visible()           # answered state survives the switch
     pw.expect(page.locator("h2.js-heading")).to_have_text(english)
+    watched.check()
+
+
+def test_site_is_an_installable_web_app(watched, built, serve):
+    """The manifest parses with no errors and Chromium finds nothing blocking installation (D32)."""
+    page = watched.page
+    page.goto(f"{serve(built['site'])}/index.html")
+    pw.expect(page.locator("a.card-link").first).to_be_visible()
+    cdp = page.context.new_cdp_session(page)
+    manifest = cdp.send("Page.getAppManifest")
+    assert manifest["url"].endswith("/assets/manifest.webmanifest")
+    assert not manifest.get("errors"), manifest["errors"]
+    parsed = json.loads(manifest["data"])
+    assert parsed["display"] == "standalone" and parsed["start_url"] == "../"
+    installability = cdp.send("Page.getInstallabilityErrors")
+    print("getInstallabilityErrors:", installability)
+    assert installability["installabilityErrors"] == []
     watched.check()
 
 

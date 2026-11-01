@@ -23,7 +23,7 @@ HOME_URL = "https://rcocetta.github.io/school-quiz/"  # "Made with school-quiz" 
 MAX_TOTAL_IMAGE_BYTES = 20 * 1024 * 1024  # all inlined images together, repeats counted
 # Site mode: assets are linked from the same origin, so 'self' replaces the inline hashes.
 QUIZ_CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
-            "font-src 'self'; base-uri 'none'; form-action 'none'")
+            "font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'")
 FLAG_FONT = "flags.woff2"  # linked from quiz.css; site mode copies it to assets/, single files inline it
 
 
@@ -209,8 +209,12 @@ def _inline_flag_font(css: str) -> str:
     return css.replace(f'url("{FLAG_FONT}")', f'url("data:font/woff2;base64,{data}")')
 
 
+def static_bytes(name: str) -> bytes:
+    return (resources.files("quizgen") / "static" / name).read_bytes()
+
+
 def flag_font() -> bytes:
-    return (resources.files("quizgen") / "static" / FLAG_FONT).read_bytes()
+    return static_bytes(FLAG_FONT)
 
 
 def _env() -> Environment:

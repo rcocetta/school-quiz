@@ -8,6 +8,7 @@ disk failure while writing can still leave partial output.)
 
 from __future__ import annotations
 
+import json
 import os
 import unicodedata
 from dataclasses import dataclass, field
@@ -16,12 +17,14 @@ from typing import Iterable
 from urllib.parse import quote
 
 from quizgen.build import (FLAG_FONT, HOME_URL, BuildError, BuildResult, _asset, _env, _prepare,
-                           _rewrite_images, _write_atomic, flag_font, render_page)
+                           _rewrite_images, _write_atomic, flag_font, render_page, static_bytes)
 from quizgen.validate import (Issue, ValidationResult, discover, is_remote_image, load_collection, load_quiz,
                               load_site, local_image_path, ui_strings)
 
 DEFAULT_SITE_DIR = "site"
-INDEX_CSP = ("default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; "
+# (file, size, purpose) of the app icons, see scripts/app_icons.py; apple-touch-icon is linked, not in the manifest
+APP_ICONS = [("icon-192.png", 192, "any"), ("icon-512.png", 512, "any"), ("icon-maskable-512.png", 512, "maskable")]
+INDEX_CSP = ("default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; "
              "form-action 'none'")
 
 
@@ -193,8 +196,21 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
     for name in ("quiz.css", "quiz.js"):
         plan.pages["assets/" + name] = _asset(name).encode("utf-8")
     plan.pages["assets/" + FLAG_FONT] = flag_font()
+    plan.pages["assets/manifest.webmanifest"] = _manifest(top.meta.get("title", top_ui["quizzes"]), top.lang)
+    for name in (*(icon[0] for icon in APP_ICONS), "apple-touch-icon.png"):
+        plan.pages["assets/" + name] = static_bytes(name)
     plan.pages[".nojekyll"] = b""  # GitHub Pages would otherwise hide folders starting with "_"
     return plan
+
+
+def _manifest(name: str, lang: str) -> bytes:
+    """The web app manifest (D32): one app per site, starting at the site root (assets/ is one level down)."""
+    manifest = {
+        "name": name, "lang": lang, "start_url": "../", "scope": "../", "display": "standalone",
+        "background_color": "#fff5e1", "theme_color": "#5233e0",
+        "icons": [{"src": icon, "sizes": f"{size}x{size}", "type": "image/png", "purpose": purpose}
+                  for icon, size, purpose in APP_ICONS]}
+    return (json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
 
 def _add_quizzes(plan: _Plan, sec: _Section) -> list[dict]:
