@@ -53,7 +53,7 @@ Rules the validator enforces (an error stops the build):
 - `questions_per_quiz` (M) must not be larger than the number of questions (N). Make N bigger than M (for example 16 and 8) so each attempt is a different mix; M equal to N gives a warning.
 - `language` is one of the built-in interface languages: `en`, `it`, `es`, `fr`, `de`. It sets the buttons and messages; write the questions in the same language.
 - **Several languages in one quiz:** use `"languages": ["en", "fr"]` and write **every** text as a map, `{ "en": "...", "fr": "..." }`, with no language missing and no plain strings. `{ "any": "12" }` means the same text in every language (numbers, names). See the [README](README.md#multiple-languages).
-- **Images:** local `png`, `jpg`, `jpeg`, `gif` or `webp` files next to the quiz (usually `images/`), at most 5 MB, relative paths with no `..`; or `https://` links. No SVG. Give each picture an `image_alt` that describes it **without giving away the answer** (for "Which animal is this?" write "A brown and white animal with horns", not "A cow"). Use `"image_alt": ""` for pure decoration.
+- **Images:** local `png`, `jpg`, `jpeg`, `gif` or `webp` files next to the quiz (usually `images/`; never a top-level `assets/` folder, which the site build uses), at most 5 MB, relative paths with no `..`; or `https://` links. No SVG. Give each picture an `image_alt` that describes it **without giving away the answer** (for "Which animal is this?" write "A brown and white animal with horns", not "A cow"). Use `"image_alt": ""` for pure decoration.
 - Valid JSON: double quotes, no trailing commas, no comments.
 
 ## Collections

@@ -550,7 +550,7 @@ Errors stop the build:
 - **File and structure:** valid JSON (the message gives line and column), required fields present, correct types and allowed values, no unknown fields (typos).
 - **Questions:** exactly one `"correct": true` option per question; at least 2 options, each with `text` or `image`; `questions_per_quiz` (or `--questions`) not larger than the number of questions.
 - **Languages:** in a multi-language quiz every text covers every language (its own key or `any`) and no plain strings are used; in a single-language quiz no translation maps; `language` and `languages` not mixed; every language code has built-in interface text.
-- **Images:** the file exists, stays inside the quiz folder, is png/jpg/jpeg/gif/webp, is 5 MB or less, really is that kind of image; `image_alt` only with an `image`, and not `""` on a picture-only option.
+- **Images:** the file exists, stays inside the quiz folder, is png/jpg/jpeg/gif/webp, is 5 MB or less, really is that kind of image; `image_alt` only with an `image`, and not `""` on a picture-only option. In site mode an image can't take the name of a file the site writes itself (for example `assets/icon-192.png`).
 - **Author and `ui`:** `author` has a name, a web address that starts with `http://` or `https://`, and an email that looks like one; `ui` has only known keys, no empty values and no unknown `{placeholders}`.
 - **Folders:** reserved names (see [Collections](#collections-and-folder-layout)), linked JSON files and odd file names; `site.json` and `collection.json` are checked too.
 

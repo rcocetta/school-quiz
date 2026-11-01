@@ -41,7 +41,7 @@ Run this before every pull request. Add tests for new behaviour: `tests/fixtures
 
 Without Playwright these tests are skipped. With `QUIZGEN_BROWSER_TESTS=1` set, a missing Playwright is an error instead (CI does this). Please run them when you change `quiz.js`, `quiz.css`, the templates or the build code.
 
-**Screenshots** in `website/assets/screenshots/` are generated, not hand-made. Regenerate them with `.venv/bin/python scripts/screenshots.py` if you change how the pages look.
+**Screenshots** in `website/assets/screenshots/` are generated, not hand-made. Regenerate them with `.venv/bin/python scripts/screenshots.py` if you change how the pages look. The **app icons** in `src/quizgen/static/` (`icon-*.png`, `apple-touch-icon.png`) are generated from the logo with `.venv/bin/python scripts/app_icons.py`; rerun it if the logo or `THEME_COLOR` changes.
 
 **The published site** is the committed `docs/` folder (GitHub Pages: `main`, `/docs`). It is generated, never edited by hand. If you change `quizzes/` or `website/`, run `.venv/bin/python scripts/build_docs.py` and commit `docs/` with your change. If you cannot run it, say so in the pull request: the maintainer rebuilds `docs/` after merging (CI shows red on your pull request until then, which is expected). `python scripts/build_docs.py --check` tells you whether `docs/` is up to date; `--quizzes-only` is for forks that don't want the project website.
 
