@@ -7,7 +7,8 @@
 <meta name="referrer" content="no-referrer">
 <title>{{ page_title }}</title>
 {% if inline_assets %}<style>{{ css }}</style>{% else %}<link rel="stylesheet" href="{{ asset_base }}quiz.css">{% endif %}
-</head>
+{% if app %}{% include "_app_head.html" %}
+{% endif %}</head>
 <body>
 <noscript><p class="noscript">This quiz needs JavaScript. Please turn it on and reload the page.</p></noscript>
 <div id="app"></div>

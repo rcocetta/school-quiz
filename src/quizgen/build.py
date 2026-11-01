@@ -23,7 +23,8 @@ HOME_URL = "https://rcocetta.github.io/school-quiz/"  # "Made with school-quiz" 
 MAX_TOTAL_IMAGE_BYTES = 20 * 1024 * 1024  # all inlined images together, repeats counted
 # Site mode: assets are linked from the same origin, so 'self' replaces the inline hashes.
 QUIZ_CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
-            "font-src 'self'; base-uri 'none'; form-action 'none'")
+            "font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'")
+THEME_COLOR = "#5233e0"  # browser bar and app splash colour; scripts/app_icons.py draws the icons in the same purple
 FLAG_FONT = "flags.woff2"  # linked from quiz.css; site mode copies it to assets/, single files inline it
 
 
@@ -93,11 +94,12 @@ def _prepare(quiz: dict, collection_ui: dict | None = None) -> tuple[dict, dict]
 
 
 def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = "",
-                index_url: str | None = None) -> str:
+                index_url: str | None = None, app_title: str | None = None) -> str:
     """Render the quiz page from a normalised quiz (images already rewritten) and merged UI strings.
 
     Linked mode (site): `asset_base` is the relative path to `assets/`; `index_url` (if given)
     lets the page link back to the index.
+    `app_title` (site pages that belong to the installable app, D32) adds the app tags to the head.
     """
     css = _inline_flag_font(_asset("quiz.css")) if inline_assets else ""
     js = _asset("quiz.js") if inline_assets else ""
@@ -107,6 +109,7 @@ def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = 
     return _env().get_template("quiz.html").render(
         lang=first,
         page_title=quiz["title"][first],
+        app=app_head(app_title),
         csp=content_security_policy(css, js) if inline_assets else QUIZ_CSP,
         inline_assets=inline_assets,
         asset_base=asset_base,
@@ -115,6 +118,11 @@ def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = 
         quiz_json=Markup(embed_json(quiz)),
         ui_json=Markup(embed_json(ui)),
     )
+
+
+def app_head(title: str | None) -> dict | None:
+    """Template data for the installable-app head tags (templates/_app_head.html), or None for no tags."""
+    return None if title is None else {"title": title, "color": THEME_COLOR}
 
 
 def merge_ui(languages: list[str], quiz_ui: dict, collection_ui: dict | None = None) -> dict:
@@ -209,8 +217,12 @@ def _inline_flag_font(css: str) -> str:
     return css.replace(f'url("{FLAG_FONT}")', f'url("data:font/woff2;base64,{data}")')
 
 
+def static_bytes(name: str) -> bytes:
+    return (resources.files("quizgen") / "static" / name).read_bytes()
+
+
 def flag_font() -> bytes:
-    return (resources.files("quizgen") / "static" / FLAG_FONT).read_bytes()
+    return static_bytes(FLAG_FONT)
 
 
 def _env() -> Environment:

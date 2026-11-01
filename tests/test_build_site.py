@@ -67,7 +67,9 @@ def test_file_tree_and_links(tree, tmp_path):
     assert res.output == out and res.count == 3 and not res.validation.errors
     files = {str(p.relative_to(out)) for p in out.rglob("*") if p.is_file()}
     assert files == {"index.html", "loose.html", "school/index.html", "school/maths.html",
-                     "plain/index.html", "plain/art.html", "assets/quiz.css", "assets/quiz.js", "assets/flags.woff2", ".nojekyll"}
+                     "plain/index.html", "plain/art.html", "assets/quiz.css", "assets/quiz.js", "assets/flags.woff2", ".nojekyll",
+                     "assets/manifest.webmanifest", "assets/icon-192.png", "assets/icon-512.png",
+                     "assets/icon-maskable-512.png", "assets/apple-touch-icon.png"}
     top = hrefs(out / "index.html")
     assert "loose.html" in top and "school/index.html" in top and "plain/index.html" in top
     assert "Our School" in read(out / "index.html") and "Loose" in read(out / "index.html")
@@ -84,10 +86,10 @@ def test_pages_and_csp(tree, tmp_path):
     build_site(tree, out)
     q = csp(out / "loose.html")
     assert q == ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
-                 "font-src 'self'; base-uri 'none'; form-action 'none'")
+                 "font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'")
     for idx in ("index.html", "school/index.html"):
         assert csp(out / idx) == ("default-src 'none'; style-src 'self'; img-src 'self'; "
-                                  "font-src 'self'; base-uri 'none'; form-action 'none'")
+                                  "font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'")
         assert "<script" not in read(out / idx)
     assert quiz_data(out / "loose.html")["index_url"] == "index.html"
     assert quiz_data(out / "school" / "maths.html")["index_url"] == "index.html"
@@ -565,3 +567,111 @@ def test_unlisted_must_be_true_or_false(tmp_path):
     result = build_site(src, tmp_path / "out")
     assert result.output is None
     assert any("unlisted" in e.path for e in result.validation.errors)
+
+
+# ---- installable web app (D32)
+
+def manifest(out: Path) -> dict:
+    return json.loads(read(out / "assets" / "manifest.webmanifest"))
+
+
+def test_manifest_content_and_icons(tree, tmp_path):
+    out = tmp_path / "out"
+    build_site(tree, out)
+    m = manifest(out)
+    assert m == {
+        "name": "Quizzes", "lang": "en", "start_url": "../", "scope": "../", "display": "standalone",
+        "background_color": "#5233e0", "theme_color": "#5233e0",
+        "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+                  {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+                  {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}
+    assert "short_name" not in m and "id" not in m
+    for icon in m["icons"]:
+        assert (out / "assets" / icon["src"]).read_bytes().startswith(bytes.fromhex("89504e470d0a1a0a"))
+    assert (out / "assets" / "apple-touch-icon.png").is_file()
+    build_site(tree, tmp_path / "again")  # same input, same bytes, ends with a newline
+    assert (tmp_path / "again/assets/manifest.webmanifest").read_bytes() == (out / "assets/manifest.webmanifest").read_bytes()
+    assert read(out / "assets" / "manifest.webmanifest").endswith("}\n")
+
+
+def test_manifest_name_and_language_from_site_json(tmp_path):
+    src = tmp_path / "in"
+    put(src / "site.json", {"title": "Scuola Élan", "language": "it"})
+    put(src / "q.json", quiz())
+    out = tmp_path / "out"
+    assert build_site(src, out).output
+    m = manifest(out)
+    assert m["name"] == "Scuola Élan" and m["lang"] == "it"
+    assert "Scuola Élan" in read(out / "assets" / "manifest.webmanifest")  # not \u-escaped
+
+
+def test_pages_link_the_manifest_with_the_right_base(tree, tmp_path):
+    out = tmp_path / "out"
+    build_site(tree, out)
+    for page, base in (("index.html", "assets/"), ("loose.html", "assets/"), ("school/index.html", "../assets/"),
+                       ("school/maths.html", "../assets/"), ("plain/art.html", "../assets/")):
+        links = hrefs(out / page)
+        for name in ("manifest.webmanifest", "icon-192.png", "apple-touch-icon.png"):
+            assert base + name in links, (page, name)
+        assert '<meta name="theme-color" content="#5233e0">' in read(out / page)
+        assert '<meta name="apple-mobile-web-app-title" content="Quizzes">' in read(out / page)
+
+
+def test_single_file_has_no_manifest(tmp_path):
+    page = build_single(put(tmp_path / "s.json", quiz())).output
+    text = read(page)
+    assert "manifest" not in text and "theme-color" not in text and "apple-touch-icon" not in text
+    assert "manifest-src" not in csp(page)
+
+
+def test_apple_title_is_the_escaped_site_title(tmp_path):
+    src = tmp_path / "in"
+    put(src / "site.json", {"title": 'Tom & "Jo" <Quizzes>'})
+    put(src / "q.json", quiz())
+    out = tmp_path / "out"
+    assert build_site(src, out).output
+    for page in ("index.html", "q.html"):
+        assert 'name="apple-mobile-web-app-title" content="Tom &amp; &#34;Jo&#34; &lt;Quizzes&gt;"' in read(out / page)
+
+
+def test_unlisted_collection_pages_are_not_part_of_the_app(tmp_path):
+    src = tmp_path / "in"
+    put(src / "private" / "collection.json", {"title": "Family Fun", "unlisted": True})
+    put(src / "private" / "fun.json", quiz("Fun"))
+    put(src / "open" / "art.json", quiz("Art"))
+    out = tmp_path / "out"
+    assert build_site(src, out).output
+    for page in ("private/index.html", "private/fun.html"):
+        text = read(out / page)
+        for tag in ("manifest", "icon", "theme-color", "apple-mobile-web-app-title"):
+            assert tag not in text.replace("manifest-src", ""), (page, tag)
+    for page in ("index.html", "open/index.html", "open/art.html"):
+        assert 'rel="manifest"' in read(out / page)
+
+
+def generated_assets(tmp_path) -> list[str]:
+    src = tmp_path / "probe"
+    put(src / "q.json", quiz())
+    out = tmp_path / "probe-out"
+    build_site(src, out)
+    return sorted(p.name for p in (out / "assets").iterdir())
+
+
+@pytest.mark.parametrize("case", ["same", "upper"])
+def test_image_cannot_replace_a_generated_asset(tmp_path, case):
+    names = generated_assets(tmp_path)
+    assert "manifest.webmanifest" in names and "icon-192.png" in names and "quiz.js" in names
+    for name in names:
+        src = tmp_path / f"in-{case}-{name}"
+        put(src / "q.json", quiz(questions=[
+            {"text": "Q", "image": "assets/" + (name.upper() if case == "upper" else name),
+             "options": [{"text": "A", "correct": True}, {"text": "B"}]}]))
+        fake = src / "assets" / (name.upper() if case == "upper" else name)
+        fake.parent.mkdir(exist_ok=True)
+        fake.write_bytes(b"\x89PNG\r\n\x1a\n" + b"x" * 20)
+        out = tmp_path / f"out-{case}-{name}"
+        res = build_site(src, out)
+        if not name.endswith((".png", ".jpg", ".webp", ".gif", ".svg")):
+            continue  # not an allowed image type: refused earlier
+        assert res.output is None and not out.exists(), name
+        assert "this name is used by the generated site" in res.validation.errors[0].message, name

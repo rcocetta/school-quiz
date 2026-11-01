@@ -51,6 +51,7 @@
 - Replace any button or message text with your own (`ui`).
 - Say who made a quiz (`author`) and group quizzes into collections.
 - Two outputs: **one self-contained HTML file** (works offline, easy to email) or **a whole website** with an index page.
+- A quiz website can be added to a phone or tablet home screen like an app (no extra setup).
 - Checks your files and tells you where the problem is and how to fix it.
 - No backend, no tracking, and no requests to other sites (except `https://` pictures you choose to link). Pages carry strict browser safety rules (a Content-Security-Policy).
 - Built for keyboard and screen-reader use, and for phones and tablets; not yet tested with real screen readers or real tablets (see the [FAQ](#faq-and-limitations)).
@@ -473,7 +474,7 @@ Index entries are sorted by title, ignoring case and accents, with collections f
 
 #### Unlisted collections
 
-For a set of quizzes that should not appear on the main index (for example a family's private fun quizzes), put `"unlisted": true` in the collection's `collection.json`. The collection is still built and published at `<collection>/index.html`, so share that address directly. Only the link on the main index is removed.
+For a set of quizzes that should not appear on the main index (for example a family's private fun quizzes), put `"unlisted": true` in the collection's `collection.json`. The collection is still built and published at `<collection>/index.html`, so share that address directly. Only the link on the main index is removed. An unlisted collection can't be installed as an app (its pages carry no app tags), because the app's start page would not list it.
 
 "Unlisted" is not "private": anyone who knows or guesses the address can open it, the quiz files are public in the repository, and search engines may still find the pages. Do not put anything in an unlisted collection that you would not want public.
 
@@ -549,7 +550,7 @@ Errors stop the build:
 - **File and structure:** valid JSON (the message gives line and column), required fields present, correct types and allowed values, no unknown fields (typos).
 - **Questions:** exactly one `"correct": true` option per question; at least 2 options, each with `text` or `image`; `questions_per_quiz` (or `--questions`) not larger than the number of questions.
 - **Languages:** in a multi-language quiz every text covers every language (its own key or `any`) and no plain strings are used; in a single-language quiz no translation maps; `language` and `languages` not mixed; every language code has built-in interface text.
-- **Images:** the file exists, stays inside the quiz folder, is png/jpg/jpeg/gif/webp, is 5 MB or less, really is that kind of image; `image_alt` only with an `image`, and not `""` on a picture-only option.
+- **Images:** the file exists, stays inside the quiz folder, is png/jpg/jpeg/gif/webp, is 5 MB or less, really is that kind of image; `image_alt` only with an `image`, and not `""` on a picture-only option. In site mode an image can't take the name of a file the site writes itself (for example `assets/icon-192.png`).
 - **Author and `ui`:** `author` has a name, a web address that starts with `http://` or `https://`, and an email that looks like one; `ui` has only known keys, no empty values and no unknown `{placeholders}`.
 - **Folders:** reserved names (see [Collections](#collections-and-folder-layout)), linked JSON files and odd file names; `site.json` and `collection.json` are checked too.
 
@@ -694,6 +695,12 @@ A small static website: an index page, one page per quiz, and shared files. The 
 site/
 ├── .nojekyll
 ├── assets/
+│   ├── apple-touch-icon.png
+│   ├── flags.woff2
+│   ├── icon-192.png
+│   ├── icon-512.png
+│   ├── icon-maskable-512.png
+│   ├── manifest.webmanifest
 │   ├── quiz.css
 │   └── quiz.js
 ├── class-4b/
@@ -709,6 +716,7 @@ site/
 - `index.html` lists collections and loose quizzes. `class-4b/index.html` lists that collection's quizzes. Index pages need no JavaScript.
 - Each quiz page links to the shared `assets/quiz.css` and `assets/quiz.js`, and has a link back to the index.
 - Local images are copied once to the same relative path as in your folder.
+- The site is an installable web app: `assets/manifest.webmanifest` and the icons (made from the project logo) let a phone or tablet add it to the home screen (browser menu, "Add to Home Screen" or "Install app"). The app is named after the `title` in `site.json` (or "Quizzes"), opens the site's front page, fills the whole screen and has a purple splash screen; iPhones and iPads use the same title for the home-screen icon. Unlisted collections are not part of the app. There is no service worker, so nothing is cached for offline use and a changed quiz shows up right away. Single-file mode is unaffected.
 - `.nojekyll` is an empty file that tells GitHub Pages not to run Jekyll over the files.
 
 ### Which one should I use?
@@ -722,7 +730,7 @@ site/
 
 ### Security of the output
 
-Generated pages load no fonts, scripts or analytics from other sites, and make no requests except for `https://` pictures you choose to link. Each page has a strict Content-Security-Policy (a browser safety rule, set in a `<meta>` tag) that enforces this. In single-file mode scripts and styles are allowed only by hash; in site mode only from the site's own `assets/`. Images are allowed from the site itself, `data:` and `https:` links. Quiz text is always inserted as text, never as HTML.
+Generated pages load no fonts, scripts or analytics from other sites, and make no requests except for `https://` pictures you choose to link. Each page has a strict Content-Security-Policy (a browser safety rule, set in a `<meta>` tag) that enforces this. In single-file mode scripts and styles are allowed only by hash; in site mode only from the site's own `assets/` (the app manifest is allowed the same way). Images are allowed from the site itself, `data:` and `https:` links. Quiz text is always inserted as text, never as HTML.
 
 ## Publishing on GitHub Pages
 
@@ -780,7 +788,7 @@ The editor checks the structure only. For the full set of checks (one correct an
 
 **Does it track my students?** No. See [Privacy](#privacy).
 
-**Does it work offline?** Single-file pages work fully offline: open them from disk, no server needed. A site needs a web server (even a local one), but nothing on the internet; only remote images need a connection.
+**Does it work offline?** Single-file pages work fully offline: open them from disk, no server needed. A site needs a web server (even a local one), but nothing on the internet; only remote images need a connection. A site added to a home screen as an app still needs its connection (there is no offline cache).
 
 **Which browsers have been tested?** Chromium only, so far, on desktop (via Playwright with a local file and with a local web server). Firefox, Safari, real phones and tablets, and screen readers have not been tested yet. Bug reports are very welcome.
 
