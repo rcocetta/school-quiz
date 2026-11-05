@@ -1,0 +1,1531 @@
+{
+  "$schema": "../../src/quizgen/schema.json",
+  "title": "The Marvelous Mrs. Maisel",
+  "description": "80 questions about the story and characters of The Marvelous Mrs. Maisel, from season 1 to season 5. Each game asks you 10.",
+  "language": "en",
+  "questions_per_quiz": 10,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "questions": [
+    {
+      "text": "What is Midge's real first name?",
+      "explanation": "Everyone calls her Midge, but her full name is Miriam Maisel.",
+      "options": [
+        {
+          "text": "Miriam",
+          "correct": true
+        },
+        {
+          "text": "Marian"
+        },
+        {
+          "text": "Miranda"
+        },
+        {
+          "text": "Mildred"
+        }
+      ]
+    },
+    {
+      "text": "In which year does the story begin?",
+      "explanation": "The first episode is set in New York City in 1958.",
+      "options": [
+        {
+          "text": "1958",
+          "correct": true
+        },
+        {
+          "text": "1948"
+        },
+        {
+          "text": "1963"
+        },
+        {
+          "text": "1969"
+        }
+      ]
+    },
+    {
+      "text": "Where does Midge live at the start of the story?",
+      "explanation": "Her parents live upstairs in the same building.",
+      "options": [
+        {
+          "text": "On the Upper West Side of Manhattan",
+          "correct": true
+        },
+        {
+          "text": "In Brooklyn Heights"
+        },
+        {
+          "text": "In Greenwich Village"
+        },
+        {
+          "text": "In the Bronx"
+        }
+      ]
+    },
+    {
+      "text": "What was Midge's last name before she married Joel?",
+      "explanation": "She is the daughter of Abe and Rose Weissman.",
+      "options": [
+        {
+          "text": "Weissman",
+          "correct": true
+        },
+        {
+          "text": "Lennon"
+        },
+        {
+          "text": "Baldwin"
+        },
+        {
+          "text": "Bruce"
+        }
+      ]
+    },
+    {
+      "text": "What are the names of Midge and Joel's two children?",
+      "explanation": "Ethan and Esther are Midge and Joel's children.",
+      "options": [
+        {
+          "text": "Ethan and Esther",
+          "correct": true
+        },
+        {
+          "text": "Noah and Astrid"
+        },
+        {
+          "text": "Aaron and Ruth"
+        },
+        {
+          "text": "Daniel and Leah"
+        }
+      ]
+    },
+    {
+      "text": "What does Midge's father, Abe, do for a living at the start?",
+      "explanation": "Abe is a math professor at Columbia University.",
+      "options": [
+        {
+          "text": "He teaches math at Columbia University",
+          "correct": true
+        },
+        {
+          "text": "He is a doctor at a hospital"
+        },
+        {
+          "text": "He edits a newspaper"
+        },
+        {
+          "text": "He is a lawyer in Manhattan"
+        }
+      ]
+    },
+    {
+      "text": "What is Joel's day job in season 1?",
+      "explanation": "Joel works at Tri-Borough Plastics during the day.",
+      "options": [
+        {
+          "text": "He works at a plastics company",
+          "correct": true
+        },
+        {
+          "text": "He works at an insurance company"
+        },
+        {
+          "text": "He works at a newspaper"
+        },
+        {
+          "text": "He works in a department store"
+        }
+      ]
+    },
+    {
+      "text": "What does Joel secretly dream of becoming?",
+      "explanation": "Joel tries stand-up comedy at night, with little success.",
+      "options": [
+        {
+          "text": "A stand-up comedian",
+          "correct": true
+        },
+        {
+          "text": "A jazz pianist"
+        },
+        {
+          "text": "A Broadway actor"
+        },
+        {
+          "text": "A painter"
+        }
+      ]
+    },
+    {
+      "text": "Whose jokes does Joel steal for his act?",
+      "explanation": "Midge finds out that Joel has been copying Bob Newhart.",
+      "options": [
+        {
+          "text": "Bob Newhart's",
+          "correct": true
+        },
+        {
+          "text": "Milton Berle's"
+        },
+        {
+          "text": "Jack Benny's"
+        },
+        {
+          "text": "Henny Youngman's"
+        }
+      ]
+    },
+    {
+      "text": "In which comedy club does Midge perform for the first time?",
+      "explanation": "The Gaslight Cafe is where Joel performs and where Midge first grabs the microphone.",
+      "options": [
+        {
+          "text": "The Gaslight",
+          "correct": true
+        },
+        {
+          "text": "The Village Vanguard"
+        },
+        {
+          "text": "The Copacabana"
+        },
+        {
+          "text": "The Blue Angel"
+        }
+      ]
+    },
+    {
+      "text": "Who is Joel's mistress when he leaves Midge?",
+      "explanation": "Joel leaves Midge for his secretary, Penny Pann.",
+      "options": [
+        {
+          "text": "Penny Pann, his secretary",
+          "correct": true
+        },
+        {
+          "text": "Imogene, Midge's friend"
+        },
+        {
+          "text": "A waitress at the Gaslight"
+        },
+        {
+          "text": "His boss's daughter"
+        }
+      ]
+    },
+    {
+      "text": "What is Midge drinking before she takes the stage for the first time?",
+      "explanation": "Midge has been drinking wine when she heads to the Gaslight.",
+      "options": [
+        {
+          "text": "Wine",
+          "correct": true
+        },
+        {
+          "text": "Champagne"
+        },
+        {
+          "text": "Whiskey"
+        },
+        {
+          "text": "Cherry soda"
+        }
+      ]
+    },
+    {
+      "text": "What is Midge wearing when she goes on stage for the first time?",
+      "explanation": "She walks into the club and performs in her nightgown.",
+      "options": [
+        {
+          "text": "Her nightgown",
+          "correct": true
+        },
+        {
+          "text": "Her wedding dress"
+        },
+        {
+          "text": "A waitress uniform"
+        },
+        {
+          "text": "A red evening gown"
+        }
+      ]
+    },
+    {
+      "text": "How does Midge's first night on stage end?",
+      "explanation": "Her bold, unplanned set ends with the police taking her away.",
+      "options": [
+        {
+          "text": "She is arrested",
+          "correct": true
+        },
+        {
+          "text": "She signs a record deal"
+        },
+        {
+          "text": "She faints on stage"
+        },
+        {
+          "text": "Joel takes the microphone from her"
+        }
+      ]
+    },
+    {
+      "text": "Who bails Midge out after her first night and offers to manage her?",
+      "explanation": "Susie, who works at the Gaslight, sees Midge's talent right away.",
+      "options": [
+        {
+          "text": "Susie",
+          "correct": true
+        },
+        {
+          "text": "Abe"
+        },
+        {
+          "text": "Joel"
+        },
+        {
+          "text": "Lenny Bruce"
+        }
+      ]
+    },
+    {
+      "text": "Which famous comic is arrested the same night as Midge?",
+      "explanation": "Midge meets Lenny Bruce that night, and he becomes an important friend.",
+      "options": [
+        {
+          "text": "Lenny Bruce",
+          "correct": true
+        },
+        {
+          "text": "Bob Newhart"
+        },
+        {
+          "text": "Shy Baldwin"
+        },
+        {
+          "text": "Tony Bennett"
+        }
+      ]
+    },
+    {
+      "text": "Where does Midge work in season 1?",
+      "explanation": "She sells cosmetics at the B. Altman department store.",
+      "options": [
+        {
+          "text": "At the makeup counter of a department store",
+          "correct": true
+        },
+        {
+          "text": "In a bakery"
+        },
+        {
+          "text": "In a school library"
+        },
+        {
+          "text": "At a shoe store"
+        }
+      ]
+    },
+    {
+      "text": "Who owns the apartment where Midge and Joel live?",
+      "explanation": "Moishe reveals that he owns it and plans to sell it.",
+      "options": [
+        {
+          "text": "Joel's father, Moishe",
+          "correct": true
+        },
+        {
+          "text": "Midge's father, Abe"
+        },
+        {
+          "text": "Midge's boss"
+        },
+        {
+          "text": "The bank"
+        }
+      ]
+    },
+    {
+      "text": "Where does Midge go to live after she splits up with Joel?",
+      "explanation": "She moves back in with Abe and Rose.",
+      "options": [
+        {
+          "text": "Back to her parents' home",
+          "correct": true
+        },
+        {
+          "text": "To Susie's place"
+        },
+        {
+          "text": "To a hotel"
+        },
+        {
+          "text": "To Moishe and Shirley's house"
+        }
+      ]
+    },
+    {
+      "text": "At which outdoor place does Midge perform at a protest in season 1?",
+      "explanation": "Midge takes her act to a protest in Washington Square Park.",
+      "options": [
+        {
+          "text": "Washington Square Park",
+          "correct": true
+        },
+        {
+          "text": "Central Park"
+        },
+        {
+          "text": "Union Square"
+        },
+        {
+          "text": "Prospect Park"
+        }
+      ]
+    },
+    {
+      "text": "What gets Midge blacklisted from most clubs at the end of season 1?",
+      "explanation": "Midge goes after Sophie's act in public, and the powerful people around Sophie make sure the clubs shut Midge out.",
+      "options": [
+        {
+          "text": "She mocks the star Sophie Lennon on stage",
+          "correct": true
+        },
+        {
+          "text": "She shows up late for a big show"
+        },
+        {
+          "text": "She refuses to pay a club owner"
+        },
+        {
+          "text": "She tells jokes about Lenny Bruce"
+        }
+      ]
+    },
+    {
+      "text": "What is Sophie Lennon's stage character?",
+      "explanation": "Sophie plays a working-class woman from Queens, and the character is not who she really is.",
+      "options": [
+        {
+          "text": "A loud housewife from Queens",
+          "correct": true
+        },
+        {
+          "text": "A French chef"
+        },
+        {
+          "text": "A Southern belle"
+        },
+        {
+          "text": "A Wall Street banker"
+        }
+      ]
+    },
+    {
+      "text": "Who is the manager of the comic Sophie Lennon in season 1?",
+      "explanation": "Harry Drake manages Sophie, and he has a lot of power over the clubs.",
+      "options": [
+        {
+          "text": "Harry Drake",
+          "correct": true
+        },
+        {
+          "text": "Mike Carr"
+        },
+        {
+          "text": "Danny Stevens"
+        },
+        {
+          "text": "Gordon Ford"
+        }
+      ]
+    },
+    {
+      "text": "What does Midge announce at the end of her set in the season 1 finale?",
+      "explanation": "She finishes by introducing herself as Mrs. Maisel.",
+      "options": [
+        {
+          "text": "That her name is Mrs. Maisel",
+          "correct": true
+        },
+        {
+          "text": "That she is quitting comedy"
+        },
+        {
+          "text": "That she is moving to Paris"
+        },
+        {
+          "text": "That Joel taught her everything"
+        }
+      ]
+    },
+    {
+      "text": "Who are Joel's parents?",
+      "explanation": "Moishe and Shirley Maisel are Joel's parents.",
+      "options": [
+        {
+          "text": "Moishe and Shirley",
+          "correct": true
+        },
+        {
+          "text": "Abe and Rose"
+        },
+        {
+          "text": "Noah and Astrid"
+        },
+        {
+          "text": "Archie and Imogene"
+        }
+      ]
+    },
+    {
+      "text": "What business does Joel's family run?",
+      "explanation": "Moishe's family business makes clothes.",
+      "options": [
+        {
+          "text": "A clothing business",
+          "correct": true
+        },
+        {
+          "text": "A toy factory"
+        },
+        {
+          "text": "A bakery"
+        },
+        {
+          "text": "A newspaper"
+        }
+      ]
+    },
+    {
+      "text": "What secret job does Midge's brother Noah turn out to have?",
+      "explanation": "Noah's secret job as a government agent surprises the whole family.",
+      "options": [
+        {
+          "text": "He works for the CIA",
+          "correct": true
+        },
+        {
+          "text": "He is a priest"
+        },
+        {
+          "text": "He is a professional wrestler"
+        },
+        {
+          "text": "He is a jazz singer"
+        }
+      ]
+    },
+    {
+      "text": "Why do Abe and Midge fly to Paris in season 2?",
+      "explanation": "Rose has moved to Paris, and Abe and Midge go to bring her back.",
+      "options": [
+        {
+          "text": "To bring Rose back home",
+          "correct": true
+        },
+        {
+          "text": "To see a comedy festival"
+        },
+        {
+          "text": "To buy fabric for Moishe"
+        },
+        {
+          "text": "To meet a famous singer"
+        }
+      ]
+    },
+    {
+      "text": "What does Rose study after she returns from Paris?",
+      "explanation": "Rose sits in on art classes at Columbia, where Abe teaches.",
+      "options": [
+        {
+          "text": "Art classes at Columbia",
+          "correct": true
+        },
+        {
+          "text": "Cooking classes"
+        },
+        {
+          "text": "Law classes"
+        },
+        {
+          "text": "Dance classes"
+        }
+      ]
+    },
+    {
+      "text": "Where do Midge's and Joel's families spend the summer in season 2?",
+      "explanation": "Both families spend the summer in the Catskill Mountains.",
+      "options": [
+        {
+          "text": "At a resort in the Catskills",
+          "correct": true
+        },
+        {
+          "text": "At a beach house in the Hamptons"
+        },
+        {
+          "text": "On a farm on Cape Cod"
+        },
+        {
+          "text": "At a hotel near Niagara Falls"
+        }
+      ]
+    },
+    {
+      "text": "What big secret about Midge does Abe learn on that summer vacation?",
+      "explanation": "Abe finds out about Midge's act at the resort, and he is upset by it.",
+      "options": [
+        {
+          "text": "That she performs stand-up comedy",
+          "correct": true
+        },
+        {
+          "text": "That she is moving to Paris"
+        },
+        {
+          "text": "That she is learning to fly"
+        },
+        {
+          "text": "That Joel is dating Susie"
+        }
+      ]
+    },
+    {
+      "text": "What new business does Rose start in seasons 3 and 4?",
+      "explanation": "Rose discovers that she has a real talent for matchmaking.",
+      "options": [
+        {
+          "text": "Matchmaking",
+          "correct": true
+        },
+        {
+          "text": "Catering"
+        },
+        {
+          "text": "Fashion design"
+        },
+        {
+          "text": "Piano lessons"
+        }
+      ]
+    },
+    {
+      "text": "How do mysterious rivals warn Rose to stop her new business?",
+      "explanation": "A secret group of local matchmakers sends her perfumed letters.",
+      "options": [
+        {
+          "text": "With scented letters",
+          "correct": true
+        },
+        {
+          "text": "With phone calls at night"
+        },
+        {
+          "text": "With singing telegrams"
+        },
+        {
+          "text": "With notes left on her doorstep"
+        }
+      ]
+    },
+    {
+      "text": "For which newspaper does Abe become a theater critic?",
+      "explanation": "Abe becomes a theater critic at The Village Voice in season 3.",
+      "options": [
+        {
+          "text": "The Village Voice",
+          "correct": true
+        },
+        {
+          "text": "The New York Post"
+        },
+        {
+          "text": "The Daily News"
+        },
+        {
+          "text": "The Brooklyn Eagle"
+        }
+      ]
+    },
+    {
+      "text": "Which famous research lab gives Abe a job?",
+      "explanation": "Abe starts working at Bell Labs in season 1.",
+      "options": [
+        {
+          "text": "Bell Labs",
+          "correct": true
+        },
+        {
+          "text": "NASA"
+        },
+        {
+          "text": "IBM"
+        },
+        {
+          "text": "Los Alamos"
+        }
+      ]
+    },
+    {
+      "text": "After their money troubles, with whom do Abe and Rose go to live?",
+      "explanation": "In season 3 the Weissmans move in with the Maisels.",
+      "options": [
+        {
+          "text": "Joel's parents, Moishe and Shirley",
+          "correct": true
+        },
+        {
+          "text": "Susie"
+        },
+        {
+          "text": "Noah"
+        },
+        {
+          "text": "Midge"
+        }
+      ]
+    },
+    {
+      "text": "What does Rose give up after a falling-out with her wealthy family?",
+      "explanation": "Rose turns her back on the family money.",
+      "options": [
+        {
+          "text": "Her family trust fund",
+          "correct": true
+        },
+        {
+          "text": "Her art classes"
+        },
+        {
+          "text": "Her Paris apartment"
+        },
+        {
+          "text": "Her matchmaking clients"
+        }
+      ]
+    },
+    {
+      "text": "Alfie hypnotizes Rose on stage. What does she do?",
+      "explanation": "It shows that Rose has secretly watched Midge perform.",
+      "options": [
+        {
+          "text": "She performs part of Midge's stand-up act",
+          "correct": true
+        },
+        {
+          "text": "She sings an opera song"
+        },
+        {
+          "text": "She dances the tango"
+        },
+        {
+          "text": "She tells Susie's secret"
+        }
+      ]
+    },
+    {
+      "text": "In season 2, Midge moves to which job at the department store?",
+      "explanation": "She leaves the makeup counter and works on the switchboard.",
+      "options": [
+        {
+          "text": "Switchboard operator",
+          "correct": true
+        },
+        {
+          "text": "Elevator operator"
+        },
+        {
+          "text": "Gift wrapper"
+        },
+        {
+          "text": "Shoe seller"
+        }
+      ]
+    },
+    {
+      "text": "Who invites Midge to open for his tour at the end of season 2?",
+      "explanation": "Midge says yes to a long tour of the US and Europe.",
+      "options": [
+        {
+          "text": "Shy Baldwin, a singer",
+          "correct": true
+        },
+        {
+          "text": "Tony Bennett"
+        },
+        {
+          "text": "Lenny Bruce"
+        },
+        {
+          "text": "Gordon Ford"
+        }
+      ]
+    },
+    {
+      "text": "At the end of season 2, who does Midge turn to for comfort?",
+      "explanation": "Even though they are separated, Midge goes to Joel.",
+      "options": [
+        {
+          "text": "Joel",
+          "correct": true
+        },
+        {
+          "text": "Benjamin"
+        },
+        {
+          "text": "Lenny Bruce"
+        },
+        {
+          "text": "Susie"
+        }
+      ]
+    },
+    {
+      "text": "What is the first stop on Midge's tour with Shy?",
+      "explanation": "It is the biggest crowd Midge has ever performed for.",
+      "options": [
+        {
+          "text": "A USO show for soldiers",
+          "correct": true
+        },
+        {
+          "text": "A Broadway opening"
+        },
+        {
+          "text": "A Catskills hotel"
+        },
+        {
+          "text": "A state fair"
+        }
+      ]
+    },
+    {
+      "text": "In which city does Joel visit Midge during the tour?",
+      "explanation": "Joel turns up at her show in Las Vegas.",
+      "options": [
+        {
+          "text": "Las Vegas",
+          "correct": true
+        },
+        {
+          "text": "Chicago"
+        },
+        {
+          "text": "Los Angeles"
+        },
+        {
+          "text": "Atlantic City"
+        }
+      ]
+    },
+    {
+      "text": "What surprising thing happens after Joel visits Midge in Las Vegas?",
+      "explanation": "After a drunken night out, they discover they are married again, and they agree to cancel it.",
+      "options": [
+        {
+          "text": "They wake up married again",
+          "correct": true
+        },
+        {
+          "text": "They win a jackpot"
+        },
+        {
+          "text": "They open a club together"
+        },
+        {
+          "text": "They meet Shy's parents"
+        }
+      ]
+    },
+    {
+      "text": "Who stops Midge and Susie from boarding the plane to Europe?",
+      "explanation": "Reggie ends the tour after Midge's jokes at the Apollo.",
+      "options": [
+        {
+          "text": "Reggie, Shy's manager",
+          "correct": true
+        },
+        {
+          "text": "Harry Drake"
+        },
+        {
+          "text": "Joel"
+        },
+        {
+          "text": "Mike Carr"
+        }
+      ]
+    },
+    {
+      "text": "At which theater does Midge's set cost her the tour?",
+      "explanation": "Her jokes about Shy at the Apollo get her thrown off the tour.",
+      "options": [
+        {
+          "text": "The Apollo Theater in Harlem",
+          "correct": true
+        },
+        {
+          "text": "Carnegie Hall"
+        },
+        {
+          "text": "Radio City Music Hall"
+        },
+        {
+          "text": "The Copacabana"
+        }
+      ]
+    },
+    {
+      "text": "How does season 3 end for Midge and Susie?",
+      "explanation": "They watch Shy's plane leave without them.",
+      "options": [
+        {
+          "text": "They are stranded on the airport tarmac",
+          "correct": true
+        },
+        {
+          "text": "They open a new club"
+        },
+        {
+          "text": "They sign a TV deal"
+        },
+        {
+          "text": "They sail to Europe"
+        }
+      ]
+    },
+    {
+      "text": "What bad habit puts Susie in trouble on the tour?",
+      "explanation": "Susie starts gambling in Las Vegas, and it gets out of control.",
+      "options": [
+        {
+          "text": "Gambling",
+          "correct": true
+        },
+        {
+          "text": "Smoking"
+        },
+        {
+          "text": "Shopping"
+        },
+        {
+          "text": "Collecting art"
+        }
+      ]
+    },
+    {
+      "text": "Who ends up managing Midge's money after Susie loses it?",
+      "explanation": "Susie asks Joel to look after the money, since she does not trust herself.",
+      "options": [
+        {
+          "text": "Joel",
+          "correct": true
+        },
+        {
+          "text": "Abe"
+        },
+        {
+          "text": "Moishe"
+        },
+        {
+          "text": "Benjamin"
+        }
+      ]
+    },
+    {
+      "text": "Which rival comic does Susie sign as a client in season 3?",
+      "explanation": "Susie takes on Sophie to make ends meet, which upsets Midge.",
+      "options": [
+        {
+          "text": "Sophie Lennon",
+          "correct": true
+        },
+        {
+          "text": "Lenny Bruce"
+        },
+        {
+          "text": "Shy Baldwin"
+        },
+        {
+          "text": "Gordon Ford"
+        }
+      ]
+    },
+    {
+      "text": "What does Sophie do on opening night of her serious play?",
+      "explanation": "Sophie goes back to her Queens character, and the critics are not kind.",
+      "options": [
+        {
+          "text": "She freezes and falls back on her old act",
+          "correct": true
+        },
+        {
+          "text": "She gives a perfect performance"
+        },
+        {
+          "text": "She leaves halfway through"
+        },
+        {
+          "text": "She faints on stage"
+        }
+      ]
+    },
+    {
+      "text": "What does Joel find in the basement of the building for his club?",
+      "explanation": "The cheap rent comes with a surprise below the club.",
+      "options": [
+        {
+          "text": "An illegal gambling ring",
+          "correct": true
+        },
+        {
+          "text": "A hidden stage"
+        },
+        {
+          "text": "A broken boiler"
+        },
+        {
+          "text": "A secret tunnel"
+        }
+      ]
+    },
+    {
+      "text": "What does Mei Lin help Joel get for his club?",
+      "explanation": "Mei helps Joel get the license he needs to serve drinks.",
+      "options": [
+        {
+          "text": "A liquor license",
+          "correct": true
+        },
+        {
+          "text": "A building permit"
+        },
+        {
+          "text": "A bank loan"
+        },
+        {
+          "text": "A band"
+        }
+      ]
+    },
+    {
+      "text": "What goes wrong on the opening night of Joel's club?",
+      "explanation": "Midge goes on stage and entertains the crowd until the lights come back.",
+      "options": [
+        {
+          "text": "The power goes out",
+          "correct": true
+        },
+        {
+          "text": "The bartender quits"
+        },
+        {
+          "text": "The police shut it down"
+        },
+        {
+          "text": "A fire breaks out"
+        }
+      ]
+    },
+    {
+      "text": "Who becomes Joel's new girlfriend in season 3?",
+      "explanation": "Joel meets Mei Lin while planning his club.",
+      "options": [
+        {
+          "text": "Mei Lin",
+          "correct": true
+        },
+        {
+          "text": "Penny Pann"
+        },
+        {
+          "text": "Imogene"
+        },
+        {
+          "text": "Shirley's neighbor"
+        }
+      ]
+    },
+    {
+      "text": "Why does Abe quitting his jobs alarm Rose at the end of season 2?",
+      "explanation": "If Abe leaves the university, the Weissmans could lose their home.",
+      "options": [
+        {
+          "text": "The university owns the family's apartment",
+          "correct": true
+        },
+        {
+          "text": "He wants to move to Paris"
+        },
+        {
+          "text": "He wants to become a comedian"
+        },
+        {
+          "text": "He owes money to Moishe"
+        }
+      ]
+    },
+    {
+      "text": "What job does Benjamin, Midge's boyfriend in season 2, have?",
+      "explanation": "Dr. Benjamin Ettenberg is a Manhattan doctor whom Midge meets on vacation.",
+      "options": [
+        {
+          "text": "He is a doctor",
+          "correct": true
+        },
+        {
+          "text": "He is a lawyer"
+        },
+        {
+          "text": "He is a math teacher"
+        },
+        {
+          "text": "He is a chef"
+        }
+      ]
+    },
+    {
+      "text": "What new rule does Midge set for herself in season 4?",
+      "explanation": "Midge decides she will only headline her own shows.",
+      "options": [
+        {
+          "text": "She will no longer open for other acts",
+          "correct": true
+        },
+        {
+          "text": "She will never perform on weekends"
+        },
+        {
+          "text": "She will only tell new jokes"
+        },
+        {
+          "text": "She will stop talking about Joel"
+        }
+      ]
+    },
+    {
+      "text": "Where does Midge perform in season 4?",
+      "explanation": "At the Wolford she can say whatever she likes.",
+      "options": [
+        {
+          "text": "The Wolford, a burlesque club",
+          "correct": true
+        },
+        {
+          "text": "The Apollo Theater"
+        },
+        {
+          "text": "The Copacabana"
+        },
+        {
+          "text": "A jazz club in Harlem"
+        }
+      ]
+    },
+    {
+      "text": "What happens at the Wolford at the end of season 4?",
+      "explanation": "The raid ends the night, and Midge and Lenny run off together.",
+      "options": [
+        {
+          "text": "The police raid it",
+          "correct": true
+        },
+        {
+          "text": "A fire breaks out"
+        },
+        {
+          "text": "A famous singer shows up"
+        },
+        {
+          "text": "The owner sells the club"
+        }
+      ]
+    },
+    {
+      "text": "Whose opening slot does Midge turn down in season 4?",
+      "explanation": "Lenny arranges the offer, but Midge refuses because of her new rule.",
+      "options": [
+        {
+          "text": "Tony Bennett's",
+          "correct": true
+        },
+        {
+          "text": "Frank Sinatra's"
+        },
+        {
+          "text": "Dean Martin's"
+        },
+        {
+          "text": "Johnny Mathis's"
+        }
+      ]
+    },
+    {
+      "text": "Where is Lenny Bruce booked to perform in the season 4 finale?",
+      "explanation": "The finale is named after the old joke about how to get to Carnegie Hall.",
+      "options": [
+        {
+          "text": "Carnegie Hall",
+          "correct": true
+        },
+        {
+          "text": "Radio City Music Hall"
+        },
+        {
+          "text": "Madison Square Garden"
+        },
+        {
+          "text": "The Apollo Theater"
+        }
+      ]
+    },
+    {
+      "text": "What news makes Moishe have a heart attack in season 4?",
+      "explanation": "Moishe is shocked when Joel tells him about the baby.",
+      "options": [
+        {
+          "text": "Joel and Mei are expecting a baby",
+          "correct": true
+        },
+        {
+          "text": "Joel is closing the club"
+        },
+        {
+          "text": "Midge wants her apartment back"
+        },
+        {
+          "text": "Abe has quit his job"
+        }
+      ]
+    },
+    {
+      "text": "What does Susie's client Alfie do?",
+      "explanation": "Susie signs Alfie, a magician, as a new client.",
+      "options": [
+        {
+          "text": "He is a magician",
+          "correct": true
+        },
+        {
+          "text": "He is a ventriloquist"
+        },
+        {
+          "text": "He is a singer"
+        },
+        {
+          "text": "He is a juggler"
+        }
+      ]
+    },
+    {
+      "text": "What does Midge see in the last scene of season 4?",
+      "explanation": "It points her toward her next big move.",
+      "options": [
+        {
+          "text": "An advertisement for The Gordon Ford Show",
+          "correct": true
+        },
+        {
+          "text": "A poster for Carnegie Hall"
+        },
+        {
+          "text": "A sign for the Gaslight"
+        },
+        {
+          "text": "A newspaper review of Lenny"
+        }
+      ]
+    },
+    {
+      "text": "What is Mike Carr's job?",
+      "explanation": "Susie knows Mike from the show, which could help Midge.",
+      "options": [
+        {
+          "text": "He books guests for The Gordon Ford Show",
+          "correct": true
+        },
+        {
+          "text": "He hosts The Gordon Ford Show"
+        },
+        {
+          "text": "He writes jokes for the host"
+        },
+        {
+          "text": "He runs the TV network"
+        }
+      ]
+    },
+    {
+      "text": "What job does Midge get on The Gordon Ford Show?",
+      "explanation": "Susie pushes Midge into a job as a writer on the late-night show.",
+      "options": [
+        {
+          "text": "Writer",
+          "correct": true
+        },
+        {
+          "text": "Host"
+        },
+        {
+          "text": "Guest booker"
+        },
+        {
+          "text": "Makeup artist"
+        }
+      ]
+    },
+    {
+      "text": "What rule on The Gordon Ford Show frustrates Midge?",
+      "explanation": "Midge wants to be a comic, but the show keeps its writers off camera.",
+      "options": [
+        {
+          "text": "Writers are not allowed to perform on air",
+          "correct": true
+        },
+        {
+          "text": "No jokes about politics"
+        },
+        {
+          "text": "No jokes about family"
+        },
+        {
+          "text": "Only men may host"
+        }
+      ]
+    },
+    {
+      "text": "In the series finale, how much airtime does Midge take over?",
+      "explanation": "Gordon cuts a segment short, and Midge fills the four minutes herself.",
+      "options": [
+        {
+          "text": "Four minutes",
+          "correct": true
+        },
+        {
+          "text": "Ten minutes"
+        },
+        {
+          "text": "Two minutes"
+        },
+        {
+          "text": "Fifteen minutes"
+        }
+      ]
+    },
+    {
+      "text": "How does Gordon Ford react after Midge's set?",
+      "explanation": "He is impressed, but she broke his rule about writers.",
+      "options": [
+        {
+          "text": "He fires her for breaking his rule",
+          "correct": true
+        },
+        {
+          "text": "He makes her the new host"
+        },
+        {
+          "text": "He cancels his show"
+        },
+        {
+          "text": "He gives her a raise"
+        }
+      ]
+    },
+    {
+      "text": "Who does Susie ask for help to get Midge booked on the show?",
+      "explanation": "Susie uses her old connection to Hedy.",
+      "options": [
+        {
+          "text": "Hedy",
+          "correct": true
+        },
+        {
+          "text": "Imogene"
+        },
+        {
+          "text": "Shirley"
+        },
+        {
+          "text": "Mei Lin"
+        }
+      ]
+    },
+    {
+      "text": "What do we learn about Susie and Hedy in season 5?",
+      "explanation": "Susie and Hedy have a shared past, which helps Midge get her chance.",
+      "options": [
+        {
+          "text": "They were close long ago",
+          "correct": true
+        },
+        {
+          "text": "They are sisters"
+        },
+        {
+          "text": "They are business partners"
+        },
+        {
+          "text": "They were rivals at a comedy club"
+        }
+      ]
+    },
+    {
+      "text": "What TV quiz show do Midge and Susie watch together in 2005?",
+      "explanation": "In the last scene they watch it from separate homes.",
+      "options": [
+        {
+          "text": "Jeopardy!",
+          "correct": true
+        },
+        {
+          "text": "Wheel of Fortune"
+        },
+        {
+          "text": "The Price Is Right"
+        },
+        {
+          "text": "Family Feud"
+        }
+      ]
+    },
+    {
+      "text": "At which famous New York club is Susie honored with a roast?",
+      "explanation": "Susie is honored at the Friars Club.",
+      "options": [
+        {
+          "text": "The Friars Club",
+          "correct": true
+        },
+        {
+          "text": "The Copacabana"
+        },
+        {
+          "text": "The Stork Club"
+        },
+        {
+          "text": "The Apollo"
+        }
+      ]
+    },
+    {
+      "text": "In the flash-forwards, in which country does Midge visit her grown son Ethan?",
+      "explanation": "Midge travels to Israel to see Ethan in a flash-forward.",
+      "options": [
+        {
+          "text": "Israel",
+          "correct": true
+        },
+        {
+          "text": "Italy"
+        },
+        {
+          "text": "France"
+        },
+        {
+          "text": "Canada"
+        }
+      ]
+    },
+    {
+      "text": "What trouble does Joel get into in the 1980s flash-forward?",
+      "explanation": "Joel's arrest is one of the story's flash-forwards.",
+      "options": [
+        {
+          "text": "He is arrested",
+          "correct": true
+        },
+        {
+          "text": "He becomes a TV host"
+        },
+        {
+          "text": "He moves to Israel"
+        },
+        {
+          "text": "He wins a big prize"
+        }
+      ]
+    },
+    {
+      "text": "In the 1965 flashback, what does Lenny do when Susie offers to help him?",
+      "explanation": "Lenny refuses Susie's help, even though he is struggling.",
+      "options": [
+        {
+          "text": "He turns her down",
+          "correct": true
+        },
+        {
+          "text": "He hires her as his manager"
+        },
+        {
+          "text": "He gives her his act"
+        },
+        {
+          "text": "He invites her to dinner"
+        }
+      ]
+    },
+    {
+      "text": "How does the friendship between Midge and Susie turn out?",
+      "explanation": "The flash-forwards show a long break between them, and a reconciliation.",
+      "options": [
+        {
+          "text": "They fall out for years, then make up",
+          "correct": true
+        },
+        {
+          "text": "They never speak again"
+        },
+        {
+          "text": "They stay close the whole time"
+        },
+        {
+          "text": "They open a club together"
+        }
+      ]
+    },
+    {
+      "text": "What does the future hold for Midge in the flash-forwards?",
+      "explanation": "Midge's career takes off, even if her personal life stays complicated.",
+      "options": [
+        {
+          "text": "She becomes a very famous comedian",
+          "correct": true
+        },
+        {
+          "text": "She becomes a doctor"
+        },
+        {
+          "text": "She goes back to the makeup counter"
+        },
+        {
+          "text": "She retires after one year"
+        }
+      ]
+    },
+    {
+      "text": "The series ends with a jump forward to which year?",
+      "explanation": "The final scene shows Midge and Susie in 2005.",
+      "options": [
+        {
+          "text": "2005",
+          "correct": true
+        },
+        {
+          "text": "1975"
+        },
+        {
+          "text": "1999"
+        },
+        {
+          "text": "2015"
+        }
+      ]
+    }
+  ]
+}
