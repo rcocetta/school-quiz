@@ -8,6 +8,7 @@
 - **When you finish work, update `PLAN.md`:** tick or add items under Next and update the Status table. If you are a subagent, include the `PLAN.md` changes in your final report instead of editing it.
 - If implementation forces a change to the schema, CLI or behaviour, update `DESIGN.md` and the README in the same change.
 - The repo is public: no personal data (especially about children), credentials, or repository-settings details in `PLAN.md`, `DESIGN.md` or commit messages. Keep `PLAN.md` short; there is no session log.
+- **Never push to `main`.** Work on a branch and open a PR; the user merges it.
 
 ## Writing quizzes
 When asked to write or edit a quiz (not the tool), follow `AGENTS.md`.
