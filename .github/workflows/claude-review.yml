@@ -33,7 +33,7 @@ name: Claude review
 #     add pull_request or pull_request_target here. issue_comment workflows
 #     always run from the default branch's copy of this file, so a pull request
 #     cannot change how it is reviewed.
-#   * Max 10 turns and 10 minutes cap the cost of one run.
+#   * Max 20 turns and 10 minutes cap the cost of one run.
 # Worst case left: a misleading comment, or a secret obfuscated well enough to
 # slip past the post job's simple filter. The token has no spend limit of its
 # own (it uses the subscription's usage limits): if one ever leaks, revoke it
@@ -240,7 +240,7 @@ jobs:
           cd /tmp/review
           status=0
           "$RUNNER_TEMP/claude-cli/node_modules/.bin/claude" -p "$PROMPT" \
-            --max-turns 10 \
+            --max-turns 20 \
             --restricted \
             --tools "Read,Grep,Glob" \
             --allowedTools "Read,Grep,Glob" \
