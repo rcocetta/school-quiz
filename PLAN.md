@@ -21,7 +21,6 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 - [ ] `v0.1.0` tag, then pin the install in the README's Pages workflow snippet.
 - [ ] Installable site (D32): check on a real iPhone/iPad and Android (install name, start page after installing from a quiz page, external links in standalone mode). Icons are regenerated with `scripts/app_icons.py` when the logo changes.
 - [ ] Reject control and bidi-override characters in `site.json`/`collection.json` titles (they reach page titles and app names). Not every format character: emoji need the zero-width joiner.
-- [ ] Have a CM2 teacher check the answers and difficulty of `les-fractions-1.json` (French; the English and Italian texts need a native check too); later quizzes (Les Fractions 2, ...) can follow the same folder layout (`images/fractions/`).
 - [ ] Green theme (D33): have someone check the "For Fun" pages on a real device and with a screen reader; check the green home-screen icon on iOS/Android.
 - [ ] Not tested yet: Firefox/WebKit, real devices, screen readers, `es`/`de` index text.
 
