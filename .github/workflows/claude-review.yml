@@ -238,6 +238,7 @@ jobs:
           }
           JSON
           cd /tmp/review
+          status=0
           "$RUNNER_TEMP/claude-cli/node_modules/.bin/claude" -p "$PROMPT" \
             --max-turns 10 \
             --restricted \
@@ -247,12 +248,20 @@ jobs:
             --strict-mcp-config \
             --setting-sources user \
             --settings "$RUNNER_TEMP/review-settings.json" \
-            > "$RUNNER_TEMP/out/review.md"
+            > "$RUNNER_TEMP/out/review.md" || status=$?
           # Same filter as the post job, here too, so a rejected review is
           # never uploaded (artifacts on a public repo can be downloaded).
           if grep -Eq 'sk-ant-|ghs_|gh[pousr]_|github_pat_' "$RUNNER_TEMP/out/review.md"; then
             echo "::error::Review looks like it contains a key or token, discarded"
             rm -f -- "$RUNNER_TEMP/out/review.md"
+            exit 1
+          fi
+          # Claude writes its error messages (e.g. "max turns reached") to the
+          # output file, so show the start of it, after the filter above.
+          if [ "$status" -ne 0 ]; then
+            echo "::error::Claude exited with code $status. Start of its output:"
+            head -c 2000 "$RUNNER_TEMP/out/review.md"
+            echo
             exit 1
           fi
 
