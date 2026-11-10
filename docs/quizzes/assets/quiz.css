@@ -100,7 +100,7 @@
   /* In dark mode the boxes stay light green with dark green text (the page around them is dark), so they
      get the light palette back, including the right/wrong colours. --focus is not reset: the ring sits
      outside the boxes, on the dark page. */
-  :where([data-theme="green"] :is(.card, .hero, .result, .option, .review-item, .lang-btn, .back-link, .empty, .progress, .feedback, .btn[disabled]),
+  :where([data-theme="green"] :is(.card, .hero, .result, .option, .review-item, .back-link, .empty, .progress, .feedback, .btn[disabled]),
          .card[data-theme="green"]) {
     color: var(--ink);        /* text inside a box inherits from it, not from the dark page */
     --bg: #ecf9df;
