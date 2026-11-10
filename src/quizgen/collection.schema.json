@@ -42,6 +42,12 @@
     },
     "unlisted": {
       "type": "boolean"
+    },
+    "theme": {
+      "enum": [
+        "purple",
+        "green"
+      ]
     }
   }
 }

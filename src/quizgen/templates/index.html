@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ lang }}">
+<html lang="{{ lang }}"{% if theme %} data-theme="{{ theme }}"{% endif %}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
 {% if both %}<h2 id="collections-h" class="section-title">{{ collections_heading }}</h2>{% endif %}
 <ul class="cards">
 {% for c in collections %}
-<li class="card card--collection">
+<li class="card card--collection"{% if c.theme %} data-theme="{{ c.theme }}"{% endif %}>
 <h{{ lvl }} class="card-title"><a class="card-link" href="{{ c.href }}"><span class="folder" aria-hidden="true">&#128193;</span> {{ c.title }}</a></h{{ lvl }}>
 {% if c.description %}<p class="card-desc">{{ c.description }}</p>{% endif %}
 <p class="card-meta"><span class="chip">{{ c.count_text }}</span>{% if c.author_name %} <span class="by">{{ c.author_name }}</span>{% endif %}</p>
