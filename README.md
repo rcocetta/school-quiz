@@ -454,6 +454,7 @@ All values are plain strings and are never translated. Unknown keys are errors.
 | `language` | string | no | the site's language | Language of this collection's index text. |
 | `ui` | object | no | none | Text overrides for the quiz pages in this collection (a quiz's own `ui` wins). Values are plain strings, or a map using language codes or `any`. |
 | `unlisted` | boolean | no | `false` | `true` builds the collection (its page and quizzes) but leaves it off the main index and removes the "All quizzes" link from its page. See [Unlisted collections](#unlisted-collections). |
+| `theme` | `"purple"` or `"green"` | no | `"purple"` | Colour palette of the collection's pages, for example `"green"` for a "just for fun" set. Only colours change, and the text stays readable in light and dark mode. The collection's card on the main index is tinted too, and an app made from the collection gets matching green icons. |
 
 <!-- file: collection.json -->
 ```json
@@ -474,7 +475,7 @@ Index entries are sorted by title, ignoring case and accents, with collections f
 
 #### Unlisted collections
 
-For a set of quizzes that should not appear on the main index (for example a family's private fun quizzes), put `"unlisted": true` in the collection's `collection.json`. The collection is still built and published at `<collection>/index.html`, so share that address directly. Only the link on the main index is removed. An unlisted collection is an app of its own: added to a home screen from one of its pages, it is named after the collection and opens the collection's page (the build writes `<collection>/manifest.webmanifest` for it).
+For a set of quizzes that should not appear on the main index (for example a family's private fun quizzes), put `"unlisted": true` in the collection's `collection.json`. The collection is still built and published at `<collection>/index.html`, so share that address directly. Only the link on the main index is removed. An unlisted collection is an app of its own: added to a home screen from one of its pages, it is named after the collection and opens the collection's page (the build writes `<collection>/manifest.webmanifest` for it, with the collection's [theme](#collections-and-folder-layout) colours and icons).
 
 "Unlisted" is not "private": anyone who knows or guesses the address can open it, the quiz files are public in the repository, and search engines may still find the pages. Do not put anything in an unlisted collection that you would not want public.
 
@@ -716,7 +717,7 @@ site/
 - `index.html` lists collections and loose quizzes. `class-4b/index.html` lists that collection's quizzes. Index pages need no JavaScript.
 - Each quiz page links to the shared `assets/quiz.css` and `assets/quiz.js`, and has a link back to the index.
 - Local images are copied once to the same relative path as in your folder.
-- The site is an installable web app: `assets/manifest.webmanifest` and the icons (made from the project logo) let a phone or tablet add it to the home screen (browser menu, "Add to Home Screen" or "Install app"). The app is named after the `title` in `site.json` (or "Quizzes"), opens the site's front page, fills the whole screen and has a purple splash screen; iPhones and iPads use the same title for the home-screen icon. Each unlisted collection is a separate app, named after the collection and opening its page. There is no service worker, so nothing is cached for offline use and a changed quiz shows up right away. Single-file mode is unaffected.
+- The site is an installable web app: `assets/manifest.webmanifest` and the icons (made from the project logo) let a phone or tablet add it to the home screen (browser menu, "Add to Home Screen" or "Install app"). The app is named after the `title` in `site.json` (or "Quizzes"), opens the site's front page, fills the whole screen and has a purple splash screen (green for a collection with `"theme": "green"`); iPhones and iPads use the same title for the home-screen icon. Each unlisted collection is a separate app, named after the collection and opening its page. There is no service worker, so nothing is cached for offline use and a changed quiz shows up right away. Single-file mode is unaffected.
 - `.nojekyll` is an empty file that tells GitHub Pages not to run Jekyll over the files.
 
 ### Which one should I use?

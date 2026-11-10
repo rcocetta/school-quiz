@@ -24,7 +24,9 @@ MAX_TOTAL_IMAGE_BYTES = 20 * 1024 * 1024  # all inlined images together, repeats
 # Site mode: assets are linked from the same origin, so 'self' replaces the inline hashes.
 QUIZ_CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
             "font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'")
-THEME_COLOR = "#5233e0"  # browser bar and app splash colour; scripts/app_icons.py draws the icons in the same purple
+# Colour themes (D33): browser bar / splash colour and the icon file prefix. scripts/app_icons.py draws the icons in the same colours.
+THEMES = {"purple": {"color": "#5233e0", "icon_prefix": ""}, "green": {"color": "#256b1f", "icon_prefix": "green-"}}
+DEFAULT_THEME = "purple"
 FLAG_FONT = "flags.woff2"  # linked from quiz.css; site mode copies it to assets/, single files inline it
 
 
@@ -94,12 +96,13 @@ def _prepare(quiz: dict, collection_ui: dict | None = None) -> tuple[dict, dict]
 
 
 def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = "",
-                index_url: str | None = None, app: dict | None = None) -> str:
+                index_url: str | None = None, app: dict | None = None, theme: str | None = None) -> str:
     """Render the quiz page from a normalised quiz (images already rewritten) and merged UI strings.
 
     Linked mode (site): `asset_base` is the relative path to `assets/`; `index_url` (if given)
     lets the page link back to the index.
     `app` (from `app_head`, site pages that belong to an installable app, D32) adds the app tags to the head.
+    `theme` (D33) is the colour theme of a collection; None keeps the default purple.
     """
     css = _inline_flag_font(_asset("quiz.css")) if inline_assets else ""
     js = _asset("quiz.js") if inline_assets else ""
@@ -110,6 +113,7 @@ def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = 
         lang=first,
         page_title=quiz["title"][first],
         app=app,
+        theme=theme if theme in THEMES and theme != DEFAULT_THEME else None,
         csp=content_security_policy(css, js) if inline_assets else QUIZ_CSP,
         inline_assets=inline_assets,
         asset_base=asset_base,
@@ -120,9 +124,11 @@ def render_page(quiz: dict, ui: dict, *, inline_assets: bool, asset_base: str = 
     )
 
 
-def app_head(title: str, manifest: str) -> dict:
-    """Template data for the installable-app head tags (templates/_app_head.html): app name, manifest URL."""
-    return {"title": title, "manifest": manifest, "color": THEME_COLOR}
+def app_head(title: str, manifest: str, theme: str | None = None) -> dict:
+    """Template data for the installable-app head tags (templates/_app_head.html): app name, manifest URL,
+    and the theme's bar colour and icon prefix (D33)."""
+    chosen = THEMES.get(theme or DEFAULT_THEME, THEMES[DEFAULT_THEME])
+    return {"title": title, "manifest": manifest, "color": chosen["color"], "icon_prefix": chosen["icon_prefix"]}
 
 
 def merge_ui(languages: list[str], quiz_ui: dict, collection_ui: dict | None = None) -> dict:

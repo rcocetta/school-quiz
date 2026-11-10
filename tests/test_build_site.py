@@ -660,6 +660,82 @@ def test_unlisted_collection_is_an_app_of_its_own(tmp_path):
     assert not (out / "open" / "manifest.webmanifest").exists()
 
 
+# ---- colour theme (D33)
+
+def themed_tree(tmp_path, theme="green", unlisted=False):
+    src = tmp_path / "in"
+    put(src / "site.json", {"title": "Our Site"})
+    put(src / "fun" / "collection.json", {"title": "Fun", "theme": theme, "unlisted": unlisted})
+    put(src / "fun" / "game.json", quiz("Game"))
+    put(src / "school" / "collection.json", {"title": "School"})
+    put(src / "school" / "maths.json", quiz("Maths"))
+    put(src / "loose.json", quiz("Loose"))
+    return src
+
+
+def test_green_collection_pages_use_the_green_theme(tmp_path):
+    out = tmp_path / "out"
+    assert build_site(themed_tree(tmp_path), out).output
+    for page in ("fun/index.html", "fun/game.html"):
+        text = read(out / page)
+        assert '<html lang="en" data-theme="green">' in text, page
+        assert '<meta name="theme-color" content="#256b1f">' in text, page
+        assert "../assets/green-icon-192.png" in hrefs(out / page) and "../assets/green-apple-touch-icon.png" in hrefs(out / page)
+    tinted = '<li class="card card--collection" data-theme="green">'
+    for page in ("index.html", "loose.html", "school/index.html", "school/maths.html"):
+        text = read(out / page)
+        assert "data-theme" not in text.replace(tinted, ""), page
+        assert '<meta name="theme-color" content="#5233e0">' in text, page
+    assert tinted in read(out / "index.html")  # the green card is tinted, the School card is not
+    assert read(out / "index.html").count("data-theme") == 1
+    for name in ("icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"):
+        assert (out / "assets" / name).is_file() and (out / "assets" / ("green-" + name)).is_file()
+
+
+def test_unlisted_green_collection_app_is_green(tmp_path):
+    out = tmp_path / "out"
+    assert build_site(themed_tree(tmp_path, unlisted=True), out).output
+    manifest = json.loads(read(out / "fun" / "manifest.webmanifest"))
+    assert manifest["theme_color"] == manifest["background_color"] == "#256b1f"
+    assert [i["src"] for i in manifest["icons"]] == ["../assets/green-icon-192.png", "../assets/green-icon-512.png",
+                                                     "../assets/green-icon-maskable-512.png"]
+    assert "Fun" not in read(out / "index.html")  # still not listed
+
+
+def test_green_icons_only_written_when_used(tmp_path):
+    src = tmp_path / "in"
+    put(src / "q.json", quiz())
+    out = tmp_path / "out"
+    assert build_site(src, out).output
+    assert not [p for p in (out / "assets").iterdir() if p.name.startswith("green-")]
+    assert "data-theme" not in read(out / "q.html")
+
+
+def test_purple_theme_is_the_default_look(tmp_path):
+    out = tmp_path / "out"
+    assert build_site(themed_tree(tmp_path, theme="purple"), out).output
+    assert "data-theme" not in read(out / "fun" / "game.html")
+    assert '<meta name="theme-color" content="#5233e0">' in read(out / "fun" / "game.html")
+
+
+def test_unknown_theme_is_an_error(tmp_path):
+    out = tmp_path / "out"
+    res = build_site(themed_tree(tmp_path, theme="pink"), out)
+    assert res.output is None and not out.exists()
+    assert any("theme" in i.path or "theme" in i.message for i in res.validation.errors)
+
+
+def test_image_cannot_replace_a_green_icon(tmp_path):
+    src = tmp_path / "in"
+    put(src / "q.json", quiz(questions=[
+        {"text": "Q", "image": "assets/green-icon-192.png", "options": [{"text": "A", "correct": True}, {"text": "B"}]}]))
+    fake = src / "assets" / "green-icon-192.png"
+    fake.parent.mkdir(parents=True)
+    fake.write_bytes(b"\x89PNG\r\n\x1a\n" + b"x" * 20)
+    res = build_site(src, tmp_path / "out")
+    assert res.output is None and "this name is used by the generated site" in res.validation.errors[0].message
+
+
 def generated_assets(tmp_path) -> list[str]:
     src = tmp_path / "probe"
     put(src / "q.json", quiz())

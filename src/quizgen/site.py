@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Iterable
 from urllib.parse import quote
 
-from quizgen.build import (FLAG_FONT, HOME_URL, THEME_COLOR, app_head, BuildError, BuildResult, _asset, _env, _prepare,
+from quizgen.build import (DEFAULT_THEME, FLAG_FONT, HOME_URL, THEMES, app_head, BuildError, BuildResult, _asset, _env, _prepare,
                            _rewrite_images, _write_atomic, flag_font, render_page, static_bytes)
 from quizgen.validate import (Issue, ValidationResult, discover, is_remote_image, load_collection, load_quiz,
                               load_site, local_image_path, ui_strings)
@@ -24,7 +24,9 @@ from quizgen.validate import (Issue, ValidationResult, discover, is_remote_image
 DEFAULT_SITE_DIR = "site"
 # (file, size, purpose) of the app icons, see scripts/app_icons.py; apple-touch-icon is linked, not in the manifest
 APP_ICONS = [("icon-192.png", 192, "any"), ("icon-512.png", 512, "any"), ("icon-maskable-512.png", 512, "maskable")]
-ICON_FILES = (*(icon[0] for icon in APP_ICONS), "apple-touch-icon.png")
+ICON_NAMES = (*(icon[0] for icon in APP_ICONS), "apple-touch-icon.png")
+# every icon file a theme can write, so a creator's image can never replace one (green ones are written only when used)
+ICON_FILES = tuple(t["icon_prefix"] + name for t in THEMES.values() for name in ICON_NAMES)
 INDEX_CSP = ("default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; "
              "form-action 'none'")
 
@@ -176,26 +178,29 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
     collection_cards = []
     for sec in collections:
         unlisted = sec.meta.get("unlisted", False)  # D31: built, but not linked from the top index
+        theme = sec.meta.get("theme")  # D33
         heading = sec.meta.get("title", sec.folder)
         if unlisted:  # D32: the site app's start page doesn't list it, so it is an app of its own
-            plan.pages[_join(sec.folder, "manifest.webmanifest")] = _manifest(heading, sec.lang, root="./", icon_base="../assets/")
-            app = app_head(heading, "manifest.webmanifest")
+            plan.pages[_join(sec.folder, "manifest.webmanifest")] = _manifest(
+                heading, sec.lang, root="./", icon_base="../assets/", theme=theme)
+            app = app_head(heading, "manifest.webmanifest", theme)
         else:
-            app = app_head(site_title, "../assets/manifest.webmanifest")
-        cards = _add_quizzes(plan, sec, app)
+            app = app_head(site_title, "../assets/manifest.webmanifest", theme)
+        cards = _add_quizzes(plan, sec, app, theme)
         ui = ui_strings()[sec.lang]
         plan.pages[_join(sec.folder, "index.html")] = _render_index(
             lang=sec.lang, heading=heading, description=sec.meta.get("description"),
             author=sec.meta.get("author"),
             back=None if unlisted else {"href": "../index.html", "text": ui["back_to_all"]},
-            quizzes=cards, asset_base="../assets/", app=app)
+            quizzes=cards, asset_base="../assets/", app=app, theme=theme)
         if unlisted:
             continue
         collection_cards.append({
             "href": quote(sec.folder) + "/index.html", "title": heading,
             "description": sec.meta.get("description"),
             "count_text": _count_text(top_ui, "quizzes_count", len(cards)),
-            "author_name": sec.meta.get("author", {}).get("name")})
+            "author_name": sec.meta.get("author", {}).get("name"),
+            "theme": theme if theme != DEFAULT_THEME else None})
     top_app = app_head(site_title, "assets/manifest.webmanifest")
     top_cards = _add_quizzes(plan, top, top_app)
     plan.pages["index.html"] = _render_index(
@@ -207,8 +212,11 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
         plan.pages["assets/" + name] = _asset(name).encode("utf-8")
     plan.pages["assets/" + FLAG_FONT] = flag_font()
     plan.pages["assets/manifest.webmanifest"] = _manifest(site_title, top.lang, root="../", icon_base="")
-    for name in ICON_FILES:
-        plan.pages["assets/" + name] = static_bytes(name)
+    themes = {DEFAULT_THEME, *(sec.meta["theme"] for sec in collections if "theme" in sec.meta)}
+    for theme in sorted(themes):  # only the icons of themes in use
+        for name in ICON_NAMES:
+            name = THEMES[theme]["icon_prefix"] + name
+            plan.pages["assets/" + name] = static_bytes(name)
     plan.pages[".nojekyll"] = b""  # GitHub Pages would otherwise hide folders starting with "_"
     generated = {rel.casefold() for rel in plan.pages}
     for rel in plan.images:  # backstop: a creator's image must never replace a page or asset the site writes itself
@@ -217,17 +225,18 @@ def _plan(top: _Section, collections: list[_Section]) -> _Plan:
     return plan
 
 
-def _manifest(name: str, lang: str, root: str, icon_base: str) -> bytes:
+def _manifest(name: str, lang: str, root: str, icon_base: str, theme: str | None = None) -> bytes:
     """A web app manifest (D32). `root` (start page and scope) and `icon_base` are relative to the manifest."""
+    chosen = THEMES[theme or DEFAULT_THEME]
     manifest = {
         "name": name, "lang": lang, "start_url": root, "scope": root, "display": "standalone",
-        "background_color": THEME_COLOR, "theme_color": THEME_COLOR,
-        "icons": [{"src": icon_base + icon, "sizes": f"{size}x{size}", "type": "image/png", "purpose": purpose}
+        "background_color": chosen["color"], "theme_color": chosen["color"],
+        "icons": [{"src": icon_base + chosen["icon_prefix"] + icon, "sizes": f"{size}x{size}", "type": "image/png", "purpose": purpose}
                   for icon, size, purpose in APP_ICONS]}
     return (json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
 
-def _add_quizzes(plan: _Plan, sec: _Section, app: dict) -> list[dict]:
+def _add_quizzes(plan: _Plan, sec: _Section, app: dict, theme: str | None = None) -> list[dict]:
     """Render the quiz pages of one section into the plan; return its (sorted) index cards."""
     ui_index = ui_strings()[sec.lang]
     asset_base = "../assets/" if sec.folder else "assets/"
@@ -239,7 +248,7 @@ def _add_quizzes(plan: _Plan, sec: _Section, app: dict) -> list[dict]:
         except BuildError as err:
             raise BuildError(f"{q.path}: {err}") from err
         html = render_page(quiz, ui, inline_assets=False, asset_base=asset_base, index_url="index.html",
-                           app=app)
+                           app=app, theme=theme)
         plan.pages[_join(sec.folder, q.path.stem + ".html")] = html.encode("utf-8")
         cards.append(_quiz_card(quiz, q.path.stem, ui_index))
     return _sorted(cards)
@@ -284,7 +293,7 @@ def _quiz_card(quiz: dict, stem: str, ui: dict) -> dict:
 def _render_index(*, lang: str, heading: str, description: str | None, author: dict | None,
                   asset_base: str, back: dict | None = None, collections: list[dict] | None = None,
                   quizzes: list[dict] | None = None, empty_text: str | None = None,
-                  app: dict | None = None) -> bytes:
+                  app: dict | None = None, theme: str | None = None) -> bytes:
     ui = ui_strings()[lang]
     link = None
     if author:
@@ -293,6 +302,7 @@ def _render_index(*, lang: str, heading: str, description: str | None, author: d
                 "external": bool(href and href.startswith(("http://", "https://")))}
     html = _env().get_template("index.html").render(
         lang=lang, page_title=heading, csp=INDEX_CSP, asset_base=asset_base, app=app,
+        theme=theme if theme != DEFAULT_THEME else None,
         heading=heading, description=description, author=link, back=back,
         collections_heading=ui["collections"], collections=collections or [],
         quizzes_heading=ui["quizzes"], quizzes=quizzes or [], languages_label=ui["languages"],
