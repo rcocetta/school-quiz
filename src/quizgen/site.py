@@ -229,6 +229,7 @@ def _manifest(name: str, lang: str, root: str, icon_base: str, theme: str | None
     """A web app manifest (D32). `root` (start page and scope) and `icon_base` are relative to the manifest."""
     chosen = THEMES[theme or DEFAULT_THEME]
     manifest = {
+        "id": "./",  # resolved against start_url: the app's own folder, so each app has an identity of its own
         "name": name, "lang": lang, "start_url": root, "scope": root, "display": "standalone",
         "background_color": chosen["color"], "theme_color": chosen["color"],
         "icons": [{"src": icon_base + chosen["icon_prefix"] + icon, "sizes": f"{size}x{size}", "type": "image/png", "purpose": purpose}
