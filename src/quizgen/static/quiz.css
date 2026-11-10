@@ -122,6 +122,8 @@
   [data-theme="green"] .option[data-state="reveal"] .mark,
   [data-theme="green"] .option[data-state="wrong"] .mark { color: var(--bg); }
   [data-theme="green"] .review-item .mark { color: var(--bg) !important; }
+  /* language chips on the cards: dark green pill, light text */
+  [data-theme="green"] .lang-chip { background: #25502f; border-color: #25502f; color: #eaf7e6; }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
