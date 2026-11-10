@@ -25,7 +25,7 @@ MAX_TOTAL_IMAGE_BYTES = 20 * 1024 * 1024  # all inlined images together, repeats
 QUIZ_CSP = ("default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; "
             "font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'")
 # Colour themes (D33): browser bar / splash colour and the icon file prefix. scripts/app_icons.py draws the icons in the same colours.
-THEMES = {"purple": {"color": "#5233e0", "icon_prefix": ""}, "green": {"color": "#256b1f", "icon_prefix": "green-"}}
+THEMES = {"purple": {"color": "#5233e0", "icon_prefix": ""}, "green": {"color": "#3aa04a", "icon_prefix": "green-"}}
 DEFAULT_THEME = "purple"
 FLAG_FONT = "flags.woff2"  # linked from quiz.css; site mode copies it to assets/, single files inline it
 

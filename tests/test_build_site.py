@@ -679,7 +679,7 @@ def test_green_collection_pages_use_the_green_theme(tmp_path):
     for page in ("fun/index.html", "fun/game.html"):
         text = read(out / page)
         assert '<html lang="en" data-theme="green">' in text, page
-        assert '<meta name="theme-color" content="#256b1f">' in text, page
+        assert '<meta name="theme-color" content="#3aa04a">' in text, page
         assert "../assets/green-icon-192.png" in hrefs(out / page) and "../assets/green-apple-touch-icon.png" in hrefs(out / page)
     tinted = '<li class="card card--collection" data-theme="green">'
     for page in ("index.html", "loose.html", "school/index.html", "school/maths.html"):
@@ -696,7 +696,7 @@ def test_unlisted_green_collection_app_is_green(tmp_path):
     out = tmp_path / "out"
     assert build_site(themed_tree(tmp_path, unlisted=True), out).output
     manifest = json.loads(read(out / "fun" / "manifest.webmanifest"))
-    assert manifest["theme_color"] == manifest["background_color"] == "#256b1f"
+    assert manifest["theme_color"] == manifest["background_color"] == "#3aa04a"
     assert [i["src"] for i in manifest["icons"]] == ["../assets/green-icon-192.png", "../assets/green-icon-512.png",
                                                      "../assets/green-icon-maskable-512.png"]
     assert "Fun" not in read(out / "index.html")  # still not listed

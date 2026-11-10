@@ -1,5 +1,5 @@
 {
-  "background_color": "#256b1f",
+  "background_color": "#3aa04a",
   "display": "standalone",
   "icons": [
     {
@@ -25,5 +25,5 @@
   "name": "Fun Quizzes",
   "scope": "./",
   "start_url": "./",
-  "theme_color": "#256b1f"
+  "theme_color": "#3aa04a"
 }

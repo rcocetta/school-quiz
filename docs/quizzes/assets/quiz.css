@@ -69,16 +69,16 @@
 /* Green theme (collection.json "theme": "green"): palette only. Set as data-theme on <html>, or on a single
    card so a green collection is tinted on the purple index. Contrast checked: text >= 4.5:1, borders >= 3:1. */
 [data-theme="green"] {
-  --bg: #eef8e6;
-  --blob-a: #fbe9a0;
-  --blob-b: #d3f0e2;
-  --ink: #12301c;
-  --ink-soft: #3d5a45;
-  --edge: #12301c;
-  --shade: #12301c;
-  --primary: #256b1f;
+  --bg: #e6f7d4;
+  --blob-a: #ffe58a;
+  --blob-b: #bdeccb;
+  --ink: #173d1f;
+  --ink-soft: #2f5a36;
+  --edge: #2e7d32;
+  --shade: #2e7d32;
+  --primary: #2e7d32;
   --accent: #ffc83d;
-  --select-bg: #dcefc8;
+  --select-bg: #d2f0b0;
 }
 
 @media (prefers-color-scheme: dark) {

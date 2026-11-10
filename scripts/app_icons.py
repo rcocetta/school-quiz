@@ -28,7 +28,7 @@ LOGO = ROOT / "website" / "assets" / "logo.svg"
 OUT = ROOT / "src" / "quizgen" / "static"
 CSP = "default-src 'none'; style-src 'unsafe-inline'"  # the logo is drawn from inline SVG only
 PURPLE = "#5233e0"  # must match THEMES in src/quizgen/build.py
-GREEN = "#256b1f"
+GREEN = "#3aa04a"
 
 
 def star(cx: float, cy: float, outer: float, inner: float) -> str:
