@@ -15,7 +15,7 @@
       "text": "Quelle fraction du disque est colorée ?",
       "image": "images/fractions/pie-1-4.png",
       "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
-      "explanation": "Le disque est partagé en 4 parts égales (dénominateur 4). 1 parts sont colorées (numérateur 1) : 1/4.",
+      "explanation": "Le disque est partagé en 4 parts égales (dénominateur 4). 1 part est colorée (numérateur 1) : 1/4.",
       "options": [
         {
           "text": "1/4",
@@ -141,7 +141,7 @@
       "text": "Quelle fraction du disque n'est pas colorée ?",
       "image": "images/fractions/pie-3-4.png",
       "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
-      "explanation": "Le disque est partagé en 4 parts égales (dénominateur 4). 1 parts ne sont pas colorées (numérateur 1) : 1/4.",
+      "explanation": "Le disque est partagé en 4 parts égales (dénominateur 4). 1 part n'est pas colorée (numérateur 1) : 1/4.",
       "options": [
         {
           "text": "1/4",
@@ -204,7 +204,7 @@
       "text": "Quelle fraction de la bande est colorée ?",
       "image": "images/fractions/bar-1-6.png",
       "image_alt": "Une bande partagée en parts égales, dont certaines sont colorées.",
-      "explanation": "La bande est partagée en 6 parts égales (dénominateur 6). 1 parts sont colorées (numérateur 1) : 1/6.",
+      "explanation": "La bande est partagée en 6 parts égales (dénominateur 6). 1 part est colorée (numérateur 1) : 1/6.",
       "options": [
         {
           "text": "1/6",
@@ -372,7 +372,7 @@
       "text": "Quelle fraction des étoiles ne sont pas colorées ?",
       "image": "images/fractions/stars-5-6.png",
       "image_alt": "Des étoiles, dont certaines sont colorées.",
-      "explanation": "Il y a 6 étoiles en tout (c'est le dénominateur) et 1 ne sont pas colorées (c'est le numérateur) : 1/6.",
+      "explanation": "Il y a 6 étoiles en tout (c'est le dénominateur) et 1 n'est pas colorée (c'est le numérateur) : 1/6.",
       "options": [
         {
           "text": "1/6",
@@ -477,7 +477,7 @@
       "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
       "image": "images/fractions/droite-2-3.png",
       "image_alt": "Une droite graduée avec un point rouge.",
-      "explanation": "Entre 0 et 1, il y a 3 intervalles égaux : on compte des tierss. Le point est à 2 intervalles de 0 : 2/3.",
+      "explanation": "Entre 0 et 1, il y a 3 intervalles égaux : on compte des tiers. Le point est à 2 intervalles de 0 : 2/3.",
       "options": [
         {
           "text": "2/3",
@@ -498,7 +498,7 @@
       "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
       "image": "images/fractions/droite-1-6.png",
       "image_alt": "Une droite graduée avec un point rouge.",
-      "explanation": "Entre 0 et 1, il y a 6 intervalles égaux : on compte des sixièmes. Le point est à 1 intervalles de 0 : 1/6.",
+      "explanation": "Entre 0 et 1, il y a 6 intervalles égaux : on compte des sixièmes. Le point est à 1 intervalle de 0 : 1/6.",
       "options": [
         {
           "text": "1/6",
@@ -540,7 +540,7 @@
       "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
       "image": "images/fractions/droite-4-3.png",
       "image_alt": "Une droite graduée avec un point rouge.",
-      "explanation": "Entre 0 et 1, il y a 3 intervalles égaux : on compte des tierss. Le point est à 4 intervalles de 0 : 4/3. Il est après 1, car 4 est plus grand que 3.",
+      "explanation": "Entre 0 et 1, il y a 3 intervalles égaux : on compte des tiers. Le point est à 4 intervalles de 0 : 4/3. Il est après 1, car 4 est plus grand que 3.",
       "options": [
         {
           "text": "4/3",
@@ -939,7 +939,7 @@
     },
     {
       "text": "Parmi ces fractions, laquelle est la plus grande ?",
-      "explanation": "Les dénominateurs sont les mêmes (8) : la plus grande est celle qui a le numérateur le plus grande, 7/8.",
+      "explanation": "Les dénominateurs sont les mêmes (8) : la plus grande est celle qui a le numérateur le plus grand, 7/8.",
       "options": [
         {
           "text": "7/8",
@@ -958,7 +958,7 @@
     },
     {
       "text": "Parmi ces fractions, laquelle est la plus petite ?",
-      "explanation": "Les dénominateurs sont les mêmes (10) : la plus petite est celle qui a le numérateur le plus petite, 2/10.",
+      "explanation": "Les dénominateurs sont les mêmes (10) : la plus petite est celle qui a le numérateur le plus petit, 2/10.",
       "options": [
         {
           "text": "2/10",
@@ -977,7 +977,7 @@
     },
     {
       "text": "Parmi ces fractions, laquelle est la plus petite ?",
-      "explanation": "Les dénominateurs sont les mêmes (6) : la plus petite est celle qui a le numérateur le plus petite, 1/6.",
+      "explanation": "Les dénominateurs sont les mêmes (6) : la plus petite est celle qui a le numérateur le plus petit, 1/6.",
       "options": [
         {
           "text": "1/6",
@@ -1103,7 +1103,7 @@
           "text": "La bande A"
         },
         {
-          "text": "Les deux pareil"
+          "text": "Elles sont pareilles"
         }
       ]
     },
@@ -1121,7 +1121,7 @@
           "text": "La bande B"
         },
         {
-          "text": "Les deux pareil"
+          "text": "Elles sont pareilles"
         }
       ]
     },
@@ -1531,7 +1531,7 @@
     },
     {
       "text": "Quelle fraction n'est PAS égale à 1/2 ?",
-      "explanation": "4/8, 3/6 et 5/10 sont la moitié de leur entier. Mais 3/5 est un peu plus que la moitié.",
+      "explanation": "4/8, 3/6 et 5/10 valent chacune 1/2. Mais 3/5 est un peu plus que la moitié.",
       "options": [
         {
           "text": "3/5",
@@ -1612,7 +1612,7 @@
       "explanation": "La bande A montre 1/2 et la bande B montre 3/6. Ces deux fractions sont égales, donc la partie colorée est la même.",
       "options": [
         {
-          "text": "Les deux pareil",
+          "text": "Elles sont pareilles",
           "correct": true
         },
         {
@@ -1932,7 +1932,7 @@
       "text": "La bande est partagée en 6 parts égales. Léa en colorie 1/6 en orange, puis Tom en colorie 2/6 en bleu rayé. Quelle fraction de la bande est coloriée en tout ?",
       "image": "images/fractions/somme-1-2-6.png",
       "image_alt": "Une bande partagée en 6 parts égales, avec des parts orange et des parts bleues rayées.",
-      "explanation": "1 parts orange + 2 parts bleues = 3 parts coloriées sur 6 : 1/6 + 2/6 = 3/6.",
+      "explanation": "1 part orange + 2 parts bleues = 3 parts coloriées sur 6 : 1/6 + 2/6 = 3/6.",
       "options": [
         {
           "text": "3/6",
