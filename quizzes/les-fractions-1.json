@@ -1,0 +1,1953 @@
+{
+  "$schema": "../src/quizgen/schema.json",
+  "title": "Les Fractions 1",
+  "description": "Reconnaître, comparer et ranger des fractions simples, trouver des fractions égales, additionner et soustraire avec le même dénominateur. Niveau CM2. Dessins : projet school-quiz (CC0).",
+  "language": "fr",
+  "questions_per_quiz": 10,
+  "feedback": "immediate",
+  "shuffle_options": true,
+  "author": {
+    "name": "school-quiz",
+    "url": "https://github.com/rcocetta/school-quiz"
+  },
+  "questions": [
+    {
+      "text": "Quelle fraction du disque est colorée ?",
+      "image": "images/fractions/pie-1-4.png",
+      "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
+      "explanation": "Le disque est partagé en 4 parts égales (dénominateur 4). 1 parts sont colorées (numérateur 1) : 1/4.",
+      "options": [
+        {
+          "text": "1/4",
+          "correct": true
+        },
+        {
+          "text": "3/4"
+        },
+        {
+          "text": "1/3"
+        },
+        {
+          "text": "4/1"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction du disque est colorée ?",
+      "image": "images/fractions/pie-2-3.png",
+      "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
+      "explanation": "Le disque est partagé en 3 parts égales (dénominateur 3). 2 parts sont colorées (numérateur 2) : 2/3.",
+      "options": [
+        {
+          "text": "2/3",
+          "correct": true
+        },
+        {
+          "text": "1/3"
+        },
+        {
+          "text": "2/1"
+        },
+        {
+          "text": "3/2"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction du disque est colorée ?",
+      "image": "images/fractions/pie-3-8.png",
+      "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
+      "explanation": "Le disque est partagé en 8 parts égales (dénominateur 8). 3 parts sont colorées (numérateur 3) : 3/8.",
+      "options": [
+        {
+          "text": "3/8",
+          "correct": true
+        },
+        {
+          "text": "5/8"
+        },
+        {
+          "text": "3/5"
+        },
+        {
+          "text": "8/3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction du disque est colorée ?",
+      "image": "images/fractions/pie-2-5.png",
+      "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
+      "explanation": "Le disque est partagé en 5 parts égales (dénominateur 5). 2 parts sont colorées (numérateur 2) : 2/5.",
+      "options": [
+        {
+          "text": "2/5",
+          "correct": true
+        },
+        {
+          "text": "3/5"
+        },
+        {
+          "text": "2/3"
+        },
+        {
+          "text": "5/2"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction du disque est colorée ?",
+      "image": "images/fractions/pie-7-10.png",
+      "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
+      "explanation": "Le disque est partagé en 10 parts égales (dénominateur 10). 7 parts sont colorées (numérateur 7) : 7/10.",
+      "options": [
+        {
+          "text": "7/10",
+          "correct": true
+        },
+        {
+          "text": "3/10"
+        },
+        {
+          "text": "7/3"
+        },
+        {
+          "text": "10/7"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction du disque est colorée ?",
+      "image": "images/fractions/pie-5-6.png",
+      "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
+      "explanation": "Le disque est partagé en 6 parts égales (dénominateur 6). 5 parts sont colorées (numérateur 5) : 5/6.",
+      "options": [
+        {
+          "text": "5/6",
+          "correct": true
+        },
+        {
+          "text": "1/6"
+        },
+        {
+          "text": "5/1"
+        },
+        {
+          "text": "6/5"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction du disque n'est pas colorée ?",
+      "image": "images/fractions/pie-3-4.png",
+      "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
+      "explanation": "Le disque est partagé en 4 parts égales (dénominateur 4). 1 parts ne sont pas colorées (numérateur 1) : 1/4.",
+      "options": [
+        {
+          "text": "1/4",
+          "correct": true
+        },
+        {
+          "text": "3/4"
+        },
+        {
+          "text": "1/3"
+        },
+        {
+          "text": "4/1"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction du disque n'est pas colorée ?",
+      "image": "images/fractions/pie-5-8.png",
+      "image_alt": "Un disque partagé en parts égales, dont certaines sont colorées.",
+      "explanation": "Le disque est partagé en 8 parts égales (dénominateur 8). 3 parts ne sont pas colorées (numérateur 3) : 3/8.",
+      "options": [
+        {
+          "text": "3/8",
+          "correct": true
+        },
+        {
+          "text": "5/8"
+        },
+        {
+          "text": "3/5"
+        },
+        {
+          "text": "8/3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction de la bande est colorée ?",
+      "image": "images/fractions/bar-3-5.png",
+      "image_alt": "Une bande partagée en parts égales, dont certaines sont colorées.",
+      "explanation": "La bande est partagée en 5 parts égales (dénominateur 5). 3 parts sont colorées (numérateur 3) : 3/5.",
+      "options": [
+        {
+          "text": "3/5",
+          "correct": true
+        },
+        {
+          "text": "2/5"
+        },
+        {
+          "text": "3/2"
+        },
+        {
+          "text": "5/3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction de la bande est colorée ?",
+      "image": "images/fractions/bar-1-6.png",
+      "image_alt": "Une bande partagée en parts égales, dont certaines sont colorées.",
+      "explanation": "La bande est partagée en 6 parts égales (dénominateur 6). 1 parts sont colorées (numérateur 1) : 1/6.",
+      "options": [
+        {
+          "text": "1/6",
+          "correct": true
+        },
+        {
+          "text": "5/6"
+        },
+        {
+          "text": "1/5"
+        },
+        {
+          "text": "6/1"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction de la bande est colorée ?",
+      "image": "images/fractions/bar-7-8.png",
+      "image_alt": "Une bande partagée en parts égales, dont certaines sont colorées.",
+      "explanation": "La bande est partagée en 8 parts égales (dénominateur 8). 7 parts sont colorées (numérateur 7) : 7/8.",
+      "options": [
+        {
+          "text": "7/8",
+          "correct": true
+        },
+        {
+          "text": "1/8"
+        },
+        {
+          "text": "7/1"
+        },
+        {
+          "text": "8/7"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction de la bande est colorée ?",
+      "image": "images/fractions/bar-3-10.png",
+      "image_alt": "Une bande partagée en parts égales, dont certaines sont colorées.",
+      "explanation": "La bande est partagée en 10 parts égales (dénominateur 10). 3 parts sont colorées (numérateur 3) : 3/10.",
+      "options": [
+        {
+          "text": "3/10",
+          "correct": true
+        },
+        {
+          "text": "7/10"
+        },
+        {
+          "text": "3/7"
+        },
+        {
+          "text": "10/3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction de la bande n'est pas colorée ?",
+      "image": "images/fractions/bar-7-10.png",
+      "image_alt": "Une bande partagée en parts égales, dont certaines sont colorées.",
+      "explanation": "La bande est partagée en 10 parts égales (dénominateur 10). 3 parts ne sont pas colorées (numérateur 3) : 3/10.",
+      "options": [
+        {
+          "text": "3/10",
+          "correct": true
+        },
+        {
+          "text": "7/10"
+        },
+        {
+          "text": "3/7"
+        },
+        {
+          "text": "10/3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction de la bande n'est pas colorée ?",
+      "image": "images/fractions/bar-3-8.png",
+      "image_alt": "Une bande partagée en parts égales, dont certaines sont colorées.",
+      "explanation": "La bande est partagée en 8 parts égales (dénominateur 8). 5 parts ne sont pas colorées (numérateur 5) : 5/8.",
+      "options": [
+        {
+          "text": "5/8",
+          "correct": true
+        },
+        {
+          "text": "3/8"
+        },
+        {
+          "text": "5/3"
+        },
+        {
+          "text": "8/5"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction des étoiles sont colorées ?",
+      "image": "images/fractions/stars-2-5.png",
+      "image_alt": "Des étoiles, dont certaines sont colorées.",
+      "explanation": "Il y a 5 étoiles en tout (c'est le dénominateur) et 2 sont colorées (c'est le numérateur) : 2/5.",
+      "options": [
+        {
+          "text": "2/5",
+          "correct": true
+        },
+        {
+          "text": "3/5"
+        },
+        {
+          "text": "2/3"
+        },
+        {
+          "text": "5/2"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction des étoiles sont colorées ?",
+      "image": "images/fractions/stars-3-8.png",
+      "image_alt": "Des étoiles, dont certaines sont colorées.",
+      "explanation": "Il y a 8 étoiles en tout (c'est le dénominateur) et 3 sont colorées (c'est le numérateur) : 3/8.",
+      "options": [
+        {
+          "text": "3/8",
+          "correct": true
+        },
+        {
+          "text": "5/8"
+        },
+        {
+          "text": "3/5"
+        },
+        {
+          "text": "8/3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction des étoiles sont colorées ?",
+      "image": "images/fractions/stars-7-10.png",
+      "image_alt": "Des étoiles, dont certaines sont colorées.",
+      "explanation": "Il y a 10 étoiles en tout (c'est le dénominateur) et 7 sont colorées (c'est le numérateur) : 7/10.",
+      "options": [
+        {
+          "text": "7/10",
+          "correct": true
+        },
+        {
+          "text": "3/10"
+        },
+        {
+          "text": "7/3"
+        },
+        {
+          "text": "10/7"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction des étoiles ne sont pas colorées ?",
+      "image": "images/fractions/stars-5-6.png",
+      "image_alt": "Des étoiles, dont certaines sont colorées.",
+      "explanation": "Il y a 6 étoiles en tout (c'est le dénominateur) et 1 ne sont pas colorées (c'est le numérateur) : 1/6.",
+      "options": [
+        {
+          "text": "1/6",
+          "correct": true
+        },
+        {
+          "text": "5/6"
+        },
+        {
+          "text": "1/5"
+        },
+        {
+          "text": "6/1"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-3-4.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 4 intervalles égaux : on compte des quarts. Le point est à 3 intervalles de 0 : 3/4.",
+      "options": [
+        {
+          "text": "3/4",
+          "correct": true
+        },
+        {
+          "text": "4/4"
+        },
+        {
+          "text": "2/4"
+        },
+        {
+          "text": "3/5"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-2-5.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 5 intervalles égaux : on compte des cinquièmes. Le point est à 2 intervalles de 0 : 2/5.",
+      "options": [
+        {
+          "text": "2/5",
+          "correct": true
+        },
+        {
+          "text": "3/5"
+        },
+        {
+          "text": "1/5"
+        },
+        {
+          "text": "2/6"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-7-10.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 10 intervalles égaux : on compte des dixièmes. Le point est à 7 intervalles de 0 : 7/10.",
+      "options": [
+        {
+          "text": "7/10",
+          "correct": true
+        },
+        {
+          "text": "8/10"
+        },
+        {
+          "text": "6/10"
+        },
+        {
+          "text": "7/11"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-5-8.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 8 intervalles égaux : on compte des huitièmes. Le point est à 5 intervalles de 0 : 5/8.",
+      "options": [
+        {
+          "text": "5/8",
+          "correct": true
+        },
+        {
+          "text": "6/8"
+        },
+        {
+          "text": "4/8"
+        },
+        {
+          "text": "5/9"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-2-3.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 3 intervalles égaux : on compte des tierss. Le point est à 2 intervalles de 0 : 2/3.",
+      "options": [
+        {
+          "text": "2/3",
+          "correct": true
+        },
+        {
+          "text": "3/3"
+        },
+        {
+          "text": "1/3"
+        },
+        {
+          "text": "2/4"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-1-6.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 6 intervalles égaux : on compte des sixièmes. Le point est à 1 intervalles de 0 : 1/6.",
+      "options": [
+        {
+          "text": "1/6",
+          "correct": true
+        },
+        {
+          "text": "2/6"
+        },
+        {
+          "text": "1/7"
+        },
+        {
+          "text": "1/5"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-5-4.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 4 intervalles égaux : on compte des quarts. Le point est à 5 intervalles de 0 : 5/4. Il est après 1, car 5 est plus grand que 4.",
+      "options": [
+        {
+          "text": "5/4",
+          "correct": true
+        },
+        {
+          "text": "6/4"
+        },
+        {
+          "text": "4/4"
+        },
+        {
+          "text": "5/5"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-4-3.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 3 intervalles égaux : on compte des tierss. Le point est à 4 intervalles de 0 : 4/3. Il est après 1, car 4 est plus grand que 3.",
+      "options": [
+        {
+          "text": "4/3",
+          "correct": true
+        },
+        {
+          "text": "5/3"
+        },
+        {
+          "text": "3/3"
+        },
+        {
+          "text": "4/4"
+        }
+      ]
+    },
+    {
+      "text": "Sur la droite graduée, quelle fraction est repérée par le point rouge ?",
+      "image": "images/fractions/droite-3-2.png",
+      "image_alt": "Une droite graduée avec un point rouge.",
+      "explanation": "Entre 0 et 1, il y a 2 intervalles égaux : on compte des demis. Le point est à 3 intervalles de 0 : 3/2. Il est après 1, car 3 est plus grand que 2.",
+      "options": [
+        {
+          "text": "3/2",
+          "correct": true
+        },
+        {
+          "text": "4/2"
+        },
+        {
+          "text": "2/2"
+        },
+        {
+          "text": "3/3"
+        }
+      ]
+    },
+    {
+      "text": "Dans la fraction 3/5, comment s'appelle le nombre 5 ?",
+      "explanation": "Le nombre du bas s'appelle le dénominateur : il dit en combien de parts égales on partage l'entier.",
+      "options": [
+        {
+          "text": "Le dénominateur",
+          "correct": true
+        },
+        {
+          "text": "Le numérateur"
+        },
+        {
+          "text": "Le quotient"
+        },
+        {
+          "text": "La somme"
+        }
+      ]
+    },
+    {
+      "text": "Dans la fraction 2/7, comment s'appelle le nombre 2 ?",
+      "explanation": "Le nombre du haut s'appelle le numérateur : il dit combien de parts on prend.",
+      "options": [
+        {
+          "text": "Le numérateur",
+          "correct": true
+        },
+        {
+          "text": "Le dénominateur"
+        },
+        {
+          "text": "Le quotient"
+        },
+        {
+          "text": "La somme"
+        }
+      ]
+    },
+    {
+      "text": "Dans la fraction 3/8, que nous dit le nombre 8 ?",
+      "explanation": "Le dénominateur 8 dit que l'entier est partagé en 8 parts égales.",
+      "options": [
+        {
+          "text": "Le nombre de parts égales dans un entier",
+          "correct": true
+        },
+        {
+          "text": "Le nombre de parts qu'on prend"
+        },
+        {
+          "text": "Le nombre de parts qui restent"
+        },
+        {
+          "text": "Le nombre d'entiers"
+        }
+      ]
+    },
+    {
+      "text": "Dans la fraction 3/8, que nous dit le nombre 3 ?",
+      "explanation": "Le numérateur 3 dit qu'on prend 3 parts parmi les 8.",
+      "options": [
+        {
+          "text": "Le nombre de parts qu'on prend",
+          "correct": true
+        },
+        {
+          "text": "Le nombre de parts égales dans un entier"
+        },
+        {
+          "text": "Le nombre de parts qui restent"
+        },
+        {
+          "text": "Le nombre d'entiers"
+        }
+      ]
+    },
+    {
+      "text": "Comment lit-on 1/4 ?",
+      "explanation": "1/4 se lit « un quart ». On dit aussi un quart d'heure.",
+      "options": [
+        {
+          "text": "Un quart",
+          "correct": true
+        },
+        {
+          "text": "Un demi"
+        },
+        {
+          "text": "Un tiers"
+        },
+        {
+          "text": "Un quatrième"
+        }
+      ]
+    },
+    {
+      "text": "Comment lit-on 3/5 ?",
+      "explanation": "Le numérateur se lit comme un nombre (trois) et le dénominateur avec « ième » (cinquièmes) : trois cinquièmes.",
+      "options": [
+        {
+          "text": "Trois cinquièmes",
+          "correct": true
+        },
+        {
+          "text": "Cinq troisièmes"
+        },
+        {
+          "text": "Trois quarts"
+        },
+        {
+          "text": "Huit cinquièmes"
+        }
+      ]
+    },
+    {
+      "text": "Comment lit-on 1/3 ?",
+      "explanation": "1/3 se lit « un tiers ».",
+      "options": [
+        {
+          "text": "Un tiers",
+          "correct": true
+        },
+        {
+          "text": "Un demi"
+        },
+        {
+          "text": "Un quart"
+        },
+        {
+          "text": "Un troisième"
+        }
+      ]
+    },
+    {
+      "text": "Comment écrit-on « sept dixièmes » ?",
+      "explanation": "Sept dixièmes : on prend 7 parts d'un entier partagé en 10. On écrit 7/10.",
+      "options": [
+        {
+          "text": "7/10",
+          "correct": true
+        },
+        {
+          "text": "10/7"
+        },
+        {
+          "text": "1/7"
+        },
+        {
+          "text": "7/1"
+        }
+      ]
+    },
+    {
+      "text": "Comment écrit-on « deux tiers » ?",
+      "explanation": "Deux tiers : on prend 2 parts d'un entier partagé en 3. On écrit 2/3.",
+      "options": [
+        {
+          "text": "2/3",
+          "correct": true
+        },
+        {
+          "text": "3/2"
+        },
+        {
+          "text": "2/6"
+        },
+        {
+          "text": "1/3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction se lit « un demi » ?",
+      "explanation": "Un demi, c'est 1 part sur 2 parts égales : 1/2.",
+      "options": [
+        {
+          "text": "1/2",
+          "correct": true
+        },
+        {
+          "text": "2/1"
+        },
+        {
+          "text": "1/4"
+        },
+        {
+          "text": "1/3"
+        }
+      ]
+    },
+    {
+      "text": "Une pizza est coupée en 8 parts égales. Léa en mange 3. Quelle fraction de la pizza Léa a-t-elle mangée ?",
+      "explanation": "La pizza est coupée en 8 parts égales et Léa en mange 3 : 3/8.",
+      "options": [
+        {
+          "text": "3/8",
+          "correct": true
+        },
+        {
+          "text": "8/3"
+        },
+        {
+          "text": "5/8"
+        },
+        {
+          "text": "3/5"
+        }
+      ]
+    },
+    {
+      "text": "Une tablette de chocolat a 10 carrés identiques. Tom mange 4 carrés. Quelle fraction de la tablette Tom a-t-il mangée ?",
+      "explanation": "La tablette est partagée en 10 carrés égaux et Tom en mange 4 : 4/10.",
+      "options": [
+        {
+          "text": "4/10",
+          "correct": true
+        },
+        {
+          "text": "6/10"
+        },
+        {
+          "text": "4/6"
+        },
+        {
+          "text": "10/4"
+        }
+      ]
+    },
+    {
+      "text": "Un jardin est partagé en 6 parcelles égales. 5 parcelles sont plantées de fleurs. Quelle fraction du jardin est plantée de fleurs ?",
+      "explanation": "Le jardin est partagé en 6 parcelles égales et 5 ont des fleurs : 5/6.",
+      "options": [
+        {
+          "text": "5/6",
+          "correct": true
+        },
+        {
+          "text": "1/6"
+        },
+        {
+          "text": "6/5"
+        },
+        {
+          "text": "5/1"
+        }
+      ]
+    },
+    {
+      "text": "Quel signe faut-il mettre pour comparer 3/7 … 5/7 ?",
+      "explanation": "Les deux fractions ont le même dénominateur : on compare les numérateurs. 3 est plus petit que 5, donc 3/7 < 5/7.",
+      "options": [
+        {
+          "text": "<",
+          "correct": true
+        },
+        {
+          "text": ">"
+        },
+        {
+          "text": "="
+        }
+      ]
+    },
+    {
+      "text": "Quel signe faut-il mettre pour comparer 6/9 … 4/9 ?",
+      "explanation": "Les deux fractions ont le même dénominateur : on compare les numérateurs. 6 est plus grand que 4, donc 6/9 > 4/9.",
+      "options": [
+        {
+          "text": ">",
+          "correct": true
+        },
+        {
+          "text": "<"
+        },
+        {
+          "text": "="
+        }
+      ]
+    },
+    {
+      "text": "Quel signe faut-il mettre pour comparer 2/6 … 5/6 ?",
+      "explanation": "Les deux fractions ont le même dénominateur : on compare les numérateurs. 2 est plus petit que 5, donc 2/6 < 5/6.",
+      "options": [
+        {
+          "text": "<",
+          "correct": true
+        },
+        {
+          "text": ">"
+        },
+        {
+          "text": "="
+        }
+      ]
+    },
+    {
+      "text": "Quel signe faut-il mettre pour comparer 9/10 … 7/10 ?",
+      "explanation": "Les deux fractions ont le même dénominateur : on compare les numérateurs. 9 est plus grand que 7, donc 9/10 > 7/10.",
+      "options": [
+        {
+          "text": ">",
+          "correct": true
+        },
+        {
+          "text": "<"
+        },
+        {
+          "text": "="
+        }
+      ]
+    },
+    {
+      "text": "Quel signe faut-il mettre pour comparer 1/3 … 1/5 ?",
+      "explanation": "Même numérateur, mais pas les mêmes parts : plus le dénominateur est grand, plus les parts sont petites. Donc 1/3 > 1/5.",
+      "options": [
+        {
+          "text": ">",
+          "correct": true
+        },
+        {
+          "text": "<"
+        },
+        {
+          "text": "="
+        }
+      ]
+    },
+    {
+      "text": "Quel signe faut-il mettre pour comparer 3/4 … 3/8 ?",
+      "explanation": "Même numérateur, mais pas les mêmes parts : plus le dénominateur est grand, plus les parts sont petites. Donc 3/4 > 3/8.",
+      "options": [
+        {
+          "text": ">",
+          "correct": true
+        },
+        {
+          "text": "<"
+        },
+        {
+          "text": "="
+        }
+      ]
+    },
+    {
+      "text": "Quel signe faut-il mettre pour comparer 2/5 … 2/3 ?",
+      "explanation": "Même numérateur, mais pas les mêmes parts : plus le dénominateur est grand, plus les parts sont petites. Donc 2/5 < 2/3.",
+      "options": [
+        {
+          "text": "<",
+          "correct": true
+        },
+        {
+          "text": ">"
+        },
+        {
+          "text": "="
+        }
+      ]
+    },
+    {
+      "text": "Parmi ces fractions, laquelle est la plus grande ?",
+      "explanation": "Les dénominateurs sont les mêmes (8) : la plus grande est celle qui a le numérateur le plus grande, 7/8.",
+      "options": [
+        {
+          "text": "7/8",
+          "correct": true
+        },
+        {
+          "text": "2/8"
+        },
+        {
+          "text": "5/8"
+        },
+        {
+          "text": "4/8"
+        }
+      ]
+    },
+    {
+      "text": "Parmi ces fractions, laquelle est la plus petite ?",
+      "explanation": "Les dénominateurs sont les mêmes (10) : la plus petite est celle qui a le numérateur le plus petite, 2/10.",
+      "options": [
+        {
+          "text": "2/10",
+          "correct": true
+        },
+        {
+          "text": "5/10"
+        },
+        {
+          "text": "9/10"
+        },
+        {
+          "text": "7/10"
+        }
+      ]
+    },
+    {
+      "text": "Parmi ces fractions, laquelle est la plus petite ?",
+      "explanation": "Les dénominateurs sont les mêmes (6) : la plus petite est celle qui a le numérateur le plus petite, 1/6.",
+      "options": [
+        {
+          "text": "1/6",
+          "correct": true
+        },
+        {
+          "text": "4/6"
+        },
+        {
+          "text": "5/6"
+        },
+        {
+          "text": "3/6"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est plus grande que 1/2 ?",
+      "explanation": "La moitié de 4 parts, c'est 2 parts. 3/4 en a 3, donc 3/4 est plus grand que 1/2. Les autres sont plus petites que 1/2.",
+      "options": [
+        {
+          "text": "3/4",
+          "correct": true
+        },
+        {
+          "text": "1/4"
+        },
+        {
+          "text": "1/3"
+        },
+        {
+          "text": "2/5"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est plus petite que 1/2 ?",
+      "explanation": "Un tiers est plus petit qu'un demi : en partageant en 3, les parts sont plus petites qu'en partageant en 2. Les autres fractions sont plus grandes que 1/2.",
+      "options": [
+        {
+          "text": "1/3",
+          "correct": true
+        },
+        {
+          "text": "2/3"
+        },
+        {
+          "text": "3/4"
+        },
+        {
+          "text": "4/5"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est égale à 1 entier ?",
+      "explanation": "Quand le numérateur est égal au dénominateur, on a pris toutes les parts : 5/5 = 1.",
+      "options": [
+        {
+          "text": "5/5",
+          "correct": true
+        },
+        {
+          "text": "1/5"
+        },
+        {
+          "text": "5/1"
+        },
+        {
+          "text": "4/5"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est plus petite que 1 ?",
+      "explanation": "7/8 est plus petit que 1, car 7 parts sur 8 ne font pas un entier. 8/8 = 1, et 9/8 et 10/8 sont plus grands que 1.",
+      "options": [
+        {
+          "text": "7/8",
+          "correct": true
+        },
+        {
+          "text": "9/8"
+        },
+        {
+          "text": "8/8"
+        },
+        {
+          "text": "10/8"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est plus grande que 1 ?",
+      "explanation": "7/6 est plus grand que 1 : le numérateur 7 est plus grand que le dénominateur 6. Dans les autres, le numérateur est plus petit.",
+      "options": [
+        {
+          "text": "7/6",
+          "correct": true
+        },
+        {
+          "text": "3/4"
+        },
+        {
+          "text": "5/6"
+        },
+        {
+          "text": "4/5"
+        }
+      ]
+    },
+    {
+      "text": "Les deux bandes ont la même longueur. Laquelle a la plus grande partie colorée ?",
+      "image": "images/fractions/compare-1-3-3-4.png",
+      "image_alt": "Deux bandes de même longueur, A et B, partagées en parts égales, avec une partie colorée dans chacune.",
+      "explanation": "La bande A montre 1/3, moins que la moitié. La bande B montre 3/4, plus que la moitié. B est la plus colorée.",
+      "options": [
+        {
+          "text": "La bande B",
+          "correct": true
+        },
+        {
+          "text": "La bande A"
+        },
+        {
+          "text": "Les deux pareil"
+        }
+      ]
+    },
+    {
+      "text": "Les deux bandes ont la même longueur. Laquelle a la plus grande partie colorée ?",
+      "image": "images/fractions/compare-5-6-2-3.png",
+      "image_alt": "Deux bandes de même longueur, A et B, partagées en parts égales, avec une partie colorée dans chacune.",
+      "explanation": "La bande A montre 5/6, la bande B montre 2/3 : il manque 1 sixième à A pour être pleine, et 1 tiers à B. Un sixième est plus petit qu'un tiers, donc A est la plus colorée.",
+      "options": [
+        {
+          "text": "La bande A",
+          "correct": true
+        },
+        {
+          "text": "La bande B"
+        },
+        {
+          "text": "Les deux pareil"
+        }
+      ]
+    },
+    {
+      "text": "Une tablette de chocolat est partagée en 5 parts. Lina en mange 3/5. Une tablette identique est partagée en 10 parts. Max en mange 3/10. Qui en a mangé le plus ?",
+      "explanation": "Même numérateur : les parts de cinquièmes sont plus grandes que les parts de dixièmes. 3/5 est plus grand que 3/10.",
+      "options": [
+        {
+          "text": "Lina",
+          "correct": true
+        },
+        {
+          "text": "Max"
+        },
+        {
+          "text": "Ils en ont mangé autant"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus petit au plus grand : 5/8 ; 1/8 ; 7/8 ; 3/8",
+      "explanation": "Même dénominateur : on range les numérateurs. Dans le bon ordre : 1/8 → 3/8 → 5/8 → 7/8.",
+      "options": [
+        {
+          "text": "1/8 → 3/8 → 5/8 → 7/8",
+          "correct": true
+        },
+        {
+          "text": "7/8 → 5/8 → 3/8 → 1/8"
+        },
+        {
+          "text": "3/8 → 1/8 → 5/8 → 7/8"
+        },
+        {
+          "text": "1/8 → 3/8 → 7/8 → 5/8"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus petit au plus grand : 4/9 ; 8/9 ; 2/9 ; 6/9",
+      "explanation": "Même dénominateur : on range les numérateurs. Dans le bon ordre : 2/9 → 4/9 → 6/9 → 8/9.",
+      "options": [
+        {
+          "text": "2/9 → 4/9 → 6/9 → 8/9",
+          "correct": true
+        },
+        {
+          "text": "8/9 → 6/9 → 4/9 → 2/9"
+        },
+        {
+          "text": "4/9 → 2/9 → 6/9 → 8/9"
+        },
+        {
+          "text": "2/9 → 4/9 → 8/9 → 6/9"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus grand au plus petit : 2/6 ; 5/6 ; 1/6 ; 4/6",
+      "explanation": "Même dénominateur : on range les numérateurs. Dans le bon ordre : 5/6 → 4/6 → 2/6 → 1/6.",
+      "options": [
+        {
+          "text": "5/6 → 4/6 → 2/6 → 1/6",
+          "correct": true
+        },
+        {
+          "text": "1/6 → 2/6 → 4/6 → 5/6"
+        },
+        {
+          "text": "4/6 → 5/6 → 2/6 → 1/6"
+        },
+        {
+          "text": "5/6 → 4/6 → 1/6 → 2/6"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus grand au plus petit : 6/7 ; 2/7 ; 5/7 ; 3/7",
+      "explanation": "Même dénominateur : on range les numérateurs. Dans le bon ordre : 6/7 → 5/7 → 3/7 → 2/7.",
+      "options": [
+        {
+          "text": "6/7 → 5/7 → 3/7 → 2/7",
+          "correct": true
+        },
+        {
+          "text": "2/7 → 3/7 → 5/7 → 6/7"
+        },
+        {
+          "text": "5/7 → 6/7 → 3/7 → 2/7"
+        },
+        {
+          "text": "6/7 → 5/7 → 2/7 → 3/7"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus petit au plus grand : 1/2 ; 1/5 ; 1/4 ; 1/3",
+      "explanation": "Même numérateur : plus le dénominateur est grand, plus la fraction est petite. Dans le bon ordre : 1/5 → 1/4 → 1/3 → 1/2.",
+      "options": [
+        {
+          "text": "1/5 → 1/4 → 1/3 → 1/2",
+          "correct": true
+        },
+        {
+          "text": "1/2 → 1/3 → 1/4 → 1/5"
+        },
+        {
+          "text": "1/4 → 1/5 → 1/3 → 1/2"
+        },
+        {
+          "text": "1/5 → 1/4 → 1/2 → 1/3"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus petit au plus grand : 3/4 ; 3/10 ; 3/5 ; 3/8",
+      "explanation": "Même numérateur : plus le dénominateur est grand, plus la fraction est petite. Dans le bon ordre : 3/10 → 3/8 → 3/5 → 3/4.",
+      "options": [
+        {
+          "text": "3/10 → 3/8 → 3/5 → 3/4",
+          "correct": true
+        },
+        {
+          "text": "3/4 → 3/5 → 3/8 → 3/10"
+        },
+        {
+          "text": "3/8 → 3/10 → 3/5 → 3/4"
+        },
+        {
+          "text": "3/10 → 3/8 → 3/4 → 3/5"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus grand au plus petit : 2/3 ; 2/9 ; 2/5 ; 2/7",
+      "explanation": "Même numérateur : plus le dénominateur est grand, plus la fraction est petite. Dans le bon ordre : 2/3 → 2/5 → 2/7 → 2/9.",
+      "options": [
+        {
+          "text": "2/3 → 2/5 → 2/7 → 2/9",
+          "correct": true
+        },
+        {
+          "text": "2/9 → 2/7 → 2/5 → 2/3"
+        },
+        {
+          "text": "2/5 → 2/3 → 2/7 → 2/9"
+        },
+        {
+          "text": "2/3 → 2/5 → 2/9 → 2/7"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus petit au plus grand : 1/2 ; 0 ; 1 ; 1/4",
+      "explanation": "0 est le plus petit, 1 le plus grand. 1/4 est plus petit que 1/2. Dans le bon ordre : 0 → 1/4 → 1/2 → 1.",
+      "options": [
+        {
+          "text": "0 → 1/4 → 1/2 → 1",
+          "correct": true
+        },
+        {
+          "text": "1 → 1/2 → 1/4 → 0"
+        },
+        {
+          "text": "1/4 → 0 → 1/2 → 1"
+        },
+        {
+          "text": "0 → 1/4 → 1 → 1/2"
+        }
+      ]
+    },
+    {
+      "text": "Range ces fractions du plus grand au plus petit : 3/4 ; 1/2 ; 1/4 ; 1",
+      "explanation": "1 est le plus grand. 3/4 > 1/2 > 1/4. Dans le bon ordre : 1 → 3/4 → 1/2 → 1/4.",
+      "options": [
+        {
+          "text": "1 → 3/4 → 1/2 → 1/4",
+          "correct": true
+        },
+        {
+          "text": "1/4 → 1/2 → 3/4 → 1"
+        },
+        {
+          "text": "3/4 → 1 → 1/2 → 1/4"
+        },
+        {
+          "text": "1 → 3/4 → 1/4 → 1/2"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est entre 3/8 et 5/8 ?",
+      "explanation": "Entre 3/8 et 5/8 il y a 4/8 : 3 < 4 < 5.",
+      "options": [
+        {
+          "text": "4/8",
+          "correct": true
+        },
+        {
+          "text": "2/8"
+        },
+        {
+          "text": "6/8"
+        },
+        {
+          "text": "7/8"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction peut remplacer le point d'interrogation : 2/9 < ?/9 < 4/9 ?",
+      "explanation": "Entre 2 et 4, il y a le nombre 3. Donc 2/9 < 3/9 < 4/9.",
+      "options": [
+        {
+          "text": "3/9",
+          "correct": true
+        },
+        {
+          "text": "1/9"
+        },
+        {
+          "text": "4/9"
+        },
+        {
+          "text": "5/9"
+        }
+      ]
+    },
+    {
+      "text": "Complète la suite : 1/5 ; 2/5 ; 3/5 ; …",
+      "explanation": "On ajoute 1/5 à chaque fois : après 3/5 vient 4/5.",
+      "options": [
+        {
+          "text": "4/5",
+          "correct": true
+        },
+        {
+          "text": "3/10"
+        },
+        {
+          "text": "5/4"
+        },
+        {
+          "text": "4/10"
+        }
+      ]
+    },
+    {
+      "text": "Les deux bandes ont la même longueur et la même partie colorée. Complète : 1/2 = ?/4",
+      "image": "images/fractions/egal-1-2-2-4.png",
+      "image_alt": "Deux bandes de même longueur, partagées différemment, avec une partie colorée dans chacune.",
+      "explanation": "Chaque part de la bande du haut est coupée en 2. Le numérateur et le dénominateur sont multipliés par 2 : 1/2 = 2/4.",
+      "options": [
+        {
+          "text": "2",
+          "correct": true
+        },
+        {
+          "text": "3"
+        },
+        {
+          "text": "1"
+        },
+        {
+          "text": "4"
+        }
+      ]
+    },
+    {
+      "text": "Les deux bandes ont la même longueur et la même partie colorée. Complète : 1/3 = ?/6",
+      "image": "images/fractions/egal-1-3-2-6.png",
+      "image_alt": "Deux bandes de même longueur, partagées différemment, avec une partie colorée dans chacune.",
+      "explanation": "Chaque part de la bande du haut est coupée en 2. Le numérateur et le dénominateur sont multipliés par 2 : 1/3 = 2/6.",
+      "options": [
+        {
+          "text": "2",
+          "correct": true
+        },
+        {
+          "text": "4"
+        },
+        {
+          "text": "1"
+        },
+        {
+          "text": "3"
+        }
+      ]
+    },
+    {
+      "text": "Les deux bandes ont la même longueur et la même partie colorée. Complète : 3/4 = ?/8",
+      "image": "images/fractions/egal-3-4-6-8.png",
+      "image_alt": "Deux bandes de même longueur, partagées différemment, avec une partie colorée dans chacune.",
+      "explanation": "Chaque part de la bande du haut est coupée en 2. Le numérateur et le dénominateur sont multipliés par 2 : 3/4 = 6/8.",
+      "options": [
+        {
+          "text": "6",
+          "correct": true
+        },
+        {
+          "text": "7"
+        },
+        {
+          "text": "3"
+        },
+        {
+          "text": "4"
+        }
+      ]
+    },
+    {
+      "text": "Les deux bandes ont la même longueur et la même partie colorée. Complète : 2/5 = ?/10",
+      "image": "images/fractions/egal-2-5-4-10.png",
+      "image_alt": "Deux bandes de même longueur, partagées différemment, avec une partie colorée dans chacune.",
+      "explanation": "Chaque part de la bande du haut est coupée en 2. Le numérateur et le dénominateur sont multipliés par 2 : 2/5 = 4/10.",
+      "options": [
+        {
+          "text": "4",
+          "correct": true
+        },
+        {
+          "text": "7"
+        },
+        {
+          "text": "2"
+        },
+        {
+          "text": "5"
+        }
+      ]
+    },
+    {
+      "text": "Complète : 1/2 = ?/6",
+      "explanation": "On passe de 2 à 6 en multipliant par 3. Il faut multiplier le numérateur par 3 aussi : 1 × 3 = 3.",
+      "options": [
+        {
+          "text": "3",
+          "correct": true
+        },
+        {
+          "text": "5"
+        },
+        {
+          "text": "1"
+        },
+        {
+          "text": "6"
+        }
+      ]
+    },
+    {
+      "text": "Complète : 1/2 = ?/10",
+      "explanation": "On passe de 2 à 10 en multipliant par 5. Il faut multiplier le numérateur par 5 aussi : 1 × 5 = 5.",
+      "options": [
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "9"
+        },
+        {
+          "text": "1"
+        },
+        {
+          "text": "2"
+        }
+      ]
+    },
+    {
+      "text": "Complète : 2/3 = ?/6",
+      "explanation": "On passe de 3 à 6 en multipliant par 2. Il faut multiplier le numérateur par 2 aussi : 2 × 2 = 4.",
+      "options": [
+        {
+          "text": "4",
+          "correct": true
+        },
+        {
+          "text": "5"
+        },
+        {
+          "text": "2"
+        },
+        {
+          "text": "3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est égale à 1/2 ?",
+      "explanation": "4/8 : la moitié de 8 parts, c'est 4 parts. Donc 4/8 = 1/2.",
+      "options": [
+        {
+          "text": "4/8",
+          "correct": true
+        },
+        {
+          "text": "1/4"
+        },
+        {
+          "text": "2/3"
+        },
+        {
+          "text": "3/5"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction n'est PAS égale à 1/2 ?",
+      "explanation": "4/8, 3/6 et 5/10 sont la moitié de leur entier. Mais 3/5 est un peu plus que la moitié.",
+      "options": [
+        {
+          "text": "3/5",
+          "correct": true
+        },
+        {
+          "text": "4/8"
+        },
+        {
+          "text": "3/6"
+        },
+        {
+          "text": "5/10"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est égale à 3/4 ?",
+      "explanation": "On multiplie le numérateur et le dénominateur par 2 : 3 × 2 = 6 et 4 × 2 = 8. Donc 3/4 = 6/8.",
+      "options": [
+        {
+          "text": "6/8",
+          "correct": true
+        },
+        {
+          "text": "3/8"
+        },
+        {
+          "text": "6/10"
+        },
+        {
+          "text": "4/3"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est égale à 6/8, mais plus simple ?",
+      "explanation": "On divise le numérateur et le dénominateur par 2 : 6 ÷ 2 = 3 et 8 ÷ 2 = 4. Donc 6/8 = 3/4.",
+      "options": [
+        {
+          "text": "3/4",
+          "correct": true
+        },
+        {
+          "text": "6/4"
+        },
+        {
+          "text": "2/3"
+        },
+        {
+          "text": "3/8"
+        }
+      ]
+    },
+    {
+      "text": "Quelle fraction est égale à 4/10, mais plus simple ?",
+      "explanation": "On divise le numérateur et le dénominateur par 2 : 4 ÷ 2 = 2 et 10 ÷ 2 = 5. Donc 4/10 = 2/5.",
+      "options": [
+        {
+          "text": "2/5",
+          "correct": true
+        },
+        {
+          "text": "2/10"
+        },
+        {
+          "text": "4/5"
+        },
+        {
+          "text": "1/5"
+        }
+      ]
+    },
+    {
+      "text": "Les deux bandes ont la même longueur. Laquelle a la plus grande partie colorée ?",
+      "image": "images/fractions/egal-1-2-3-6-ab.png",
+      "image_alt": "Deux bandes de même longueur, A et B, partagées en parts égales, avec une partie colorée dans chacune.",
+      "explanation": "La bande A montre 1/2 et la bande B montre 3/6. Ces deux fractions sont égales, donc la partie colorée est la même.",
+      "options": [
+        {
+          "text": "Les deux pareil",
+          "correct": true
+        },
+        {
+          "text": "La bande A"
+        },
+        {
+          "text": "La bande B"
+        }
+      ]
+    },
+    {
+      "text": "Lina a mangé 1/3 d'une tablette de chocolat. Max a mangé 2/6 d'une tablette identique. Qui en a mangé le plus ?",
+      "explanation": "1/3 = 2/6 : chaque tiers peut être coupé en 2 pour faire des sixièmes. Ils ont mangé la même quantité.",
+      "options": [
+        {
+          "text": "Ils en ont mangé autant",
+          "correct": true
+        },
+        {
+          "text": "Lina"
+        },
+        {
+          "text": "Max"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 2/7 + 3/7 ?",
+      "explanation": "Le dénominateur ne change pas : on additionne les numérateurs. 2 + 3 = 5, donc 2/7 + 3/7 = 5/7.",
+      "options": [
+        {
+          "text": "5/7",
+          "correct": true
+        },
+        {
+          "text": "5/14"
+        },
+        {
+          "text": "6/7"
+        },
+        {
+          "text": "1/7"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 3/8 + 4/8 ?",
+      "explanation": "Le dénominateur ne change pas : on additionne les numérateurs. 3 + 4 = 7, donc 3/8 + 4/8 = 7/8.",
+      "options": [
+        {
+          "text": "7/8",
+          "correct": true
+        },
+        {
+          "text": "7/16"
+        },
+        {
+          "text": "1/8"
+        },
+        {
+          "text": "6/8"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 3/4 + 1/4 ?",
+      "explanation": "3 + 1 = 4, donc 4/4. Quatre quarts, c'est un entier : 4/4 = 1.",
+      "options": [
+        {
+          "text": "4/4 (un entier)",
+          "correct": true
+        },
+        {
+          "text": "4/8"
+        },
+        {
+          "text": "3/4"
+        },
+        {
+          "text": "1/4"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 5/8 − 2/8 ?",
+      "explanation": "Le dénominateur ne change pas : on soustrait les numérateurs. 5 − 2 = 3, donc 5/8 − 2/8 = 3/8.",
+      "options": [
+        {
+          "text": "3/8",
+          "correct": true
+        },
+        {
+          "text": "7/8"
+        },
+        {
+          "text": "3/6"
+        },
+        {
+          "text": "2/8"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 7/9 − 4/9 ?",
+      "explanation": "Le dénominateur ne change pas : on soustrait les numérateurs. 7 − 4 = 3, donc 7/9 − 4/9 = 3/9.",
+      "options": [
+        {
+          "text": "3/9",
+          "correct": true
+        },
+        {
+          "text": "11/9"
+        },
+        {
+          "text": "3/18"
+        },
+        {
+          "text": "4/9"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 4/5 − 3/5 ?",
+      "explanation": "Le dénominateur ne change pas : on soustrait les numérateurs. 4 − 3 = 1, donc 4/5 − 3/5 = 1/5.",
+      "options": [
+        {
+          "text": "1/5",
+          "correct": true
+        },
+        {
+          "text": "7/5"
+        },
+        {
+          "text": "1/10"
+        },
+        {
+          "text": "3/5"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 2 cinquièmes + 2 cinquièmes ?",
+      "explanation": "Deux cinquièmes plus deux cinquièmes font quatre cinquièmes, comme 2 pommes + 2 pommes = 4 pommes. L'unité (les cinquièmes) ne change pas.",
+      "options": [
+        {
+          "text": "4 cinquièmes",
+          "correct": true
+        },
+        {
+          "text": "4 dixièmes"
+        },
+        {
+          "text": "2 dixièmes"
+        },
+        {
+          "text": "5 cinquièmes"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 1 − 2/5 ?",
+      "explanation": "1 entier = 5/5. Donc 1 − 2/5 = 5/5 − 2/5 = 3/5.",
+      "options": [
+        {
+          "text": "3/5",
+          "correct": true
+        },
+        {
+          "text": "1/5"
+        },
+        {
+          "text": "2/5"
+        },
+        {
+          "text": "3/10"
+        }
+      ]
+    },
+    {
+      "text": "Combien font 1 − 3/8 ?",
+      "explanation": "1 entier = 8/8. Donc 1 − 3/8 = 8/8 − 3/8 = 5/8.",
+      "options": [
+        {
+          "text": "5/8",
+          "correct": true
+        },
+        {
+          "text": "2/8"
+        },
+        {
+          "text": "3/8"
+        },
+        {
+          "text": "4/8"
+        }
+      ]
+    },
+    {
+      "text": "Quel nombre manque : 2/9 + ?/9 = 7/9",
+      "explanation": "Il faut aller de 2 à 7 : 7 − 2 = 5. Donc 2/9 + 5/9 = 7/9.",
+      "options": [
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "9"
+        },
+        {
+          "text": "4"
+        },
+        {
+          "text": "6"
+        }
+      ]
+    },
+    {
+      "text": "Quel nombre manque : ?/8 − 3/8 = 2/8",
+      "explanation": "On cherche un nombre dont on enlève 3 pour obtenir 2 : 2 + 3 = 5. Donc 5/8 − 3/8 = 2/8.",
+      "options": [
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "1"
+        },
+        {
+          "text": "6"
+        },
+        {
+          "text": "8"
+        }
+      ]
+    },
+    {
+      "text": "Le matin, Léa lit 3/10 de son livre. Le soir, elle en lit encore 4/10. Quelle fraction du livre a-t-elle lue en tout ?",
+      "explanation": "On additionne : 3/10 + 4/10 = 7/10.",
+      "options": [
+        {
+          "text": "7/10",
+          "correct": true
+        },
+        {
+          "text": "7/20"
+        },
+        {
+          "text": "1/10"
+        },
+        {
+          "text": "12/10"
+        }
+      ]
+    },
+    {
+      "text": "Il reste 5/8 d'une pizza. On en mange encore 2/8. Quelle fraction de la pizza reste-t-il ?",
+      "explanation": "On soustrait : 5/8 − 2/8 = 3/8.",
+      "options": [
+        {
+          "text": "3/8",
+          "correct": true
+        },
+        {
+          "text": "7/8"
+        },
+        {
+          "text": "2/8"
+        },
+        {
+          "text": "3/16"
+        }
+      ]
+    },
+    {
+      "text": "La bande est partagée en 7 parts égales. Léa en colorie 2/7 en orange, puis Tom en colorie 3/7 en bleu rayé. Quelle fraction de la bande est coloriée en tout ?",
+      "image": "images/fractions/somme-2-3-7.png",
+      "image_alt": "Une bande partagée en 7 parts égales, avec des parts orange et des parts bleues rayées.",
+      "explanation": "2 parts orange + 3 parts bleues = 5 parts coloriées sur 7 : 2/7 + 3/7 = 5/7.",
+      "options": [
+        {
+          "text": "5/7",
+          "correct": true
+        },
+        {
+          "text": "6/7"
+        },
+        {
+          "text": "5/14"
+        },
+        {
+          "text": "1/7"
+        }
+      ]
+    },
+    {
+      "text": "La bande est partagée en 10 parts égales. Léa en colorie 4/10 en orange, puis Tom en colorie 3/10 en bleu rayé. Quelle fraction de la bande est coloriée en tout ?",
+      "image": "images/fractions/somme-4-3-10.png",
+      "image_alt": "Une bande partagée en 10 parts égales, avec des parts orange et des parts bleues rayées.",
+      "explanation": "4 parts orange + 3 parts bleues = 7 parts coloriées sur 10 : 4/10 + 3/10 = 7/10.",
+      "options": [
+        {
+          "text": "7/10",
+          "correct": true
+        },
+        {
+          "text": "7/20"
+        },
+        {
+          "text": "1/10"
+        },
+        {
+          "text": "8/10"
+        }
+      ]
+    },
+    {
+      "text": "La bande est partagée en 6 parts égales. Léa en colorie 1/6 en orange, puis Tom en colorie 2/6 en bleu rayé. Quelle fraction de la bande est coloriée en tout ?",
+      "image": "images/fractions/somme-1-2-6.png",
+      "image_alt": "Une bande partagée en 6 parts égales, avec des parts orange et des parts bleues rayées.",
+      "explanation": "1 parts orange + 2 parts bleues = 3 parts coloriées sur 6 : 1/6 + 2/6 = 3/6.",
+      "options": [
+        {
+          "text": "3/6",
+          "correct": true
+        },
+        {
+          "text": "3/12"
+        },
+        {
+          "text": "2/6"
+        },
+        {
+          "text": "4/6"
+        }
+      ]
+    }
+  ]
+}
