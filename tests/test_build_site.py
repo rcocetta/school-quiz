@@ -580,12 +580,12 @@ def test_manifest_content_and_icons(tree, tmp_path):
     build_site(tree, out)
     m = manifest(out)
     assert m == {
-        "name": "Quizzes", "lang": "en", "start_url": "../", "scope": "../", "display": "standalone",
+        "id": "./", "name": "Quizzes", "lang": "en", "start_url": "../", "scope": "../", "display": "standalone",
         "background_color": "#5233e0", "theme_color": "#5233e0",
         "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
                   {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
                   {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}
-    assert "short_name" not in m and "id" not in m
+    assert "short_name" not in m
     for icon in m["icons"]:
         assert (out / "assets" / icon["src"]).read_bytes().startswith(bytes.fromhex("89504e470d0a1a0a"))
     assert (out / "assets" / "apple-touch-icon.png").is_file()
@@ -645,6 +645,7 @@ def test_unlisted_collection_is_an_app_of_its_own(tmp_path):
     manifest = json.loads(read(out / "private" / "manifest.webmanifest"))
     assert manifest["name"] == "Family Fun" and manifest["lang"] == "it"
     assert manifest["start_url"] == manifest["scope"] == "./"
+    assert manifest["id"] == "./"
     assert [i["src"] for i in manifest["icons"]] == ["../assets/icon-192.png", "../assets/icon-512.png",
                                                      "../assets/icon-maskable-512.png"]
     for page in ("private/index.html", "private/fun.html"):
