@@ -96,6 +96,32 @@
     --accent: #ffc83d;
     --select-bg: #25502f;
   }
+
+  /* In dark mode the boxes stay light green with dark green text (the page around them is dark), so they
+     get the light palette back, including the right/wrong colours. --focus is not reset: the ring sits
+     outside the boxes, on the dark page. */
+  :where([data-theme="green"] :is(.card, .hero, .result, .option, .review-item, .lang-btn, .back-link, .empty, .progress, .feedback, .btn[disabled]),
+         .card[data-theme="green"]) {
+    color: var(--ink);        /* text inside a box inherits from it, not from the dark page */
+    --bg: #ecf9df;
+    --surface: #ecf9df;
+    --ink: #173d1f;
+    --ink-soft: #2f5a36;
+    --edge: #2e7d32;
+    --primary: #2e7d32;
+    --on-primary: #ffffff;
+    --select-bg: #d2f0b0;
+    --good-bg: #d9f5e8;
+    --good-ink: #065f46;
+    --good-edge: #0b7a5b;
+    --oops-bg: #ffe8c4;
+    --oops-ink: #7a3a00;
+    --oops-edge: #b45309;
+  }
+  [data-theme="green"] .option[data-state="right"] .mark,
+  [data-theme="green"] .option[data-state="reveal"] .mark,
+  [data-theme="green"] .option[data-state="wrong"] .mark { color: var(--bg); }
+  [data-theme="green"] .review-item .mark { color: var(--bg) !important; }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
