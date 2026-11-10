@@ -66,6 +66,66 @@
   }
 }
 
+/* Green theme (collection.json "theme": "green"): palette only. Set as data-theme on <html>, or on a single
+   card so a green collection is tinted on the purple index. Contrast checked: text >= 4.5:1, borders >= 3:1. */
+[data-theme="green"] {
+  --bg: #e6f7d4;
+  --blob-a: #ffe58a;
+  --blob-b: #bdeccb;
+  --ink: #173d1f;
+  --ink-soft: #2f5a36;
+  --edge: #2e7d32;
+  --shade: #2e7d32;
+  --primary: #2e7d32;
+  --accent: #ffc83d;
+  --select-bg: #d2f0b0;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="green"] {
+    --bg: #0f2016;
+    --blob-a: #3a3414;
+    --blob-b: #12332b;
+    --surface: #17291d;
+    --ink: #eaf7e6;
+    --ink-soft: #b9d3bd;
+    --edge: #6fa57a;
+    --shade: #07110a;
+    --primary: #8fdc8a;
+    --on-primary: #0c2a12;
+    --accent: #ffc83d;
+    --select-bg: #25502f;
+  }
+
+  /* In dark mode the boxes stay light green with dark green text (the page around them is dark), so they
+     get the light palette back, including the right/wrong colours. --focus is not reset: the ring sits
+     outside the boxes, on the dark page. */
+  :where([data-theme="green"] :is(.card, .hero, .result, .option, .review-item, .back-link, .empty, .progress, .feedback, .btn[disabled]),
+         .card[data-theme="green"]) {
+    color: var(--ink);        /* text inside a box inherits from it, not from the dark page */
+    --bg: #ecf9df;
+    --surface: #ecf9df;
+    --ink: #173d1f;
+    --ink-soft: #2f5a36;
+    --edge: #2e7d32;
+    --primary: #2e7d32;
+    --on-primary: #ffffff;
+    --select-bg: #d2f0b0;
+    --good-bg: #d9f5e8;
+    --good-ink: #065f46;
+    --good-edge: #0b7a5b;
+    --oops-bg: #ffe8c4;
+    --oops-ink: #7a3a00;
+    --oops-edge: #b45309;
+  }
+  [data-theme="green"] .option[data-state="right"] .mark,
+  [data-theme="green"] .option[data-state="reveal"] .mark,
+  [data-theme="green"] .option[data-state="wrong"] .mark { color: var(--bg); }
+  [data-theme="green"] .review-item .mark { color: var(--bg) !important; }
+  /* language chips on the cards: dark green pill, light text */
+  [data-theme="green"] .lang-chip { background: #25502f; border-color: #25502f; color: #eaf7e6; }
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }
