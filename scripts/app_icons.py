@@ -53,7 +53,6 @@ def parts(theme: str = "purple") -> tuple[str, str]:
         inner = re.sub(r'<path d="M21 31l8 8 15-16"[^>]*/>',
                        f'<polygon points="{star(32, 28, 13, 5.5)}" fill="{GREEN}" stroke="{GREEN}" stroke-width="3" '
                        'stroke-linejoin="round"/>', inner, count=1)
-        inner = inner.replace("#ffc83d", "#c6f06b")  # the corner dot, lime instead of yellow
         assert "<polygon" in inner, "the tick in logo.svg was not found; update the green variant"
     mark = re.sub(r"<rect[^>]*/>", "", inner, count=1)
     return inner, mark

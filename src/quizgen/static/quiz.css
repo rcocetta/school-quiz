@@ -70,21 +70,21 @@
    card so a green collection is tinted on the purple index. Contrast checked: text >= 4.5:1, borders >= 3:1. */
 [data-theme="green"] {
   --bg: #eef8e6;
-  --blob-a: #cdeeb8;
+  --blob-a: #fbe9a0;
   --blob-b: #d3f0e2;
   --ink: #12301c;
   --ink-soft: #3d5a45;
   --edge: #12301c;
   --shade: #12301c;
   --primary: #256b1f;
-  --accent: #74c043;
+  --accent: #ffc83d;
   --select-bg: #dcefc8;
 }
 
 @media (prefers-color-scheme: dark) {
   [data-theme="green"] {
     --bg: #0f2016;
-    --blob-a: #17331f;
+    --blob-a: #3a3414;
     --blob-b: #12332b;
     --surface: #17291d;
     --ink: #eaf7e6;
@@ -93,7 +93,7 @@
     --shade: #07110a;
     --primary: #8fdc8a;
     --on-primary: #0c2a12;
-    --accent: #74c043;
+    --accent: #ffc83d;
     --select-bg: #25502f;
   }
 }
